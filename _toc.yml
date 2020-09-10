@@ -1,5 +1,10 @@
 - file: intro
-- file: content
-  sections:
-    - file: markdown
+  numbered: false
+  
+- part: One-variable dynamical systems
+  chapters: 
+  - file: chapter1
+    sections: 
     - file: notebooks
+  - file: chapter2
+  - file: chapter3

@@ -1,6 +1,6 @@
 # Book settings
-title: My sample book
-author: The Jupyter Book Community
+title: Mathematical Methods for Biology
+author: Dmitry Kondrashov
 logo: logo.png
 
 latex:

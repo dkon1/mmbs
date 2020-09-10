@@ -1,0 +1,1246 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Models with one variable in continuous time &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Discrete models of higher order: age-structured population models" href="chapter2.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  One-variable dynamical systems
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter1.html">
+   Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter2.html">
+   Discrete models of higher order: age-structured population models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Models with one variable in continuous time
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter3.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-of-linear-odes">
+   Review of linear ODEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#growth-proportional-to-population-size">
+     growth proportional to population size
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chemical-kinetics">
+     chemical kinetics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#concepts-of-odes">
+     concepts of ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solutions-of-linear-odes">
+     solutions of linear ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution-of-inhomogeneous-odes">
+     solution of inhomogeneous ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-of-drug-concentration">
+     model of drug concentration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graphical-and-qualitative-analysis-of-odes">
+   Graphical and qualitative analysis of ODEs
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fixed-points-in-ode">
+     fixed points in ODE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plotting-flow-on-the-line">
+     plotting flow on the line
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#models-with-nonlinear-terms-logistic-model">
+     models with nonlinear terms: logistic model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computation-simple-numerical-schemes">
+   Computation: simple numerical schemes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#forward-euler-method">
+     Forward Euler method
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-in-numerical-solutions">
+     error in numerical solutions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#backward-euler-method">
+     backward Euler method
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthesis-membrane-as-electric-circuit">
+   Synthesis: membrane as electric circuit
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#synthesis-sis-model-of-epidemics">
+   Synthesis: SIS model of epidemics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modeling-setup">
+     modeling setup
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graphical-analysis-of-the-sis-model">
+     graphical analysis of the SIS model
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="models-with-one-variable-in-continuous-time">
+<h1>Models with one variable in continuous time<a class="headerlink" href="#models-with-one-variable-in-continuous-time" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In the previous chapter we have considered discrete time models, in which time is measured in integers. This worked well to describe processes that happen in periodic cycles, like cell division or heart pumping. Many biological systems do not work this way. Change can happen continuously, that is, at any point in time. For instance, the concentration of a biological molecule in the cell changes gradually, as does the voltage across the cell membrane in a neuron.</p>
+<p>The models for continuously changing variables require their own set of mathematical tools. Differential equations use derivatives to describe how a variable changes with time. There is a tremendous amount of knowledge accumulated by mathematicians, physicists and engineers for analyzing and solving differential equations. There are many classes of differential equations for which it is possible to find analytic solutions, often in the form of “special functions.” Differential equations courses for physicists and engineers are typically focused on learning about the variety of existing tools for solving a few types of differential equations. For the purposes of biological modeling, knowing how to solve a limited number of differential equations is of limited usefulness. We will instead focus on learning how to analyze the behavior of differential equations in general, without having to solve them on paper.</p>
+<p>I assume that you have seen basic differential equations before and thus will begin with a brief review of linear differential equations and their solutions. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. When solutions cannot be found on paper, we have two options: 1) qualitative or graphical tools, such as finding equilibrium points and their stability, allow us to predict the long-term dynamics of the solution; 2) numerical solutions, which use computational methods to construct a sequence of numbers that approximate the true solution.</p>
+</div>
+<div class="section" id="review-of-linear-odes">
+<h2>Review of linear ODEs<a class="headerlink" href="#review-of-linear-odes" title="Permalink to this headline">¶</a></h2>
+<p>We consider models with <em>continuous time</em>, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{t+1} - x_t = g(x)
+\]</div>
+<p><span class="math notranslate nohighlight">\(g(x)\)</span> is a function of the dependent variable, which may be as simple as 0 or <span class="math notranslate nohighlight">\(ax\)</span>, or can be horribly nonlinear and complicated.</p>
+<p>For difference equations, the time variable <span class="math notranslate nohighlight">\(t\)</span> is measured in the number of time steps (<span class="math notranslate nohighlight">\(\Delta t\)</span>), whether the time step is 20 minutes or 20 years. In continuous time models, we express <span class="math notranslate nohighlight">\(t\)</span> in actual units of time, instead of counting time steps. Thus, what we wrote as <span class="math notranslate nohighlight">\(t+1\)</span> for discrete time should be expressed as <span class="math notranslate nohighlight">\(t+\Delta t\)</span> for continuous time. The left-hand-side of the equation above describes the change in the variable <span class="math notranslate nohighlight">\(x\)</span> over one time step <span class="math notranslate nohighlight">\(\Delta t\)</span>. We can write it as a Newton’s quotient, and then take the limit of the time step shrinking to 0:</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{\Delta t \rightarrow 0} \frac{x(t +\Delta t) - x(t)} {\Delta t} = \frac{d x} {dt}  = g(x)
+\]</div>
+<p>To take the limit of the time step going to 0 means that we allow the increments in time to be infinitesimally small, and therefore the time variable may be any real number. The equation above thus becomes a differential equation, because it involves a derivative of the dependent variable.</p>
+<p>In general, an ordinary differential equation is defined as follows:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) with respect to an independent variable (e.g. <span class="math notranslate nohighlight">\(t\)</span>).```</p>
+</div>
+<p>For example:
+$<span class="math notranslate nohighlight">\( 
+\frac{dx^2}{dt^2}+ 0.2 \frac{dx}{dt} - 25 = 0
+\)</span>$</p>
+<p>There are at least two good reasons to use differential equations for many applications. First, some events happen very frequently and non-periodically, so it is more reasonable to allow time to flow continuously instead of in steps. The second reason is mathematical: it turns out that dynamical systems with continuous time, described by differential equations, are better behaved than difference equations. This has to do with the essential “jumpiness” of difference equations. Even for simple nonlinear equations, the value of the variable after one time step can be far removed from its last value. This can lead to highly complicated solutions, as we saw in the logistic model in Chapter 1.</p>
+<div class="section" id="growth-proportional-to-population-size">
+<h3>growth proportional to population size<a class="headerlink" href="#growth-proportional-to-population-size" title="Permalink to this headline">¶</a></h3>
+<p>We will now build up some of the most common differential equations models. First up, a simple population growth model with a constant growth rate. Suppose that in a population each individual reproduces with the average reproductive rate <span class="math notranslate nohighlight">\(r\)</span>. This is reflected in the following differential equation:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dx} {dt} = \dot x = r x
+\label{eq:linear_ode}
+\]</div>
+<p>This expression states that the rate of change of <span class="math notranslate nohighlight">\(x\)</span>, which we take to be population size, is proportional to <span class="math notranslate nohighlight">\(x\)</span> with multiplicative constant <span class="math notranslate nohighlight">\(r\)</span>. We will frequenlty use the notation <span class="math notranslate nohighlight">\(\dot x\)</span> for the time derivative of <span class="math notranslate nohighlight">\(x\)</span> for aesthetic reasons.</p>
+<p>First, we apply dimensional analysis to this model. The units of the derivative are population per time, as can be deduced from the Newton’s quotient definition. Thus, the units in the equation have the following relationship:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{[population]}{[time]} = [r] [population] = \frac{1}{[time]}[population]
+\]</div>
+<p>This shows that as in the discrete time models, the dimension of the population growth rate <span class="math notranslate nohighlight">\(r\)</span> is inverse time, or frequency. The difference with the discrete time population models lies in the time scope of the rate. In the case of the difference equation, <span class="math notranslate nohighlight">\(r\)</span> is the rate of change per one time step of the model. In the differential equation, <span class="math notranslate nohighlight">\(r\)</span> is the <em>instantaneous rate of population growth</em>. It is less intuitive than the growth rate per single reproductive cycle, just like the slope of a curve is less intuitive than the slope of a line. The population growth happens continuously, so the growth rate of <span class="math notranslate nohighlight">\(r\)</span> individuals per year does not mean that if we start with one individual, there will be <span class="math notranslate nohighlight">\(r\)</span> after one year. In order to make quantitative predictions, we need to find the solution of the equation, which we will see in the next section.</p>
+</div>
+<div class="section" id="chemical-kinetics">
+<h3>chemical kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h3>
+<p>Reactions between molecules in cells occur continuously, driven by molecular collisions and physical forces. In order to model this complex behavior, it is generally assumed that reactions occur with a particular speed, known as the <em>kinetic rate</em>. A simple reaction of conversion from one type of molecule (<span class="math notranslate nohighlight">\(A\)</span>) to another (<span class="math notranslate nohighlight">\(B\)</span>) can be written as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+A \rightarrow^k B
+\]</div>
+<p>In this equation the parameter <span class="math notranslate nohighlight">\(k\)</span> is the kinetic rate, describing the speed of conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>, per concentration of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>Chemists and biochemists use differential equations to describe the change in molecular concentration during a reaction. These equations are known as the <em>laws of mass action</em>. For the reaction above, the concentration of molecule <span class="math notranslate nohighlight">\(A\)</span> decreases continuously proportionally to itself, and the concentration of molecule <span class="math notranslate nohighlight">\(B\)</span> increases continuously proportionally to the concentration of <span class="math notranslate nohighlight">\(A\)</span>. This is expressed by the following two differential equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{aligned}
+\label{eq:lin_chem_kin}
+\dot A &amp;=&amp; - k A \\
+\dot B &amp;=&amp; kA\end{aligned}
+\end{split}\]</div>
+<p>Several conclusions can be drawn by inspection of the equations. First, the dynamics depend only on the concentration of <span class="math notranslate nohighlight">\(A\)</span>, so keeping track of the concentration of <span class="math notranslate nohighlight">\(B\)</span> is superfluous. The second observation reinforces the first: the sum of the concentrations of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is constant. This is mathematically demonstrated by adding the two equations together to obtain the following:
+$<span class="math notranslate nohighlight">\(
+\dot A + \dot B = -kA + kA = 0
+\)</span>$</p>
+<p>One of the basic properties of the derivative is that the sum of derivatives is the same as the derivative of the sum:</p>
+<div class="math notranslate nohighlight">
+\[
+\dot A + \dot B = \frac{d(A+B)}{dt} = 0
+\]</div>
+<p>This means that the sum of the concentrations of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is a constant. This is a mathematical expression of the law of conservation in chemistry: molecules can change from one type to another, but they cannot appear or disappear in other ways. In this case, a single molecule of <span class="math notranslate nohighlight">\(A\)</span> becomes a single molecule of <span class="math notranslate nohighlight">\(B\)</span>, so it follows that the sum of the two has to remain the same. If the reaction were instead two molecules of <span class="math notranslate nohighlight">\(A\)</span> converting to a molecule of <span class="math notranslate nohighlight">\(B\)</span>, then the conserved quantity is <span class="math notranslate nohighlight">\(2A + B\)</span>. The concept of conserved quantity is very useful for the analysis of differential equations. We will see in later chapters how it can help us find solutions, and explain the behavior of complex dynamical systems.</p>
+</div>
+<div class="section" id="concepts-of-odes">
+<h3>concepts of ODEs<a class="headerlink" href="#concepts-of-odes" title="Permalink to this headline">¶</a></h3>
+<p>Let us define some terminology for ODEs:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>The <em>order</em> of an ODE is the highest order of the derivative of the dependent variable <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
+<p>For example, <span class="math notranslate nohighlight">\(\dot x = rx\)</span> is a first order ODE, while <span class="math notranslate nohighlight">\(\ddot x = - mx\)</span> is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to ODEs with the highest derivative being of first order. In general, we can write all such ODEs as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d x} {dt} = \dot x = f(x,t)
+\]</div>
+<p>Note that the function may depend on both the dependent variable <span class="math notranslate nohighlight">\(x\)</span> and the independent variable <span class="math notranslate nohighlight">\(t\)</span>. This leads to the next definition:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>An ODE is <em>autonomous</em> if the function <span class="math notranslate nohighlight">\(f\)</span> depends only on the dependent variable <span class="math notranslate nohighlight">\(x\)</span> and not on <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</div>
+<p>For example, <span class="math notranslate nohighlight">\(\dot x = 5x -4\)</span> is an autonomous equation, while <span class="math notranslate nohighlight">\(\dot x = 5t \)</span> is not. An autonomous ODE is also said to have <em>constant coefficients</em> (e.g. 5 and -4 in the first equation above).</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>An ODE is <em>homogeneous</em> if every term involves either the dependent variable <span class="math notranslate nohighlight">\(x\)</span> or its derivative.</p>
+</div>
+<p>For example, <span class="math notranslate nohighlight">\(\dot x = x^2 + \sin(x)\)</span> is homogeneous, while <span class="math notranslate nohighlight">\(\dot x = -x + 5t\)</span> is not. Most simple biological models that we will encounter in the next two chapters are autonomous, homogeneous ODEs. However, inhomogeneous equations are important in many applications, and we will encounter them at the end of the present section.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>The <em>solution of a differential equation</em> is a function of the independent variable that satisfies the equation for a range of values of the independent variable.</p>
+</div>
+<p>In contrast with algebraic equations, we cannot simply isolate <span class="math notranslate nohighlight">\(x\)</span> on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of <span class="math notranslate nohighlight">\(t\)</span>. We will discuss some of the difficulties later, but let us start with equations that we can solve.</p>
+</div>
+<div class="section" id="solutions-of-linear-odes">
+<h3>solutions of linear ODEs<a class="headerlink" href="#solutions-of-linear-odes" title="Permalink to this headline">¶</a></h3>
+<p>The most obvious strategy for solving an ODE is integration. Since a differential equation contains derivatives, integrating it can remove the derivative. In the case of the general first order equation, we can integrate both sides to obtain the following:</p>
+<div class="math notranslate nohighlight">
+\[
+\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x + C = \int f(x,t) dt
+\]</div>
+<p>The constant of integration <span class="math notranslate nohighlight">\(C\)</span> appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
+<p>The simplest method of analytical solution of a first-order ODEs, which I call <em>separate-and-integrate</em> consists of the following steps:</p>
+<ol class="simple">
+<li><p>use algebra to place the dependent and independent variables on
+different sides of the equations, including the differentials (e.g.
+<span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dt\)</span>)</p></li>
+<li><p>integrate both sides with respect to the different variables, don’t
+forget the integration constant</p></li>
+<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>)</p></li>
+<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
+integration constant</p></li>
+</ol>
+<p><strong>Example.</strong> Consider a very simple differential equation:
+<span class="math notranslate nohighlight">\(\dot x  = a\)</span>, where <span class="math notranslate nohighlight">\(\dot x\)</span> stands for the time derivative of the
+dependent variable <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(a\)</span> is a constant. It can be solved by
+integration:
+$<span class="math notranslate nohighlight">\(\int \frac{dx}{dt} dt  = \int a dt  \Rightarrow x(t) + C = at\)</span><span class="math notranslate nohighlight">\( This
+solution contains an undetermined integration constant; if an initial
+condition is specified, we can determine the complete solution.
+Generally speaking, if the initial condition is \)</span>x(0) = x_0<span class="math notranslate nohighlight">\(, we need to
+solve an algebraic equation to determine \)</span>C<span class="math notranslate nohighlight">\(: \)</span>x_0 = a*0 - C<span class="math notranslate nohighlight">\(, which
+results in \)</span>C = -x_0<span class="math notranslate nohighlight">\(. The complete solution is then \)</span>x(t) = at + x_0<span class="math notranslate nohighlight">\(.
+To make the example more specific, if \)</span>a = 5<span class="math notranslate nohighlight">\( and the initial condition
+is \)</span>x(0) = -3<span class="math notranslate nohighlight">\(, the solution is \)</span>x(t) = 5t -3$.</p>
+<p><strong>Example</strong>. Let us solve the linear population growth model in equation
+[eq:linear_ode]: <span class="math notranslate nohighlight">\(\dot x = rx\)</span>. The equation can be solved by first
+dividing both sides by <span class="math notranslate nohighlight">\(x\)</span> and then integrating:
+$<span class="math notranslate nohighlight">\(\int \frac{1}{x} \frac{d x}{dt}  dt = \int \frac{dx}{x} = \int r dt \Longrightarrow \log |x| = rt + C  \Longrightarrow  x =  e^{rt+C} = Ae^{rt}\)</span><span class="math notranslate nohighlight">\(
+We used basic algebra to solve for \)</span>x<span class="math notranslate nohighlight">\(, exponentiating both sides to get
+rid of the logarithm on the left side. As a result, the additive
+constant \)</span>C<span class="math notranslate nohighlight">\( gave rise to the multiplicative constant \)</span>A=e^C<span class="math notranslate nohighlight">\(. Once
+again, the solution contains a constant which can be determined by
+specifying an initial condition \)</span>x(0) = x_0<span class="math notranslate nohighlight">\(. In this case, the
+relationship is quite straightforward: \)</span>x(0) = A e^0 = A<span class="math notranslate nohighlight">\(. Thus, the
+complete solution for equation \[eq:linear\_ode\] is:
+\)</span><span class="math notranslate nohighlight">\(x(t) = x_0e^{rt}\)</span>$ As in the case of the discrete-time models,
+population growth with a constant birth rate has exponential form. Once
+again, please pause and consider this fact, because the exponential
+solution of linear equations is one of the most basic and powerful tools
+in applied mathematics. Immediately, it allows us to classify the
+behavior of linear ODE into three categories:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( r &gt; 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> grows without bound</p></li>
+<li><p><span class="math notranslate nohighlight">\( r &lt; 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> decays to 0</p></li>
+<li><p><span class="math notranslate nohighlight">\( r = 0 \)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> remains constant at the initial value</p></li>
+</ul>
+<p>The rate <span class="math notranslate nohighlight">\(r\)</span> being positive reflects the dominance of birth rate over
+death rate in the population, leading to unlimited population growth. If
+the death rate is greater, the population will decline and die out. If
+the two are exactly matched, the population size will remain unchanged.</p>
+<p><strong>Example.</strong> The solution for the biochemical kinetic model in equation
+[eq:lin_chem_kin] is identical except for the sign:
+<span class="math notranslate nohighlight">\( A(t) = A_0 e^{-kt}\)</span>. When the reaction rate <span class="math notranslate nohighlight">\(k\)</span> is positive, as it is
+in chemistry, the concentration of <span class="math notranslate nohighlight">\(A\)</span> decays to 0 over time. This
+should be obvious from our model, since there is no back reaction, and
+the only chemical process is conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>. The
+concentration of <span class="math notranslate nohighlight">\(B\)</span> can be found by using the fact that the total
+concentration of molecules in the model is conserved. Let us call it
+<span class="math notranslate nohighlight">\(C\)</span>. Then <span class="math notranslate nohighlight">\(B(t) = C - A(t) = C- A_0e^{-kt}\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span>
+increases to the asymptotic limit of <span class="math notranslate nohighlight">\(C\)</span>, meaning that all molecules of
+<span class="math notranslate nohighlight">\(A\)</span> have been converted to <span class="math notranslate nohighlight">\(B\)</span>.</p>
+</div>
+<div class="section" id="solution-of-inhomogeneous-odes">
+<h3>solution of inhomogeneous ODEs<a class="headerlink" href="#solution-of-inhomogeneous-odes" title="Permalink to this headline">¶</a></h3>
+<p>The two models we have seen above are non-homogeneous, because they
+involve a term without a dependent variable, and linear, because the
+relationship with the dependent variable term is proportional. They can
+be solved on paper using the same separate-and-integrate method,
+modified slightly to handle the constant term. Here are the steps to
+solve the generic linear ODE with a constant term <span class="math notranslate nohighlight">\(\dot x = ax +b \)</span>:</p>
+<ol class="simple">
+<li><p>separate the dependent and independent variables on different sides
+of the equations, by dividing both sides by the right hand side
+<span class="math notranslate nohighlight">\(ax+b\)</span>, and multiplying both sides by the differential <span class="math notranslate nohighlight">\(dt\)</span></p></li>
+<li><p>integrate both sides with respect to the different variables, don’t
+forget the integration constant!</p></li>
+<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>)</p></li>
+<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
+integration constant</p></li>
+</ol>
+<p><strong>Example:</strong> Let us solve the following ODE model using separate and
+integrate with the given initial value:
+$<span class="math notranslate nohighlight">\(\frac{dx}{dt} = 4x -100;  \; x(0) = 32\)</span>$</p>
+<ol class="simple">
+<li><p>separate the dependent and independent variables:
+$<span class="math notranslate nohighlight">\(\frac{dx}{4x - 100} = dt\)</span>$</p></li>
+<li><p>integrate both sides:
+$<span class="math notranslate nohighlight">\(\int \frac{dx}{4x -100} =  \int dt \Rightarrow \frac{1}{4} \int \frac{du}{u} = \frac{1}{4} \ln | 4x- 100 |  = t + C\)</span><span class="math notranslate nohighlight">\(
+The integration used the substitution of the new variable
+\)</span>u=4x -100<span class="math notranslate nohighlight">\(, with the concurrent substitution of \)</span>dx = du/4$.</p></li>
+<li><p>solve for the dependent variable:
+$<span class="math notranslate nohighlight">\(\ln | 4x- 100 |  = 4t + C \Rightarrow 4x-100 = e^{4t} B  \Rightarrow x = 25  + Be^{4t}\)</span><span class="math notranslate nohighlight">\(
+Here the first step was to multiply both sides by 4, and the second
+to use both sides as the exponents of \)</span>e<span class="math notranslate nohighlight">\(, removing the natural log
+from the left hand side, and finally simple algebra to solve for \)</span>x<span class="math notranslate nohighlight">\(
+as a function of \)</span>t$.</p></li>
+<li><p>solve for the integration constant:
+$<span class="math notranslate nohighlight">\(x(0) = 25  + B = 32 \Rightarrow B = 7\)</span><span class="math notranslate nohighlight">\( Here the exponential
+“disappeared” because \)</span>e^0=1$.</p></li>
+</ol>
+<p>Therefore, the complete solution of the ODE with the given initial value
+is $<span class="math notranslate nohighlight">\(x(t) =  25  + 5e^{4t}\)</span>$</p>
+<p>At this point, you might have noticed something about solutions of
+linear ODEs: they always involve an exponential term, with time in the
+exponent. Knowing this, it is possible to bypass the whole process of
+separate-and-integrate by using the following short-cut.</p>
+<p><strong>Important fact:</strong> Any linear ODE of the form <span class="math notranslate nohighlight">\(\dot x= ax +b \)</span> has an
+analytic solution of the form: $<span class="math notranslate nohighlight">\(x(t) = Ce^{at} + D\)</span><span class="math notranslate nohighlight">\( This can be tested
+by plugging the solution back into the ODE to see if it satisfies the
+equation. First, take the derivative of the solution to get the
+left-hand side of the ODE: \)</span> \frac{dx}{dt} = Ca e^{at}<span class="math notranslate nohighlight">\(; the plug in
+\)</span>x(t)<span class="math notranslate nohighlight">\( into the right hand side of the ODE: \)</span> aCe^{at} + aD +b<span class="math notranslate nohighlight">\(. Setting
+the two sides equal, we get: \)</span>Ca e^{at} =
+aCe^{at} + aD +b<span class="math notranslate nohighlight">\(, which is satisfied if \)</span>aD+b= 0<span class="math notranslate nohighlight">\(, which means
+\)</span>D= -b/a<span class="math notranslate nohighlight">\(. This is consistent with the example above, the additive
+constant in the solution was 0.8, which is \)</span>-b/a= -(4)/5=0.8$.</p>
+<p>In short, if you want to solve a linear ODE <span class="math notranslate nohighlight">\(\dot x= ax +b\)</span> , you can
+bypass the separate-and-integrate process, because the general solution
+always has the form: $<span class="math notranslate nohighlight">\(x(t) = Ce^{at} - \frac{b}{a}
+\label{eq:ch15_ode_sol}\)</span><span class="math notranslate nohighlight">\( The unknown constant \)</span>C<span class="math notranslate nohighlight">\( can be determined
+from a given initial value. So the upshot is that all linear ODEs have
+solutions which are exponential in time with exponential constant coming
+from the slope constant \)</span>a<span class="math notranslate nohighlight">\( in the ODE. The dynamics of the solution are
+determined by the sign of the constant \)</span>a<span class="math notranslate nohighlight">\(: if \)</span>a&gt;0<span class="math notranslate nohighlight">\(, the solution grows
+(or declines) without bound; and if \)</span>a&lt;0<span class="math notranslate nohighlight">\(, the solution approaches an
+asymptote at \)</span>-b/a$ (from above or below, depending on the initial
+value).</p>
+</div>
+<div class="section" id="model-of-drug-concentration">
+<h3>model of drug concentration<a class="headerlink" href="#model-of-drug-concentration" title="Permalink to this headline">¶</a></h3>
+<p>Describing and predicting the dynamics of drug concentration in the body
+is the goal of <em>pharmacokinetics</em>. Any drug that humans take goes
+through several stages: first it is administered (put into the body),
+then absorbed, metabolized (transformed), and excreted (removed from the
+body). Almost any drug has a dose at which it has a toxic effect, and
+most can kill a human if the dose is high enough. Drugs which are used
+for medical purposes have a <em>therapeutic range</em>, which lies between the
+lowest possible concentration (usually measured in the blood plasma)
+that achieves the therapeutic effect and the concentration which is
+toxic. One of the basic questions that medical practitioners need to
+know is how much and how frequently to administer a drug to maintain
+drug concentration in the therapeutic range.</p>
+<p>The concentration of a drug is a dynamic variable which depends on the
+rates of several processes, most directly on the rate of administration
+and the rate of metabolism. Drugs can be <em>administered</em> through various
+means (e.g. orally or intravenously) which influences their rate of
+absorption and thus how the concentration increases. Once in the blood
+plasma, drugs are metabolized primarily by enzymes in the liver,
+converting drug molecules into compounds that can be excreted through
+the kidneys or the large intestine. The process of <em>metabolism</em> proceeds
+at a rate, which depends on both the concentration of the drug and on
+the enzyme that catalyzes the reaction. For some drugs the metabolic
+rate may be <em>constant</em>, or independent of the drug concentration, since
+the enzymes are already working at full capacity and can’t turn over any
+more reactions, for example alcohol is metabolized at a constant rate of
+about 1 drink per hours for most humans. For other drugs, if the plasma
+concentration is low enough, the enzymes are not occupied all the time
+and increasing the drug concentration leads to an increase in the rate
+of metabolism. In the simplest case, the rate of metabolism is <em>linear</em>,
+or proportional to the concentration of the drug, with proportionality
+constant called the first-order metabolic rate.</p>
+<p>Let us build an ODE model for a simplified pharmacokinetics situation.
+Suppose that a drug is administered at a constant rate of <span class="math notranslate nohighlight">\(M\)</span>
+(concentration units per time unit) and that it is metabolized at a rate
+proportional to its plasma concentration <span class="math notranslate nohighlight">\(C\)</span> with metabolic rate
+constant <span class="math notranslate nohighlight">\(k\)</span>. Then the ODE model of the concentration of the drug over
+time <span class="math notranslate nohighlight">\(C(t)\)</span> is: $<span class="math notranslate nohighlight">\(\frac{dC}{dt} = M - kC\)</span><span class="math notranslate nohighlight">\( The two rate constants \)</span>M<span class="math notranslate nohighlight">\(
+and \)</span>k$ have different dimensions, which you should be able to determine
+yourself. The ODE can be solved using the separate-and-integrate method:</p>
+<ol class="simple">
+<li><p>Divide both sides by the right hand side <span class="math notranslate nohighlight">\(M-kC\)</span>, and multiply both
+sides by the differential <span class="math notranslate nohighlight">\(dt\)</span> $<span class="math notranslate nohighlight">\(\frac{dC}{M-kC} = dt\)</span>$</p></li>
+<li><p>integrate both sides with respect to the different variables, don’t
+forget the integration constant!
+$<span class="math notranslate nohighlight">\(\int \frac{dC}{M-kC} = \int dt \Rightarrow\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(-\frac{1}{k} \log |M-kC| = t + A\)</span>$</p></li>
+<li><p>solve for the dependent variable <span class="math notranslate nohighlight">\(C(t)\)</span>
+$<span class="math notranslate nohighlight">\(\exp(\log |M-kC| ) = -\exp(kt +A) \Rightarrow\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(M - kC = B e^{-kt} \Rightarrow\)</span><span class="math notranslate nohighlight">\( \)</span><span class="math notranslate nohighlight">\(C(t) = \frac{M}{k}- Be^{-kt}\)</span><span class="math notranslate nohighlight">\(
+Notice that I changed the values of integration constants \)</span>A<span class="math notranslate nohighlight">\( and
+\)</span>B$ during the derivation, which shouldn’t matter because they have
+not been determined yet.</p></li>
+<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
+integration constant If we know the initial value <span class="math notranslate nohighlight">\(C(0) = C_0\)</span>, then
+we can plug it in and get the following algebraic expression:
+$<span class="math notranslate nohighlight">\(C_0 =  \frac{M}{k} - B \Rightarrow\)</span><span class="math notranslate nohighlight">\( \)</span><span class="math notranslate nohighlight">\(B = C_0 -  \frac{M}{k}\)</span><span class="math notranslate nohighlight">\(
+Then the complete solution is:
+\)</span><span class="math notranslate nohighlight">\(C(t) =  \frac{M}{k} - (C_0- \frac{M}{k})e^{-kt}\)</span>$</p></li>
+</ol>
+<p>The solution predicts that after a long time the plasma concentration
+will approach the value <span class="math notranslate nohighlight">\(M/k\)</span>, since the exponential term decays to
+zero. Notice that mathematically this is the same type of solution we
+obtained in equation [eq:ch15_ode_sol] for a generic linear ODE with
+a constant term.</p>
+</div>
+</div>
+<div class="section" id="graphical-and-qualitative-analysis-of-odes">
+<h2>Graphical and qualitative analysis of ODEs<a class="headerlink" href="#graphical-and-qualitative-analysis-of-odes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fixed-points-in-ode">
+<h3>fixed points in ODE<a class="headerlink" href="#fixed-points-in-ode" title="Permalink to this headline">¶</a></h3>
+<p>Generally, ODE models for realistic biological systems are nonlinear,
+and most nonlinear differential equations cannot be solved analytically.
+Instead, we will analyze the behavior of the solutions without finding
+an exact formula. The first step to understanding the dynamics of an ODE
+is finding its fixed points. The concept is the same as in the case of
+difference equations: a fixed point is a value of the solution at which
+the dynamical system stays constant. Thus, the derivative of the
+solution must be zero, which leads us to to the formal definition:</p>
+<p>For a differential equation <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span>, a point <span class="math notranslate nohighlight">\(x^*\)</span> which
+satisfies <span class="math notranslate nohighlight">\(f(x^*)=0\)</span> is called a <em>fixed point</em> or <em>equilibrium</em>, and the
+solution with the initial condition <span class="math notranslate nohighlight">\(x(0)=x^*\)</span> is <span class="math notranslate nohighlight">\(x(t)=x^*\)</span>.</p>
+<p>For instance, the linear equation <span class="math notranslate nohighlight">\(\dot x  = rx\)</span> has a single fixed
+point at <span class="math notranslate nohighlight">\(x^* = 0\)</span>. For a more interesting example, consider a logistic
+equation: <span class="math notranslate nohighlight">\(\dot x = x - x^2 \)</span>. Its fixed points are the solutions of
+<span class="math notranslate nohighlight">\(x - x^2 = 0\)</span>, therefore there two fixed points: <span class="math notranslate nohighlight">\(x^* = 0, 1\)</span>. We know
+that if the solution has either of the fixed points as the initial
+condition, it will remain at that value for all time.</p>
+<p>Locating the fixed points is not sufficient to predict the global
+behavior of the dynamical system, however. The next question to address
+is the behavior of the solution if the initial condition is <strong>near</strong> the
+fixed point. This is the same notion of stability that we saw for
+discrete dynamical systems. The definition is identical:</p>
+<p>A fixed point <span class="math notranslate nohighlight">\(x^*\)</span> of an ODE <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span> is called <em>stable (sink)</em>,
+if for a sufficiently small number <span class="math notranslate nohighlight">\(\epsilon\)</span>, the solution <span class="math notranslate nohighlight">\(x(t)\)</span> with
+the initial condition <span class="math notranslate nohighlight">\(x_0 = x^* + \epsilon\)</span> approaches the fixed point
+<span class="math notranslate nohighlight">\(x^*\)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>. If the solution <span class="math notranslate nohighlight">\(x(t)\)</span> does not
+approach <span class="math notranslate nohighlight">\(x^*\)</span> for all nonzero <span class="math notranslate nohighlight">\(\epsilon\)</span>, the fixed point is called
+<em>unstable (source)</em>.</p>
+<p>We will see that the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> determines whether a fixed point is
+stable. We use the same methodology as we did in Chapter 1. First,
+define <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> to be the deviation of the solution <span class="math notranslate nohighlight">\(x(t)\)</span> from the
+fixed point <span class="math notranslate nohighlight">\(x^*\)</span>, that is, write <span class="math notranslate nohighlight">\(x(t) = x^* + \epsilon(t)\)</span>. Assuming
+that <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> is small, we can write the function <span class="math notranslate nohighlight">\(f(x)\)</span> using
+Taylor’s formula:
+$<span class="math notranslate nohighlight">\(f(x^*+\epsilon(t))= f(x^*)+f'(x^*) \epsilon(t) + ... = f'(x^*) \epsilon(t) + ...\)</span><span class="math notranslate nohighlight">\(
+The term \)</span>f(x^<em>)<span class="math notranslate nohighlight">\( vanished because it is zero by definition of a fixed
+point. The ellipsis indicates terms of order \)</span>\epsilon(t)^2<span class="math notranslate nohighlight">\( and higher,
+which are very small by assumption. Thus, we can write the following
+approximation to the ODE \)</span>\dot x = f(x)<span class="math notranslate nohighlight">\( near a fixed point:
+\)</span><span class="math notranslate nohighlight">\(\dot x =  \frac{ d(x^* + \epsilon(t))}{dt} = \dot \epsilon(t) =  f'(x^*) \epsilon(t)\)</span><span class="math notranslate nohighlight">\(
+This differential equation describes the dynamics of the deviation
+\)</span>\epsilon(t)<span class="math notranslate nohighlight">\( near the fixed point \)</span>x^</em><span class="math notranslate nohighlight">\(; note that the derivative
+\)</span>f’(x^*)<span class="math notranslate nohighlight">\( is a constant for any given fixed point. We have obtained a
+linear equation for \)</span>\epsilon(t)<span class="math notranslate nohighlight">\(, known as the linearization of the ODE
+near the fixed point. We have classified the behavior of solutions for
+the general linear ODE \)</span>\dot x = rx<span class="math notranslate nohighlight">\(, and now we apply this
+classification to the behavior of the deviation \)</span>\epsilon(t)$:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f'(x^*) &gt; 0\)</span>: the deviation <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> grows exponentially, and
+the solution moves away from the fixed point <span class="math notranslate nohighlight">\(x^*\)</span>, therefore the
+fixed point is <strong>unstable</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(x^*) &lt; 0\)</span>: the deviation <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> decays to 0, therefore
+the fixed point is <strong>stable</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(f'(x^*) = 0\)</span>: the situation is more complicated.</p></li>
+</ul>
+<p>The classification of the behavior near a fixed point is directly
+analogous to that in discrete time models, with the difference that the
+discrimination between stable and unstable depends on the sign of the
+derivative, rather than whether its absolute value is greater than or
+less than 1. As before, the borderline situation is tricky, because if
+the first derivative is zero, higher order terms that we neglected make
+the difference. We will mostly avoid such borderline cases, but they are
+important in some applications.</p>
+<p>We have learned to find fixed points and analyze their stability. This
+will be the bedrock of our analysis of continuous-time dynamical
+systems, first in one variable and then in higher dimensions.</p>
+</div>
+<div class="section" id="plotting-flow-on-the-line">
+<h3>plotting flow on the line<a class="headerlink" href="#plotting-flow-on-the-line" title="Permalink to this headline">¶</a></h3>
+<p>The defining function of the ODE <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span> gives the rate of
+change of <span class="math notranslate nohighlight">\(x(t)\)</span> depending on the value of <span class="math notranslate nohighlight">\(x\)</span>. If <span class="math notranslate nohighlight">\(f(x)\)</span> is large and
+positive, that means the dependent variable <span class="math notranslate nohighlight">\(x(t)\)</span> is increasing
+rapidly. If <span class="math notranslate nohighlight">\(f(x)\)</span> is small and negative, <span class="math notranslate nohighlight">\(x(t)\)</span> is decreasing at a slow
+rate. If <span class="math notranslate nohighlight">\(f(x)=0\)</span>, this value of <span class="math notranslate nohighlight">\(x\)</span> is a fixed point, and <span class="math notranslate nohighlight">\(x\)</span> is not
+changing at all.</p>
+<p>For an ODE with one dependent variable, we can sketch the <em>flow on the
+line</em> defined by the differential equation. The “flow” stands for the
+direction of change at every point, specifically increasing, decreasing,
+or not changing. We will plot the flow on the horizontal x-axis, so if
+<span class="math notranslate nohighlight">\(x\)</span> is increasing, the flow will be indicated by a rightward arrow, and
+if it is decreasing, the flow will point to the left. The fixed points
+separate the regions of increasing (rightward) flow and decreasing
+(leftward) flow.</p>
+<p>The graphical approach to finding areas of right and left flow is based
+on graphing the function <span class="math notranslate nohighlight">\(f(x)\)</span>, and dividing the x-axis based on the
+sign of <span class="math notranslate nohighlight">\(f(x)\)</span>. In the areas where <span class="math notranslate nohighlight">\(f(x) &gt; 0\)</span>, its graph is above the
+x-axis, and the flow is to the right; conversely, when <span class="math notranslate nohighlight">\(f(x) &lt; 0\)</span>, its
+graph is below the x-axis, and the flow is to the left. The fixed points
+are found at the intersections of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span> with the x-axis.</p>
+<p>Graphical analysis is also used to determine the stability of fixed
+points. To summarize, a fixed point <span class="math notranslate nohighlight">\(x^*\)</span> is defined by <span class="math notranslate nohighlight">\(f(x^*) = 0\)</span>. We
+saw above, the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at a fixed point determines its stability
+[&#64;strogatz_nonlinear_2001]:</p>
+<ul class="simple">
+<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is negative, the fixed point
+is stable</p></li>
+<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is positive, the fixed point
+is unstable</p></li>
+<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is zero (<span class="math notranslate nohighlight">\(f(x^*)\)</span> just touches
+the x-axis), then further analysis is needed to determine stability.</p></li>
+</ul>
+</div>
+<div class="section" id="models-with-nonlinear-terms-logistic-model">
+<h3>models with nonlinear terms: logistic model<a class="headerlink" href="#models-with-nonlinear-terms-logistic-model" title="Permalink to this headline">¶</a></h3>
+<p>We have already seen the logistic population model in discrete time. The
+motivation and the form of the model are the same as before: population
+growth is generally slower at larger populations, which can be expressed
+as a higher death rate or a lower birth date, or both. We will assume
+there are separate birth and death rates, and that the birth rate
+declines as the population grows, while the death rate increases.
+Suppose there are inherent birth rates <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(d\)</span>, and the overall
+birth and death rates <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> depend linearly on population size
+<span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(B  =  b - aP \)</span> and <span class="math notranslate nohighlight">\(D  =  d + cP \)</span></p>
+<p>To model the actual rate of change of the population, we need to
+multiply the rates <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> by the population size <span class="math notranslate nohighlight">\(P\)</span>, since each
+individual can reproduce or die. Also, since the death rate <span class="math notranslate nohighlight">\(D\)</span>
+decreases the population, we need to put a negative sign on it. The
+resultant model is: $<span class="math notranslate nohighlight">\(\dot P = BP - DP = [(b-d)-(a+c)P]P\)</span><span class="math notranslate nohighlight">\( The
+parameters of the model, the constants \)</span>a,b,c,d<span class="math notranslate nohighlight">\(, have different
+meanings. Performing dimensional analysis, we find that \)</span>b<span class="math notranslate nohighlight">\( and \)</span>d<span class="math notranslate nohighlight">\( have
+the units of \)</span>1/[t]<span class="math notranslate nohighlight">\(, the same as the rate \)</span>r<span class="math notranslate nohighlight">\( in the exponential growth
+model. However, the units of \)</span>a<span class="math notranslate nohighlight">\( (and \)</span>c<span class="math notranslate nohighlight">\() must obey the relation:
+\)</span>[P]/[t] = [a][P]^2<span class="math notranslate nohighlight">\(, and thus, \)</span><span class="math notranslate nohighlight">\([a]=[c] = \frac{1}{[t][P]}\)</span>$</p>
+<p>This shows that the constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(c\)</span> have to be treated differently
+than <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(d\)</span>. Let us define the inherent growth rate of the
+population, to be <span class="math notranslate nohighlight">\(r_0=b-d\)</span> (if the death rate is greater than the birth
+rate, the population will inherently decline). Then let us introduce
+another constant <span class="math notranslate nohighlight">\(K\)</span>, such that <span class="math notranslate nohighlight">\((a+c)=r_0/K\)</span>. It should be clear from
+the dimensional analysis that <span class="math notranslate nohighlight">\(K\)</span> has units of <span class="math notranslate nohighlight">\(P\)</span>, population size. Now
+we can write down the logistic equation in the canonical form:
+$<span class="math notranslate nohighlight">\(\dot P = r(1-\frac{P}{K})P
+\label{eq:log_cont_model}\)</span><span class="math notranslate nohighlight">\( This model can be re-written as
+\)</span>\dot P = aP -bP^2<span class="math notranslate nohighlight">\(, so it is clear that there is a *linear term* (\)</span>aP<span class="math notranslate nohighlight">\()
+and a *nonlinear term* (\)</span>-bP^2<span class="math notranslate nohighlight">\(). When \)</span>P<span class="math notranslate nohighlight">\( is sufficiently small (and
+positive) the linear term is greater, and the population grows. When \)</span>P$
+is large enough, the nonlinear term wins and the population declines.</p>
+<p>It should be apparent that there are two fixed points, at <span class="math notranslate nohighlight">\(P=0\)</span> and at
+<span class="math notranslate nohighlight">\(P=K\)</span>. The first one corresponds to a population with no individuals. On
+the other hand, <span class="math notranslate nohighlight">\(K\)</span> signifies the population at which the negative
+effect of population size balances out the inherent population growth
+rate, and is called the <em>carrying capacity</em> of a population in its
+environment. We will analyze the stability of these fixed points in the
+analytical section of this chapter.</p>
+<p><img alt="Line flow analysis of the logistic model ; redarrows indicate the direction field in the intervals separated by thefixedpoints[]{data-label=&quot;fig:line_flow_logistic&quot;}" src="_images/lec2_fig2.jpg" />{width=”4in”}</p>
+<p><strong>Example: semi-stable fixed point.</strong> The function <span class="math notranslate nohighlight">\(f(x) =  -x^3 + x^2 \)</span>
+is plotted in figure , showing two fixed
+points at <span class="math notranslate nohighlight">\(x = 0, 1\)</span>. The red arrows on the x-axis show the direction of
+the flow in the three different regions separated by the fixed points.
+Flow is to the right for <span class="math notranslate nohighlight">\(x&lt;1\)</span>, to the left for for <span class="math notranslate nohighlight">\(x&gt;1\)</span>; it is plain
+to see that the arrows approach the fixed point from both sides, and
+thus the fixed point is stable, as the negative slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span>
+indicates. The fixed point at <span class="math notranslate nohighlight">\(x=0\)</span> presents a more complicated
+situation: the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> is zero, and the flow is rightward on
+both sides of the fixed point. This type of fixed point is sometimes
+called <em>semi-stable</em>, because it is stable when approached from one
+side, and unstable when approached from the other.</p>
+<p><img alt="Line flow analysis of the nonlinear ODE ; redarrows indicate the direction field in the intervals separated by thefixedpoints.[]{data-label=&quot;fig:line_flow_example&quot;}" src="_images/lec2_fig1.jpg" />{width=”4in”}</p>
+</div>
+</div>
+<div class="section" id="computation-simple-numerical-schemes">
+<h2>Computation: simple numerical schemes<a class="headerlink" href="#computation-simple-numerical-schemes" title="Permalink to this headline">¶</a></h2>
+<p>Analytic solutions are very useful for a modeler because they allow
+prediction of the variable of interest at any time in the future.
+However, for many differential equations they are not easy to find, and
+for many others they simply cannot be written down in a symbolic form.
+Instead, one can use a numerical approach, which does not require an
+exact formula for the solution. The idea is to start at a given initial
+value (e.g. <span class="math notranslate nohighlight">\(x(0)\)</span>) and use the derivative from the ODE (e.g. <span class="math notranslate nohighlight">\(dx/dt\)</span>)
+as the rate of change of the solution (e.g. <span class="math notranslate nohighlight">\(x(t)\)</span>) to calculate the
+change or increment for the solution over a time step. Essentially, this
+means replacing the continuous change of the derivative with a discrete
+time step, thus converting the differential equation into a difference
+equation and then solving it. The solution of the difference equation is
+not the same as the solution of the ODE, so <em>numerical solutions</em> of
+ODEs are always approximate. I will use the letter <span class="math notranslate nohighlight">\(y(t)\)</span> to denote the
+numerical solution to distinguish it from the exact solution <span class="math notranslate nohighlight">\(x(t)\)</span>. The
+fundamental difference between them is that <span class="math notranslate nohighlight">\(y(t)\)</span> is not a formula that
+can be evaluated at any point in time, but instead is a sequence of
+numbers calculated every time step, which hopefully are close to the
+exact solution <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
+<div class="section" id="forward-euler-method">
+<h3>Forward Euler method<a class="headerlink" href="#forward-euler-method" title="Permalink to this headline">¶</a></h3>
+<p>Let us introduce all the players: first, we need to pick the time step
+<span class="math notranslate nohighlight">\(\Delta t\)</span>, which is the length of time between successive values of
+<span class="math notranslate nohighlight">\(y\)</span>. In the difference equation notation one can use <span class="math notranslate nohighlight">\(y_i\)</span> to mean
+<span class="math notranslate nohighlight">\(y(i\Delta t)\)</span>, the value of the numerical solution after <span class="math notranslate nohighlight">\(i\)</span> time
+steps. Then we need to calculate the derivative, or the rate of change
+at a particular point in time. For any first-order ODE of the form
+$<span class="math notranslate nohighlight">\(\frac{d x} {dt} = \dot x = f(x,t)\)</span><span class="math notranslate nohighlight">\( the rate of change depends
+(potentially) on the values of \)</span>x<span class="math notranslate nohighlight">\( and \)</span>t<span class="math notranslate nohighlight">\(. This rate of change based on
+the numerical solution after \)</span>i<span class="math notranslate nohighlight">\( time steps is
+\)</span>f(y(i\Delta t), i\Delta t) = f(y_i, t_i)<span class="math notranslate nohighlight">\(. Finally, to calculate the
+change of the dependent variable we need to multiply the rate of change
+by the time step. This should make sense in a practical context: if you
+drive for two hours (time step) at 60 miles per hour (rate of change),
+the total distance (increment) is \)</span>2*60=120<span class="math notranslate nohighlight">\( miles. By the same token,
+we can write down how to calculate the next value of the numerical
+solution \)</span>y_{i+1}<span class="math notranslate nohighlight">\( based on the previous one:
+\)</span><span class="math notranslate nohighlight">\(y_{i+1} = y_i + \Delta t f(y_i, t_i) 
+ \label{eq:ch15_FE}\)</span><span class="math notranslate nohighlight">\( This method of computing a numerical solution of
+an ODE is called the *Forward Euler method*, after the famous
+mathematician who first came up with it. It is called a forward method
+because it uses the value of the dependent variable and its derivative
+at time step \)</span>i<span class="math notranslate nohighlight">\( to predict the value at the next time step \)</span>i+1<span class="math notranslate nohighlight">\(. The
+method is iterative, so it needs to be repeated in order to calculate a
+set of values of the approximate solution \)</span>y(t)$. Here are a couple of
+simple examples of computing numerical solution using FE:</p>
+<p><strong>Example.</strong> Let us numerically solve the ODE <span class="math notranslate nohighlight">\(\dot x = -0.1\)</span> using the
+Forward Euler method. This means the defining function in the
+formulation of FE above is <span class="math notranslate nohighlight">\(f(x,t)=-0.1\)</span>. We can calculate the numeric
+solution for a couple of steps and compare the values with the exact
+solution, since we now know that it is <span class="math notranslate nohighlight">\(x(t) = x_0 -0.1t\)</span>. Let us pick
+the time step <span class="math notranslate nohighlight">\(\Delta t = 0.2\)</span> and begin with the initial value
+<span class="math notranslate nohighlight">\(x(0)=1\)</span>. Here are the first three steps using the FE method:
+$<span class="math notranslate nohighlight">\(y(0.2) = y(0) + \Delta t f(y(0)) = 1 + 0.2*(-0.1) = 0.98\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(y(0.4) = y(0.2) + \Delta t f(y(0.2)) = 0.98+ 0.2*(-0.1) = 0.96\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(y(0.6) = y(0.4) + \Delta t f(y(0.4)) = 0.96+ 0.2*(-0.1) = 0.94\)</span>$ Since
+the rate of change in this ODE is constant, the solution declines by the
+same amount every time step. In this case, the numerical solution is
+actually exact, and perfectly matches the analytic solution. Table
+[tab:ch15_FE] (right) shows the numerical solution for 3 time steps
+along with the exact solution.</p>
+<p><strong>Example.</strong> Let us numerically solve the ODE <span class="math notranslate nohighlight">\(\dot x = -0.1x\)</span> using the
+Forward Euler method. This means the defining function in the
+formulation of FE above is <span class="math notranslate nohighlight">\(f(x,t)=-0.1x\)</span>. We can calculate the numeric
+solution for a couple of steps and compare the values with the exact
+solution, since we now know that it is <span class="math notranslate nohighlight">\(x(t) = x_0 e^{-0.1t}\)</span>. Let us
+pick the time step <span class="math notranslate nohighlight">\(\Delta t = 0.2\)</span> and begin with the initial value
+<span class="math notranslate nohighlight">\(x(0)=100\)</span>. Here are the first three steps using the FE method:
+$<span class="math notranslate nohighlight">\(y(0.2) = y(0) + \Delta t f(y(0)) = 100 + 0.2*(-0.1*100) = 98\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(y(0.4) = y(0.2) + \Delta t f(y(0.2)) = 98+ 0.2*(-0.1*98) = 96.04\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(y(0.6) = y(0.4) + \Delta t f(y(0.4)) = 96.04+ 0.2*(-0.1*96.04) \approx 94.12\)</span>$
+In this case, the derivative is not constant and the numerical solution
+is not exact, which is demonstrated in table [tab:ch15_FE] (left).
+The error in the numerical solution grows with time, which may be
+problematic. We will further investigate how to implement the
+computation of numerical solutions using R in the next section.</p>
+<p>Below is an outline of an algorithm that can be translated into a
+programming language, e.g. MATLAB to solve ODEs:</p>
+<p>define the derivative function for the ODE <span class="math notranslate nohighlight">\(f(x,t)\)</span> set the step size
+<span class="math notranslate nohighlight">\(\Delta t\)</span> and number of iterations <span class="math notranslate nohighlight">\(Niter\)</span> preallocate <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(t\)</span> and
+set initial values <span class="math notranslate nohighlight">\(x[0]\)</span> and <span class="math notranslate nohighlight">\(t[0]\)</span> initialize two arrays <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x\)</span>
+with length <span class="math notranslate nohighlight">\(Niter\)</span> <span class="math notranslate nohighlight">\(x[i+1] \gets x[i] + \Delta t* f(x[i], t[i])\)</span>
+<span class="math notranslate nohighlight">\(t[i+1] \gets t[i] +\Delta t\)</span></p>
+<p>[alg:forward_euler]</p>
+<p>Like any algorithm, one needs to be clear about its inputs and outputs.
+In this case, the inputs are the defining function <span class="math notranslate nohighlight">\(f(x,t)\)</span>, the initial
+value, the time step, and the total time. The output is the solution
+vector <span class="math notranslate nohighlight">\(y\)</span>, which contains a sequence of values that approximate the
+solution of the ODE, along with the vector of time values spaced by the
+time step. Notice that it is very similar to the script for numerical
+solution of a difference equation we saw in chapter 1 with the major
+difference being the presence of a time step, whereas in difference
+equations the time step is aways 1. There is one more important point
+for the implementation: usually one needs to solve the ODE for a
+particular length of time <span class="math notranslate nohighlight">\(T\)</span> with a specified time step <span class="math notranslate nohighlight">\(\Delta t\)</span> .
+This dictates that the required number of iterations be <span class="math notranslate nohighlight">\(T/\Delta t\)</span>; in
+other words, for a given time period the number of time steps is
+inversely proportional to the time step.</p>
+</div>
+<div class="section" id="error-in-numerical-solutions">
+<h3>error in numerical solutions<a class="headerlink" href="#error-in-numerical-solutions" title="Permalink to this headline">¶</a></h3>
+<p>One of the main concerns of numerical analysis is to minimize the
+difference between the true solution and the numerical solution, which
+is known as the <em>error</em>. There are at least two distinct sources of
+error in numerical solutions: a) <em>roundoff error</em> and b) <em>truncation
+error</em>. Roundoff error is caused by computers representing real numbers
+by a finite string of bits on a computer using what is known as a
+<em>floating point</em> representation. In many programming languages variables
+storing real numbers can be single or double precision, which typically
+support 24 and 53 significant binary digits, respectively. Any
+arithmetic operation involving floating point numbers is only
+approximate, with an error that depends on the way the numbers are
+stored in the memory. Truncation error is caused by approximations
+inherent in numerical algorithms. The most common class of numerical
+approximations for ODEs is known as <em>finite difference</em> methods, and
+Forward Euler is a very simple representative of that class. As the name
+suggests, these methods use difference equations to approximate a
+differential equation. There is inevitably a truncation error in such
+methods because they use a more or less clever scheme to approximate the
+instantaneous rate of change in an ODE, which can be thought as a
+truncation of the Taylor series after certain term.</p>
+<p>A numerical modeler has different controls over the roundoff error and
+truncation error. The first can be minimized by using more memory to
+store the numbers, e.g. by using double precision format for the
+variables. Further, there are techniques for minimizing the so-called
+loss of significance that occurs in certain arithmetic operations, like
+subtraction of two similar numbers. We will leave these considerations
+to numerical analysts [&#64;press_numerical_2007]; for the most part,
+roundoff error is not a significant issue on modern computers.
+Truncation error, however, is much more within our control, because it
+depends on the choice of the numerical algorithm. One can decrease the
+error in the case of finite difference methods by choosing smaller time
+steps, or by choosing an algorithm with a higher <em>order of accuracy</em>.</p>
+<p>Returning specifically to the Forward Euler method, it is called a
+<em>first-order method</em> because the total error of the solution (after some
+number of time steps) depends linearly on the time step <span class="math notranslate nohighlight">\(\Delta t\)</span>. One
+can show this by using the Taylor expansion of the solution <span class="math notranslate nohighlight">\(y(t)\)</span> to
+derive the forward Euler method, with <span class="math notranslate nohighlight">\(\tau(\Delta t)\)</span> representing the
+truncation error after one time step:
+$<span class="math notranslate nohighlight">\(y(t+\Delta t) = y(t) +  \Delta t \frac {dy(t) }{dt} + \tau(\Delta t)\)</span><span class="math notranslate nohighlight">\(
+As you might have learned in calculus, the error remaining after the
+linear term in the Taylor series is proportional to the the square of
+the small deviation \)</span>\Delta t<span class="math notranslate nohighlight">\(. This only describes the error after 1
+time step, but since the errors accumulate every time step, the total
+error after \)</span>N<span class="math notranslate nohighlight">\( time steps accumulates \)</span>N \tau(\Delta t)<span class="math notranslate nohighlight">\(. As we saw in
+the implementation above, for a given length of time, \)</span>N<span class="math notranslate nohighlight">\( is inversely
+proportional to \)</span>\Delta t<span class="math notranslate nohighlight">\(. Therefore, the total error is proportional
+to the \)</span>\Delta t$ and so FE is a first-order method.</p>
+<p>The exercise above shows that new errors in FE method accumulate in
+proportion with the time step. The next question is, what happens to
+these errors over time? Do they grow or dissipate with more iterations?
+This is known as the stability of a numerical method, and unlike the
+above question about the order of accuracy, the answer depends on the
+particular ODE that one needs to solve. Below I show an example of error
+analysis for a linear ODE:</p>
+<p><strong>Example.</strong> To numerically solve the equation <span class="math notranslate nohighlight">\(\dot x = ax\)</span>, we
+substitute the function <span class="math notranslate nohighlight">\(ax\)</span> for the function <span class="math notranslate nohighlight">\(f(x,t)\)</span>, and obtain the
+FE approximation for this particular ODE:
+$<span class="math notranslate nohighlight">\(y_{i+1} = y_i + \Delta t a y_i = (1+a\Delta t) y_i\)</span><span class="math notranslate nohighlight">\( The big question
+is what happens to the truncation error: does it grow or decay? To
+investigate this question, let us denote the error at time \)</span>t_i<span class="math notranslate nohighlight">\( , that
+is the difference between the true solution \)</span>x(t_i)<span class="math notranslate nohighlight">\( and the approximate
+solution \)</span>y(t_i)<span class="math notranslate nohighlight">\(, by \)</span>\epsilon_i<span class="math notranslate nohighlight">\(. It follows that
+\)</span>y_i = x_i + \epsilon_i<span class="math notranslate nohighlight">\(. Then we can wrote the following difference
+equations involving the error:
+\)</span><span class="math notranslate nohighlight">\(y_{i+1} = x_{i+1} + \epsilon_{i+1} = (x_i + \epsilon_i) (1+a\Delta t)  = x_i (1+a\Delta t) + \epsilon_i(1+a\Delta t)\)</span><span class="math notranslate nohighlight">\(
+Let us set aside the terns in the equation that involve \)</span>x<span class="math notranslate nohighlight">\( (since it is
+just the equation for forward Euler). The remaining difference equation
+for \)</span>\epsilon<span class="math notranslate nohighlight">\( describes the change in the error:
+\)</span><span class="math notranslate nohighlight">\(\epsilon_{i+1} = \epsilon_i(1+a\Delta t)\)</span><span class="math notranslate nohighlight">\( This states that the error
+in this numerical solution is repeatedly multiplied by the constant
+\)</span>(1+a\Delta t)<span class="math notranslate nohighlight">\(. As we saw in section \[sec:math14\], this linear
+difference equation has an exponential solution
+\)</span>\epsilon_n = (1+a\Delta t)^n \epsilon_0<span class="math notranslate nohighlight">\(, which decays to 0 if
+\)</span>|1+a\Delta t| &lt; 1<span class="math notranslate nohighlight">\( or grows without bound if \)</span>|1+a\Delta t| &gt; 1<span class="math notranslate nohighlight">\(. The
+first inequality is called the stability condition for the FE scheme,
+since it guarantees that the old errors decay over time. Since
+\)</span>\Delta t &gt;0<span class="math notranslate nohighlight">\(, the only way that the left hand side can be less than 1
+is if \)</span>a&lt;0<span class="math notranslate nohighlight">\(. Therefore, the condition for stability of the FE method for
+a linear ODE: \)</span><span class="math notranslate nohighlight">\(|1 + a\Delta t| &lt; 1 \Rightarrow \Delta t &lt; -2/a\)</span><span class="math notranslate nohighlight">\( Thus,
+if \)</span>a&gt;0<span class="math notranslate nohighlight">\(, the errors will eventually overwhelm the solution. If \)</span>a&lt;0<span class="math notranslate nohighlight">\(,
+if the time step is small enough (less than \)</span>-2/a$) then FE is stable.
+Generally speaking, however, Forward Euler is about the worst method to
+use for practical numerical solutions of ODEs, due to its low accuracy
+and to its lack of stability under certain conditions.</p>
+</div>
+<div class="section" id="backward-euler-method">
+<h3>backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">¶</a></h3>
+<p>More sophisticated numerical methods generally offer better stability
+than Forward Euler. For instance, there is a class of methods called
+<em>implicit</em> schemes which rely on evaluating the value of the derivative
+of <span class="math notranslate nohighlight">\(x\)</span> at a future time point. This may seem impossible, since we do not
+yet have the value of the dependent variable <span class="math notranslate nohighlight">\(x\)</span> in the future, only in
+the present. In fact, we can set up an algebraic relationship between
+the present value of <span class="math notranslate nohighlight">\(x\)</span>, the future value of <span class="math notranslate nohighlight">\(x\)</span>, and the derivative of
+<span class="math notranslate nohighlight">\(x\)</span> in the future. Then, depending on the form of the defining function
+<span class="math notranslate nohighlight">\(f(x)\)</span>, we may solve this relationship for the value of <span class="math notranslate nohighlight">\(x\)</span> at the
+future time.</p>
+<p>To make the idea of implicit methods concrete, we will introduce a
+simple method called the Backward Euler. As suggested by the name, this
+method is essentially similar to the Forward Euler, but with the future
+value of <span class="math notranslate nohighlight">\(x_{i+1}\)</span> substituted in the defining function instead of the
+current value:
+$<span class="math notranslate nohighlight">\(y_{i+1} = y_i + \Delta t \frac {dy_{i+1}}{dt} = y_i + \Delta t f(y_{i+1})\)</span><span class="math notranslate nohighlight">\(
+How can we calculate the value of \)</span>f(y_{i+1})<span class="math notranslate nohighlight">\( if you don’t know
+\)</span>y_{i+1}<span class="math notranslate nohighlight">\(? Depending on the form of \)</span>f(x)<span class="math notranslate nohighlight">\(, it is sometimes possible to
+algebraically solve for \)</span>y_{i+1}<span class="math notranslate nohighlight">\(. If we can solve the implicit
+expression for \)</span>y_{i+1}<span class="math notranslate nohighlight">\(, we can program a numerical scheme that will
+compute the value \)</span>y_{i+1}<span class="math notranslate nohighlight">\( directly from \)</span>y_i$. In other situations,
+the implicit expression may be impossible to solve algebraically. The
+practitioner may then use a method for solving such an expression
+numerically, using a numerical root-finding algorithm such as Newton’s
+method that we will see later in this course.</p>
+<p>define the derivative function for the ODE <span class="math notranslate nohighlight">\(f(x,t)\)</span> choose the step size
+<span class="math notranslate nohighlight">\(\Delta t\)</span> and number of iterations <span class="math notranslate nohighlight">\(Niter\)</span> choose initial values <span class="math notranslate nohighlight">\(x[1]\)</span>
+and <span class="math notranslate nohighlight">\(t[1]\)</span> initialize two arrays <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x\)</span> with length <span class="math notranslate nohighlight">\(Niter\)</span> solve
+<span class="math notranslate nohighlight">\(x[i] +\Delta t * f(x[i+1]) = x[i+1]\)</span> for <span class="math notranslate nohighlight">\(x[i+1]\)</span> for <span class="math notranslate nohighlight">\(x[i]\)</span>
+<span class="math notranslate nohighlight">\(t[i+1] \gets t[i] +\Delta t\)</span></p>
+<p>[alg:back_euler]</p>
+<p><strong>Example:</strong> Here is the implementation of the Backward Euler for the
+linear ODE <span class="math notranslate nohighlight">\(\dot x = a x\)</span>: $<span class="math notranslate nohighlight">\(y_{i+1} = y_i + \Delta t a y_{i+1}\)</span><span class="math notranslate nohighlight">\( For
+this particular situation, the implicit equation can be solved for the
+future value \)</span>y_{i+1}<span class="math notranslate nohighlight">\(:
+\)</span><span class="math notranslate nohighlight">\((1- a\Delta t) y_{i+1} = y_i \Longrightarrow y_{i+1} = \frac{1}{1- a\Delta t}  y_i\)</span><span class="math notranslate nohighlight">\(
+Now we use the same stability analysis as we did for Forward Euler:
+assume the numerical solution \)</span>y_i<span class="math notranslate nohighlight">\( has total error \)</span>\epsilon_i<span class="math notranslate nohighlight">\(, and
+substitute \)</span>y_i = x_i + \epsilon_i<span class="math notranslate nohighlight">\(:
+\)</span><span class="math notranslate nohighlight">\(y_{i+1} = x_{i+1} + \epsilon_{i+1} = \frac{1}{1- a\Delta t}  (x_i  + \epsilon_i) =  \frac{1}{1- a\Delta t} x_i + \epsilon_i \frac{1}{1- a\Delta t}\)</span>$</p>
+<p>Again, let us set aside the actual solution <span class="math notranslate nohighlight">\(x\)</span> and investigate the
+behavior of the error, which is given by the difference equation:
+$<span class="math notranslate nohighlight">\(\epsilon_{i+1} = \frac{1}{1- a\Delta t}   \epsilon_i\)</span><span class="math notranslate nohighlight">\( The error
+decays with time if the multiplicative constant \)</span>1/(1- a\Delta t)<span class="math notranslate nohighlight">\( is
+less than 1 in absolute value, which can be written as
+\)</span>|1- a\Delta t| &gt;1 <span class="math notranslate nohighlight">\(. We need to consider two cases: positive \)</span>a<span class="math notranslate nohighlight">\( and
+negative \)</span>a$:</p>
+<p>If <span class="math notranslate nohighlight">\(a &gt; 0\)</span>, then <span class="math notranslate nohighlight">\(|1- a\Delta t|\)</span> is greater than 1 provided that
+<span class="math notranslate nohighlight">\(\Delta t &gt; 1/|a|\)</span>, so the Backward Euler scheme for the exponential
+growth ODE is stable when <span class="math notranslate nohighlight">\(\Delta t\)</span> is greater than a certain
+threshold. This appears counterintuitive, so it is worth investigating
+in the lab.</p>
+<p>If <span class="math notranslate nohighlight">\(a &lt; 0\)</span>, then <span class="math notranslate nohighlight">\(|1- a\Delta t|\)</span> is greater than 1 for any value of
+<span class="math notranslate nohighlight">\(\Delta t\)</span>, so it is <em>unconditionally stable</em>. This is also worth
+investigating with numerical experimentation.</p>
+</div>
+</div>
+<div class="section" id="synthesis-membrane-as-electric-circuit">
+<h2>Synthesis: membrane as electric circuit<a class="headerlink" href="#synthesis-membrane-as-electric-circuit" title="Permalink to this headline">¶</a></h2>
+<p>In this example we will construct and analyze a model of electric
+potential across a membrane. The potential is determined by the
+difference in concentrations of charged particles (ions) on the two
+sides of the phospholipid bilayer. The ions can flow through specific
+channels across the membrane, changing the concentration and thus the
+electric potential. K.S. Cole used principles of electrical circuits to
+devise the first quantitative model of the membrane voltage
+[&#64;cole_dispersion_1941], which eventually led to more sophisticated
+models of Hodgkin and Huxley, and others.</p>
+<p>To start, we will review the physical concepts and laws describing the
+flow of charged particles. The amount of charge (number of charged
+particles) is denoted by <span class="math notranslate nohighlight">\(Q\)</span>. The rate of flow of charge per time is
+called the current: $<span class="math notranslate nohighlight">\(I = \frac{dQ}{dt}\)</span><span class="math notranslate nohighlight">\( Current can be analogized to
+the flow of a liquid, and the difference in height that drives the
+liquid flow is similar to the electric potential, or voltage. The
+relationship between voltage and current is given by *Ohm’s law:*
+\)</span><span class="math notranslate nohighlight">\(V = IR\)</span><span class="math notranslate nohighlight">\( where \)</span>R<span class="math notranslate nohighlight">\( is the *resistance* of an electrical conductance,
+and sometimes we use the *conductance* \)</span>g = 1/R<span class="math notranslate nohighlight">\( in the relationship
+between current and voltage: \)</span><span class="math notranslate nohighlight">\(gV = I\)</span>$</p>
+<p>There are devices known as capacitors, which can store a certain amount
+of electrical potential in two conducting plates separated by a
+dielectric (non-conductor). The voltage drop across a capacitor is
+described by the capacitor law: $<span class="math notranslate nohighlight">\(V_C = \frac{Q}{C}\)</span><span class="math notranslate nohighlight">\( where \)</span>C<span class="math notranslate nohighlight">\( is the
+*capacitance* and \)</span>Q$ is the charge of the capacitor.</p>
+<p>Lipid bilayer membranes separate media with different concentrations of
+ions on the two sides, typically the extracellular and cytoplasmic
+sides. The differences in concentrations of different ions produce a
+membrane potential. The membrane itself can be thought of as a
+capacitor, with two charged layers separated by the hydrophobic fatty
+acid tails in the middle. In addition, there are ion channels that allow
+ions to flow from the side with higher concentration to that with lower
+(these are known as passive channels, as opposed to active pumps that
+can transport ions against the concentration gradient, which we will
+neglect for now.) These channels are often gated, which means that they
+conduct ions up to a certain voltage <span class="math notranslate nohighlight">\(V_R\)</span>, but then close and reverse
+direction at higher voltage. The channels are analogous to conducting
+metal wires, and therefore act as resistors with a specified conductance
+<span class="math notranslate nohighlight">\(g\)</span>. Finally, the electrochemical concentrations of ions act as
+batteries for each species, (Na<span class="math notranslate nohighlight">\(^+\)</span>, K<span class="math notranslate nohighlight">\(^+\)</span>, etc.) The overall electric
+circuit diagram of this model is shown in figure .</p>
+<p><img alt="A) Illustration of a cell membrane with ion channels, image byLadyofHats in public domain via Wikimedia Commons; B) model of amembrane as an electrical circuit with ion channels as resistors andmembrane as a capacitor, image by NretsNrets under CC BY-SA 3.0 viaWikimediaCommons.[]{data-label=&quot;fig:ch15_membrane_potential&quot;}" src="_images/2000px-cell_membrane.png" />{width=”4in”}
+<img alt="A) Illustration of a cell membrane with ion channels, image byLadyofHats in public domain via Wikimedia Commons; B) model of amembrane as an electrical circuit with ion channels as resistors andmembrane as a capacitor, image by NretsNrets under CC BY-SA 3.0 viaWikimediaCommons.[]{data-label=&quot;fig:ch15_membrane_potential&quot;}" src="_images/2000px-MembraneCircuit.png" />{width=”4in”}</p>
+<p>Because the different components are connected in parallel, the total
+current has to equal the sum of the current passing through each
+element: the capacitor (membrane) and the gated resistors (specific ion
+channels). The current flowing through a capacitor can be found by
+differentiating the capacitor law:
+$<span class="math notranslate nohighlight">\(\frac{dQ}{dt} = I = C \frac{dV_C}{dt}\)</span><span class="math notranslate nohighlight">\( The current flowing through
+each ionic channel is described by this relation: \)</span><span class="math notranslate nohighlight">\(I = g (V-V_R)\)</span><span class="math notranslate nohighlight">\(
+Then, the total ion flow through the system is described as follows,
+where \)</span>i<span class="math notranslate nohighlight">\( denotes the different ionic species:
+\)</span><span class="math notranslate nohighlight">\(I_{app} = C \frac{dV}{dt} + \sum_i g (V-V_{Ri})\)</span>$</p>
+<p>Let us reduce this model to a simple version, where there is no applied
+current <span class="math notranslate nohighlight">\(I_{app} = 0\)</span> and only a single ionic species with reversal
+potential <span class="math notranslate nohighlight">\(V_R\)</span>. Then the differential equation looks like this:
+$<span class="math notranslate nohighlight">\(\frac{dV}{dt} = -\frac{g}{C} (V-V_{Ri})\)</span>$</p>
+<p>The Cole membrane potential ODE cam also be solved by the
+separate-and-integrate method. Dividing both sides by <span class="math notranslate nohighlight">\(V-V_R\)</span> and
+multiplying through by the differential <span class="math notranslate nohighlight">\(dt\)</span>, we get:
+$<span class="math notranslate nohighlight">\(\frac{ dV }{V-V_R} = - \frac{g}{C}dt\)</span><span class="math notranslate nohighlight">\( Remember, that \)</span>V_R<span class="math notranslate nohighlight">\( is a
+constant, while \)</span>V(t)<span class="math notranslate nohighlight">\( is the dependent variable. Performing the
+substitution \)</span>u = V - V_R<span class="math notranslate nohighlight">\(, and integrating, we get
+\)</span> \ln |V - V_R | = - \frac{g}{C}t + A <span class="math notranslate nohighlight">\(, where \)</span>A<span class="math notranslate nohighlight">\( is the integration
+constant. Exponentiating both sides and solving for \)</span>V(t)<span class="math notranslate nohighlight">\(, we obtain:
+\)</span><span class="math notranslate nohighlight">\(V(t) = V_R + Ae^{-\frac{g}{C}t}\)</span><span class="math notranslate nohighlight">\( So, if we began with the voltage
+potential of \)</span>V_0<span class="math notranslate nohighlight">\( at time 0, we have
+\)</span>V_0 = V_R + A \Rightarrow A = V_0-V_R<span class="math notranslate nohighlight">\(. Thus, the complete solution is:
+\)</span><span class="math notranslate nohighlight">\(V(t) = V_R + (V_0-V_R)e^{-\frac{g}{C}t}\)</span><span class="math notranslate nohighlight">\( This model predicts that if
+there is no applied current, then starting at a voltage \)</span>V_0$, the
+membrane potential will exponentially decay (or grow) to the channel
+resting (or reversal) potential.</p>
+<p>Notice how similar the solutions of the two models are, even thought
+they are modeling different phenomena. This is an illustration of the
+power of mathematical modeling, which allows us to use the same tools to
+draw general conclusions. The biggest takeaway from this is that
+<strong>solutions of linear ODEs, whether homogeneous or not, are always
+exponential in their time dependence</strong>. In cases with a constant rate
+term, the solutions also include a constant term, to which the solution
+converges, if the exponential term has a negative constant up in its
+power.</p>
+</div>
+<div class="section" id="synthesis-sis-model-of-epidemics">
+<h2>Synthesis: SIS model of epidemics<a class="headerlink" href="#synthesis-sis-model-of-epidemics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modeling-setup">
+<h3>modeling setup<a class="headerlink" href="#modeling-setup" title="Permalink to this headline">¶</a></h3>
+<p>The field of <em>epidemiology</em> studies the distribution of disease and
+health states in populations. Epidemiologists describe and model these
+issues with the goal of helping public health workers devise
+interventions to improve the overall health outcomes on a large scale.
+One particular topic of interest is the the spread of infectious disease
+and how best tor respond to it.. Because epidemiology is concerned with
+large numbers of people, the models used in the field do not address the
+details of an individual disease history. One approach to modeling this
+is to put people into categories, which is called a <em>compartment model</em>.
+Dividing people into categories involves the assumption that everyone in
+a particular category behaves in the same manner: for instance, all
+susceptible people are infected with the same rate and all infected
+people recover with the same rate.</p>
+<p>Let us construct an ODE to describe a two-compartment epidemiology
+model. There are two dependent variables to be tracked: the number of
+susceptible (<span class="math notranslate nohighlight">\(S\)</span>) and infected (<span class="math notranslate nohighlight">\(I\)</span>) individuals in the population. The
+susceptible individuals can get infected, while the infected ones can
+recover and become susceptible again. The implicit assumption is that
+there is no immunity, and recovered individuals can get infected with
+the same ease as those who were never infected. There are some human
+diseases for which this is true, for instance the common cold or
+gonorrhea. Transitions between the different classes of individuals can
+be summarized by the following scheme:
+$<span class="math notranslate nohighlight">\(S + I \xrightarrow{\beta} I \xrightarrow{\gamma} S\)</span><span class="math notranslate nohighlight">\( Here \)</span>\beta<span class="math notranslate nohighlight">\( is
+the individual rate of infection, also known as the transmission rate,
+and \)</span>\gamma<span class="math notranslate nohighlight">\( is the individual rate of recovery. There is an important
+distinction between the processes of infection and recovery: the former
+requires an infected individual and a susceptible individual, while the
+latter needs only an infected individual. Therefore, it is reasonable to
+suppose that the rate of growth of infected individuals is the product
+of the individual transmission rate \)</span>\beta<span class="math notranslate nohighlight">\( and the product of the
+number of infected and susceptible individuals. The overall rate of
+recovery is the individual recovery rate \)</span>\gamma<span class="math notranslate nohighlight">\( multiplied by the
+number of the infected. This leads to the following two differential
+equations: \)</span><span class="math notranslate nohighlight">\(\begin{aligned}
+\dot S &amp;=&amp; -\beta IS + \gamma I \\
+\dot I &amp; = &amp;\beta I S - \gamma I\end{aligned}\)</span><span class="math notranslate nohighlight">\( Note that, as in the
+chemical kinetics models, the two equations add up to zero on the right
+hand side, leading to the conclusion that \)</span>\dot S + \dot I = 0<span class="math notranslate nohighlight">\(.
+Therefore, the total number of people is a conserved quantity \)</span>N$, which
+does not change. This makes sense since we did not consider any births
+or deaths in the ODE model, only transitions between susceptible and
+infected individuals.</p>
+<p>We can use the conserved quantity <span class="math notranslate nohighlight">\(N\)</span> to reduce the two equations to
+one, by the substitution of <span class="math notranslate nohighlight">\(S = N -I\)</span>:
+$<span class="math notranslate nohighlight">\(\dot I  =  \beta I (N - I) - \gamma I\)</span><span class="math notranslate nohighlight">\( This model may be analyzed
+using qualitative methods that were developed in this chapter, allowing
+prediction of the dynamics of the fraction of infected for different
+transmission and recovery rates. First, let us find the fixed points of
+the differential equation. Setting the equation to zero, we find:
+\)</span><span class="math notranslate nohighlight">\(0  =  \beta I (N - I) - \gamma I \Rightarrow I^* = 0; \; I^* =  N - \gamma/\beta\)</span><span class="math notranslate nohighlight">\(
+This means that there are two equilibrium levels of infection: either
+nobody is infected (\)</span>I^* = 0<span class="math notranslate nohighlight">\() or there is some persistent number of
+infected individuals (\)</span> I^* =  N - \gamma/\beta <span class="math notranslate nohighlight">\(). Notice that the
+second fixed point is only biologically relevant if \)</span>N &gt; \gamma/\beta $.</p>
+<p>We can use the derivative test to check for stability. First, find the
+general expression for derivative of the defining function:
+<span class="math notranslate nohighlight">\(f'(I) = -2 \beta I + \beta N - \gamma \)</span>. The stability of the fixed
+point <span class="math notranslate nohighlight">\(I^* = 0\)</span> is found by plugging in this value into the derivative
+formula: <span class="math notranslate nohighlight">\(f'(0) = \beta N - \gamma \)</span>. Therefore, <span class="math notranslate nohighlight">\(I^* = 0\)</span> is stable if
+<span class="math notranslate nohighlight">\(\gamma - \beta N &gt; 0\)</span>, and unstable otherwise. This gives us a
+<em>stability condition</em> on the values of the biological parameters. If the
+recovery rate <span class="math notranslate nohighlight">\(\gamma\)</span> is greater than the rate of infection for the
+population (the transmission rate multiplied by the population size)
+<span class="math notranslate nohighlight">\(\beta N\)</span>, then the no-infection equilibrium is stable. This predicts
+that the infection dies out if the recovery rate is faster than the rate
+of infection, which makes biological sense.</p>
+<p>Similarly, we find the stability of the second fixed point
+<span class="math notranslate nohighlight">\( I^* =  N - \gamma/\beta \)</span> by substituting its value into the
+derivative, to obtain <span class="math notranslate nohighlight">\(f'(N - \gamma/\beta) = \gamma  - \beta N  \)</span>. By
+the same logic, as above, this fixed point is stable if
+<span class="math notranslate nohighlight">\( \gamma  - \beta N  &lt; 0 \)</span>, or if <span class="math notranslate nohighlight">\(\gamma &lt; \beta N\)</span>. This is a
+complementary condition for the fixed point at 0, that is, only one
+fixed point can be stable for any given parameter values. In the
+biological interpretation, if the transmission rate <span class="math notranslate nohighlight">\(\beta N\)</span> is greater
+than the recovery rate <span class="math notranslate nohighlight">\(\gamma\)</span>, then the epidemic will persist.</p>
+</div>
+<div class="section" id="graphical-analysis-of-the-sis-model">
+<h3>graphical analysis of the SIS model<a class="headerlink" href="#graphical-analysis-of-the-sis-model" title="Permalink to this headline">¶</a></h3>
+<p>We can use our graphical analysis skills to illustrate the situation.
+Consider a situation in which <span class="math notranslate nohighlight">\(\gamma &lt; \beta N\)</span>. As predicted by
+stability analysis, the zero infection equilibrium should be unstable,
+and the equilibrium at <span class="math notranslate nohighlight">\(N - \gamma/\beta\)</span> should be stable. In order to
+plot the function <span class="math notranslate nohighlight">\(f(I) =  \beta I (N - I) - \gamma I \)</span>, we choose the
+specific parameter values <span class="math notranslate nohighlight">\(N=1000\)</span>, <span class="math notranslate nohighlight">\(\gamma = 10\)</span> and <span class="math notranslate nohighlight">\(\beta = 0.1\)</span>. The
+results are shown in figure a. The direction of
+the flow on the <span class="math notranslate nohighlight">\(I\)</span>-axis prescribed by the function <span class="math notranslate nohighlight">\(f(I)\)</span> is shown with
+red arrows. It is clear that solutions approach the fixed point at
+<span class="math notranslate nohighlight">\(N - \gamma/\beta\)</span> from both directions, which make it a stable fixed
+point, while diverging from <span class="math notranslate nohighlight">\(I=0\)</span>.</p>
+<p>On the other hand, if <span class="math notranslate nohighlight">\(\gamma &gt; \beta N\)</span>, stability analysis predicts
+that the no-infection equilibrium (<span class="math notranslate nohighlight">\(I=0\)</span>) is stable. Figure
+b shows the plot of the defining function for the
+parameter values <span class="math notranslate nohighlight">\(N=1000\)</span>, <span class="math notranslate nohighlight">\(\gamma = 100\)</span> and <span class="math notranslate nohighlight">\(\beta = 0.05\)</span>. The flow
+on the <span class="math notranslate nohighlight">\(I\)</span>-axis is toward the zero equilibrium, therefore it is stable.
+Note that the second equilibrium at <span class="math notranslate nohighlight">\( I^* =  N - \gamma/\beta \)</span> is
+negative, and thus has no biological significance.</p>
+<p><img alt="Graphical analysis of the SIS model with two sets of parameter values,for a population of 1000 individuals. The plots show the graph of thedefining function of the variable  (blue) and the flow on the-axis (red.) a)  leads to a persistent infectionlevel of 900. b)  implies that the only stableinfection level is zero.[]{data-label=&quot;fig:sis_graphical&quot;}" src="_images/sis_stable.png" />{width=”3in”}
+<img alt="Graphical analysis of the SIS model with two sets of parameter values,for a population of 1000 individuals. The plots show the graph of thedefining function of the variable  (blue) and the flow on the-axis (red.) a)  leads to a persistent infectionlevel of 900. b)  implies that the only stableinfection level is zero.[]{data-label=&quot;fig:sis_graphical&quot;}" src="_images/sis_unstable.png" />{width=”3in”}</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter2.html" title="previous page">Discrete models of higher order: age-structured population models</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
