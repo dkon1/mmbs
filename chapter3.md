@@ -10,7 +10,7 @@ The models for continuously changing variables require their own set of mathemat
 I assume that you have seen basic differential equations before and thus will begin with a brief review of linear differential equations and their solutions. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. When solutions cannot be found on paper, we have two options: 1) qualitative or graphical tools, such as finding equilibrium points and their stability, allow us to predict the long-term dynamics of the solution; 2) numerical solutions, which use computational methods to construct a sequence of numbers that approximate the true solution.
 
 
-## Review of linear ODEs
+## Building ODEs
 
 We consider models with *continuous time*, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:
 
@@ -31,10 +31,11 @@ To take the limit of the time step going to 0 means that we allow the increments
 In general, an ordinary differential equation is defined as follows:
 
 ```{admonition} Definition
-An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. $x$) with respect to an independent variable (e.g. $t$).```
+An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. $x$) with respect to an independent variable (e.g. $t$).
 ```
 
 For example:
+
 $$ 
 \frac{dx^2}{dt^2}+ 0.2 \frac{dx}{dt} - 25 = 0
 $$
@@ -91,6 +92,9 @@ $$
 
 This means that the sum of the concentrations of $A$ and $B$ is a constant. This is a mathematical expression of the law of conservation in chemistry: molecules can change from one type to another, but they cannot appear or disappear in other ways. In this case, a single molecule of $A$ becomes a single molecule of $B$, so it follows that the sum of the two has to remain the same. If the reaction were instead two molecules of $A$ converting to a molecule of $B$, then the conserved quantity is $2A + B$. The concept of conserved quantity is very useful for the analysis of differential equations. We will see in later chapters how it can help us find solutions, and explain the behavior of complex dynamical systems.
 
+
+## Analytic solutions of linear ODEs
+
 ### concepts of ODEs
 
 Let us define some terminology for ODEs:
@@ -123,7 +127,7 @@ The *solution of a differential equation* is a function of the independent varia
 ```
 In contrast with algebraic equations, we cannot simply isolate $x$ on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of $t$. We will discuss some of the difficulties later, but let us start with equations that we can solve.
 
-### solutions of linear ODEs
+###  solutions via separate-and-integrate
 
 The most obvious strategy for solving an ODE is integration. Since a differential equation contains derivatives, integrating it can remove the derivative. In the case of the general first order equation, we can integrate both sides to obtain the following:
 
