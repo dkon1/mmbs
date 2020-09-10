@@ -73,7 +73,7 @@
   <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   Welcome to your Jupyter Book
+   Introduction
   </a>
  </li>
 </ul>
@@ -91,6 +91,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="chapter2.html">
    Discrete models of higher order: age-structured population models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter3.html">
+   Models with one variable in continuous time
   </a>
  </li>
 </ul>
@@ -342,7 +347,7 @@ derivatives are \)</span>\dot x = 2, \dot y = 3<span class="math notranslate noh
 that point is given by the vector \)</span>(2,3)<span class="math notranslate nohighlight">\(, and can be plotted in the
 \)</span>x,y<span class="math notranslate nohighlight">\( phase plane. This can be done for any pair of values of \)</span>x<span class="math notranslate nohighlight">\( and
 \)</span>y$, and plotted to give the phase plane portrait, as in figure .</p>
-<p><img alt="Phase plane flow for the system in equation []{data-label=&quot;fig:pp5&quot;}" src="images/week6_pp5.png" />{width=”3.5in”}</p>
+<p><img alt="Phase plane flow for the system in equation []{data-label=&quot;fig:pp5&quot;}" src="_images/week6_pp5.png" />{width=”3.5in”}</p>
 <p>Observe that the overall dynamics of the systems are directed outward
 from the origin, as we expect from the ODEs. The blue lines on the plot
 are some sample trajectories. The solution over time for both <span class="math notranslate nohighlight">\(x\)</span> and
@@ -360,7 +365,7 @@ in the \)</span>(1,0)<span class="math notranslate nohighlight">\( (up) directio
 \)</span>(0,-1)$ direction. Figure shows the arrows of flow in the
 phase plane around the origin. Note that the arrows go around in a
 circular pattern around the origin.</p>
-<p><img alt="Phase plane flow for the system in equation []{data-label=&quot;fig:pp2&quot;}" src="images/week6_pp2.png" />{width=”3.7in”}</p>
+<p><img alt="Phase plane flow for the system in equation []{data-label=&quot;fig:pp2&quot;}" src="_images/week6_pp2.png" />{width=”3.7in”}</p>
 <p>Let us consider the trajectories of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> in time. The blue curves
 in the phase plane plot demonstrate the solutions go around the origin
 and return to the same point. This means that the behavior of the
@@ -474,7 +479,7 @@ thus either stretching it if <span class="math notranslate nohighlight">\(\lambd
 <span class="math notranslate nohighlight">\(\lambda &lt; 1\)</span>. This assumes that <span class="math notranslate nohighlight">\(\lambda\)</span> is a real number, which is
 not always the case, but we will leave that complication aside for the
 purposes of this chapter.</p>
-<p><img alt="Illustration of the geometry of a matrix  multiplying itseigenvector , resulting in a vector in the same direction. Figure by Lantonov under CC BY-SA 4.0 via WikimediaCommons.[]{data-label=&quot;fig:ch13_eigenvector&quot;}" src="images/Eigenvalue_equation.png" />{width=”3in”}</p>
+<p><img alt="Illustration of the geometry of a matrix  multiplying itseigenvector , resulting in a vector in the same direction. Figure by Lantonov under CC BY-SA 4.0 via WikimediaCommons.[]{data-label=&quot;fig:ch13_eigenvector&quot;}" src="_images/Eigenvalue_equation.png" />{width=”3in”}</p>
 <p>The definition does not specify how many such eigenvectors and
 eigenvalues can exist for a given matrix <span class="math notranslate nohighlight">\(A\)</span>. There are usually as many
 such vectors <span class="math notranslate nohighlight">\(\vec v\)</span> and corresponding numbers <span class="math notranslate nohighlight">\(\lambda\)</span> as the number
@@ -665,7 +670,7 @@ this section we use computational techniques to find the eigenvalues and
 eigenvectors of a system, and then produce the <em>phase portraits</em> of the
 linear systems. There are only a few different types of flow possible
 for linear systems, and we will classify them.</p>
-<p><img alt="Phase plane flow for a linear system with a saddlepoint[]{data-label=&quot;fig:pp1&quot;}" src="images/week6_pp1.png" />{width=”3.7in”}</p>
+<p><img alt="Phase plane flow for a linear system with a saddlepoint[]{data-label=&quot;fig:pp1&quot;}" src="_images/week6_pp1.png" />{width=”3.7in”}</p>
 <div class="section" id="real-eigenvalues">
 <h3>real eigenvalues<a class="headerlink" href="#real-eigenvalues" title="Permalink to this headline">¶</a></h3>
 <p>Let us consider the fixed points of the linear system: since both
@@ -702,8 +707,8 @@ because only trajectories which start exactly along the stable direction
 approach the fixed point in the long run, while others, may approach the
 fixed point for a finite time, flow away when the unstable component
 with the positive eigenvalue takes over, as shown in figure .</p>
-<p><img alt="Exponentially decaying oscillations: time plot of , and phase planeof both  and[]{data-label=&quot;fig:exp_osc&quot;}" src="images/lec7_exp_osc.png" />{width=”3.4in”}
-<img alt="Exponentially decaying oscillations: time plot of , and phase planeof both  and[]{data-label=&quot;fig:exp_osc&quot;}" src="images/lec7_pp1.png" />{width=”2.6in”}</p>
+<p><img alt="Exponentially decaying oscillations: time plot of , and phase planeof both  and[]{data-label=&quot;fig:exp_osc&quot;}" src="_images/lec7_exp_osc.png" />{width=”3.4in”}
+<img alt="Exponentially decaying oscillations: time plot of , and phase planeof both  and[]{data-label=&quot;fig:exp_osc&quot;}" src="_images/lec7_pp1.png" />{width=”2.6in”}</p>
 </div>
 <div class="section" id="complex-eigenvalues">
 <h3>complex eigenvalues<a class="headerlink" href="#complex-eigenvalues" title="Permalink to this headline">¶</a></h3>

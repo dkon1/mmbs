@@ -1,215 +1,139 @@
-Models with one variable in continuous time
-===========================================
+# Models with one variable in continuous time
 
-Introduction
-------------
 
-In the previous chapter we have considered discrete time models, in
-which time is measured in integers. This worked well to describe
-processes that happen in periodic cycles, like cell division or heart
-pumping. Many biological systems do not work this way. Change can happen
-continuously, that is, at any point in time. For instance, the
-concentration of a biological molecule in the cell changes gradually, as
-does the voltage across the cell membrane in a neuron.
+## Introduction
 
-The models for continuously changing variables require their own set of
-mathematical tools. Instead of difference equations, we are going to see
-our first differential equations, which use derivatives to describe how
-a variable changes with time. There is a tremendous amount of knowledge
-accumulated by mathematicians, physicists and engineers for analyzing
-and solving differential equations. There are many classes of
-differential equations for which it is possible to find analytic
-solutions, often in the form of “special functions.” Differential
-equations courses for physicists and engineers are typically focused on
-learning about the variety of existing tools for solving a few types of
-differential equations. For the purposes of biological modeling, knowing
-how to solve a limited number of differential equations is of limited
-usefulness. We will instead focus on learning how to analyze the
-behavior of differential equations in general, without having to solve
-them on paper.
+In the previous chapter we have considered discrete time models, in which time is measured in integers. This worked well to describe processes that happen in periodic cycles, like cell division or heart pumping. Many biological systems do not work this way. Change can happen continuously, that is, at any point in time. For instance, the concentration of a biological molecule in the cell changes gradually, as does the voltage across the cell membrane in a neuron.
 
-I assume that you have seen basic differential equations before and thus
-will begin with a brief review of linear differential equations and
-their solutions. In contrast to linear differential equations, which can
-be solved in general, nonlinear differential equations may not be
-solvable even theoretically. When solutions cannot be found on paper, we
-have two options: 1) qualitative or graphical tools, such as finding
-equilibrium points and their stability, allow us to predict the
-long-term dynamics of the solution; 2) numerical solutions, which use
-computational methods to construct a sequence of numbers that
-approximate the true solution.
+The models for continuously changing variables require their own set of mathematical tools. Differential equations use derivatives to describe how a variable changes with time. There is a tremendous amount of knowledge accumulated by mathematicians, physicists and engineers for analyzing and solving differential equations. There are many classes of differential equations for which it is possible to find analytic solutions, often in the form of “special functions.” Differential equations courses for physicists and engineers are typically focused on learning about the variety of existing tools for solving a few types of differential equations. For the purposes of biological modeling, knowing how to solve a limited number of differential equations is of limited usefulness. We will instead focus on learning how to analyze the behavior of differential equations in general, without having to solve them on paper.
 
-Review of linear ODEs
----------------------
+I assume that you have seen basic differential equations before and thus will begin with a brief review of linear differential equations and their solutions. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. When solutions cannot be found on paper, we have two options: 1) qualitative or graphical tools, such as finding equilibrium points and their stability, allow us to predict the long-term dynamics of the solution; 2) numerical solutions, which use computational methods to construct a sequence of numbers that approximate the true solution.
 
-We consider models with *continuous time*, for which it does not make
-sense to break time up into equal intervals. Instead of equations
-describing the increments in the dependent variable from one time step
-to the next, we will see equations with the instantaneous rate of the
-change (derivative) of the variable. For discrete time models, one
-formulation of the general difference equation was this:
-$$x_{t+1} - x_t = g(x)$$ $g(x)$ is a function of the dependent variable,
-which may be as simple as 0 or $ax$, or can be horribly nonlinear and
-complicated.
 
-For difference equations, the time variable $t$ is measured in the
-number of time steps ($\Delta t$), whether the time step is 20 minutes
-or 20 years. In continuous time models, we express $t$ in actual units
-of time, instead of counting time steps. Thus, what we wrote as $t+1$
-for discrete time should be expressed as $t+\Delta t$ for continuous
-time. The left-hand-side of the equation above describes the change in
-the variable $x$ over one time step $\Delta t$. We can write it as a
-Newton’s quotient, and then take the limit of the time step shrinking to
-0:
-$$\lim_{\Delta t \rightarrow 0} \frac{x(t +\Delta t) - x(t)} {\Delta t} = \frac{d x} {dt}  = g(x)$$
-To take the limit of the time step going to 0 means that we allow the
-increments in time to be infinitesimally small, and therefore the time
-variable may be any real number. The equation above thus becomes a
-differential equation, because it involves a derivative of the dependent
-variable.
+## Review of linear ODEs
 
-There are at least two good reasons to use differential equations for
-many applications. First, they are often more realistic than discrete
-time models, because some events happen very frequently and
-non-periodically. The second reason is mathematical: it turns out that
-dynamical systems with continuous time, described by differential
-equations, are better behaved than difference equations. This has to do
-with the essential “jumpiness” of difference equations. Even for simple
-nonlinear equations, the value of the variable after one time step can
-be far removed from its last value. This can lead to highly complicated
-solutions, as we saw in the logistic model in Chapter 1, and that we
-will discuss in more detail in Chapter 3.
+We consider models with *continuous time*, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:
+
+$$
+x_{t+1} - x_t = g(x)
+$$ 
+
+$g(x)$ is a function of the dependent variable, which may be as simple as 0 or $ax$, or can be horribly nonlinear and complicated.
+
+For difference equations, the time variable $t$ is measured in the number of time steps ($\Delta t$), whether the time step is 20 minutes or 20 years. In continuous time models, we express $t$ in actual units of time, instead of counting time steps. Thus, what we wrote as $t+1$ for discrete time should be expressed as $t+\Delta t$ for continuous time. The left-hand-side of the equation above describes the change in the variable $x$ over one time step $\Delta t$. We can write it as a Newton’s quotient, and then take the limit of the time step shrinking to 0:
+
+$$
+\lim_{\Delta t \rightarrow 0} \frac{x(t +\Delta t) - x(t)} {\Delta t} = \frac{d x} {dt}  = g(x)
+$$
+
+To take the limit of the time step going to 0 means that we allow the increments in time to be infinitesimally small, and therefore the time variable may be any real number. The equation above thus becomes a differential equation, because it involves a derivative of the dependent variable.
+
+In general, an ordinary differential equation is defined as follows:
+
+```{admonition} Definition
+An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. $x$) with respect to an independent variable (e.g. $t$).```
+```
+
+For example:
+$$ 
+\frac{dx^2}{dt^2}+ 0.2 \frac{dx}{dt} - 25 = 0
+$$
+
+There are at least two good reasons to use differential equations for many applications. First, some events happen very frequently and non-periodically, so it is more reasonable to allow time to flow continuously instead of in steps. The second reason is mathematical: it turns out that dynamical systems with continuous time, described by differential equations, are better behaved than difference equations. This has to do with the essential “jumpiness” of difference equations. Even for simple nonlinear equations, the value of the variable after one time step can be far removed from its last value. This can lead to highly complicated solutions, as we saw in the logistic model in Chapter 1.
 
 ### growth proportional to population size
 
-We will now build up some of the most common differential equations
-models. First up, a simple population growth model with a constant
-growth rate. Suppose that in a population each individual reproduces
-with the average reproductive rate $r$. This is reflected in the
-following differential equation: $$\frac{d x} {dt} = \dot x = r x
-\label{eq:linear_ode}$$ This expression states that the rate of change
-of $x$, which we take to be population size, is proportional to $x$ with
-multiplicative constant $r$. We will use the common notation $\dot x$
-for the time derivative of $x$ for aesthetic reasons.
+We will now build up some of the most common differential equations models. First up, a simple population growth model with a constant growth rate. Suppose that in a population each individual reproduces with the average reproductive rate $r$. This is reflected in the following differential equation:
 
-First, we apply dimensional analysis to this model. The units of the
-derivative are population per time, as can be deduced from the Newton’s
-quotient definition. Thus, the units in the equation have the following
-relationship:
-$$\frac{[population]}{[time]} = [r] [population] = \frac{1}{[time]}[population]$$
-This shows that as in the discrete time models, the dimension of the
-population growth rate $r$ is inverse time, or frequency. The difference
-with the discrete time population models lies in the time scope of the
-rate. In the case of the difference equation, $r$ is the rate of change
-per one time step of the model. In the differential equation, $r$ is the
-*instantaneous rate of population growth*. It is less intuitive than the
-growth rate per single reproductive cycle, just like the slope of a
-curve is less intuitive than the slope of a line. The population growth
-happens continuously, so the growth rate of $r$ individuals per year
-does not mean that if we start with one individual, there will be $r$
-after one year. In order to make quantitative predictions, we need to
-find the solution of the equation, which we will see in the next
-section.
+$$
+\frac{dx} {dt} = \dot x = r x
+\label{eq:linear_ode}
+$$
+
+This expression states that the rate of change of $x$, which we take to be population size, is proportional to $x$ with multiplicative constant $r$. We will frequenlty use the notation $\dot x$ for the time derivative of $x$ for aesthetic reasons.
+
+First, we apply dimensional analysis to this model. The units of the derivative are population per time, as can be deduced from the Newton’s quotient definition. Thus, the units in the equation have the following relationship:
+
+$$
+\frac{[population]}{[time]} = [r] [population] = \frac{1}{[time]}[population]
+$$
+
+This shows that as in the discrete time models, the dimension of the population growth rate $r$ is inverse time, or frequency. The difference with the discrete time population models lies in the time scope of the rate. In the case of the difference equation, $r$ is the rate of change per one time step of the model. In the differential equation, $r$ is the *instantaneous rate of population growth*. It is less intuitive than the growth rate per single reproductive cycle, just like the slope of a curve is less intuitive than the slope of a line. The population growth happens continuously, so the growth rate of $r$ individuals per year does not mean that if we start with one individual, there will be $r$ after one year. In order to make quantitative predictions, we need to find the solution of the equation, which we will see in the next section.
 
 ### chemical kinetics
 
-Reactions between molecules in cells occur continuously, driven by
-molecular collisions and physical forces. In order to model this complex
-behavior, it is generally assumed that reactions occur with a particular
-speed, known as the *kinetic rate*. A simple reaction of conversion from
-one type of molecule ($A$) to another ($B$) can be written as follows:
-$$A \rightarrow^k B$$ In this equation the parameter $k$ is the kinetic
-rate, describing the speed of conversion of $A$ into $B$, per
-concentration of $A$.
+Reactions between molecules in cells occur continuously, driven by molecular collisions and physical forces. In order to model this complex behavior, it is generally assumed that reactions occur with a particular speed, known as the *kinetic rate*. A simple reaction of conversion from one type of molecule ($A$) to another ($B$) can be written as follows:
 
-Chemists and biochemists use differential equations to describe the
-change in molecular concentration during a reaction. These equations are
-known as the *laws of mass action*. For the reaction above, the
-concentration of molecule $A$ decreases continuously proportionally to
-itself, and the concentration of molecule $B$ increases continuously
-proportionally to the concentration of $A$. This is expressed by the
-following two differential equations: $$\begin{aligned}
+$$
+A \rightarrow^k B
+$$
+
+In this equation the parameter $k$ is the kinetic rate, describing the speed of conversion of $A$ into $B$, per concentration of $A$.
+
+Chemists and biochemists use differential equations to describe the change in molecular concentration during a reaction. These equations are known as the *laws of mass action*. For the reaction above, the concentration of molecule $A$ decreases continuously proportionally to itself, and the concentration of molecule $B$ increases continuously proportionally to the concentration of $A$. This is expressed by the following two differential equations: 
+
+$$\begin{aligned}
 \label{eq:lin_chem_kin}
 \dot A &=& - k A \\
-\dot B &=& kA\end{aligned}$$ Several conclusions are apparent by
-inspection of the equations. First, the dynamics depend only on the
-concentration of $A$, so keeping track of the concentration of $B$ is
-superfluous. The second observation reinforces the first: the sum of the
-concentrations of $A$ and $B$ is constant. This is mathematically
-demonstrated by adding the two equations together to obtain the
-following: $$\dot A + \dot B = -kA + kA = 0$$ One of the basic
-properties of the derivative is that the sum of derivatives is the same
-as the derivative of the sum:
-$$\dot A + \dot B = \frac{d(A+B)}{dt} = 0$$ This means that the sum of
-the concentrations of $A$ and $B$ is a constant. This is a mathematical
-expression of the law of conservation in chemistry: molecules can change
-from one type to another, but they cannot appear or disappear in other
-ways. In this case, a single molecule of $A$ becomes a single molecule
-of $B$, so it follows that the sum of the two has to remain the same. If
-the reaction were instead two molecules of $A$ converting to a molecule
-of $B$, then the conserved quantity is $2A + B$. The concept of
-conserved quantity is very useful for the analysis of differential
-equations. We will see in later chapters how it can help us find
-solutions, and explain the behavior of complex dynamical systems.
+\dot B &=& kA\end{aligned}
+$$
 
-### analytic solutions of linear ODEs
+Several conclusions can be drawn by inspection of the equations. First, the dynamics depend only on the concentration of $A$, so keeping track of the concentration of $B$ is superfluous. The second observation reinforces the first: the sum of the concentrations of $A$ and $B$ is constant. This is mathematically demonstrated by adding the two equations together to obtain the following: 
+$$
+\dot A + \dot B = -kA + kA = 0
+$$
 
-In this section we will see our first analytic solutions for ordinary
-differential equations (ODE). A differential equation is an equation
-that contains derivatives of the dependent variable (which we will
-usually call $x$). For the time being, we will restrict ourselves to
-ODEs with the highest derivative being of first order. In general, we
-can write all such ODE as follows: $$\frac{d x} {dt} = \dot x = f(x,t)$$
-Note that the function may depend on both the dependent variable $x$ and
-the independent variable $t$. Let us first define some terminology for
-ODE:
+One of the basic properties of the derivative is that the sum of derivatives is the same as the derivative of the sum:
 
-The *order* of an ODE is the highest order of the derivative of the
-dependent variable $x$.
+$$
+\dot A + \dot B = \frac{d(A+B)}{dt} = 0
+$$
 
-For example, $\dot x = rx$ is a first order ODE, while $\ddot x = - mx$
-is a second order ODE (double dot stands for second derivative).
+This means that the sum of the concentrations of $A$ and $B$ is a constant. This is a mathematical expression of the law of conservation in chemistry: molecules can change from one type to another, but they cannot appear or disappear in other ways. In this case, a single molecule of $A$ becomes a single molecule of $B$, so it follows that the sum of the two has to remain the same. If the reaction were instead two molecules of $A$ converting to a molecule of $B$, then the conserved quantity is $2A + B$. The concept of conserved quantity is very useful for the analysis of differential equations. We will see in later chapters how it can help us find solutions, and explain the behavior of complex dynamical systems.
 
-An ODE is *autonomous* if the function $f$ depends only on the dependent
-variable $x$ and not on $t$.
+### concepts of ODEs
 
-For example, $\dot x = 5x -4$ is an autonomous equation, while
-$\dot x = 5t $ is not. An autonomous ODE is also said to have *constant
-coefficients* (e.g. 5 and -4 in the first equation above).
+Let us define some terminology for ODEs:
 
-An ODE is *homogeneous* if every term involves either the dependent
-variable $x$ or its derivative.
+```{admonition} Definition
+The *order* of an ODE is the highest order of the derivative of the dependent variable $x$. 
+```
+For example, $\dot x = rx$ is a first order ODE, while $\ddot x = - mx$ is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to ODEs with the highest derivative being of first order. In general, we can write all such ODEs as follows: 
 
-For instance, $\dot x = x^2 + \sin(x)$ is homogeneous, while
-$\dot x = -x + 5t$ is not.
+$$
+\frac{d x} {dt} = \dot x = f(x,t)
+$$
 
-Most simple biological models that we will encounter in the next two
-chapters are autonomous, homogeneous ODEs. However, inhomogeneous
-equations are important in many applications, and we will encounter them
-at the end of the present section.
+Note that the function may depend on both the dependent variable $x$ and the independent variable $t$. This leads to the next definition:
 
-The *solution of a differential equation* is a function of the
-independent variable that satisfies the equation for a range of values
-of the independent variable. In contrast with algebraic equations, we
-cannot simply isolate $x$ on one side of the equal sign and find the
-solutions as one, or a few numbers. Instead, solving ordinary
-differential equations is very tricky, and no general strategy for
-solving an arbitrary ODE exists. Moreover, a solution for an ODE is not
-guaranteed to exist at all, or not for all values of $t$. We will
-discuss some of the difficulties later, but let us start with equations
-that we can solve.
+```{admonition} Definition
+An ODE is *autonomous* if the function $f$ depends only on the dependent variable $x$ and not on $t$.
+```
 
-The most obvious strategy for solving an ODE is integration. Since a
-differential equation contains derivatives, integrating it can remove
-the derivative. In the case of the general first order equation, we can
-integrate both sides to obtain the following:
-$$\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x + C = \int f(x,t) dt$$
-The constant of integration $C$ appears as in the standard
-antiderivative definition. It can be specified by an initial condition
-for the solution $x(t)$.
+For example, $\dot x = 5x -4$ is an autonomous equation, while $\dot x = 5t $ is not. An autonomous ODE is also said to have *constant coefficients* (e.g. 5 and -4 in the first equation above).
 
-The simplest method of analytical solution of a first-order ODEs, which
-I call *separate-and-integrate* consists of the following steps:
+```{admonition} Definition
+An ODE is *homogeneous* if every term involves either the dependent variable $x$ or its derivative.
+```
+
+For example, $\dot x = x^2 + \sin(x)$ is homogeneous, while $\dot x = -x + 5t$ is not. Most simple biological models that we will encounter in the next two chapters are autonomous, homogeneous ODEs. However, inhomogeneous equations are important in many applications, and we will encounter them at the end of the present section.
+
+```{admonition} Definition
+The *solution of a differential equation* is a function of the independent variable that satisfies the equation for a range of values of the independent variable. 
+```
+In contrast with algebraic equations, we cannot simply isolate $x$ on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of $t$. We will discuss some of the difficulties later, but let us start with equations that we can solve.
+
+### solutions of linear ODEs
+
+The most obvious strategy for solving an ODE is integration. Since a differential equation contains derivatives, integrating it can remove the derivative. In the case of the general first order equation, we can integrate both sides to obtain the following:
+
+$$
+\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x + C = \int f(x,t) dt
+$$
+
+The constant of integration $C$ appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution $x(t)$.
+
+The simplest method of analytical solution of a first-order ODEs, which I call *separate-and-integrate* consists of the following steps:
 
 1.  use algebra to place the dependent and independent variables on
     different sides of the equations, including the differentials (e.g.

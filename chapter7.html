@@ -73,7 +73,7 @@
   <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   Welcome to your Jupyter Book
+   Introduction
   </a>
  </li>
 </ul>
@@ -91,6 +91,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="chapter2.html">
    Discrete models of higher order: age-structured population models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter3.html">
+   Models with one variable in continuous time
   </a>
  </li>
 </ul>
@@ -219,7 +224,7 @@
 <p>Francis Galton (Darwin’s half-cousin) was a biologist interested in evolution, and one of the main proponents of eugenics (he coined the term himself). To advance his research program, he set out to measure several features in human populations, and started trying to explain the variation he observed, incidentally becoming one of the founding fathers of modern statistics.</p>
 <p>In his “Regression towards mediocrity in hereditary stature” he showed an interesting pattern: children of tall parents tended to be shorter than their parents, while children of short parents tended to be taller than their parents. He called this phenomoenon “regression toward mediocrity” (now called regression toward [to] the mean).</p>
 <p>We’re going to explore this phenomenon using Karl Pearson’s (another founding father of statistics) data from 1903, recording the height of fathers and sons:</p>
-<p><img alt="Galton's fathers and sons data[]{data-label=&quot;Heights of Fathers and Sons&quot;}" src="images/Galton_regression.png" /></p>
+<p><img alt="Galton's fathers and sons data[]{data-label=&quot;Heights of Fathers and Sons&quot;}" src="_images/Galton_regression.png" /></p>
 <p>You can see that the line does not divide the cloud of points evenly: even though tall fathers tend to produce tall sons, and short fathers short sons, the sons of short fathers tend to be taller than their fathers (for example, look at the sons of fathers less than 60 inches tall), while the sons of tall fathers tend to be shorter than their fathers (for example, the sons of fathers taller than 75 inches).</p>
 <p>This phenomenon is called “regression toward the mean”: when you take two measurement on the same sample (or related samples, as here), if a variable is extreme on its first measurement, it will tend to be closer to the average on its second measurement; if it is extreme on its second measurement, it will tend to have been closer to the average on its first.</p>
 <div class="section" id="regression-to-the-mean-dangers-of-interpretation">
@@ -294,7 +299,7 @@ $<span class="math notranslate nohighlight">\(
 m = r \frac{\sigma_Y}{\sigma_X}
 \)</span>$</p>
 <p>Whenever linear regression is reported, one always sees the values of correlation <span class="math notranslate nohighlight">\(r\)</span> and squared correlation <span class="math notranslate nohighlight">\(r^2\)</span> displayed. The reason for this is that <span class="math notranslate nohighlight">\(r^2\)</span> has the meaning: <strong>the fraction of the variance of the dependent variable <span class="math notranslate nohighlight">\(Y\)</span> explained by the linear regression <span class="math notranslate nohighlight">\(Y=mX+b\)</span>.</strong></p>
-<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="images/correlation_examples2.png" /></p>
+<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="_images/correlation_examples2.png" /></p>
 <p>There are, as usual, a couple of cautions about relying on the correlation coefficient First, just because there is no linear relationship, does not mean that there is no other relationship. Figure above shows some examples of scatterplots and their corresponding correlation coefficients. What it shows is that while a formless blob of a scatterplot will certainly have zero correlation, so will other scatterplots in which there is a definite relationship (e.g. a circle, or a X-shape). The point is that correlation is always a measure of the linear relationship between variables.</p>
 <p>The second cautionary tale is well known, as that is the danger of  equating correlation with a causal relationship. There are numerous examples of scientists misinterpreting a coincidental correlation as meaningful, or deeming two variables that have a common source as causing one another. It cannot be repeated often enough that one must be careful when interpreting correlation: a weak one does not mean there is no relationship, and a strong one does not mean that one variable causes the variation in the other.</p>
 </div>
@@ -326,7 +331,7 @@ $<span class="math notranslate nohighlight">\(
 \)</span>$</p></li>
 </ul>
 <p>These assumptions are primarily concerned with the distribution of the residuals, which are the parts of the data that are unexplained by the linear model. For example, the residuals of the Galton father-son data set look like this:</p>
-<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="images/residuals.png" /></p>
+<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="_images/residuals.png" /></p>
 </div>
 </div>
 
