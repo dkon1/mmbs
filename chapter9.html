@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Linear regression: theory and assumptions &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter1_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter2_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter3_intro.html">
+   3. Discrete models of higher order: age-structured population models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4_intro.html">
+   4. Models with one variable in continuous time
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter9.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-toward-the-mean">
+   Regression toward the mean
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-to-the-mean-dangers-of-interpretation">
+     Regression to the mean: dangers of interpretation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#least-squares-line">
+   Least squares line
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solving-for-the-parameters-using-linear-algebra">
+     Solving for the parameters using linear algebra
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#minimizing-the-sum-of-squares">
+     Minimizing the sum of squares
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correlation-and-interpretation">
+   Correlation and interpretation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assumptions-of-linear-regression">
+   Assumptions of linear regression
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linear-regression-theory-and-assumptions">
+<h1>Linear regression: theory and assumptions<a class="headerlink" href="#linear-regression-theory-and-assumptions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="regression-toward-the-mean">
+<h2>Regression toward the mean<a class="headerlink" href="#regression-toward-the-mean" title="Permalink to this headline">¶</a></h2>
+<p>Francis Galton (Darwin’s half-cousin) was a biologist interested in evolution, and one of the main proponents of eugenics (he coined the term himself). To advance his research program, he set out to measure several features in human populations, and started trying to explain the variation he observed, incidentally becoming one of the founding fathers of modern statistics.</p>
+<p>In his “Regression towards mediocrity in hereditary stature” he showed an interesting pattern: children of tall parents tended to be shorter than their parents, while children of short parents tended to be taller than their parents. He called this phenomoenon “regression toward mediocrity” (now called regression toward [to] the mean).</p>
+<p>We’re going to explore this phenomenon using Karl Pearson’s (another founding father of statistics) data from 1903, recording the height of fathers and sons:</p>
+<p><img alt="Galton's fathers and sons data[]{data-label=&quot;Heights of Fathers and Sons&quot;}" src="_images/Galton_regression.png" /></p>
+<p>You can see that the line does not divide the cloud of points evenly: even though tall fathers tend to produce tall sons, and short fathers short sons, the sons of short fathers tend to be taller than their fathers (for example, look at the sons of fathers less than 60 inches tall), while the sons of tall fathers tend to be shorter than their fathers (for example, the sons of fathers taller than 75 inches).</p>
+<p>This phenomenon is called “regression toward the mean”: when you take two measurement on the same sample (or related samples, as here), if a variable is extreme on its first measurement, it will tend to be closer to the average on its second measurement; if it is extreme on its second measurement, it will tend to have been closer to the average on its first.</p>
+<div class="section" id="regression-to-the-mean-dangers-of-interpretation">
+<h3>Regression to the mean: dangers of interpretation<a class="headerlink" href="#regression-to-the-mean-dangers-of-interpretation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A city sees an unusual growth of crime in a given neighborhood, and they decide to patrol the neighborhood more heavily. The next year, crime rates are close to normal. Was this due to heavy presence of police?</p></li>
+<li><p>A teacher sees that scolding students who’ve had a very low score in a test makes them perform better in the next test. (But would praising those with unusually high scores lead to slacking off in the next test?)</p></li>
+<li><p>A huge problem in science: effect sizes tend to decrease through time. Problem of selective reporting?</p></li>
+</ul>
+<p>This phenomemon gave the name to one of the simplest statistical models: the linear regression.</p>
+</div>
+</div>
+<div class="section" id="least-squares-line">
+<h2>Least squares line<a class="headerlink" href="#least-squares-line" title="Permalink to this headline">¶</a></h2>
+<p>How can we explain the relationship between the height of the faters and those of their sons? One of the simplest models we can use is called a “Linear Model”. Basically, we want to express the height of the son as a function of the height of the father:
+$<span class="math notranslate nohighlight">\(
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>y_i<span class="math notranslate nohighlight">\( is the height of the son (**response variable**), \)</span>x_i<span class="math notranslate nohighlight">\( is the height of the father (**explanatory variable**), \)</span>\beta_0<span class="math notranslate nohighlight">\( and \)</span>\beta_1<span class="math notranslate nohighlight">\( are two numbers (intercept and slope of the line) that do not vary within the population (these are the parameters we want to fit). Finally, the term \)</span>\epsilon_i<span class="math notranslate nohighlight">\( measures the &quot;error&quot; we are making for the \)</span>i^{th}<span class="math notranslate nohighlight">\( son. For simplicity, we assume the \)</span>\epsilon_i \overset{\text{iid}}{\sim} \mathcal N(0, \sigma^2)<span class="math notranslate nohighlight">\( (and \)</span>\sigma$ is therefore another parameter we want to fit).</p>
+<p>When we have multiple explanatory variables (for example, if we had recorded also the height of the mother, whether the son was born at full term or premature, the average caloric intake for the family, etc.), we speak of <strong>Multiple Linear Regression</strong>:</p>
+<div class="math notranslate nohighlight">
+\[
+y_i = \beta_0 + \sum_{k=1}^n \beta_k x_{ik} + \epsilon_i
+\]</div>
+<div class="section" id="solving-for-the-parameters-using-linear-algebra">
+<h3>Solving for the parameters using linear algebra<a class="headerlink" href="#solving-for-the-parameters-using-linear-algebra" title="Permalink to this headline">¶</a></h3>
+<p>In this section, we’re going to look at the mechanics of linear regression. Suppose that for simplicity we have a single explanatory variable, then we can write the linear model in compact form as:
+$<span class="math notranslate nohighlight">\(
+\mathbf{Y} = \mathbf{X} \mathbf{\beta} + \mathbf{\epsilon}
+\)</span><span class="math notranslate nohighlight">\(
+where:
+\)</span><span class="math notranslate nohighlight">\(
+\mathbf{Y} = \begin{pmatrix} y_1\\ y_2\\ \vdots \\ y_n \end{pmatrix} \;\;\; 
+\mathbf{X} = \begin{pmatrix} 1 &amp; x_1\\ 1 &amp; x_2\\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{pmatrix}
+ \;\;\; 
+\mathbf{\beta} = \begin{pmatrix} \beta_0 \\ \beta_1\end{pmatrix} \;\;\; \mathbf{\epsilon} = \begin{pmatrix} \epsilon_1 \\ \epsilon_2 \\ \vdots \\ \epsilon_n \end{pmatrix}
+\)</span>$</p>
+<p>Solving the linear regression means finding the best-fitting <span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> (controlling the spread of the distribution of the <span class="math notranslate nohighlight">\(\epsilon_i\)</span>). Our goal is to find the values of <span class="math notranslate nohighlight">\(\beta\)</span> that minimize <span class="math notranslate nohighlight">\(\sigma\)</span> (meaning that the points fall closer to the line). Rearranging:
+$<span class="math notranslate nohighlight">\(
+\sum_i \epsilon_i^2 = \sum_i (y_i - \beta_0 - \beta_1 x_i)^2 =  \Vert \mathbf{Y} - \mathbf{X} \mathbf{\beta} \Vert
+\)</span>$</p>
+<p>As such, we want to find the vector <span class="math notranslate nohighlight">\(\beta\)</span> that minimizes the norm <span class="math notranslate nohighlight">\(\Vert \mathbf{Y} - \mathbf{X} \mathbf{\beta} \Vert\)</span>. One can prove that this is accomplished using:
+$<span class="math notranslate nohighlight">\(
+\hat{\mathbf{\beta}} = \left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T \mathbf{Y}
+\)</span>$</p>
+<p>Where the matrix <span class="math notranslate nohighlight">\(\left( \mathbf{X}^T \mathbf{X} \right)^{-1} \mathbf{X}^T\)</span> is known as the (left) Moore-Penrose pseudo-inverse of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span>.</p>
+</div>
+<div class="section" id="minimizing-the-sum-of-squares">
+<h3>Minimizing the sum of squares<a class="headerlink" href="#minimizing-the-sum-of-squares" title="Permalink to this headline">¶</a></h3>
+<p>What we just did is called “ordinary least-squares”: we are trying to minimize the distance from the data points to their projection on the best-fitting line. We can compute the “predicted” heights as:
+$<span class="math notranslate nohighlight">\(
+\hat{\mathbf{Y}} = \mathbf{X}\hat{\mathbf{\beta}}
+\)</span><span class="math notranslate nohighlight">\(
+Then, we're minimizing \)</span>\Vert \mathbf{Y} - \hat{\mathbf{Y}}\Vert<span class="math notranslate nohighlight">\(. We call \)</span>\hat{\mathbf{\epsilon}} = \mathbf{Y} - \hat{\mathbf{Y}}<span class="math notranslate nohighlight">\( the vector of **residuals**. From this, we can estimate the final parameter, \)</span>\sigma$:</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma = \sqrt{\frac{\sum_i \hat{\epsilon_i}^2}{n -  p}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of data points, and <span class="math notranslate nohighlight">\(p\)</span> is the number of parameters in <span class="math notranslate nohighlight">\(\mathbf{\beta}\)</span> (2 in this case); this measures the number of <strong>degrees of freedom</strong>.</p>
+</div>
+</div>
+<div class="section" id="correlation-and-interpretation">
+<h2>Correlation and interpretation<a class="headerlink" href="#correlation-and-interpretation" title="Permalink to this headline">¶</a></h2>
+<p>ne essential measure of the quality of linear regression is correlation, which is a measure of how much variation in one random variable corresponds to variation in the other. If this sounds very similar to the description of covariance, it’s because they are closely related. Essentially, correlation is a ``normalized’’ covariance, made to range between -1 and 1. Here is the definition:</p>
+<blockquote>
+<div><p>The (linear or Pearson) correlation of a dataset of pairs of data values <span class="math notranslate nohighlight">\((X,Y)\)</span> is:
+$<span class="math notranslate nohighlight">\( r = \frac{Cov(X,Y)}{\sqrt{Var(X)Var(Y)}} =  \frac{Cov(X,Y)}{\sigma_X \sigma_Y}\)</span>$</p>
+</div></blockquote>
+<p>If the two variables are identical, <span class="math notranslate nohighlight">\(X=Y\)</span>, then the covariance becomes its variance <span class="math notranslate nohighlight">\(Cov(X,Y) = Var(X)\)</span> and the denominator also becomes the variance, and the correlation is 1. This is also true if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are scalar multiples of each other, as you can see by plugging in <span class="math notranslate nohighlight">\(X= cY\)</span> into the covariance formula. The opposite case if <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are diametrically opposite, <span class="math notranslate nohighlight">\(X = -cY\)</span>, which has the correlation coefficient of -1. All other cases fall in the middle, neither perfect correlation nor perfect anti-correlation. The special case if the two variables are independent, and thus their covariance is zero, has the correlation coefficient of 0.</p>
+<p>This gives a connection between correlation and slope of linear regression:
+$<span class="math notranslate nohighlight">\(
+m = r \frac{\sigma_Y}{\sigma_X}
+\)</span>$</p>
+<p>Whenever linear regression is reported, one always sees the values of correlation <span class="math notranslate nohighlight">\(r\)</span> and squared correlation <span class="math notranslate nohighlight">\(r^2\)</span> displayed. The reason for this is that <span class="math notranslate nohighlight">\(r^2\)</span> has the meaning: <strong>the fraction of the variance of the dependent variable <span class="math notranslate nohighlight">\(Y\)</span> explained by the linear regression <span class="math notranslate nohighlight">\(Y=mX+b\)</span>.</strong></p>
+<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="_images/correlation_examples2.png" /></p>
+<p>There are, as usual, a couple of cautions about relying on the correlation coefficient First, just because there is no linear relationship, does not mean that there is no other relationship. Figure above shows some examples of scatterplots and their corresponding correlation coefficients. What it shows is that while a formless blob of a scatterplot will certainly have zero correlation, so will other scatterplots in which there is a definite relationship (e.g. a circle, or a X-shape). The point is that correlation is always a measure of the linear relationship between variables.</p>
+<p>The second cautionary tale is well known, as that is the danger of  equating correlation with a causal relationship. There are numerous examples of scientists misinterpreting a coincidental correlation as meaningful, or deeming two variables that have a common source as causing one another. It cannot be repeated often enough that one must be careful when interpreting correlation: a weak one does not mean there is no relationship, and a strong one does not mean that one variable causes the variation in the other.</p>
+</div>
+<div class="section" id="assumptions-of-linear-regression">
+<h2>Assumptions of linear regression<a class="headerlink" href="#assumptions-of-linear-regression" title="Permalink to this headline">¶</a></h2>
+<p>In practice, when we are performing a linear regression, we are making a number of assumptions about the data. Here are the main ones:</p>
+<ul class="simple">
+<li><p>Model structure: we assume that the process generating the data is linear.</p></li>
+<li><p>Explanatory variable: we assume that this is measured without errors (!).</p></li>
+<li><p>Residuals: we assume that residuals are i.i.d. Normal.</p></li>
+<li><p>Strict exogeneity: the residuals should have conditional mean of 0.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb E[\epsilon_i | x_i] = 0
+\]</div>
+<ul class="simple">
+<li><p>No linear dependence: the columns of <span class="math notranslate nohighlight">\(\mathbf{X}\)</span> should be linearly independent.</p></li>
+<li><p>Homoscedasticity: the variance of the residuals is independent of <span class="math notranslate nohighlight">\(x_i\)</span>.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\mathbb V[\epsilon_i | x_i] =  \sigma^2
+\]</div>
+<ul class="simple">
+<li><p>Errors are uncorrelated between observations.
+$<span class="math notranslate nohighlight">\(
+\mathbb E[\epsilon_i \epsilon_j | x] = 0 \; \forall j \neq i
+\)</span>$</p></li>
+</ul>
+<p>These assumptions are primarily concerned with the distribution of the residuals, which are the parts of the data that are unexplained by the linear model. For example, the residuals of the Galton father-son data set look like this:</p>
+<p><img alt="Correlation coefficient does not tell the whole story when it comes to describing the relationship between two variables. {data-label=&quot;Correlation coeffiecients for different data sets&quot;}" src="_images/residuals.png" /></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

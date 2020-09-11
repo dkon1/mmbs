@@ -10,7 +10,7 @@ The models for continuously changing variables require their own set of mathemat
 I assume that you have seen basic differential equations before and thus will begin with a brief review of linear differential equations and their solutions. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. When solutions cannot be found on paper, we have two options: 1) qualitative or graphical tools, such as finding equilibrium points and their stability, allow us to predict the long-term dynamics of the solution; 2) numerical solutions, which use computational methods to construct a sequence of numbers that approximate the true solution.
 
 
-## Review of linear ODEs
+## Building ODEs
 
 We consider models with *continuous time*, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:
 
@@ -31,10 +31,11 @@ To take the limit of the time step going to 0 means that we allow the increments
 In general, an ordinary differential equation is defined as follows:
 
 ```{admonition} Definition
-An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. $x$) with respect to an independent variable (e.g. $t$).```
+An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. $x$) with respect to an independent variable (e.g. $t$).
 ```
 
 For example:
+
 $$ 
 \frac{dx^2}{dt^2}+ 0.2 \frac{dx}{dt} - 25 = 0
 $$
@@ -47,8 +48,7 @@ We will now build up some of the most common differential equations models. Firs
 
 $$
 \frac{dx} {dt} = \dot x = r x
-\label{eq:linear_ode}
-$$
+$$ (linear_ode)
 
 This expression states that the rate of change of $x$, which we take to be population size, is proportional to $x$ with multiplicative constant $r$. We will frequenlty use the notation $\dot x$ for the time derivative of $x$ for aesthetic reasons.
 
@@ -73,12 +73,13 @@ In this equation the parameter $k$ is the kinetic rate, describing the speed of 
 Chemists and biochemists use differential equations to describe the change in molecular concentration during a reaction. These equations are known as the *laws of mass action*. For the reaction above, the concentration of molecule $A$ decreases continuously proportionally to itself, and the concentration of molecule $B$ increases continuously proportionally to the concentration of $A$. This is expressed by the following two differential equations: 
 
 $$\begin{aligned}
-\label{eq:lin_chem_kin}
 \dot A &=& - k A \\
-\dot B &=& kA\end{aligned}
-$$
+\dot B &=& kA
+\end{aligned}
+$$ (lin_chem_kin)
 
 Several conclusions can be drawn by inspection of the equations. First, the dynamics depend only on the concentration of $A$, so keeping track of the concentration of $B$ is superfluous. The second observation reinforces the first: the sum of the concentrations of $A$ and $B$ is constant. This is mathematically demonstrated by adding the two equations together to obtain the following: 
+
 $$
 \dot A + \dot B = -kA + kA = 0
 $$
@@ -91,6 +92,9 @@ $$
 
 This means that the sum of the concentrations of $A$ and $B$ is a constant. This is a mathematical expression of the law of conservation in chemistry: molecules can change from one type to another, but they cannot appear or disappear in other ways. In this case, a single molecule of $A$ becomes a single molecule of $B$, so it follows that the sum of the two has to remain the same. If the reaction were instead two molecules of $A$ converting to a molecule of $B$, then the conserved quantity is $2A + B$. The concept of conserved quantity is very useful for the analysis of differential equations. We will see in later chapters how it can help us find solutions, and explain the behavior of complex dynamical systems.
 
+
+## Analytic solutions of linear ODEs
+
 ### concepts of ODEs
 
 Let us define some terminology for ODEs:
@@ -98,442 +102,240 @@ Let us define some terminology for ODEs:
 ```{admonition} Definition
 The *order* of an ODE is the highest order of the derivative of the dependent variable $x$. 
 ```
-For example, $\dot x = rx$ is a first order ODE, while $\ddot x = - mx$ is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to ODEs with the highest derivative being of first order. In general, we can write all such ODEs as follows: 
+For example, $\dot x = rx$ is a first order ODE, while $\ddot x = - mx$ is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to first-order ODEs that can be generally written as follows:
 
+```{admonition} Definition
+A *first-order* ODE is one where the derivative $dx/dt$ is  equal to a *defining function* $f(x,t)$, like this: 
+```
 $$
-\frac{d x} {dt} = \dot x = f(x,t)
-$$
+\frac{dx} {dt} = \dot x = f(x,t)
+$$ (first-order-ode)
 
 Note that the function may depend on both the dependent variable $x$ and the independent variable $t$. This leads to the next definition:
 
 ```{admonition} Definition
-An ODE is *autonomous* if the function $f$ depends only on the dependent variable $x$ and not on $t$.
+An ODE is *autonomous* if the defining function $f$ depends only on the dependent variable $x$ and not on $t$.
 ```
 
 For example, $\dot x = 5x -4$ is an autonomous equation, while $\dot x = 5t $ is not. An autonomous ODE is also said to have *constant coefficients* (e.g. 5 and -4 in the first equation above).
 
 ```{admonition} Definition
-An ODE is *homogeneous* if every term involves either the dependent variable $x$ or its derivative.
+An ODE is *homogeneous* if every term in the defining function involves either the dependent variable $x$ or its derivative.
 ```
 
 For example, $\dot x = x^2 + \sin(x)$ is homogeneous, while $\dot x = -x + 5t$ is not. Most simple biological models that we will encounter in the next two chapters are autonomous, homogeneous ODEs. However, inhomogeneous equations are important in many applications, and we will encounter them at the end of the present section.
 
-```{admonition} Definition
-The *solution of a differential equation* is a function of the independent variable that satisfies the equation for a range of values of the independent variable. 
-```
+
+###  solutions via separate-and-integrate
+
 In contrast with algebraic equations, we cannot simply isolate $x$ on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of $t$. We will discuss some of the difficulties later, but let us start with equations that we can solve.
 
-### solutions of linear ODEs
+
+```{admonition} Definition
+The *analytic (or exact) solution* of an ordinary differential equation is a function of the independent variable that satisfies the equation. If no initial value is given, then the *general solution* function will contain an uknown *integration constant*. If an initial value is specified, the integration constant can be found to obtain a *specific solution*. 
+```
+
+This means that the solution function obeys the relationship between the derivative and the defining function that is specified by the ODE. To verify that a function is a solution of a given ODE, take its derivative and check whether it matches the other side of the equation.
+
+
+**Example**. The function $x(t) = 3t^2 +C$ is a general solution of the ODE $\dot x = 6t$, which can be verified by taking the derivative: $\dot x (t) = 6t$. Since this matches the right-hand side of the ODE, the solution is valid.
+
+**Example**. The function $x(t) = Ce^{5t}$ is a general solution of the ODE $\dot x = 5x$. This can be verified by the taking the derivative: $\dot x = 5C e^{5t}$ and comparing it with the right-hand side of the ODE: $5x = 5 Ce^{5t}$. Since the two sides of the equation agree, the solution is valid.
+
+
+In contrast with algebraic equations, we cannot simply isolate $x$ on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of $t$. We will discuss some of the difficulties later, but let us start with equations that we can solve.
+
 
 The most obvious strategy for solving an ODE is integration. Since a differential equation contains derivatives, integrating it can remove the derivative. In the case of the general first order equation, we can integrate both sides to obtain the following:
 
 $$
-\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x + C = \int f(x,t) dt
+\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x(t) + C = \int f(x,t) dt
 $$
 
-The constant of integration $C$ appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution $x(t)$.
+The constant of integration $C$ appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution $x(t)$. Unless the function $f(x,t)$ depends only on $t$, it is not possible to evaluate the integral above. Instead, various tricks are used to find the analytic solution. The simplest method of analytical solution of a first-order ODEs, which I call *separate-and-integrate* consists of the following steps:
 
-The simplest method of analytical solution of a first-order ODEs, which I call *separate-and-integrate* consists of the following steps:
+1.  use algebra to place the dependent and independent variables on different sides of the equations, including the differentials (e.g. $dx$ and $dt$)
 
-1.  use algebra to place the dependent and independent variables on
-    different sides of the equations, including the differentials (e.g.
-    $dx$ and $dt$)
+2.  integrate both sides with respect to the different variables, don’t forget the integration constant
 
-2.  integrate both sides with respect to the different variables, don’t
-    forget the integration constant
+3.  solve for the dependent variable (e.g. $x$) to find the *general solution*
 
-3.  solve for the dependent variable (e.g. $x$)
+4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the integration constant and find the *specific solution*
+ 
 
-4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the
-    integration constant
+**Example.** Consider a very simple differential equation: $\dot x  = a$, where $\dot x$ stands for the time derivative of the
+dependent variable $x$, and $a$ is a constant. It can be solved by integration:
 
-**Example.** Consider a very simple differential equation:
-$\dot x  = a$, where $\dot x$ stands for the time derivative of the
-dependent variable $x$, and $a$ is a constant. It can be solved by
-integration:
-$$\int \frac{dx}{dt} dt  = \int a dt  \Rightarrow x(t) + C = at$$ This
-solution contains an undetermined integration constant; if an initial
-condition is specified, we can determine the complete solution.
-Generally speaking, if the initial condition is $x(0) = x_0$, we need to
-solve an algebraic equation to determine $C$: $x_0 = a*0 - C$, which
-results in $C = -x_0$. The complete solution is then $x(t) = at + x_0$.
-To make the example more specific, if $a = 5$ and the initial condition
-is $x(0) = -3$, the solution is $x(t) = 5t -3$.
+$$
+\int \frac{dx}{dt} dt  = \int a dt  \Rightarrow x(t) + C = at
+$$
 
-**Example**. Let us solve the linear population growth model in equation
-\[eq:linear\_ode\]: $\dot x = rx$. The equation can be solved by first
-dividing both sides by $x$ and then integrating:
-$$\int \frac{1}{x} \frac{d x}{dt}  dt = \int \frac{dx}{x} = \int r dt \Longrightarrow \log |x| = rt + C  \Longrightarrow  x =  e^{rt+C} = Ae^{rt}$$
-We used basic algebra to solve for $x$, exponentiating both sides to get
-rid of the logarithm on the left side. As a result, the additive
-constant $C$ gave rise to the multiplicative constant $A=e^C$. Once
-again, the solution contains a constant which can be determined by
-specifying an initial condition $x(0) = x_0$. In this case, the
-relationship is quite straightforward: $x(0) = A e^0 = A$. Thus, the
-complete solution for equation \[eq:linear\_ode\] is:
-$$x(t) = x_0e^{rt}$$ As in the case of the discrete-time models,
-population growth with a constant birth rate has exponential form. Once
-again, please pause and consider this fact, because the exponential
-solution of linear equations is one of the most basic and powerful tools
-in applied mathematics. Immediately, it allows us to classify the
-behavior of linear ODE into three categories:
+This solution contains an undetermined integration constant; if an initial condition is specified, we can determine the complete solution. Generally speaking, if the initial condition is $x(0) = x_0$, we need to solve an algebraic equation to determine $C$: $x_0 = a \times 0 - C$, which results in $C = -x_0$. The complete solution is then $x(t) = at + x_0$. To make the example more specific, if $a = 5$ and the initial condition is $x(0) = -3$, the solution is $x(t) = 5t -3$.
 
--   $ r > 0$: $x(t)$ grows without bound
+**Example**. Let us solve the linear population growth model in equation {eq}`linear_ode`: $\dot x = rx$. The equation can be solved by first dividing both sides by $x$ and then integrating:
 
--   $ r < 0$: $x(t)$ decays to 0
+$$
+\int \frac{1}{x} \frac{d x}{dt}  dt = \int \frac{dx}{x} = \int r dt \Longrightarrow \log |x| = rt + C  \Longrightarrow  x =  e^{rt+C} = Ae^{rt}
+$$
 
--   $ r = 0 $: $x(t)$ remains constant at the initial value
+We used basic algebra to solve for $x$, exponentiating both sides to get rid of the logarithm on the left side. As a result, the additive constant $C$ gave rise to the multiplicative constant $A=e^C$. Once again, the solution contains a constant which can be determined by specifying an initial condition $x(0) = x_0$. In this case, the relationship is quite straightforward: $x(0) = A e^0 = A$. Thus, the complete solution for equation {eq}`linear_ode` is:
 
-The rate $r$ being positive reflects the dominance of birth rate over
-death rate in the population, leading to unlimited population growth. If
-the death rate is greater, the population will decline and die out. If
-the two are exactly matched, the population size will remain unchanged.
+$$
+x(t) = x_0e^{rt}
+$$ 
 
-**Example.** The solution for the biochemical kinetic model in equation
-\[eq:lin\_chem\_kin\] is identical except for the sign:
-$ A(t) = A_0 e^{-kt}$. When the reaction rate $k$ is positive, as it is
-in chemistry, the concentration of $A$ decays to 0 over time. This
-should be obvious from our model, since there is no back reaction, and
-the only chemical process is conversion of $A$ into $B$. The
-concentration of $B$ can be found by using the fact that the total
-concentration of molecules in the model is conserved. Let us call it
-$C$. Then $B(t) = C - A(t) = C- A_0e^{-kt}$. The concentration of $B$
-increases to the asymptotic limit of $C$, meaning that all molecules of
-$A$ have been converted to $B$.
+As in the case of the discrete-time models, population growth with a constant birth rate has exponential form. Once again, please pause and consider this fact, because the exponential solution of linear equations is one of the most basic and powerful tools in applied mathematics. Immediately, it allows us to classify the behavior of linear ODE into three categories:
 
-### solution of inhomogeneous ODEs
+*  $r >0$: $x(t)$ grows without bound
 
-The two models we have seen above are non-homogeneous, because they
-involve a term without a dependent variable, and linear, because the
-relationship with the dependent variable term is proportional. They can
-be solved on paper using the same separate-and-integrate method,
-modified slightly to handle the constant term. Here are the steps to
-solve the generic linear ODE with a constant term $\dot x = ax +b $:
+*  $r <0$: $x(t)$ decays to 0
 
-1.  separate the dependent and independent variables on different sides
-    of the equations, by dividing both sides by the right hand side
-    $ax+b$, and multiplying both sides by the differential $dt$
+*  $r = 0$: $x(t)$ remains constant at the initial value
 
-2.  integrate both sides with respect to the different variables, don’t
-    forget the integration constant!
+The rate $r$ being positive means that the birth rate is greater than the death rate in the population, leading to unlimited population growth. If the death rate is greater, the population will decline and die out. If the two are exactly matched, the population size will remain unchanged.
 
-3.  solve for the dependent variable (e.g. $x$)
+**Example.** The solution for the biochemical kinetic model in equation {eq}`lin_chem_kin` is identical except for the sign:
+$A(t) = A_0 e^{-kt}$. When the reaction rate $k$ is positive, as it is in chemistry, the concentration of $A$ decays to 0 over time. This is consistent with the arrow diagram of this model, since there is no back reaction, and the only chemical process is conversion of $A$ into $B$. The concentration of $B$ can be found by using the fact that the total concentration of molecules in the model is conserved. Let us call it $C$. Then $B(t) = C - A(t) = C- A_0e^{-kt}$. The concentration of $B$ increases to the asymptotic limit of $C$, meaning that all molecules of $A$ have been converted to $B$.
 
-4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the
-    integration constant
+### solution of nonhomogeneous ODEs
 
-**Example:** Let us solve the following ODE model using separate and
-integrate with the given initial value:
-$$\frac{dx}{dt} = 4x -100;  \; x(0) = 32$$
+ODEs that contain at least one term without the dependent variable are a bit more complicated. If the defining function is $f(x,t)$ is *linear* in the dependent variable $x$, they can be solved on paper using the same separate-and-integrate method, modified slightly to handle the constant term. Here are the steps to solve the generic linear ODE with a constant term $\dot x = ax +b$:
 
-1.  separate the dependent and independent variables:
-    $$\frac{dx}{4x - 100} = dt$$
+1.  separate the dependent and independent variables on different sides of the equations, by dividing both sides by the right hand side $ax+b$, and multiplying both sides by the differential $dt$
 
-2.  integrate both sides:
-    $$\int \frac{dx}{4x -100} =  \int dt \Rightarrow \frac{1}{4} \int \frac{du}{u} = \frac{1}{4} \ln | 4x- 100 |  = t + C$$
-    The integration used the substitution of the new variable
-    $u=4x -100$, with the concurrent substitution of $dx = du/4$.
+2.  integrate both sides with respect to the different variables, don’t forget the integration constant!
 
-3.  solve for the dependent variable:
-    $$\ln | 4x- 100 |  = 4t + C \Rightarrow 4x-100 = e^{4t} B  \Rightarrow x = 25  + Be^{4t}$$
-    Here the first step was to multiply both sides by 4, and the second
-    to use both sides as the exponents of $e$, removing the natural log
-    from the left hand side, and finally simple algebra to solve for $x$
-    as a function of $t$.
+3.  solve for the dependent variable (e.g. $x$) to find the *general solution*
 
-4.  solve for the integration constant:
-    $$x(0) = 25  + B = 32 \Rightarrow B = 7$$ Here the exponential
-    “disappeared” because $e^0=1$.
+4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the integration constant and find the *specific solution*
 
-Therefore, the complete solution of the ODE with the given initial value
-is $$x(t) =  25  + 5e^{4t}$$
+**Example:** Let us solve the following ODE model using separate and integrate with the given initial value:
 
-At this point, you might have noticed something about solutions of
-linear ODEs: they always involve an exponential term, with time in the
-exponent. Knowing this, it is possible to bypass the whole process of
-separate-and-integrate by using the following short-cut.
+$$
+\frac{dx}{dt} = 4x -100;  \; x(0) = 30
+$$
 
-**Important fact:** Any linear ODE of the form $\dot x= ax +b $ has an
-analytic solution of the form: $$x(t) = Ce^{at} + D$$ This can be tested
-by plugging the solution back into the ODE to see if it satisfies the
-equation. First, take the derivative of the solution to get the
-left-hand side of the ODE: $ \frac{dx}{dt} = Ca e^{at}$; the plug in
-$x(t)$ into the right hand side of the ODE: $ aCe^{at} + aD +b$. Setting
-the two sides equal, we get: $Ca e^{at} = 
-aCe^{at} + aD +b$, which is satisfied if $aD+b= 0$, which means
-$D= -b/a$. This is consistent with the example above, the additive
-constant in the solution was 0.8, which is $-b/a= -(4)/5=0.8$.
+*  Separate the dependent and independent variables:
 
-In short, if you want to solve a linear ODE $\dot x= ax +b$ , you can
-bypass the separate-and-integrate process, because the general solution
-always has the form: $$x(t) = Ce^{at} - \frac{b}{a}
-\label{eq:ch15_ode_sol}$$ The unknown constant $C$ can be determined
-from a given initial value. So the upshot is that all linear ODEs have
-solutions which are exponential in time with exponential constant coming
-from the slope constant $a$ in the ODE. The dynamics of the solution are
-determined by the sign of the constant $a$: if $a>0$, the solution grows
-(or declines) without bound; and if $a<0$, the solution approaches an
-asymptote at $-b/a$ (from above or below, depending on the initial
-value).
+$$
+\frac{dx}{4x - 100} = dt
+$$
+
+*  Integrate both sides:
+
+$$
+\int \frac{dx}{4x -100} =  \int dt \Rightarrow \frac{1}{4} \int \frac{du}{u} = \frac{1}{4} \ln | 4x- 100 |  = t + C
+$$
+
+The integration used the substitution of the new variable $u=4x -100$, with the concurrent substitution of $dx = du/4$.
+
+*  Solve for the dependent variable:
+
+$$
+\ln | 4x- 100 |  = 4t + C \Rightarrow 4x-100 = e^{4t} B  \Rightarrow x = 25  + Be^{4t}
+$$
+
+Here the first step was to multiply both sides by 4, and the second to use both sides as the exponents of $e$, removing the natural log from the left hand side, and finally simple algebra to solve for $x$ as a function of $t$.
+
+*  Solve for the integration constant:
+
+$$
+x(0) = 25  + B = 30 \Rightarrow B = 5
+$$
+
+Here the exponential “disappeared” because $e^0=1$. Therefore, the specific solution of the ODE with the given initial value is 
+
+$$
+x(t) =  25  + 5e^{4t}
+$$
+
+At this point, you might have noticed something about solutions of linear ODEs: they always involve an exponential term, with time in the exponent. Knowing this, it is possible to bypass the whole process of separate-and-integrate by using the following short-cut.
+
+```{admonition} Important Fact
+:class: tip
+Any linear ODE of the form $\dot x= ax +b $ has an analytic solution of the form: 
+
+$$
+x(t) = Ce^{at} + D
+$$ (sol-nonhom)
+
+with $D = -b/a$ and $C$ determined by the initial value $x(0)$.
+```
+
+This can be verified by plugging the solution back into the ODE to see if it satisfies the equation. First, take the derivative of the solution to get the left-hand side of the ODE: $\frac{dx}{dt} = Ca e^{at}$; then plug in $x(t)$ into the right hand side of the ODE: $ aCe^{at} + aD +b$. Setting the two sides equal, we get: $Ca e^{at} =  aCe^{at} + aD +b$, which is satisfied if $aD + b = 0$, which means $D= -b/a$. This is consistent with the example above, the additive constant in the solution was 25, which is $-b/a= -(-100)/4 = 25$. 
+
+Thus, if you want to solve a linear no ODE $\dot x= ax +b$ , you can bypass the separate-and-integrate process, because the general solution always has the form in equation {eq}`sol-nonhom`. So the upshot is that all linear ODEs have solutions which are exponential in time with exponential constant coming from the slope constant $a$ in the ODE. The dynamics of the solution are determined by the sign of the constant $a$: if $a>0$, the solution grows (or declines) without bound; and if $a<0$, the solution approaches an asymptote at $-b/a$ (from above or below, depending on the initial value).
 
 ### model of drug concentration
 
-Describing and predicting the dynamics of drug concentration in the body
-is the goal of *pharmacokinetics*. Any drug that humans take goes
-through several stages: first it is administered (put into the body),
-then absorbed, metabolized (transformed), and excreted (removed from the
-body). Almost any drug has a dose at which it has a toxic effect, and
-most can kill a human if the dose is high enough. Drugs which are used
-for medical purposes have a *therapeutic range*, which lies between the
-lowest possible concentration (usually measured in the blood plasma)
-that achieves the therapeutic effect and the concentration which is
-toxic. One of the basic questions that medical practitioners need to
-know is how much and how frequently to administer a drug to maintain
-drug concentration in the therapeutic range.
+Describing and predicting the dynamics of drug concentration in the body is the goal of *pharmacokinetics*. Any drug that humans take goes through several stages: first it is administered (put into the body), then absorbed, metabolized (transformed), and excreted (removed from the body) \citep{rosenbaum_basic_2011}. Almost any drug has a dose at which it has a toxic effect, and most can kill a human if the dose is high enough. Drugs which are used for medical purposes have a *therapeutic range*, which lies between the lowest possible concentration (usually measured in the blood plasma) that achieves the therapeutic effect and the concentration which is toxic. One of the basic questions that medical practitioners need to know is how much and how frequently to administer a drug to maintain drug concentration in the therapeutic range.
 
-The concentration of a drug is a dynamic variable which depends on the
-rates of several processes, most directly on the rate of administration
-and the rate of metabolism. Drugs can be *administered* through various
-means (e.g. orally or intravenously) which influences their rate of
-absorption and thus how the concentration increases. Once in the blood
-plasma, drugs are metabolized primarily by enzymes in the liver,
-converting drug molecules into compounds that can be excreted through
-the kidneys or the large intestine. The process of *metabolism* proceeds
-at a rate, which depends on both the concentration of the drug and on
-the enzyme that catalyzes the reaction. For some drugs the metabolic
-rate may be *constant*, or independent of the drug concentration, since
-the enzymes are already working at full capacity and can’t turn over any
-more reactions, for example alcohol is metabolized at a constant rate of
-about 1 drink per hours for most humans. For other drugs, if the plasma
-concentration is low enough, the enzymes are not occupied all the time
-and increasing the drug concentration leads to an increase in the rate
-of metabolism. In the simplest case, the rate of metabolism is *linear*,
-or proportional to the concentration of the drug, with proportionality
-constant called the first-order metabolic rate.
+The concentration of a drug is a dynamic variable which depends on the rates of several processes, most directly on the rate of administration and the rate of metabolism. Drugs can be administered through various means (e.g. orally or intravenously) which influences their rate of absorption and thus how the concentration increases. Once in the blood plasma, drugs are metabolized primarily by enzymes in the liver, converting drug molecules into compounds that can be excreted through the kidneys or the large intestine. The process of \index{kinetics!drug metabolism} *metabolism proceeds at a rate that depends on both the concentration of the drug and on the enzyme that catalyzes the reaction. For some drugs the metabolic rate may be constant, or independent of the drug concentration, since the enzymes are already working at full capacity and can't turn over any more reactions, for example alcohol is metabolized at a constant rate of about 1 drink per hours for most humans. {numref}`fig-alc-met` shows the time plots of the blood alcohol concentration for 4 males who ingested different amounts of alcohol, and the curves are essentially linear with the same slope after the peak.  For other drugs, if the plasma concentration is low enough, the enzymes are not occupied all the time and increasing the drug concentration leads to an increase in the rate of metabolism. One can see this behavior in the metabolism of the anti-depressant drug bupropion in figure {numref}`fig-bupropion`, where the concentration curve shows a faster decay rate for higher concentration of the drug than for lower concentration. In the simplest case, the rate of metabolism is linear, or proportional to the concentration of the drug, with proportionality constant called the first-order metabolic rate. 
 
-Let us build an ODE model for a simplified pharmacokinetics situation.
-Suppose that a drug is administered at a constant rate of $M$
-(concentration units per time unit) and that it is metabolized at a rate
-proportional to its plasma concentration $C$ with metabolic rate
-constant $k$. Then the ODE model of the concentration of the drug over
-time $C(t)$ is: $$\frac{dC}{dt} = M - kC$$ The two rate constants $M$
-and $k$ have different dimensions, which you should be able to determine
-yourself. The ODE can be solved using the separate-and-integrate method:
 
-1.  Divide both sides by the right hand side $M-kC$, and multiply both
-    sides by the differential $dt$ $$\frac{dC}{M-kC} = dt$$
+```{figure} images/aa35graf.png
+---
+name: fig-alc-met
+---
+Blood alcohol content after ingesting different numbers of drinks, from 4 in the top curve to 1 in the bottom (figure from the National Institute on Alcohol Abuse and Alcoholism in public domain)
+```
 
-2.  integrate both sides with respect to the different variables, don’t
-    forget the integration constant!
-    $$\int \frac{dC}{M-kC} = \int dt \Rightarrow$$
-    $$-\frac{1}{k} \log |M-kC| = t + A$$
 
-3.  solve for the dependent variable $C(t)$
-    $$\exp(\log |M-kC| ) = -\exp(kt +A) \Rightarrow$$
-    $$M - kC = B e^{-kt} \Rightarrow$$ $$C(t) = \frac{M}{k}- Be^{-kt}$$
-    Notice that I changed the values of integration constants $A$ and
-    $B$ during the derivation, which shouldn’t matter because they have
-    not been determined yet.
+```{figure} images/2000px-Bupropion_bioequivalency.png
+---
+name: fig-bupropion
+---
+Blood concentration of bupropion for two different drugs in clinical trials (image by CMBJ based on FDA data under CC-BY 3.0 via Wikimedia Commons)
+```
 
-4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the
-    integration constant If we know the initial value $C(0) = C_0$, then
-    we can plug it in and get the following algebraic expression:
-    $$C_0 =  \frac{M}{k} - B \Rightarrow$$ $$B = C_0 -  \frac{M}{k}$$
-    Then the complete solution is:
-    $$C(t) =  \frac{M}{k} - (C_0- \frac{M}{k})e^{-kt}$$
+```{topic} Example: ODE  model of drug kinetics
+Let us build an ODE model for a simplified pharmacokinetics situation. Suppose that a drug is administered at a constant rate of $M$ (concentration units per time unit) and that it is metabolized at a rate proportional to its plasma concentration $C$ with metabolic rate constant $k$. Then the ODE model of the concentration of the drug over time $C(t)$ is:
 
-The solution predicts that after a long time the plasma concentration
-will approach the value $M/k$, since the exponential term decays to
-zero. Notice that mathematically this is the same type of solution we
-obtained in equation \[eq:ch15\_ode\_sol\] for a generic linear ODE with
-a constant term.
+$$
+\frac{dC}{dt} = M - kC
+$$
 
-Graphical and qualitative analysis of ODEs
-------------------------------------------
+The two rate constants $M$ and $k$ have different dimensions, which you should be able to determine yourself. The ODE can be solved using the separate-and-integrate method:
 
-### fixed points in ODE
+* Divide both sides by the right hand side $M-kC$, and multiply both sides by the differential $dt$
 
-Generally, ODE models for realistic biological systems are nonlinear,
-and most nonlinear differential equations cannot be solved analytically.
-Instead, we will analyze the behavior of the solutions without finding
-an exact formula. The first step to understanding the dynamics of an ODE
-is finding its fixed points. The concept is the same as in the case of
-difference equations: a fixed point is a value of the solution at which
-the dynamical system stays constant. Thus, the derivative of the
-solution must be zero, which leads us to to the formal definition:
+$$ 
+\frac{dC}{M-kC} = dt
+$$
 
-For a differential equation $\dot x = f(x)$, a point $x^*$ which
-satisfies $f(x^*)=0$ is called a *fixed point* or *equilibrium*, and the
-solution with the initial condition $x(0)=x^*$ is $x(t)=x^*$.
+* Integrate both sides with respect to the different variables, don't forget the integration constant! 
 
-For instance, the linear equation $\dot x  = rx$ has a single fixed
-point at $x^* = 0$. For a more interesting example, consider a logistic
-equation: $\dot x = x - x^2 $. Its fixed points are the solutions of
-$x - x^2 = 0$, therefore there two fixed points: $x^* = 0, 1$. We know
-that if the solution has either of the fixed points as the initial
-condition, it will remain at that value for all time.
+$$ 
+\int \frac{dC}{M-kC} = \int dt \Rightarrow  -\frac{1}{k} \log |M-kC| = t + A
+$$
 
-Locating the fixed points is not sufficient to predict the global
-behavior of the dynamical system, however. The next question to address
-is the behavior of the solution if the initial condition is **near** the
-fixed point. This is the same notion of stability that we saw for
-discrete dynamical systems. The definition is identical:
+* Solve for the dependent variable $C(t)$
 
-A fixed point $x^*$ of an ODE $\dot x = f(x)$ is called *stable (sink)*,
-if for a sufficiently small number $\epsilon$, the solution $x(t)$ with
-the initial condition $x_0 = x^* + \epsilon$ approaches the fixed point
-$x^*$ as $t \rightarrow \infty$. If the solution $x(t)$ does not
-approach $x^*$ for all nonzero $\epsilon$, the fixed point is called
-*unstable (source)*.
+$$ 
+\exp(\log |M-kC| ) = -\exp(kt +A) \Rightarrow M - kC = B e^{-kt} \Rightarrow 
+$$
 
-We will see that the slope of $f(x)$ determines whether a fixed point is
-stable. We use the same methodology as we did in Chapter 1. First,
-define $\epsilon(t)$ to be the deviation of the solution $x(t)$ from the
-fixed point $x^*$, that is, write $x(t) = x^* + \epsilon(t)$. Assuming
-that $\epsilon(t)$ is small, we can write the function $f(x)$ using
-Taylor’s formula:
-$$f(x^*+\epsilon(t))= f(x^*)+f'(x^*) \epsilon(t) + ... = f'(x^*) \epsilon(t) + ...$$
-The term $f(x^*)$ vanished because it is zero by definition of a fixed
-point. The ellipsis indicates terms of order $\epsilon(t)^2$ and higher,
-which are very small by assumption. Thus, we can write the following
-approximation to the ODE $\dot x = f(x)$ near a fixed point:
-$$\dot x =  \frac{ d(x^* + \epsilon(t))}{dt} = \dot \epsilon(t) =  f'(x^*) \epsilon(t)$$
-This differential equation describes the dynamics of the deviation
-$\epsilon(t)$ near the fixed point $x^*$; note that the derivative
-$f'(x^*)$ is a constant for any given fixed point. We have obtained a
-linear equation for $\epsilon(t)$, known as the linearization of the ODE
-near the fixed point. We have classified the behavior of solutions for
-the general linear ODE $\dot x = rx$, and now we apply this
-classification to the behavior of the deviation $\epsilon(t)$:
+$$
+C(t) = \frac{M}{k}- Be^{-kt}
+$$
 
--   $f'(x^*) > 0$: the deviation $\epsilon(t)$ grows exponentially, and
-    the solution moves away from the fixed point $x^*$, therefore the
-    fixed point is **unstable**.
+Notice that I changed the values of integration constants $A$ and $B$ during the derivation, which shouldn't matter because they have not been determined yet.
 
--   $f'(x^*) < 0$: the deviation $\epsilon(t)$ decays to 0, therefore
-    the fixed point is **stable**.
+*  Plug in $t=0$ and use the initial value $x(0)$ to solve for the integration constant 
+If we know the initial value $C(0) = C_0$, then we can plug it in and get the following algebraic expression:
 
--   $f'(x^*) = 0$: the situation is more complicated.
+$$ 
+C_0 =  \frac{M}{k} - B \Rightarrow B = C_0 -  \frac{M}{k}
+$$
 
-The classification of the behavior near a fixed point is directly
-analogous to that in discrete time models, with the difference that the
-discrimination between stable and unstable depends on the sign of the
-derivative, rather than whether its absolute value is greater than or
-less than 1. As before, the borderline situation is tricky, because if
-the first derivative is zero, higher order terms that we neglected make
-the difference. We will mostly avoid such borderline cases, but they are
-important in some applications.
+Then the complete solution is:
 
-We have learned to find fixed points and analyze their stability. This
-will be the bedrock of our analysis of continuous-time dynamical
-systems, first in one variable and then in higher dimensions.
+$$
+C(t) =  \frac{M}{k} - (C_0- \frac{M}{k})e^{-kt}
+$$
 
-### plotting flow on the line
-
-The defining function of the ODE $\dot x = f(x)$ gives the rate of
-change of $x(t)$ depending on the value of $x$. If $f(x)$ is large and
-positive, that means the dependent variable $x(t)$ is increasing
-rapidly. If $f(x)$ is small and negative, $x(t)$ is decreasing at a slow
-rate. If $f(x)=0$, this value of $x$ is a fixed point, and $x$ is not
-changing at all.
-
-For an ODE with one dependent variable, we can sketch the *flow on the
-line* defined by the differential equation. The “flow” stands for the
-direction of change at every point, specifically increasing, decreasing,
-or not changing. We will plot the flow on the horizontal x-axis, so if
-$x$ is increasing, the flow will be indicated by a rightward arrow, and
-if it is decreasing, the flow will point to the left. The fixed points
-separate the regions of increasing (rightward) flow and decreasing
-(leftward) flow.
-
-The graphical approach to finding areas of right and left flow is based
-on graphing the function $f(x)$, and dividing the x-axis based on the
-sign of $f(x)$. In the areas where $f(x) > 0$, its graph is above the
-x-axis, and the flow is to the right; conversely, when $f(x) < 0$, its
-graph is below the x-axis, and the flow is to the left. The fixed points
-are found at the intersections of the graph of $f(x)$ with the x-axis.
-
-Graphical analysis is also used to determine the stability of fixed
-points. To summarize, a fixed point $x^*$ is defined by $f(x^*) = 0$. We
-saw above, the slope of $f(x)$ at a fixed point determines its stability
-[@strogatz_nonlinear_2001]:
-
--   if the slope of the graph of $f(x^*)$ is negative, the fixed point
-    is stable
-
--   if the slope of the graph of $f(x^*)$ is positive, the fixed point
-    is unstable
-
--   if the slope of the graph of $f(x^*)$ is zero ($f(x^*)$ just touches
-    the x-axis), then further analysis is needed to determine stability.
-
-### models with nonlinear terms: logistic model
-
-We have already seen the logistic population model in discrete time. The
-motivation and the form of the model are the same as before: population
-growth is generally slower at larger populations, which can be expressed
-as a higher death rate or a lower birth date, or both. We will assume
-there are separate birth and death rates, and that the birth rate
-declines as the population grows, while the death rate increases.
-Suppose there are inherent birth rates $b$ and $d$, and the overall
-birth and death rates $B$ and $D$ depend linearly on population size
-$P$: $B  =  b - aP $ and $D  =  d + cP $
-
-To model the actual rate of change of the population, we need to
-multiply the rates $B$ and $D$ by the population size $P$, since each
-individual can reproduce or die. Also, since the death rate $D$
-decreases the population, we need to put a negative sign on it. The
-resultant model is: $$\dot P = BP - DP = [(b-d)-(a+c)P]P$$ The
-parameters of the model, the constants $a,b,c,d$, have different
-meanings. Performing dimensional analysis, we find that $b$ and $d$ have
-the units of $1/[t]$, the same as the rate $r$ in the exponential growth
-model. However, the units of $a$ (and $c$) must obey the relation:
-$[P]/[t] = [a][P]^2$, and thus, $$[a]=[c] = \frac{1}{[t][P]}$$
-
-This shows that the constants $a$ and $c$ have to be treated differently
-than $b$ and $d$. Let us define the inherent growth rate of the
-population, to be $r_0=b-d$ (if the death rate is greater than the birth
-rate, the population will inherently decline). Then let us introduce
-another constant $K$, such that $(a+c)=r_0/K$. It should be clear from
-the dimensional analysis that $K$ has units of $P$, population size. Now
-we can write down the logistic equation in the canonical form:
-$$\dot P = r(1-\frac{P}{K})P
-\label{eq:log_cont_model}$$ This model can be re-written as
-$\dot P = aP -bP^2$, so it is clear that there is a *linear term* ($aP$)
-and a *nonlinear term* ($-bP^2$). When $P$ is sufficiently small (and
-positive) the linear term is greater, and the population grows. When $P$
-is large enough, the nonlinear term wins and the population declines.
-
-It should be apparent that there are two fixed points, at $P=0$ and at
-$P=K$. The first one corresponds to a population with no individuals. On
-the other hand, $K$ signifies the population at which the negative
-effect of population size balances out the inherent population growth
-rate, and is called the *carrying capacity* of a population in its
-environment. We will analyze the stability of these fixed points in the
-analytical section of this chapter.
-
-![Line flow analysis of the logistic model $\dot P = (1-P/90)P$; red
-arrows indicate the direction field in the intervals separated by the
-fixed
-points[]{data-label="fig:line_flow_logistic"}](images//lec2_fig2.jpg){width="4in"}
-
-**Example: semi-stable fixed point.** The function $f(x) =  -x^3 + x^2 $
-is plotted in figure , showing two fixed
-points at $x = 0, 1$. The red arrows on the x-axis show the direction of
-the flow in the three different regions separated by the fixed points.
-Flow is to the right for $x<1$, to the left for for $x>1$; it is plain
-to see that the arrows approach the fixed point from both sides, and
-thus the fixed point is stable, as the negative slope of $f(x)$ at $x=1$
-indicates. The fixed point at $x=0$ presents a more complicated
-situation: the slope of $f(x)$ is zero, and the flow is rightward on
-both sides of the fixed point. This type of fixed point is sometimes
-called *semi-stable*, because it is stable when approached from one
-side, and unstable when approached from the other.
-
-![Line flow analysis of the nonlinear ODE $ \dot x = -x^3 + x^2 $; red
-arrows indicate the direction field in the intervals separated by the
-fixed
-points.[]{data-label="fig:line_flow_example"}](images//lec2_fig1.jpg){width="4in"}
+The solution predicts that after a long time the plasma concentration will approach the value $M/k$, since the exponential term decays to zero. Notice that mathematically this is the same type of solution we obtained in equation {eq}`sol-nonhom` for a generic linear ODE with a constant term.
+```
 
 Computation: simple numerical schemes
 -------------------------------------

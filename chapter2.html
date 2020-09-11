@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discrete models of higher order: age-structured population models &#8212; Mathematical Methods for Biology</title>
+    <title>2. Discrete models of higher order: age-structured population models &#8212; Mathematical Methods for Biology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -38,8 +38,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Models with one variable in continuous time" href="chapter3.html" />
-    <link rel="prev" title="Content with notebooks" href="notebooks.html" />
+    <link rel="next" title="3. Models with one variable in continuous time" href="chapter3.html" />
+    <link rel="prev" title="1.2. Examples of python code for lab1" href="chapter1_python.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -79,25 +79,30 @@
   </a>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  One-variable dynamical systems
- </span>
-</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter1.html">
-   Models with one variable in discrete time
+  <a class="reference internal" href="chapter1_intro.html">
+   1. Models with one variable in discrete time
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Discrete models of higher order: age-structured population models
+   2. Discrete models of higher order: age-structured population models
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter3.html">
-   Models with one variable in continuous time
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html#graphical-and-qualitative-analysis-of-odes">
+   5. Graphical and qualitative analysis of ODEs
   </a>
  </li>
 </ul>
@@ -172,61 +177,61 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   Introduction
+   2.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#modeling-higher-order-difference-equations">
-   Modeling: higher order difference equations
+   2.2. Modeling: higher order difference equations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#the-fibonacci-model-and-sequence">
-     the Fibonacci model and sequence
+     2.2.1. the Fibonacci model and sequence
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#matrix-representation-of-discrete-time-models">
-     matrix representation of discrete time models
+     2.2.2. matrix representation of discrete time models
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#analytical-solutions-for-linear-higher-order-difference-equations">
-   Analytical: Solutions for linear higher order difference equations
+   2.3. Analytical: Solutions for linear higher order difference equations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#solutions-of-linear-difference-equations">
-     solutions of linear difference equations
+     2.3.1. solutions of linear difference equations
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#elementary-matrix-operations">
-     elementary matrix operations
+     2.3.2. elementary matrix operations
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#numeric-solutions-of-higher-order-difference-equations">
-   Numeric solutions of higher order difference equations
+   2.4. Numeric solutions of higher order difference equations
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#age-structured-population-models">
-   Age-structured population models
+   2.5. Age-structured population models
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#leslie-models">
-     Leslie models
+     2.5.1. Leslie models
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#usher-models">
-     Usher models
+     2.5.2. Usher models
     </a>
    </li>
   </ul>
@@ -242,19 +247,19 @@
               <div>
                 
   <div class="section" id="discrete-models-of-higher-order-age-structured-population-models">
-<h1>Discrete models of higher order: age-structured population models<a class="headerlink" href="#discrete-models-of-higher-order-age-structured-population-models" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>Discrete models of higher order: age-structured population models<a class="headerlink" href="#discrete-models-of-higher-order-age-structured-population-models" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>It is not unusual for biological systems to have multiple variables which influence each other, and thus need to be accounted in any model that aims to be useful. In this unit we will learn how to construct such models, and the methods for analyzing, solving, and numerically simulating them. We will see how models with two or more variables are used in a variety of biological fields: to describe population demographics, motility of cochlear cells, psychology of human relationships, gene regulation, and motion of molecular structures.</p>
 <p>We will need new mathematical tools in order to analyze models with multiple variables. These methods are primarily from the realm of linear algebra. We will express multiple equations in terms of matrices and vectors, and learn how to operate on these objects. The dynamics of these models can be analyzed by doing calculations with the matrices, specifically finding special numbers and vectors known as eigenvalues and eigenvectors. These concepts, which will be introduced in Chapter 4, are absolutely central to all of applied mathematics, and to computational biology in particular.</p>
 <p>In this chapter, the section on modeling is devoted to an old model of a population where individuals live for two generations, known as the Fibonacci model. We then describe how this model can be written down either as a single difference equation of second order, or as two equation of the first order, which may be represented in matrix form. In the analytical section, we will learn to solve second order difference equations with an explicit formula, and then introduce some elementary matrix operations. In the computational section we will use the matrix notation to compute numerical solutions for higher order difference equations. Finally, in the synthesis section we will analyze two demographic population models, in which the population is broken into age groups. The matrix notation will be important for concisely representing different parameters for each age group.</p>
 </div>
 <div class="section" id="modeling-higher-order-difference-equations">
-<h2>Modeling: higher order difference equations<a class="headerlink" href="#modeling-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Modeling: higher order difference equations<a class="headerlink" href="#modeling-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
 <p>So far we have dealt with difference equations in which the value of the dependent variable at the next time step <span class="math notranslate nohighlight">\(x_{t+1}\)</span> depends solely on the variable at the present time <span class="math notranslate nohighlight">\(x_t\)</span>. These are known as <em>first order</em> difference equations because they only require one step from the present to the future. We will now examine difference equations where the future value depends not only on the present value <span class="math notranslate nohighlight">\(x_t\)</span>, but also on the past values: <span class="math notranslate nohighlight">\(x_{t-1}\)</span>, etc. The number of time steps that the equation looks into the past is the the order of the scheme.</p>
 <div class="section" id="the-fibonacci-model-and-sequence">
-<h3>the Fibonacci model and sequence<a class="headerlink" href="#the-fibonacci-model-and-sequence" title="Permalink to this headline">¶</a></h3>
-<p>The Italian mathematician Leonardo Fibonacci, who lived in the late 12th - early 13th centuries, contributed greatly to the development of mathematics in the western world. For starters, he introduced the Hindu-Arabic numerals we use today, in place of the cumbersome Roman numerals. He also constructed an early model of population growth, which considered a population of individuals that lived for two generations. The first generation does not reproduce, but in the second generation each individual produces a single offspring (or each pair produces a new pair) and then dies. Then the total number of individuals at the next time step is the sum of the individuals in the previous two time steps (<a class="reference internal" href="#fig-fib-rabbits"><span class="std std-numref">Fig. 7</span></a>) This is described by the following second order difference equation:
+<h3><span class="section-number">2.2.1. </span>the Fibonacci model and sequence<a class="headerlink" href="#the-fibonacci-model-and-sequence" title="Permalink to this headline">¶</a></h3>
+<p>The Italian mathematician Leonardo Fibonacci, who lived in the late 12th - early 13th centuries, contributed greatly to the development of mathematics in the western world. For starters, he introduced the Hindu-Arabic numerals we use today, in place of the cumbersome Roman numerals. He also constructed an early model of population growth, which considered a population of individuals that lived for two generations. The first generation does not reproduce, but in the second generation each individual produces a single offspring (or each pair produces a new pair) and then dies. Then the total number of individuals at the next time step is the sum of the individuals in the previous two time steps (<a class="reference internal" href="#fig-fib-rabbits"><span class="std std-numref">Fig. 2.1</span></a>) This is described by the following second order difference equation:
 $<span class="math notranslate nohighlight">\(
 N_{t+1} = N_t + N_{t-1}
 \)</span><span class="math notranslate nohighlight">\(
@@ -263,18 +268,18 @@ The famous Fibonacci sequence is a solution of this equation. For a second-order
 \[
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, ...
 \]</div>
-<p>The Fibonacci sequence is famously found in many natural phenomena, including in phyllotaxis (arrangement of parts in plants), and spirals on some mollusk shells, e.g. <em>Nautilus pompilius</em> (<a class="reference internal" href="#fig-fib-rabbits"><span class="std std-numref">Fig. 7</span></a>). It may be observed by counting the number of spirals that can be drawn between plant units (such as seeds or petals), and observing that alternating the right-handed and left-handed spirals, while moving away from the center, often results in the Fibonacci sequence. The precise reason for this is unclear, although explanations exist, for instance that this pattern provides the most efficient packing of seeds.</p>
+<p>The Fibonacci sequence is famously found in many natural phenomena, including in phyllotaxis (arrangement of parts in plants), and spirals on some mollusk shells, e.g. <em>Nautilus pompilius</em> (<a class="reference internal" href="#fig-fib-rabbits"><span class="std std-numref">Fig. 2.1</span></a>). It may be observed by counting the number of spirals that can be drawn between plant units (such as seeds or petals), and observing that alternating the right-handed and left-handed spirals, while moving away from the center, often results in the Fibonacci sequence. The precise reason for this is unclear, although explanations exist, for instance that this pattern provides the most efficient packing of seeds.</p>
 <div class="figure align-default" id="fig-fib-rabbits">
 <img alt="_images/fibonacci-rabbits.png" src="_images/fibonacci-rabbits.png" />
-<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation <a class="reference external" href="https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/">https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/</a></span><a class="headerlink" href="#fig-fib-rabbits" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation <a class="reference external" href="https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/">https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/</a></span><a class="headerlink" href="#fig-fib-rabbits" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-fib-spiral">
 <img alt="_images/fibo_nautilus.jpg" src="_images/fibo_nautilus.jpg" />
-<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">The shell of the <em>Nautilus pompilius</em> mollusk has the shape of a Fibonacci spiral, shown here filled with squares of the corresponding size <a class="reference external" href="http://mathforum.org/mathimages">http://mathforum.org/mathimages</a></span><a class="headerlink" href="#fig-fib-spiral" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">The shell of the <em>Nautilus pompilius</em> mollusk has the shape of a Fibonacci spiral, shown here filled with squares of the corresponding size <a class="reference external" href="http://mathforum.org/mathimages">http://mathforum.org/mathimages</a></span><a class="headerlink" href="#fig-fib-spiral" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="matrix-representation-of-discrete-time-models">
-<h3>matrix representation of discrete time models<a class="headerlink" href="#matrix-representation-of-discrete-time-models" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.2.2. </span>matrix representation of discrete time models<a class="headerlink" href="#matrix-representation-of-discrete-time-models" title="Permalink to this headline">¶</a></h3>
 <p>The Fibonacci model above can be represented by two equations instead of one, if we consider two dependent variables. Let us represent the number of rabbits in generation 1 (young) by <span class="math notranslate nohighlight">\(x\)</span> and in generation 2 (old) by<span class="math notranslate nohighlight">\(y\)</span>. The new generation at the next time (<span class="math notranslate nohighlight">\(t+1\)</span>) is comprised of offspring of the young and old generations at time <span class="math notranslate nohighlight">\(t\)</span>, while the old generation at the next time is simply is young generation at the current time. This gives the following set of equations:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
@@ -290,9 +295,9 @@ The famous Fibonacci sequence is a solution of this equation. For a second-order
 </div>
 </div>
 <div class="section" id="analytical-solutions-for-linear-higher-order-difference-equations">
-<h2>Analytical: Solutions for linear higher order difference equations<a class="headerlink" href="#analytical-solutions-for-linear-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Analytical: Solutions for linear higher order difference equations<a class="headerlink" href="#analytical-solutions-for-linear-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="solutions-of-linear-difference-equations">
-<h3>solutions of linear difference equations<a class="headerlink" href="#solutions-of-linear-difference-equations" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.1. </span>solutions of linear difference equations<a class="headerlink" href="#solutions-of-linear-difference-equations" title="Permalink to this headline">¶</a></h3>
 <p>Solutions for first order linear difference equations are exponential in form. The solutions for second order linear difference equations consist of a sum of two exponentials with different bases. For the following general linear second order difference equation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -361,19 +366,19 @@ N_i=  \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^i - \frac{1}{\sqrt 5}\
 N_i \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^i
 \]</div>
 <p>Since each successive term is multiplied by <span class="math notranslate nohighlight">\((1+\sqrt5)/2\)</span>, the ratio between successive terms, <span class="math notranslate nohighlight">\(\phi = N_{i+1}/N_i\)</span> approaches the value <span class="math notranslate nohighlight">\(\phi=(1+\sqrt5)/2 \approx 1.618\)</span> for increasing <span class="math notranslate nohighlight">\(i\)</span>.</p>
-<p>This number <span class="math notranslate nohighlight">\((1+\sqrt 5)/2\)</span> is called the <em>golden ratio</em> or <em>golden section</em>, and was known from antiquity as the most aesthetically pleasing proportion in architecture and art, when used as a ratio between the height and width of the piece of art. Algebraically, the golden ratio is defined to be the number that is both the ratio between two quantities, e.g. <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and also the ratio between the sum of the two quantities (<span class="math notranslate nohighlight">\(a+b\)</span>) and the larger of the quantities e.g. <span class="math notranslate nohighlight">\(b\)</span> (<a class="reference internal" href="#fig-gold-ratio"><span class="std std-numref">Fig. 9</span></a>). Geometrically, the golden ratio can be constructed as the ratio between two sides of a rectangle, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which are also part of the larger rectangle with sides <span class="math notranslate nohighlight">\(a+b\)</span> and <span class="math notranslate nohighlight">\(a\)</span>. This construction is shown in <a class="reference internal" href="#fig-gold-rect"><span class="std std-numref">Fig. 10</span></a>.</p>
+<p>This number <span class="math notranslate nohighlight">\((1+\sqrt 5)/2\)</span> is called the <em>golden ratio</em> or <em>golden section</em>, and was known from antiquity as the most aesthetically pleasing proportion in architecture and art, when used as a ratio between the height and width of the piece of art. Algebraically, the golden ratio is defined to be the number that is both the ratio between two quantities, e.g. <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and also the ratio between the sum of the two quantities (<span class="math notranslate nohighlight">\(a+b\)</span>) and the larger of the quantities e.g. <span class="math notranslate nohighlight">\(b\)</span> (<a class="reference internal" href="#fig-gold-ratio"><span class="std std-numref">Fig. 2.3</span></a>). Geometrically, the golden ratio can be constructed as the ratio between two sides of a rectangle, <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, which are also part of the larger rectangle with sides <span class="math notranslate nohighlight">\(a+b\)</span> and <span class="math notranslate nohighlight">\(a\)</span>. This construction is shown in <a class="reference internal" href="#fig-gold-rect"><span class="std std-numref">Fig. 2.4</span></a>.</p>
 <div class="figure align-default" id="fig-gold-ratio">
 <img alt="_images/golden_ratio_line.png" src="_images/golden_ratio_line.png" />
-<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Line segments that are in golden proportion to each other <a class="reference external" href="http://en.wikipedia.org/wiki/Golden_ratio">http://en.wikipedia.org/wiki/Golden_ratio</a></span><a class="headerlink" href="#fig-gold-ratio" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Line segments that are in golden proportion to each other <a class="reference external" href="http://en.wikipedia.org/wiki/Golden_ratio">http://en.wikipedia.org/wiki/Golden_ratio</a></span><a class="headerlink" href="#fig-gold-ratio" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-gold-rect">
 <img alt="_images/gold_rect_const.png" src="_images/gold_rect_const.png" />
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Cnstruction of a rectangle with the golden ratio between its sides <a class="reference external" href="http://en.wikipedia.org/wiki/Golden_ratio">http://en.wikipedia.org/wiki/Golden_ratio</a></span><a class="headerlink" href="#fig-gold-rect" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.4 </span><span class="caption-text">Cnstruction of a rectangle with the golden ratio between its sides <a class="reference external" href="http://en.wikipedia.org/wiki/Golden_ratio">http://en.wikipedia.org/wiki/Golden_ratio</a></span><a class="headerlink" href="#fig-gold-rect" title="Permalink to this image">¶</a></p>
 </div>
 <p>To show that the geometric golden ratio is the same as the ratio that appears in the Fibonacci sequence, let us write down the algebraic condition stated above. Because we are interested in the ratio, let the smaller quantity be 1 and the larger one be <span class="math notranslate nohighlight">\(\phi\)</span>; by the definition we obtain the following. <span class="math notranslate nohighlight">\(\phi = (\phi+1)/\phi\)</span>, thus <span class="math notranslate nohighlight">\(\phi^2-\phi-1 = 0\)</span>. This is the same quadratic equation that we derived for the exponential bases of the solution above. The solution to this equation (by the quadratic formula) is <span class="math notranslate nohighlight">\(\phi=(1\pm\sqrt5)/2\)</span>, and the positive solution is the golden ratio.</p>
 </div>
 <div class="section" id="elementary-matrix-operations">
-<h3>elementary matrix operations<a class="headerlink" href="#elementary-matrix-operations" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.3.2. </span>elementary matrix operations<a class="headerlink" href="#elementary-matrix-operations" title="Permalink to this headline">¶</a></h3>
 <p>Now is a good time to properly define what matrices are and how we can operate on them. We have already seen transition matrices, but just to make sure all of the terms are clear:</p>
 <p>A <em>matrix</em> <span class="math notranslate nohighlight">\(A\)</span> is a rectangular array of <em>elements</em> <span class="math notranslate nohighlight">\(A_{ij}\)</span>, in which <span class="math notranslate nohighlight">\(i\)</span> denotes the row number (index), counted from top to bottom, and <span class="math notranslate nohighlight">\(j\)</span> denotes the column number (index), counted from left to right. The <em>dimensions</em> of a matrix are defined by the number of rows and columns, so an <em>n by m matrix</em> contains <span class="math notranslate nohighlight">\(n\)</span> rows and <span class="math notranslate nohighlight">\(m\)</span> columns.</p>
 <p>Elements of a matrix are not all created equal, they are divided into two types:</p>
@@ -389,10 +394,10 @@ A = \left(\begin{array}{ccc}a &amp; b &amp; c \\d &amp; e &amp; f \\g &amp; h &a
 \[
 c_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + ... + a_{iN}b_{Nj} = \sum_{k=1}^q a_{ik} b_{kj}
 \]</div>
-<p>This definition is possible only if the length of the rows of <span class="math notranslate nohighlight">\(A\)</span> and the length of columns of <span class="math notranslate nohighlight">\(B\)</span> are the same, since we cannot compute the dot product of two vectors of different lengths. Matrix multiplication is defined only if <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(q\)</span> by <span class="math notranslate nohighlight">\(m\)</span>, for any integers <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(q\)</span>, and <span class="math notranslate nohighlight">\(m\)</span> and the resulting matrix <span class="math notranslate nohighlight">\(C\)</span> is a matrix with <span class="math notranslate nohighlight">\(n\)</span> rows and <span class="math notranslate nohighlight">\(m\)</span> columns. In other words, <strong>the inner dimensions of matrices have to match</strong> in order for matrix multiplication to be possible. This is illustrated in <a class="reference internal" href="#fig-mat-mult"><span class="std std-numref">Fig. 11</span></a></p>
+<p>This definition is possible only if the length of the rows of <span class="math notranslate nohighlight">\(A\)</span> and the length of columns of <span class="math notranslate nohighlight">\(B\)</span> are the same, since we cannot compute the dot product of two vectors of different lengths. Matrix multiplication is defined only if <span class="math notranslate nohighlight">\(A\)</span> is <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is <span class="math notranslate nohighlight">\(q\)</span> by <span class="math notranslate nohighlight">\(m\)</span>, for any integers <span class="math notranslate nohighlight">\(n\)</span>, <span class="math notranslate nohighlight">\(q\)</span>, and <span class="math notranslate nohighlight">\(m\)</span> and the resulting matrix <span class="math notranslate nohighlight">\(C\)</span> is a matrix with <span class="math notranslate nohighlight">\(n\)</span> rows and <span class="math notranslate nohighlight">\(m\)</span> columns. In other words, <strong>the inner dimensions of matrices have to match</strong> in order for matrix multiplication to be possible. This is illustrated in <a class="reference internal" href="#fig-mat-mult"><span class="std std-numref">Fig. 2.5</span></a></p>
 <div class="figure align-default" id="fig-mat-mult">
 <img alt="_images/matrix_multiplication_tikz.png" src="_images/matrix_multiplication_tikz.png" />
-<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Multiplication of two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> results in a new matrix <span class="math notranslate nohighlight">\(C\)</span></span><a class="headerlink" href="#fig-mat-mult" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.5 </span><span class="caption-text">Multiplication of two matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> results in a new matrix <span class="math notranslate nohighlight">\(C\)</span></span><a class="headerlink" href="#fig-mat-mult" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>Example.</strong> Let us multiply two matrices to illustrate how it’s done.
 Here both matrices are 2 by 2, so their inner dimensions match and the
@@ -427,7 +432,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="section" id="numeric-solutions-of-higher-order-difference-equations">
-<h2>Numeric solutions of higher order difference equations<a class="headerlink" href="#numeric-solutions-of-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Numeric solutions of higher order difference equations<a class="headerlink" href="#numeric-solutions-of-higher-order-difference-equations" title="Permalink to this headline">¶</a></h2>
 <p>The solution of a difference equation can be found numerically using the matrix and vector form we introduced above. As we saw in the Fibonacci example, the next vector in the sequence can be obtained by multiplying the previous vector by the defining matrix. Let <span class="math notranslate nohighlight">\(\vec x_t\)</span> be the vector containing <span class="math notranslate nohighlight">\(N\)</span> values of the dependent variables, and <span class="math notranslate nohighlight">\(A\)</span> be the defining matrix of dimension <span class="math notranslate nohighlight">\(N\)</span> by <span class="math notranslate nohighlight">\(N\)</span>. The solutions are obtained by repeated multiplication by the matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -461,11 +466,11 @@ column representing time steps:
  \)</span>$</p>
 </div>
 <div class="section" id="age-structured-population-models">
-<h2>Age-structured population models<a class="headerlink" href="#age-structured-population-models" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5. </span>Age-structured population models<a class="headerlink" href="#age-structured-population-models" title="Permalink to this headline">¶</a></h2>
 <p>It is often useful to divide a population into different groups by age in order to better describe the population dynamics. Typically, individuals at different life stages have distinct mortality and reproductive rates. The total population is represented as a vector, where each component denotes the size of the corresponding age group. The matrix <span class="math notranslate nohighlight">\(A\)</span> that multiplies this vector defines the dynamics of the higher order difference equation: $<span class="math notranslate nohighlight">\(\vec x_{t+1} = A \vec x_t\)</span>$</p>
 <p>We will now analyze two common <em>age-structured models</em> used by biologists and demographers.</p>
 <div class="section" id="leslie-models">
-<h3>Leslie models<a class="headerlink" href="#leslie-models" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.5.1. </span>Leslie models<a class="headerlink" href="#leslie-models" title="Permalink to this headline">¶</a></h3>
 <p>One type of age-structured model used to describe population dynamics is called the <em>Leslie model</em>
 [&#64;edelstein-keshet_mathematical_2005; &#64;allman_mathematical_2003]. In this model, there are several different age groups, and after a single time step, individuals in each one all either advance to the next oldest age group or die. This type of can be described in general using the following matrix (called a Leslie matrix):</p>
 <div class="math notranslate nohighlight">
@@ -501,14 +506,14 @@ A + B = m_0; \; A\sqrt 0.8 - B \sqrt 0.8 = m_1\Rightarrow (m_0 - B) \sqrt 0.8 - 
 $<span class="math notranslate nohighlight">\(
 m_t = \frac{m_1}{\sqrt 8} \sqrt 8^t - \left(m_0 - \frac{m_1}{\sqrt 8} \right)  \sqrt 8^t = 2m_1 \sqrt 8^{t-1}  - m_0 \sqrt 8^{t}
 \)</span>$</p>
-<p>This solution can be used to predict the long-term dynamics of the population model. Since the bases of the exponentials are less than 1, the total number of individuals will decline to zero. This solution can be verified via a numerical solution of this model. <a class="reference internal" href="#fig-leslie"><span class="std std-numref">Fig. 12</span></a> shows the population over 20 time steps, starting with 10 individuals both for <span class="math notranslate nohighlight">\(m_0\)</span> and <span class="math notranslate nohighlight">\(m_1\)</span>.</p>
+<p>This solution can be used to predict the long-term dynamics of the population model. Since the bases of the exponentials are less than 1, the total number of individuals will decline to zero. This solution can be verified via a numerical solution of this model. <a class="reference internal" href="#fig-leslie"><span class="std std-numref">Fig. 2.6</span></a> shows the population over 20 time steps, starting with 10 individuals both for <span class="math notranslate nohighlight">\(m_0\)</span> and <span class="math notranslate nohighlight">\(m_1\)</span>.</p>
 <div class="figure align-default" id="fig-leslie">
 <img alt="_images/leslie_dynamics.png" src="_images/leslie_dynamics.png" />
-<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Population dynamics of the Leslie model from the example computed numerically over 20 time steps</span><a class="headerlink" href="#fig-leslie" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.6 </span><span class="caption-text">Population dynamics of the Leslie model from the example computed numerically over 20 time steps</span><a class="headerlink" href="#fig-leslie" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="usher-models">
-<h3>Usher models<a class="headerlink" href="#usher-models" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.5.2. </span>Usher models<a class="headerlink" href="#usher-models" title="Permalink to this headline">¶</a></h3>
 <p>Usher models are a modification of the Leslie model, where individuals are allowed to remain in the same age group after one time step. Thus, the form of an Usher matrix is:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -535,10 +540,10 @@ m_{t+1} = 0.4(2 m_{t-1} )+ 0.2 m_t
 \lambda^2 = 0.2 \lambda + 0.8 \Rightarrow \lambda = (0.2 \pm \sqrt {0.04+3.2})/2 = (0.2 \pm 1.8)/2 = 1, -0.8
 \]</div>
 <p>The two exponential bases are 1 and -0.8, and therefore the solution has the general form <span class="math notranslate nohighlight">\(m_t = A + B(-0.8)^t\)</span>. The behavior of the solution over the long term is going to stabilize at some level <span class="math notranslate nohighlight">\(A\)</span>, determined by the initial conditions, because the term <span class="math notranslate nohighlight">\(B(-0.8)^t\)</span>, when raised to progressively larger powers, will decay to 0.</p>
-<p>We can run a computer simulation to test this prediction, and see that the total population indeed approaches a constant. Starting with population of <span class="math notranslate nohighlight">\(10\)</span> individuals in the first two time steps, the time course of the population is plotted in <a class="reference internal" href="#fig-usher"><span class="std std-numref">Fig. 13</span></a>.</p>
+<p>We can run a computer simulation to test this prediction, and see that the total population indeed approaches a constant. Starting with population of <span class="math notranslate nohighlight">\(10\)</span> individuals in the first two time steps, the time course of the population is plotted in <a class="reference internal" href="#fig-usher"><span class="std std-numref">Fig. 2.7</span></a>.</p>
 <div class="figure align-default" id="fig-usher">
 <img alt="_images/usher_dynamics.png" src="_images/usher_dynamics.png" />
-<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Population dynamics of the Leslie model from the example computed numerically over 20 time steps</span><a class="headerlink" href="#fig-usher" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.7 </span><span class="caption-text">Population dynamics of the Leslie model from the example computed numerically over 20 time steps</span><a class="headerlink" href="#fig-usher" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
@@ -572,8 +577,8 @@ m_{t+1} = 0.4(2 m_{t-1} )+ 0.2 m_t
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="notebooks.html" title="previous page">Content with notebooks</a>
-    <a class='right-next' id="next-link" href="chapter3.html" title="next page">Models with one variable in continuous time</a>
+    <a class='left-prev' id="prev-link" href="chapter1_python.html" title="previous page"><span class="section-number">1.2. </span>Examples of python code for lab1</a>
+    <a class='right-next' id="next-link" href="chapter3.html" title="next page"><span class="section-number">3. </span>Models with one variable in continuous time</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

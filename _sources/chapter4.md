@@ -1,671 +1,529 @@
-Classification of linear models: eigenvalues and eigenvectors
-=============================================================
-
-Introduction
-------------
-
-In the last chapter we introduced and analyzed population models with
-multiple variables representing different demographic groups. In those
-models, the populations at the next time step depend on the population
-at the current time step in a linear fashion. More generally, any model
-with only linear dependencies can be represented in matrix form. In this
-chapter we will learn how to analyze the behavior of these models, and
-identify all possible classes of linear dynamical systems.
-
-The main concept of this chapter are the special numbers and vectors
-associated with a matrix, called eigenvalues and eigenvectors. Any
-matrix can be thought of as an operator acting on vectors, and
-transforming them in certain ways. Loosely speaking, this transformation
-can be expressed in terms of special directions (eigenvectors) and
-special numbers that describe what happens along those special
-directions. Finding the eigenvalues and eigenvectors of a matrix allows
-us to understand the dynamics of biological models by classifying them
-into distinct categories.
-
-In the modeling section, we will develop some intuition for modeling
-activators and inhibitors of biochemical reactions. We will then learn
-how to draw the flow of two-dimensional dynamical systems in the plane.
-In the analytical section, we will define eigenvectors and eigenvalues,
-and use this knowledge to find the general solution of linear
-multi-variable systems. In the computational section, numerical
-solutions of eigenvalues and eigenvectors will be applied to classifying
-all linear multi-dimensional systems, and to plotting the solutions,
-both over time and in the plane. Finally, in the synthesis section we
-will use a light-hearted model of relationship dynamics to illustrate
-how to analyze linear dynamical systems.
-
-Modeling: flow in the phase plane
----------------------------------
-
-### activators and inhibitors in biochemical reactions
-
-Suppose two gene products (proteins) regulate each others’ expression.
-Activator protein $A$ binds to the promoter of the gene for $I$ and
-activates its expression, while inhibitor protein $I$ binds to the
-promoter of the gene for $A$ and inhibits its expression (here the
-variables stand for concentrations of the two proteins in the cell):
-$$\begin{aligned}
-\dot  A & = & - \alpha I\\
-\dot  I & = & \beta A\end{aligned}$$ $\alpha$ and $\beta$ are positive
-rate constants. They represent the rate of inhibition of $A$ by $I$, and
-of activation of $I$ by $A$, respectively. Let us now complicate the
-model by adding self-inhibition. It is common for regulatory proteins to
-inhibit their own production. Then, we have the following system of
-equations: $$\begin{aligned}
-\dot  A & = & - \gamma A - \alpha I\\
-\dot  I & = & \beta A - \delta I\end{aligned}$$ Here we have added two
-rates of self-inhibition $\gamma$ and $\delta$. This is a system of two
-coupled ODEs, and we will learn how to analyze these models both
-analytically and graphically.
-
-### phase plane portraits
-
-Before we learn about the analytical tools of linear algebra, let us
-think intuitively about the effect of the variables on each other. The
-best way to describe this is through plotting the geometry of the *flow*
-prescribed by the differential equations. As we saw, for one-dimensional
-ODEs the direction of the change of the dependent variable (also known
-as the flow) could be shown as arrows on a line. A single variable can
-only increase, decrease, or stay the same (at a fixed point). In two
-dimensions there is more freedom. The flow is plotted on the *phase
-plane*, where for any combination of the two variables (say $x,y$) the
-ODE gives the derivatives of $x$ and $y$. This vector gives the flow, or
-the rate of change at the particular point in the plane. Intuitively,
-the flow describes the direction in which the system is pulling the
-2-dimensional solution. If we plot the progress of a solution of ODE
-(all the values of $x$ and $y$ starting with the initial condition) we
-will obtain a *trajectory* in the phase plane. The arrows of the flow
-are tangent to any trajectory curve, since they plot the derivatives of
-$x,y$.
-
-**Example: positive relationship between the variables** Consider the
-following system of differential equations: $$\begin{aligned}
-\dot x & = & x + y \\
-\dot y & = & x + 2y \nonumber
-\label{eq:positive}\end{aligned}$$ This is system is coupled, with $x$
-having an effect on $y$ and vice versa. Specifically, the signs of the
-constants mean that positive values of $x$ have the effect of increasing
-$y$ (and vice versa), while negative values of $x$ have the effect of
-decreasing $y$ (and vice versa). For any pair of values of $(x,y)$,
-there is a flow prescribed by the ODEs. E.g., when $x=1, y=1$, the
-derivatives are $\dot x = 2, \dot y = 3$. This means that the flow at
-that point is given by the vector $(2,3)$, and can be plotted in the
-$x,y$ phase plane. This can be done for any pair of values of $x$ and
-$y$, and plotted to give the phase plane portrait, as in figure .
-
-![Phase plane flow for the system in equation []{data-label="fig:pp5"}](images/week6_pp5.png){width="3.5in"}
-
-Observe that the overall dynamics of the systems are directed outward
-from the origin, as we expect from the ODEs. The blue lines on the plot
-are some sample trajectories. The solution over time for both $x$ and
-$y$ will either grow toward positive infinity, or decay to negative
-infinity.
-
-**Example: negative relationship between the variables** Consider the
-following system of differential equations, where $y$ has an effect on
-$\dot x$ opposite of its own sign. That is, negative values of $y$
-contribute to the growth of $x$, and vice versa. $$\begin{aligned}
-\dot x & = & -y \\
-\dot y & = & x  \nonumber
-\label{eq:negative}\end{aligned}$$ As above, the flow at any one point
-is given by the ODEs. E.g. at $(0,1)$ the two derivatives prescribe flow
-in the $(1,0)$ (up) direction, while at $(1,0)$ the flow is in the
-$(0,-1)$ direction. Figure shows the arrows of flow in the
-phase plane around the origin. Note that the arrows go around in a
-circular pattern around the origin.
-
-![Phase plane flow for the system in equation []{data-label="fig:pp2"}](images/week6_pp2.png){width="3.7in"}
-
-Let us consider the trajectories of $x$ and $y$ in time. The blue curves
-in the phase plane plot demonstrate the solutions go around the origin
-and return to the same point. This means that the behavior of the
-solutions over time is *periodic*, with oscillations going from positive
-to negative numbers and back forever.
-
-Analytical: eigenvectors and eigenvalues
-----------------------------------------
-
-### basic linear algebra terminology
-
-We have seen matrix notation introduced in the previous chapter, along
-with the definition of matrix multiplication. One basic advantage of
-this notation is that it makes it possible to write any set of *linear
-equations* as a single matrix equation. By linear equations we mean
-those that contain only constants or first powers of the variables. The
-field of mathematics studying matrices and their generalizations is
-called *linear algebra*; it is fundamental to both pure and applied
-mathematics. In this section we will learn some basic facts about
-matrices and their properties. First of all, let us define some basic
-terms:
-
--   A matrix $A$ is a rectangular array of *elements* $A_{ij}$, in which
-    $i$ denotes the row number (index), counted from the top, and $j$
-    denotes the column number (index), counted from left to right.
-
--   The elements of a matrix $A$ which have the same row and column
-    index, e.g. $A_{33}$ are called the *diagonal elements*. Those which
-    do not lie on the diagonal are called the *off-diagonal* elements.
-    For instance, in the 3 x 3 matrix below, the elements $a, e, i$ are
-    the diagonal elements:
-    $$A = \left(\begin{array}{ccc}a & b & c \\d & e & f \\g & h & i\end{array}\right)$$
-
--   The *trace* $\tau$ of a matrix $A$ is the sum of the diagonal
-    elements: $\tau = \sum_i A_{ii}$
-
--   The *determinant* $\Delta$ of a 2x2 matrix $A$ is given by the
-    following: $\Delta = ad - bc$, where
-    $$A = \left(\begin{array}{cc}a & b \\c & d\end{array}\right)$$ For
-    larger matrices, the determinant is defined recursively, in terms of
-    2x2 submatrices of the larger matrix, but we will not give the full
-    definition here.
-
-In chapter 3 you learned the rule of matrix multiplication, and we can
-write $C = A \times B$, so long as the number of columns in $A$ matches
-the number of rows in $B$. However, what if we want to reverse the
-process? If we know the resulting matrix $C$, and one of the two
-matrices, e.g. $A$, how can we find $B$? Naively, we would like to be
-able to divide both sides by the matrix $A$, and find $B = C/A$.
-However, things are more complicated for matrices.
-
-Properly speaking, we need to introduce the *inverse* of a matrix $A$.
-If we think about inverses of real numbers, $a^{-1}$ is a number that
-when it multiplies $a$, results in one. In order to define the
-equivalent for matrices, we first need to introduce the unity of matrix
-multiplication.
-
-The *identity matrix* is an N x N square matrix in which all the
-diagonal elements are 1 and all the off-diagonal elements are zero, as
-shown here:
-$$I = \left(\begin{array}{ccccc}1 & 0 & ... & 0 & 0 \\0 & 1 & ... & ... & 0 \\... & ... & ... & ... & ... \\0 & ... & ... & 1 & 0 \\0 & 0 & ... & 0 & 1\end{array}\right)$$
-
-The main property of the identity matrix is that when multiplied by any
-matrix of matching size, the result is unchanged: $$AI = IA = A$$ You
-should be able to convince yourself that this is true for any 2x2 matrix
-and the identity. Now that we have a matrix unity, we can define the
-inverse of a matrix:
-
-A square matrix $A$ has an *inverse matrix* $A^{-1}$ if it satisfies the
-following: $$A^{-1} A = A A^{-1} = I$$
-
-Finding the inverse of a matrix is not simple, and we will be content to
-let computers handle the dirty work. In fact, not every matrix possesses
-an inverse. There is a test for existence of an inverse of $A$, and it
-depends on the determinant [@strang_linear_2005]:
-
-A square matrix $A$ possesses an inverse $A^{-1}$ and is called
-*invertible* if and only if its determinant is not zero.
-
-### matrices transform vectors
-
-In this section we will learn to characterize square matrices by finding
-special numbers and vectors associated with them. At the core of this
-analysis lies the concept of a matrix as an *operator* that transforms
-vectors by multiplication. To be clear, in this section we take as
-default that the matrices $A$ are square, and that vectors $\vec v$ are
-column vectors, and thus will multiply the matrix on the right:
-$A \times  \vec v$.
-
-A matrix multiplied by a vector produces another vector, provided the
-number of columns in the matrix is the same as the number of rows in the
-vector. This can be interpreted as the matrix transforming the vector
-$\vec v$ into another one: $ A  \times  \vec v = \vec u$. The resultant
-vector $\vec u$ may or may not resemble $\vec v$, but there are special
-vectors for which the transformation is very simple.
-
-**Example.** Let us multiply the following matrix and vector (specially
-chosen to make a point):
-$$\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)$$
-We see that this particular vector is unchanged when multiplied by this
-matrix, or we can say that the matrix multiplication is equivalent to
-multiplication by 1. Here is another such vector for the same matrix:
-$$\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)$$
-In this case, the vector is changed, but only by multiplication by a
-constant (4). Thus the geometric direction of the vector remained
-unchanged.
-
-Generally, a square matrix has an associated set of vectors for which
-multiplication by the matrix is equivalent to multiplication by a
-constant. This can be written down as a definition:
-
-An *eigenvector* of a square matrix $A$ is a vector $\vec v$ for which
-matrix multiplication by $A$ is equivalent to multiplication by a
-constant. This constant $\lambda$ is called its *eigenvalue* of $A$
-corresponding the the eigenvector $\vec v$. The relationship is
-summarized in the following equation:
-$$A  \times  \vec v = \lambda \vec v$$ \[def:eigen\]
-
-Note that this equation combines a matrix ($A$), a vector ($\vec v$) and
-a scalar $\lambda$, and that both sides of the equation are column
-vectors. This definition is illustrated in figure , showing a vector ($v$) multiplied by a matrix
-$A$, and the resulting vector $\lambda v$, which is in the same
-direction as $v$, due to scalar multiplying all elements of a vector,
-thus either stretching it if $\lambda>1$ or compressing it if
-$\lambda < 1$. This assumes that $\lambda$ is a real number, which is
-not always the case, but we will leave that complication aside for the
-purposes of this chapter.
-
-![Illustration of the geometry of a matrix $A$ multiplying its
-eigenvector $v$, resulting in a vector in the same direction
-$\lambda v$. Figure by Lantonov under CC BY-SA 4.0 via Wikimedia
-Commons.[]{data-label="fig:ch13_eigenvector"}](images/Eigenvalue_equation.png){width="3in"}
-
-The definition does not specify how many such eigenvectors and
-eigenvalues can exist for a given matrix $A$. There are usually as many
-such vectors $\vec v$ and corresponding numbers $\lambda$ as the number
-of rows or columns of the square matrix $A$, so a 2 by 2 matrix has two
-eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One
-ironclad rule is that there cannot be more distinct eigenvalues than the
-matrix dimension. Some matrices possess fewer eigenvalues than the
-matrix dimension, those are said to have a *degenerate* set of
-eigenvalues, and at least two of the eigenvectors share the same
-eigenvalue.
-
-The situation with eigenvectors is trickier. There are some matrices for
-which any vector is an eigenvector, and others which have a limited set
-of eigenvectors. What is difficult about counting eigenvectors is that
-an eigenvector is still an eigenvector when multiplied by a constant.
-You can show that for any matrix, multiplication by a constant is
-commutative: $cA = Ac $, where $A$ is a matrix and $c$ is a constant.
-This leads us to the important result that if $\vec v$ is an eigenvector
-with eigenvalue $\lambda$, then any scalar multiple $c \vec v$ is also
-an eigenvector with the same eigenvalue. The following demonstrates this
-algebraically:
-$$A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)$$
-This shows that when the vector $c \vec v$ is multiplied by the matrix
-$A$, it results in its being multiplied by the same number $\lambda$, so
-by definition it is an eigenvector. Therefore, an eigenvector $\vec v$
-is not unique, as any constant multiple $c \vec v$ is also an
-eigenvector. It is more useful to think not of a single eigenvector
-$\vec v$, but of a **collection of vectors that can be interconverted by
-scalar multiplication** that are all essentially the same eigenvector.
-Another way to represent this, if the eigenvector is real, is that an
-eigenvector as a **direction that remains unchanged by multiplication by
-the matrix**, such as direction of the vector $v$ in figure . As mentioned above, this is true only for
-real eigenvalues and eigenvectors, since complex eigenvectors cannot be
-used to define a direction in a real space.
-
-To summarize, eigenvalues and eigenvectors of a matrix are a set of
-numbers and a set of vectors (up to scalar multiple) that describe the
-action of the matrix as a multiplicative operator on vectors.
-“Well-behaved” square $n$ by $n$ matrices have $n$ distinct eigenvalues
-and $n$ eigenvectors pointing in distinct directions. In a deep sense,
-the collection of eigenvectors and eigenvalues defines a matrix $A$,
-which is why an older name for them is characteristic vectors and
-values.
-
-### calculating eigenvalues
-
-Finding the eigenvalues and eigenvectors analytically, that is on paper,
-is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger
-ones there is no analytical solution. In practice, the task is
-outsourced to a computer, and MATLAB has a number of functions for this
-purpose. Nevertheless, it is useful to go through the process in 2
-dimensions in order to gain an understanding of what is involved. From
-the definition \[def:eigen\] of eigenvalues and eigenvectors, the
-condition can be written in terms of the four elements of a 2 by 2
-matrix:
-$$\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)$$
-This is now a system of two linear algebraic equations, which we can
-solve by substitution. First, let us solve for $v_1$ in the first row,
-to get $$v_1 = \frac{-bv_2}{a-\lambda}$$ Then we substitute this into
-the second equation and get:
-$$\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0$$ Since $v_2$ multiplies
-both terms, and is not necessarily zero, we require that its
-multiplicative factor be zero. Doing a little algebra, we obtain the
-following, known as the *characteristic equation* of the matrix:
-$$-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0$$ This
-equation can be simplified by using two quantities we defined at the
-beginning of the section: the sum of the diagonal elements called the
-trace $\tau = a+d$, and the determinant $\Delta = ad-bc$. The quadratic
-equation has two solutions, dependent solely on $\tau$ and $\Delta$:
-$$\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
-\label{eq:2D_eig}$$ This is the general expression for a 2 by 2 matrix,
-showing there are two possible eigenvalues. Note that if
-$\tau^2-4\Delta>0$, the eigenvalues are real, if $\tau^2-4\Delta<0$,
-they are complex (have real and imaginary parts), and if
-$\tau^2-4\Delta=0$, there is only one eigenvalue. This situation is
-known as degenerate, because two eigenvectors share the same eigenvalue.
-
-**Example.** Let us take the same matrix we looked at in the previous
-subsection:
-$$A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)$$ The trace
-of this matrix is $\tau = 2+3 =5$ and the determinant is
-$\Delta = 6 - 2 = 4$. Then by our formula, the eigenvalues are:
-$$\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1$$
-These are the multiples we found in the example above, as expected.
-
-A real matrix can have complex eigenvalues and eigenvectors, but
-whenever it acts on a real vector, the result is still real. This is
-because the complex numbers cancel each other’s imaginary parts. For
-discrete time models, it is enough to consider the absolute value of a
-complex eigenvalue, which is defined as following:
-$|a +b i |= \sqrt{a^2 + b^2}$. As before, the eigenvalue with the
-largest absolute value “wins” in the long term.
-
-### calculation of eigenvectors on paper
-
-The surprising fact is that, as we saw in the last subsection, the
-eigenvalues of a matrix can be found without knowing its eigenvectors!
-However, the converse is not true: to find the eigenvectors, one first
-needs to know the eigenvalues. Given an eigenvalue $\lambda$, let us
-again write down the defining equation of the eigenvector for a generic
-2 by 2 matrix:
-$$\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)$$
-This vector equation is equivalent to two algebraic equations:
-$$\begin{aligned}
-av_1 + b v_2 &= \lambda v_1 \\
-cv_1 + d v_2 &= \lambda v_2 \end{aligned}$$ Since we’ve already found
-$\lambda$ by solving the characteristic equation, this is two linear
-equations with two unknowns ($v_1$ and $v_2$). You may remember from
-advanced algebra that such equations may either have a single solution
-for each unknown, but sometimes they may have none, or infinitely many
-solutions. Since there are unknowns on both sides of the equation, we
-can make both equations be equal to zero: $$\begin{aligned}
-(a-\lambda)v_1 + b v_2 &= 0 \\
-cv_1 + (d-\lambda ) v_2 &=0\end{aligned}$$ So the first equation yields
-the relationship $v_1 = -v_2 b/(a-\lambda) $ and the second equation is
-$v_1 = -v_2(d-\lambda)/c$, which we already obtained in the last
-subsection. We know that these two equations must be the same, since the
-ratio of $v_1$ and $v_2$ is what defines the eigenvector. So we can use
-either expression to find the eigenvector.
-
-**Example.** Let us return to the same matrix we looked at in the
-previous subsection:
-$$A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)$$ The
-eigenvalues of the matrix are 1 and 4. Using our expression above, where
-the element $a=2$ and $b=1$, let us find the eigenvector corresponding
-to the eigenvalue 1: $$v_1 = - v_2 \times  1/(2-1) = - v_2$$ Therefore
-the eigenvector is characterized by the first and second elements being
-negatives of each other. We already saw in the example two subsections
-above that the vector $(1,-1)$ is such as eigenvector, but it is also
-true of the vectors $(-1,1)$, $(-\pi, \pi)$ and $(10^6, -10^6)$. This
-infinite collection of vectors, all along the same direction, can be
-described as the eigenvector (or eigendirection) corresponding to the
-eigenvalue 1.
-
-Repeating this procedure for $\lambda = 4$, we obtain the linear
-relationship: $$v_1 = - v_2 \times  1/(2-4) = 0.5 v_2$$ Once again, the
-example vector we saw two subsections $(2,1)$ is in agreement with our
-calculation. Other vectors that satisfy this relationship include
-$(10,5)$, $(-20,-10)$, and $(-0.4,-0.2)$. This is again a collection of
-vectors that are all considered the same eigenvector with eigenvalue 4
-which are all pointing in the same direction, with the only difference
-being their length.
-
-Analytical: solutions of linear 2D ODEs
----------------------------------------
-
-Let us start by considering two variable ODEs that do not affect each
-other: **Example: two uncoupled ODEs** In general, for a two-variable
-system, the value of one variable affects the other. In the equations
-above, the terms with the constants $b$ and $c$ provide what is known as
-*coupling* between the two variables. Let us look at the primitive
-situation where the two variables are uncoupled, as an illustration of
-solving two-dimensional ODEs. If we set the coupling constants $b$ and
-$c$ to 0, we get: $$\begin{aligned}
-\dot x & = & ax \\
-\dot y & = & dy\end{aligned}$$ Using our knowledge of 1D linear ODE, we
-can solve the two equations independently to get the following:
-$x(t) = x_0 e^{at}$ and $y(t) = y_0 e^{dt}$. The solutions can be
-written in vector form:
-$$\left(\begin{array}{c}x(t) \\y(t)\end{array}\right) = x_0 e^{at} \left(\begin{array}{c}1 \\0\end{array}\right)+y_0 e^{dt}\left(\begin{array}{c}0\\1\end{array}\right)$$
-This is another way of writing that the dynamics of variable $x$ is
-exponential growth (or decay) with rate $a$, and ditto $y$, with rate
-$d$. Given the initial conditions $(x_0, y_0)$, we can divide the
-behavior of the solutions into a sum of two vectors, each growing or
-decaying at its own rate.
-
-Linear algebra allows us to find the solution for two-dimensional ODEs
-where the variables are interdependent using the same idea. The general
-(homogeneous) ODE with two dependent variables can be written as
-follows: $$\begin{aligned}
-\dot x & = & ax + by \\
-\dot y & = & cx + dy\end{aligned}$$ We can write this in matrix form
-like this:
-$$\left(\begin{array}{c}\dot x \\ \dot y \end{array}\right) = \left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}x \\ y \end{array}\right)$$
-
-Let us call the matrix $A$, and represent the vector $(x,y)$ as
-$\vec {x}$, then the general linear equation can be written like this:
-$$\dot{ \vec{ x}} = A \vec {x }$$ This notation is intended to make
-plain the similarity with the linear 1D ODE: $\dot x = a x$. This
-similarity is deep and substantial, in that linear equations in multiple
-dimensions share the same basic exponential form. In general, all
-solutions of linear equations can be written as a sum of exponentials
-multiplying different vectors, so in 2D we have:
-$$\left(\begin{array}{c} x(t) \\  y(t) \end{array}\right) =C_1e^{\lambda_1 t} \left(\begin{array}{c}x_1\\y_1\end{array}\right)+C_2 e^{\lambda_2 t}\left(\begin{array}{c}x_2\\y_2\end{array}\right)$$
-The constants $C_1, C_2$ are determined by the initial conditions, while
-the constants $\lambda_1, \lambda_2$ are the eigenvalues and the vectors
-$(x_1,y_1)$ and $(x_2,y_2)$ are the eigenvectors of the matrix $A$. We
-will now consider the application of this general result using
-computational tools.
-
-Computation: classification of linear systems
----------------------------------------------
-
-We have seen that linear algebra allows us to write down the solution of
-a multivariable dynamical system into a sum of exponential terms. In
-this section we use computational techniques to find the eigenvalues and
-eigenvectors of a system, and then produce the *phase portraits* of the
-linear systems. There are only a few different types of flow possible
-for linear systems, and we will classify them.
-
-![Phase plane flow for a linear system with a saddle
-point[]{data-label="fig:pp1"}](images/week6_pp1.png){width="3.7in"}
-
-### real eigenvalues
-
-Let us consider the fixed points of the linear system: since both
-$\dot x =0 $ and $\dot y = 0$ must be zero, the only fixed point is the
-origin $(0,0)$. We will see that the stability of the fixed point
-depends on the sign of the real part of the eigenvalue.
-
-Suppose we have a positive real eigenvalue. The solution in the
-direction of the corresponding eigenvector is then described by
-$Ce^{\lambda t}$, $\lambda > 0$, which is exponential growth. The means
-that the solution is going to grow in the direction of the eigenvector
-away from the origin, and thus the origin is an unstable fixed point (in
-this direction). On the other hand, if $\lambda < 0$, the solution
-decays exponentially and thus approaches the origin, so the fixed point
-is stable (in this direction).
-
-There are two different eigenvalues, and one may be positive while
-another is negative. In this case, the fixed point is is called a
-*saddle point* for geometric reasons: solutions flow toward it in one
-direction, like a marble along the forward-backward axis of a saddle on
-a horse and flow away from it along the sideways direction on a saddle.
-Then, the fixed point is stable when approached along one eigenvector,
-but unstable along the other. What happens if the initial condition is
-not on either eigenvector? I will use a fact of linear algebra that
-given any two (non-colinear) 2D vectors, any vector in the plane can
-represented as a sum (with some coefficients) of these two. Thus, the
-general solution can be written as follows:
-$$\left(\begin{array}{c} x(t) \\  y(t) \end{array}\right) =C_1e^{at} \left(\begin{array}{c}v_1\\v_2\end{array}\right)+C_2 e^{-bt}\left(\begin{array}{c}u_1\\u_2\end{array}\right)$$
-where $a,b>0$. Then we see that the component in the direction of the
-first eigenvector will grow, while the component along the second
-eigenvector will decay. Thus, as $t \rightarrow \infty$, all solutions
-will approach the vector with the unstable eigenvalue, except those with
-initial conditions right on the eigenvector corresponding to the stable
-eigenvalue. This means that the fixed point is essentially unstable,
-because only trajectories which start exactly along the stable direction
-approach the fixed point in the long run, while others, may approach the
-fixed point for a finite time, flow away when the unstable component
-with the positive eigenvalue takes over, as shown in figure .
-
-![Exponentially decaying oscillations: time plot of $x$, and phase plane
-of both $x$ and
-$y$[]{data-label="fig:exp_osc"}](images/lec7_exp_osc.png "fig:"){width="3.4in"}
-![Exponentially decaying oscillations: time plot of $x$, and phase plane
-of both $x$ and
-$y$[]{data-label="fig:exp_osc"}](images/lec7_pp1.png "fig:"){width="2.6in"}
-
-### complex eigenvalues
-
-If the argument of the square root is negative, eigenvalues may be
-complex numbers, which we can write like this: $a+bi$. Using Euler’s
-formula, we can write down the time-dependent part of the solutions as
-the following:
-$$e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))$$ The
-behavior of these solutions combines exponential growth or decay from
-the real part, with the oscillations produced by the imaginary part.
-This describes either exponentially growing or decaying oscillations,
-which look like decaying waves in time, or as a spiral in the phase
-plane:
-
-Thus we see that the stability of the fixed point with complex
-eigenvalues depends on the sign of the real part. Purely imaginary
-eigenvalues produce periodic oscillations, which keep the same
-amplitude, as we saw in the example in the modeling section.
-
-### classification of linear systems
-
-   Stability:   $Re(\lambda_1, \lambda_2)>0$   $Re(\lambda_1, \lambda_2)<0$   $Re(\lambda_1)<0 , Re(\lambda_2)>0$   $Re(\lambda_1\; or \; \lambda_2)= 0 $
-  ------------ ------------------------------ ------------------------------ ------------------------------------- ---------------------------------------
-     real:             unstable node                   stable node                       saddle point                            fixed line
-    complex:          unstable spiral                 stable spiral                           N/A                               center point
-
-  : Eigenvalues of linear ODEs define type of phase plane
-
-\[default\]
-
-The table above summarizes all the different types of flows in the phase
-plane possible for linear systems, in terms of the behavior of solutions
-relative to the fixed point at the origin. If the eigenvalues are real,
-the solutions will be exponential in nature. There are three
-possibilities for nonzero eigenvalues: *stable node* (both eigenvalues
-are negative), *unstable node* (both eigenvalues are positive), and a
-*saddle point* (mixed signs). If one of the eigenvalues is zero, this
-means that there is not flow along one direction, so there is a *line of
-fixed points* in the direction of the corresponding eigenvector (if both
-eigenvalues are zero, there is no flow at all.)
-
-For complex eigenvalues, there are three possibilities: if the real part
-is positive, the solution will grow and oscillate (oscillations with
-exponentially increasing amplitude), if the real part is negative, the
-solution will decay and oscillation (oscillations with exponentially
-increasing amplitude), and if the real part is zero (pure imaginary
-eigenvalues) the solution will oscillate with constant amplitude. The
-first type is called an *unstable spiral*, the second a *stable spiral*,
-and the third a *center*. It is not possible for complex eigenvalues of
-two-dimensional systems to have different signs of real parts, because
-as the formula shows, the real part is the same for both and is equal to
-the trace divided by two.
-
-Synthesis: dynamics of romantic relationships
----------------------------------------------
-
-We examine a model, taken from [@strogatz_nonlinear_2001], that applies
-dynamical systems modeling to a pressing concern for many humans: the
-prediction of dynamics of a romantic relationship. There are several
-unrealistic assumptions involved in the following model: first, that
-love or affection can be quantified, second, that any changes in
-relationship depend only on the emotions of the two people involved, and
-third, that the rate of change of the two love variables depend linearly
-on each other.
-
-If we can give those assumptions the benefit of the doubt (which is how
-all relationships begin), we can write down a system of ODEs to describe
-a romantically involved couple. Here $X$ and $Y$ are dynamic variables
-that quantify the emotional states of the two lovers: $$\begin{aligned}
-\dot  X & = & aX+ bY \\
-\dot  Y & = & cX + dY\end{aligned}$$ Let us denote positive feelings
-(love) with positive values of $X,Y$, while negative values signify
-negative feelings (hate.) The significance of the parameters can be
-interpreted as follows: $a,d$ describe the response of the two people to
-their own feelings, while $b,c$ correspond to the effect the other
-person’s feeling has on their own. For example, a person whose feeling
-grow as the other person’s affection increases can be modeled with a
-positive value of $b$ (or $c$). On the other hand, a person whose own
-feelings are dampened by the other one’s excessively positive emotions,
-can be decribed by a negative value of $b$ or $c$. Their own feelings
-can also play a role, either positive or negative, reflected in the sign
-of the constants $a$ and $d$.
-
-Using mathematical modeling, we can answer the following basic
-questions:
-
-1.  Given a set of values for parameters $a, b, c, d$, predict the
-    dynamic behavior of the model relationship.
-
-2.  Find conditions for stability and existence of oscillations in the
-    dynamical system, expressed as a function of the parameters.
-
-To address the first question, here are some simplified scenarios for
-our two lovers in the model.
-
-**Detached lovers:** Let the emotional state of the two lovers depend
-only on their own emotions, for example: $$\begin{aligned}
-\dot  X & = & X \\
-\dot  Y & = &  -Y\end{aligned}$$ To classify the behavior of the model,
-we find the eigenvalues of the system. In this case, they are the
-diagonal elements of the matrix, 1 and -1. This mean that the origin is
-a saddle point, and therefore it is unstable. In the $X$ direction, the
-emotions are going to grow without bound, either in the love or hate
-direction, while in the $Y$ direction, the emotions are going to decay
-to zero (indifference). This should be no surprise, that since the two
-equations are independent, the lovers have no emotional effect on each
-other.
-
-**Lovers with no self-awareness:** Here is an alternate situation:
-suppose two lovers were not influenced by their own emotions, but were
-instead attuned to the emotional state of the other. Then we might have
-the following model, in which lover $X$ reacts in the opposite way by
-emotions of lover $Y$, but lover $Y$ is, contrariwise, spurred by the
-love or hate of $X$ in the same direction: $$\begin{aligned}
-\dot  X & = & -Y \\
-\dot  Y & = &  X\end{aligned}$$ We find the eigenvalues of the system by
-using the expression in equation \[eg:2D\_eig\]:
-$\lambda =  (0 \pm \sqrt{-4})/2 = \pm i$. Pure imaginary eigenvalues
-tell us that the origin is a center point, with the solutions periodic
-orbits around the origin. Psychologically, we can interpret this
-scenario as cycles of love and hate, never growing and never decaying.
-The magnitude of these oscillations depends on the initial state of the
-system, that is, the feelings the lovers had at the beginning of the
-relationship.
-
-We can now address the second question, and find under what
-circumstances different types of dynamic behaviors occur. We consider
-the general model, and ask what kinds of eigenvalues are possible for
-different parameter values. First, we write down the general expression
-for the eigenvalues, from equation \[eg:2D\_eig\]:
-$$\lambda =  \frac{a+d \pm \sqrt{(a+d)^2-4(ad-bc)}}{2}$$ There are two
-properties we are interested in: stability and existence of
-oscillations. Recall that stability is determined by the sign of the
-real part of the eigenvalues. If the square root is imaginary, then the
-real part is simply the trace ($a+d$), but if the square root is real,
-we have to consider the whole expression to determine stability. So let
-us first state the condition for existence of oscillations (imaginary
-square root):
-
-1.  Complex eigenvalues: oscillatory solutions $$4(ad-bc) > (a+d)^2$$ If
-    this expression holds, the square root is imaginary, and the
-    stability is determined by the sign of the trace. That is, if
-    $a+d > 0$, the system is unstable, and will grow into unbounded love
-    or hate, but if $a+d < 0$, then the system is stable, and will
-    spiral to indifference. The special case $a+d = 0$, such as we saw
-    above, means that strictly periodic love/hate cycles are the
-    solutions.
-
-2.  Real eigenvalues: exponential growth and/or decay
-    $$4(ad-bc) < (a+d)^2$$ In this case, the square root is real, and no
-    oscillatory solutions exist. In order to determine whether this
-    implies exponential growth, decay, or a combination, we must weigh
-    the relative sizes of $(a+d)$ and $\sqrt{(a+d)^2-4(ad-bc)}$. If
-    $|a+d| > \sqrt{(a+d)^2-4(ad-bc)}$, then adding or subtracting the
-    square root does not change the sign of $(a+d)$: if it is negative,
-    both eigenvalues are negative, and the origin is a stable node, and
-    if the trace is positive, the origin is an unstable node.
-
-    However, if the absolute value of the root outweighs the absolute
-    value of the trace $|a+d| < \sqrt{(a+d)^2-4(ad-bc)}$ , then either
-    adding or subtracting the root will change the sign of the
-    eigenvalues. Therefore, one eigenvalue is positive and the other is
-    negative, and the origin is a saddle point. The emotions will run
-    unchecked in some preferred direction, possibly combining love and
-    hate of the two lovers.
-
-These conditions are not intuitive, and it took some work to express
-them. The benefit is that now, given any values of the self-involvement
-parameters $a,d$ and the sensitivity parameters $b,c$ we can predict the
-long-term dynamics of the model relationship. Whether the results have
-any bearing on reality, of course, depends on how well the reality is
-described by these primitive assumptions.
+# Graphical analysis of ordinary differential equations
+
+
+We now proceed from  linear ODEs to more complicated nonlinear equations. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. Even though the solutions cannot be written down, they exist and can exhibit much more interesting behaviors than the exponential solutions we have seen. When solutions cannot be found on paper, we have two options: 1) use qualitative or graphical tools, such as finding equilibrium points and their stability, to predict the long-term dynamics of the solution; 2) construct numerical solutions that approximate the true solution. In this chapter we concentrate on the qualitative approach to analyzing ODEs, which allows one to predict the behavior of solutions of any autonomous ODE based on the graph of the defining function of the equation. After working through this chapter you will learn to do the following:
+
+
+
+* find equilibrium values of an ODE
+ 
+* analyze the stability of equilibria based on the graph of the defining function
+
+* write down stability conditions analytically
+
+* use graphical techniques to predict the behavior of the solution of a difference equation without solving it
+
+* understand basic compartment epidemiology models
+
+
+## Building nonlinear ODEs
+
+
+The simple, linear population growth models we have seen in the last two chapters assume that the per capita birth and death rates are constant, that is, they stay the same regardless of population size. The solutions for these models either grow or decay exponentially, but in reality, populations do not grow without bounds. It is generally true that the larger a population grows, the more scarce the resources, and survival becomes more difficult. For larger populations, this could lead to higher death rates, or lower birth rates, or both. 
+
+How can we incorporate this effect into a quantitative model? We will assume there are separate birth and death rates, and that the birth rate declines as the population grows, while the death rate increases. Suppose there are inherent birth rates $b$ and $d$, and the overall birth and death rates $B$ and $D$  depend linearly on population size $P$: $B  =  b - aP$ and $D  =  d + cP$.
+
+To model the rate of change of the population, we need to multiply the rates $B$ and $D$ by the population size $P$, since each individual can reproduce or die. Also, since the death rate $D$ decreases the population, we need to put a negative sign on it. The resulting model is:
+
+$$ 
+\dot P = BP - DP = [(b-d)-(a+c)P]P 
+$$ (logistic-ode)
+
+The parameters of the model, the constants $a,b,c,d$, have different meanings. Performing \index{dimensional analysis} dimensional analysis, we find that $b$ and $d$ have the dimensions of $1/[t]$, the same as the rate $r$ in the exponential growth model. However, the dimensions of $a$ (and $c$) must obey the relation: $[P]/[t] = [a][P]^2$, and thus, 
+
+$$
+[a]=[c] = \frac{1}{[t][P]}
+$$
+
+This shows that the constants $a$ and $c$ have to be treated differently than $b$ and $d$. Let us define the inherent growth rate of the population, to be $r_0=b-d$ (if the death rate is greater than the birth rate, the population will inherently decline). Then let us introduce another constant $K$, such that $(a+c)=r_0/K$. It should be clear from the dimensional analysis that $K$ has units of $P$, population size. Now we can write down the logistic equation in the canonical form:
+
+$$
+\dot P = r\left(1-\frac{P}{K}\right)P
+$$ (log-ode-model)
+
+This model can be re-written as  $\dot P = aP -bP^2$, so it is clear that there is a *linear term* ($aP$) and a *nonlinear term* ($-bP^2$). When $P$ is sufficiently small(and positive) the linear term is greater, and the population grows. When $P$ is large enough, the nonlinear term wins and the population declines. 
+
+It should be apparent that there are two fixed points, at $P=0$ and at $P=K$. The first one corresponds to a population with no individuals. On the other hand, $K$ signifies the population at which the negative effect of population size balances out the inherent population growth rate, and is called the *carrying capacity* of a population in its environment \citep{otto_biologists_2007}. We will analyze the qualitative behavior of the solution, without writing it down, in the next section of this chapter.
+
+## Qualitative analysis of ODEs
+
+In this section we will analyze the behavior of solutions of an autonomous ODE without solving it on paper. Generally, ODE models for realistic biological systems are nonlinear, and most nonlinear differential equations cannot be solved analytically. We can make predictions about the behavior, or *dynamics* of solutions by considering the properties of the \index{differential equation!defining function} *defining function*, which is the function on the right-hand-side of a general autonomous ODE:
+
+$$ 
+\frac{dx}{dt} = f(x)
+$$ (gen-aut-ode)
+
+### graphical analysis of the defining function
+The defining function relates the value of the solution variable $x$ to its rate of change $dx/dt$. For different values of $x$, the rate of change of $x(t)$ is different, and it is defined by the function $f(x)$. There are only three options:
+
+* if $f(x) > 0$, $x(t)$ is increasing at that value of $x$
+
+* if $f(x) < 0$, $x(t)$ is decreasing at that value of $x$
+
+* if $f(x) = 0$, $x(t)$ is not changing that value of $x$
+
+To determine for which values of $x$ the solution $x(t)$ increases and decreases, it enough to look at the plot of $f(x)$. On the intervals where the graph of $f(x)$ is above the $x$-axis $x(t)$ increases, on the intervals where  the graph of $f(x)$ is below the $x$-axis, $x(t)$ decreases. The roots (zeros) of $f(x)$ are special cases, they separate the range of $x$ into the intervals where the solution grows and and where it decreases. This seems exceedingly simple, and it is, but it provides specific information about $x(t)$, without knowing how to write down its formula. 
+
+For an autonomous ODE with one dependent variable, the direction of the rate of change prescribed by the differential equation can be graphically represented by sketching the \index{differential equation!flow} *flow on the line* of the dependent variable. The flow stands for the direction of change at every point, specifically increasing, decreasing, or not changing. The flow is  plotted on the horizontal x-axis, so if $x$ is increasing, the flow will be indicated by a rightward arrow, and if it is decreasing, the flow will point to the left. The fixed points separate the regions of increasing (rightward) flow and decreasing (leftward) flow.
+
+**Example.** Consider a linear ODE the likes of which we have solved in section \ref{sec:math15}:
+
+$$
+\frac{dx}{dt} = 4x -100
+$$
+
+The defining function is a straight line vs. $x$, its graph is shown in figure \ref{fig:ch16_flow_linear}a. Based on this graph, we conclude that the solution decreases when $x<25$ and increases when $x>25$. Thus we can sketch the solution $x(t)$ over time, without knowing its functional form. The dynamics depends on the initial value: if $x(0)<25$, the solution will keep decreasing without bound, and go off to negative infinity; if $x(0)>25$, the solution will keep decreasing without bound, and go off to positive infinity. This is shown by plotting numerical solutions of this ODE for several initial values in figure \ref{fig:ch16_flow_linear}b. The dotted line shows the location of the special value of 25 which separates the interval of growth from the interval of decline.
+
+**Example.** Now let us analyze a nonlinear ODE, specifically the logistic model with the following parameters:
+
+$$
+\frac{dP}{dt} =0.3P\left(1-\frac{P}{40}\right)
+$$ 
+
+The defining function is a downward-facing parabola with two roots at $P=0$ and $P=40$, as shown in figure \ref{fig:ch16_flow_logistic}a. Between the two roots, the defining function is positive, which means the derivative $dP/dt$ is positive too, so the solution grows on that interval. For $P<0$ and $P>40$, the solution decreases. Therefore, we can sketch the graphs of the solution $P(t)$ starting with different initial conditions, as show in figure \ref{fig:ch16_flow_logistic}b.
+
+To summarize, the defining function of the ODE determines the rate of change of the solution $x(t)$ depending on the value of $x$. The graphical approach to finding areas of right and left flow is based on graphing the function $f(x)$, and dividing the x-axis based on the sign of $f(x)$. In the areas where $f(x) > 0$, its graph is above the x-axis, and the flow is to the right; conversely, when $f(x) < 0$, its graph is below the x-axis, and the flow is to the left. The next subsection puts this approach in a more analytic framework.
+
+
+### fixed points and stability
+
+We have seen that the dynamics of solutions of differential equations depend on the initial value of the dependent variable: for some values the solution increases, for others it decreases, and for intermediate values it remains the same. Those special values separating intervals of increase and decrease are called fixed points (or equilibria), and the first step to understanding the dynamics of an ODE is finding its fixed points. A fixed point is a value of the solution at which the dynamical system stays constant, thus, the derivative of the solution must be zero. Here is  the formal definition:
+
+```{admonition} Definition 
+For an ordinary differential equation $\dot x = f(x)$, a point $x^*$ which satisfies $f(x^*)=0$ is called a *fixed point* or *equilibrium*, and the solution with the initial condition $x(0)=x^*$ is constant over time $x(t)=x^*$. 
+```
+
+**Example.** The linear equation $\dot x  = rx$ has a single fixed point at $x^* = 0$. For a more interesting example, consider a logistic equation: $\dot x = x - x^2$. Its fixed points are the solutions of $x - x^2 = 0$, therefore there two fixed points: $x^* = 0, 1$. We know that if the solution has either of the fixed points as the initial condition, it will remain at that value for all time.
+
+Locating the fixed points is not sufficient to predict the global behavior of the dynamical system, however. What happens to the solution of a dynamical system if the initial condition is very close to an equilibrium, but not precisely at it? Put another way, what happens if the equilibrium is perturbed? The solution may be attracted to the equilibrium value, that is, it approaches it ever-closer, or else it is not. In the first case, this is called a stable equilibrium, because a small perturbation does not dramatically change the long-term behavior of the solution. In the latter case, the equilibrium is called unstable, and the solution perturbed from the equilibrium never returns. These concepts are formalized in the following definition 
+
+```{admonition} Definition
+A fixed point  $x^*$ of an ODE $\dot x = f(x)$ is called a *stable* fixed point (or sink) if for a sufficiently small number $\epsilon$, the solution $x(t)$ with the initial condition $x_0 = x^* + \epsilon$ approaches the fixed point $x^*$ as $t \rightarrow \infty$. If the solution $x(t)$ does not approach $x^*$ for all nonzero $\epsilon$, the fixed point is called an *unstable* fixed point (or source).
+```
+
+To determine whether a fixed point is stable analytically we use the approach called \index{differential equation!linearization}\index{linearization!differential equation} *linearization*, which involves replacing the function $f(x)$ with a linear approximation.  Let us define $\epsilon(t)$ to be the deviation of the solution $x(t)$ from the fixed point $x^*$, so we can write $x(t) = x^* + \epsilon(t)$. Assuming that $\epsilon(t)$ is small, we can write the function $f(x)$ using Taylor's formula: 
+
+$$
+f(x^*+\epsilon(t))= f(x^*)+f'(x^*) \epsilon(t) + ... = f'(x^*) \epsilon(t) + ... 
+$$
+
+The term $f(x^*)$ vanished because it is zero by definition \ref{def:ch16_fixedpt} of a fixed point. The ellipsis indicates all the terms of order $\epsilon(t)^2$ and higher, which are very small if $\epsilon(t)$ is small, and thus can be neglected. Thus, we can write the following approximation to the ODE $\dot x = f(x)$ near a fixed point:
+
+$$
+\dot x =  \frac{d(x^* + \epsilon(t))}{dt} = \dot \epsilon(t) =  f'(x^*) \epsilon(t)
+$$
+
+Thus we replaced the complicated nonlinear ODE near a fixed point with a linear equation, which approximates the dynamics of the deviation $\epsilon(t)$ near the fixed point $x^*$; note that the derivative $f'(x^*)$ is a constant for any given fixed point. In section \ref{sec:math15} we classified the behavior of solutions for the general linear ODE $\dot x = rx$, and now we apply this classification to the behavior of the deviation $\epsilon(t)$. If the multiple $f'(x^*)$ is positive, the deviation $\epsilon(t)$ is growing, the solution is diverging away from the fixed point, and thus the fixed point is unstable. If the multiple $f'(x^*)$ is negative, the deviation $\epsilon(t)$ is decaying, the solution is converging to the fixed point, and thus the fixed point is stable. Finally, there is the borderline case of $f'(x^*) = 0$ which is inconclusive, and the fixed point may be either stable or unstable. The \index{differential equation!stability analysis} derivative stability analysis is summarized in the following:
+
+```{admonition} Important Fact
+:class: tip
+For an autonomous ODE in the form $\dot x = f(x)$, a fixed point $x^*$ can be classified as follows:
+
+* $f'(x^*) > 0$: the slope of $f(x)$ at the fixed point is positive, then the fixed point is \textbf{unstable}. 
+* $f'(x^*) < 0$: the slope of $f(x)$ at the fixed point is negative, then the fixed point is \textbf{stable}. 
+* $f'(x^*) = 0$: stability cannot be determined from the derivative.
+```
+
+Therefore, knowing the derivative or the slope of the defining function at the fixed point is enough to know its stability. If the derivative has the discourtesy of being zero, the situation is tricky, because then higher order terms that we neglected make the difference. We will mostly avoid such borderline cases, but they are important in some applications \citep{strogatz_nonlinear_2001}.
+
+```{warning} 
+The derivative of the defining function $f'(x)$ is not the second derivative of the solution $x(t)$. This is a common mistake, because the function $f(x)$ is equal to the time derivative of $x(t)$. However, the derivative $f'(x)$ is not with respect to time, it is with respect to x, the dependent variable. In other words, it reflects the slope of the graph of the defining function $f(x)$, not the curvature of the graph of the solution $x(t)$.
+```
+
+To summarize, here is an outline of the steps for analyzing the behavior of solutions of an autonomous one-variable ODE. These tasks can be accomplished either by plotting the defining function $f(x)$ and finding the fixed points and their stability based on the plot, or by solving for the fixed points on paper, then finding the derivative $f'(x)$ and plugging in the values of the fixed points to determine their stability. Either approach is valid, but the analytic methods are necessary when dealing with models that have unknown parameter values, which makes it impossible to represent the defining function in a plot. 
+
+### Outline of qualitative analysis of an ODE
+
+
+* find the fixed points by setting the defining function $f(x)=0$ and solving for values of $x^*$
+
+* divide the domain of $x$ into intervals separated by fixed points $x^*$
+
+* determine on which interval(s) the solution $x(t)$ is increasing and on which it is decreasing
+
+* use derivative stability analysis (graphically or analytically) to determine which fixed points are stable
+
+* sketch the solutions $x(t)$ starting at different initial values, based on the stability analysis and whether the solution is increasing or decreasing in a particular interval
+
+
+**Example: linear model.** Consider the linear ODE that we analyzed above $dx/dt = 4x -100$. Let us go through the steps of qualitative analysis:
+
+
+* find the fixed points by setting the defining function to 0: $0 = 4x -100$, so there is only one fixed point $x^* = 25$
+
+* divide the domain of $x$ into intervals separated by fixed points $x^*$: the intervals are $x<25$ and $x>25$
+
+* the solution is decreasing on the interval $x<25$ because $f(x)<0$ there, and the solution is increasing on the interval $x>25$ because $f(x)>0$
+
+* the derivative $f'(x)$ at the fixed point is 4, so the fixed point is *unstable*
+
+* solutions $x(t)$ starting at different initial values are shown in figure \ref{fig:ch16_flow_linear}b and they behave as follows: solutions with initial values below $x^*=25$ decreasing, and those with initial values above $x^*=25$ increasing.
+
+
+** Example: logistic model.** \index{model!logistic}\index{function!logistic} Consider the logistic model from the previous subsection,  $dP/dt =0.3P(1-P/40)$. We have analyzed the stability of the two fixed points using the plot in figure \ref{fig:ch16_flow_logistic}, and saw that the flow takes the solution away from $P=0$, and toward $P=K$, thus the first fixed point is unstable, while the second is stable. Let us repeat the analysis using analytic tools:
+
+
+* find the fixed points by setting the defining function to 0: $0 = 0.3P(1-P/40)$. The two solutions are $P^*=0$ and $P^*=40$.
+
+* divide the domain of $P$ into intervals separated by fixed points $P^*$: the intervals are $P<0$; $0<P<40$; and $P>40$
+
+* the solution is decreasing on the interval $P<0$ because $f(P)<0$ there, the solution is increasing on the interval $0<P<40$ because $f(P)>0$, and the solution is decreasing  for $P>40$ because $f(P)<0$ there
+
+* the derivative is $f'(P)=0.3-0.3P/20$; since $f'(0)=0.3 > 0$, the fixed point is *unstable*; since $P'(40)=-0.3<0$, the fixed point is *stable*
+
+* solutions $P(t)$ starting at different initial values are shown in figure \ref{fig:ch16_flow_logistic}b and they behave as follows: solutions with initial values below $P^*=0$ decreasing, those with initial values between 0 and 40 are increasing and asymptotically approaching 40, and those with initial values above 40 decreasing and asymptotically approaching 40. 
+
+
+This can be done more generally using the derivative test: taking the derivative of the function on the right-hand-side (with respect to $P$), we get $f'(P)  = r(1-2\frac{P}{K})$. Assuming $r>0$ (the population is viable), $f'(0)= r$ is positive, and the fixed point is therefore unstable. This makes biological sense, since we assumed positive inherent population growth, so given a few individuals, it will increase in size. On the other hand, $P'(K) = r(1-2) = -r$, so this fixed point is stable. Thus, according to the logistic model, a population with a positive inherent growth rate will not grow unchecked, like in the exponential model, but will increase until it reaches its carrying capacity, at which it will stay (if all parameters remain constant).
+
+**Example: semi-stable fixed point.** Consider the ODE  $dx/dt =  -x^3 + x^2$, whose defining function is plotted in figure \ref{fig:ch16_flow_semi}a, showing two fixed points at $x = 0, 1$.
+
+
+* find the fixed points by setting the defining function to 0: $0 =  -x^3 + x^2$. The two fixed points are $x^*=0$ and $x^*=1$.
+
+* divide the domain of $x$ into intervals separated by fixed points $x^*$: the intervals are $x<0$; $0<x<1$; and $x>1$
+
+* the solution is increasing on the interval $x<0$ because $f(x)>0$ there, the solution is increasing on the interval $0<x<1$ because $f(x)>0$, and the solution is decreasing  for $x>1$ because $f(x)<0$ there
+
+* the derivative is $f'(x)=-3x^2+2x$; since $f'(0)=0$, the fixed point is *undetermined*; since $f'(1)=-1<0$, the fixed point is *stable*.
+
+* the solutions $x(t)$ starting at different initial values are shown in figure \ref{fig:ch16_flow_semi}b, and they behave as follows: solutions with initial values below 0 are increasing and asymptotically approaching 0, those with initial values between 0 and 1 are increasing and asymptotically approaching 1, and those with initial values above 1 are decreasing and asymptotically approaching 1. 
+
+
+This example shows how graphical analysis can help when derivative analysis is undetermined. The red arrows on the x-axis of figure \ref{fig:ch16_flow_semi} show the direction of the flow in the three different regions separated by the fixed points. Flow is to the right for $x<1$, to the left for for $x>1$; it is clear that the arrows approach the fixed point from both sides, and thus the fixed point  is stable, as the negative slope of $f(x)$ at  $x=1$ indicates. One the other hand, the fixed point at $x=0$ presents a more complicated situation: the slope of $f(x)$ is zero, and the flow is rightward on both sides of the fixed point. This type of fixed point is sometimes called *semi-stable*, because it is stable when approached from one side, and unstable when approached from the other. 
+
+
+
+## Modeling the spread of infectious disease 
+\label{sec:bio16} 
+
+The field of \index{model!epidemiology}\index{differential equation!SIS model *epidemiology* studies the distribution of disease and health states in populations. Epidemiologists describe and model these issues with the goal of helping public health workers devise interventions to improve the overall health outcomes on a large scale. One particular topic of interest is the the spread of infectious disease and how best tor respond to it.. Because epidemiology is concerned with large numbers of people, the models used in the field do not address the details of an individual disease history. One approach to modeling this is to put people into categories, such as *susceptible* (those who can be infected but are not), *infectious* (those who are infected and can spread the disease), and *recovered* (those who cannot be infected or spread disease). This type of models is called a \index{epidemic!compartment model} *compartment model* and they are they commonly used to represent infectious disease on a population level both for deterministic models (e.g. ODEs) and stochastic models (e.g. Markov models). Dividing people into categories involves the assumption that everyone in a particular category behaves in the same manner: for instance, all susceptible people are infected with the same rate and all infected people recover with the same rate. 
+
+Let us construct an ODE to describe a two-compartment epidemiology model. There are two dependent variables to be tracked: the number of susceptible ($S$) and infected ($I$) individuals in the population. The susceptible individuals can get infected, while the infected ones can recover and become susceptible again. The implicit assumption is that there is no immunity, and recovered individuals can get infected with the same ease as those who were never infected. There are some human diseases for which this is true, for instance the common cold or gonorrhea. Transitions between the different classes of individuals can be summarized by the following scheme:
+$$ S + I \xrightarrow{\beta} I \xrightarrow{\gamma} S $$
+Here $\beta$ is the individual rate of infection, also known as the transmission rate, and $\gamma$ is the individual rate of recovery. There is an important distinction between the processes of infection and recovery: the former requires an infected individual and a susceptible individual, while the latter needs only an infected individual. Therefore, it is reasonable to suppose that the rate of growth of infected individuals is the product of the individual transmission rate $\beta$ and the product of the number of infected and susceptible individuals. The overall rate of recovery is the individual recovery rate $\gamma$ multiplied by the number of the infected. This leads to the following two differential equations:
+\begin{eqnarray*}
+\dot S &=& -\beta IS + \gamma I \\
+\dot I & = &\beta I S - \gamma I
+\end{eqnarray*}
+Note that, as in the chemical kinetics models, the two equations add up to zero on the right hand side, leading to the conclusion that $\dot S + \dot I = 0$. Therefore, the total number of people is a conserved quantity $N$, which does not change. This makes sense since we did not consider any births or deaths in the ODE model, only transitions between susceptible and infected individuals.
+
+We can use the conserved quantity $N$ to reduce the two equations to one, by the substitution of $S = N -I$:
+$$  \dot I  =  \beta I (N - I) - \gamma I $$
+This model may be analyzed using qualitative methods that were developed in this chapter, allowing prediction of the dynamics of the fraction of infected for different transmission and recovery rates.  First, let us find the fixed points of the differential equation. Setting the equation to zero, we find:
+$$ 0  =  \beta I (N - I) - \gamma I \Rightarrow I^* = 0; \; I^* =  N - \gamma/\beta $$
+This means that there are two equilibrium levels of infection: either nobody is infected ($I^* = 0$) or there is some persistent number of infected individuals ($ I^* =  N - \gamma/\beta $). Notice that the second fixed point is only biologically relevant if $N > \gamma/\beta $.
+
+Use the derivative test to check for stability. First, find the general expression for derivative of the defining function: $f'(I) = -2 \beta I + \beta N - \gamma $.
+\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
+
+```{r ch7-flow-sis1, echo=FALSE, fig.show='hold', out.width='50%', fig.asp=.75, fig.align='center', fig.cap = 'Graphical analysis of the SIS model with $I$ representing the fraction of infected individuals (N=1) and beta=0.5 and gamma = 0.2; a) plot showing the flow of the solutions on the I-axis, with a stable equilibrium at 0.6 and an unstable equilibrium at 0; b) three solutions of the model starting at three different initial values all converge to the same fraction of infected.'}
+# defining function for the SI ODE dx/dt = -beta*(S)*(N-S)+gamma*(N-S)
+SI_funk <- function (I,N,beta,gamma){
+  return(beta*(I)*(N-I)-gamma*I)
+}
+
+beta <- 0.5
+gamma <- 0.2
+N <- 1
+x<-seq(-0.2,1.2*N,0.01)
+y <- SI_funk(x,N,beta,gamma)
+plot(x,y,t="l",xlab="I (fraction of infected)", ylab="dI/dt",lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+abline(0,0,lwd=2)
+arrows(0.1,0,N-gamma/beta-0.02,0,length=0.3,angle=30,lwd=6,col='red')
+arrows(1.2*N,0,N-gamma/beta+0.02,0,length=0.3,angle=30,lwd=6,col='red')
+
+dt <- 0.01 # set time step
+Tmax <- 15 # set length of time
+Nstep <- Tmax/dt # calculate number of time steps 
+init_value <- 0.1 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+# plot the solution vs time
+# plot the numeric solution vs time
+plot(t,y,t='l',xlab='time',ylab='fraction of infected',ylim=c(0,1.1),lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+# another initial value
+init_value <- 0.5 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+lines(t,y,lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+# another initial value
+init_value <- 0.9 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+lines(t,y,lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+abline(0,0,lty=2,lwd=2)
+abline(N-gamma/beta,0,lty=2,lwd=2)
+```
+
+
+```{r ch7-flow-sis2, echo=FALSE, fig.show='hold', out.width='50%', fig.asp=.75, fig.align='center', fig.cap = 'Graphical analysis of the SIS model with I representing the fraction of infected individuals (N=1) and beta=0.2 and gamma = 0.3; a) plot showing the flow of the solutions on the I-axis, with a stable equilibrium at 0 and an unstable equilibrium at -0.5; b) three solutions of the model starting at three different initial values all converge to 0 infected.'}
+# defining function for the SI ODE dx/dt = -beta*(S)*(N-S)+gamma*(N-S)
+SI_funk <- function (I,N,beta,gamma){
+  return(beta*(I)*(N-I)-gamma*I)
+}
+
+beta <- 0.2
+gamma <- 0.3
+N <- 1
+x<-seq(-0.5,1.2*N,0.01)
+y <- SI_funk(x,N,beta,gamma)
+plot(x,y,t="l",xlab="I (fraction of infected)", ylab="dI/dt",lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+abline(0,0,lwd=2)
+arrows(1.2*N,0,0.02,0,length=0.3,angle=30,lwd=6,col='red')
+arrows(N-gamma/beta+0.02,0,-0.02,0,length=0.3,angle=30,lwd=6,col='red')
+
+dt <- 0.01 # set time step
+Tmax <- 15 # set length of time
+Nstep <- Tmax/dt # calculate number of time steps 
+init_value <- 0.1 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+# plot the solution vs time
+# plot the numeric solution vs time
+plot(t,y,t='l',xlab='time',ylab='fraction of infected',ylim=c(-0.5,1),lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+# another initial value
+init_value <- 0.5 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+lines(t,y,lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+# another initial value
+init_value <- 0.9 # set initial value 
+y <- matrix(init_value,nrow=1, ncol=Nstep+1) # initialize the solution vectors with init_value
+t <- dt*(0:Nstep)
+for (i in 1:Nstep){
+  y[i+1] <- y[i]+dt*SI_funk(y[i],N,beta,gamma)
+}
+lines(t,y,lwd=3, cex=1.5, cex.axis=1.5,cex.lab=1.5)
+
+abline(0,0,lty=2,lwd=2)
+abline(N-gamma/beta,0,lty=2,lwd=2)
+```
+
+The stability of the fixed point $I^* = 0$ is found by plugging in this value into the derivative formula: $f'(0) = \beta N - \gamma $. We learned in section \ref{sec:math16} that a fixed point is stable if the derivative of the defining function is negative. Therefore, $I^* = 0$ is stable if $\gamma - \beta N > 0$, and unstable otherwise. This gives us a \index{differential equation!stability condition}\emph{stability condition} on the values of the biological parameters. If the recovery rate $\gamma$ is greater than the rate of infection for the population (the transmission rate multiplied by the population size) $\beta N$, then the no-infection equilibrium is stable. This predicts that the infection dies out if the recovery rate is faster than the rate of infection, which makes biological sense.
+
+Similarly, we find the stability of the second fixed point $I^* =  N - \gamma/\beta$ by substituting its value into the derivative, to obtain $f'(N - \gamma/\beta) = \gamma  - \beta N$. By the same logic, as above, this fixed point is stable if $\gamma  - \beta N  < 0$, or if $\gamma < \beta N$. This is a complementary condition for the fixed point at 0, that is, only one fixed point can be stable for any given parameter values. In the biological interpretation, if the transmission rate $\beta N$ is greater than the recovery rate $\gamma$, then the epidemic will persist. 
+
+We can use our graphical analysis skills to illustrate the situation. Consider a situation in which $\gamma < \beta N$. As predicted by stability analysis, the  zero infection equilibrium should be unstable, and the equilibrium at $N - \gamma/\beta$ should be stable. In order to plot the function $f(I) =  \beta I (N - I) - \gamma I $, we choose the specific parameter values $N=1$, $\gamma = 0.1$ and $\beta = 0.2$; setting $N=1$ means $S$ and $I$ represent the fraction of the population in the susceptible and infected categories. Figure \ref{fig:ch16_flow_sis1}a shows the direction of the flow on the $I$-axis prescribed by the defining function $f(I)$ with red arrows.  It is clear that solutions approach the fixed point at $N - \gamma/\beta$  from both directions, which make it a stable fixed point, while diverging from $I=0$, as shown in figure \ref{fig:ch16_flow_sis1}b.
+
+On the other hand, if $\gamma > \beta N$, stability analysis predicts that the no-infection equilibrium ($I=0$) is stable.  Figure \ref{fig:ch16_flow_sis2}a shows the plot of the defining function for the parameter values  $N=1$, $\gamma = 0.3$ and $\beta = 0.2$. The flow on the $I$-axis is toward the zero equilibrium, therefore it is stable. Note that the second equilibrium at $I^* =  N - \gamma/\beta$ is negative, and thus has no biological significance. The solutions, if the initial value is positive, all approach 0, so the infection inevitably dies out. 
+
+Mathematical modeling of epidemiology has been a success story in the last few decades. Public health workers routinely estimate the \index{parameter!basic reproductive number}parameter called the \index{epidemic!basic reproductive number} *basic reproductive number* $R_0$ defined to be the average number of new infections caused by a single infected individual in a susceptible population. This number comes out of our analysis above, where we found $R_0 = N \beta/\gamma$ to determine whether or not an epidemic persisted \citep{brauer_mathematical_2011}. This number is critical in more sophisticated models of epidemiology.
+
+Mathematical models are used to predict the time course of an epidemic, called the \index{epidemic!curve} *epidemic curve* and then advise on the public health interventions that can reduce the number of affected individuals. In reality, most epidemic curves have the shape similar to the data from the Ebola virus epidemic in figure \ref{fig:ch16-ebola}. Most such curves show an initial increase in infections, peaking, and the declining to low levels, which is fundamentally different than the solution curves we obtained from the two-compartment model. To describe dynamics of this nature, models with more than two variables are needed, such as classic three-compartment SIR models (susceptible-infected-recovered) models and their modifications \citep{brauer_mathematical_2011}. Being able to predict the future of an epidemic based on $R_0$ and other parameters allows public health officials to prepare and deploy interventions (vaccinations, quarantine, etc.) that have the best shot at minimizing the epidemic.
+
+```{r ch7-ebola, echo=FALSE, fig.show='hold', out.width='50%', fig.asp=.75, fig.align='center', fig.cap = 'Number of new cases of ebola virus infections  per week in Liberia (left) and Sierra Leone (right), time ranging from March 17, 2014 (week 1) until May 20, 2015 (week 61). Data from http://apps.who.int/gho/data/node.ebola-sitrep.'}
+liberia <- read.table('data/ebola_liberia.txt',header=TRUE)
+barplot(liberia$cases,names.arg=liberia$week,xlab='time (weeks)',axisnames=TRUE,ylab='new ebola cases',col=2,cex=1.5, cex.axis=1.5,cex.lab=1.5)
+SL <- read.table('data/ebola_SL.txt',header=TRUE)
+evens <- seq(2,122,2)
+barplot(SL$cases[evens],names.arg=SL$week[evens]/2,xlab='time (weeks)',axisnames=TRUE,ylab='new ebola cases',col=2,cex=1.5, cex.axis=1.5,cex.lab=1.5)
+```
+
+
+
+# Graphical and qualitative analysis of ODEs
+
+### fixed points in ODE
+
+Generally, ODE models for realistic biological systems are nonlinear,
+and most nonlinear differential equations cannot be solved analytically.
+Instead, we will analyze the behavior of the solutions without finding
+an exact formula. The first step to understanding the dynamics of an ODE
+is finding its fixed points. The concept is the same as in the case of
+difference equations: a fixed point is a value of the solution at which
+the dynamical system stays constant. Thus, the derivative of the
+solution must be zero, which leads us to to the formal definition:
+
+For a differential equation $\dot x = f(x)$, a point $x^*$ which
+satisfies $f(x^*)=0$ is called a *fixed point* or *equilibrium*, and the
+solution with the initial condition $x(0)=x^*$ is $x(t)=x^*$.
+
+For instance, the linear equation $\dot x  = rx$ has a single fixed
+point at $x^* = 0$. For a more interesting example, consider a logistic
+equation: $\dot x = x - x^2 $. Its fixed points are the solutions of
+$x - x^2 = 0$, therefore there two fixed points: $x^* = 0, 1$. We know
+that if the solution has either of the fixed points as the initial
+condition, it will remain at that value for all time.
+
+Locating the fixed points is not sufficient to predict the global
+behavior of the dynamical system, however. The next question to address
+is the behavior of the solution if the initial condition is **near** the
+fixed point. This is the same notion of stability that we saw for
+discrete dynamical systems. The definition is identical:
+
+A fixed point $x^*$ of an ODE $\dot x = f(x)$ is called *stable (sink)*,
+if for a sufficiently small number $\epsilon$, the solution $x(t)$ with
+the initial condition $x_0 = x^* + \epsilon$ approaches the fixed point
+$x^*$ as $t \rightarrow \infty$. If the solution $x(t)$ does not
+approach $x^*$ for all nonzero $\epsilon$, the fixed point is called
+*unstable (source)*.
+
+We will see that the slope of $f(x)$ determines whether a fixed point is
+stable. We use the same methodology as we did in Chapter 1. First,
+define $\epsilon(t)$ to be the deviation of the solution $x(t)$ from the
+fixed point $x^*$, that is, write $x(t) = x^* + \epsilon(t)$. Assuming
+that $\epsilon(t)$ is small, we can write the function $f(x)$ using
+Taylor’s formula:
+$$f(x^*+\epsilon(t))= f(x^*)+f'(x^*) \epsilon(t) + ... = f'(x^*) \epsilon(t) + ...$$
+The term $f(x^*)$ vanished because it is zero by definition of a fixed
+point. The ellipsis indicates terms of order $\epsilon(t)^2$ and higher,
+which are very small by assumption. Thus, we can write the following
+approximation to the ODE $\dot x = f(x)$ near a fixed point:
+$$\dot x =  \frac{ d(x^* + \epsilon(t))}{dt} = \dot \epsilon(t) =  f'(x^*) \epsilon(t)$$
+This differential equation describes the dynamics of the deviation
+$\epsilon(t)$ near the fixed point $x^*$; note that the derivative
+$f'(x^*)$ is a constant for any given fixed point. We have obtained a
+linear equation for $\epsilon(t)$, known as the linearization of the ODE
+near the fixed point. We have classified the behavior of solutions for
+the general linear ODE $\dot x = rx$, and now we apply this
+classification to the behavior of the deviation $\epsilon(t)$:
+
+-   $f'(x^*) > 0$: the deviation $\epsilon(t)$ grows exponentially, and
+    the solution moves away from the fixed point $x^*$, therefore the
+    fixed point is **unstable**.
+
+-   $f'(x^*) < 0$: the deviation $\epsilon(t)$ decays to 0, therefore
+    the fixed point is **stable**.
+
+-   $f'(x^*) = 0$: the situation is more complicated.
+
+The classification of the behavior near a fixed point is directly
+analogous to that in discrete time models, with the difference that the
+discrimination between stable and unstable depends on the sign of the
+derivative, rather than whether its absolute value is greater than or
+less than 1. As before, the borderline situation is tricky, because if
+the first derivative is zero, higher order terms that we neglected make
+the difference. We will mostly avoid such borderline cases, but they are
+important in some applications.
+
+We have learned to find fixed points and analyze their stability. This
+will be the bedrock of our analysis of continuous-time dynamical
+systems, first in one variable and then in higher dimensions.
+
+### plotting flow on the line
+
+The defining function of the ODE $\dot x = f(x)$ gives the rate of
+change of $x(t)$ depending on the value of $x$. If $f(x)$ is large and
+positive, that means the dependent variable $x(t)$ is increasing
+rapidly. If $f(x)$ is small and negative, $x(t)$ is decreasing at a slow
+rate. If $f(x)=0$, this value of $x$ is a fixed point, and $x$ is not
+changing at all.
+
+For an ODE with one dependent variable, we can sketch the *flow on the
+line* defined by the differential equation. The “flow” stands for the
+direction of change at every point, specifically increasing, decreasing,
+or not changing. We will plot the flow on the horizontal x-axis, so if
+$x$ is increasing, the flow will be indicated by a rightward arrow, and
+if it is decreasing, the flow will point to the left. The fixed points
+separate the regions of increasing (rightward) flow and decreasing
+(leftward) flow.
+
+The graphical approach to finding areas of right and left flow is based
+on graphing the function $f(x)$, and dividing the x-axis based on the
+sign of $f(x)$. In the areas where $f(x) > 0$, its graph is above the
+x-axis, and the flow is to the right; conversely, when $f(x) < 0$, its
+graph is below the x-axis, and the flow is to the left. The fixed points
+are found at the intersections of the graph of $f(x)$ with the x-axis.
+
+Graphical analysis is also used to determine the stability of fixed
+points. To summarize, a fixed point $x^*$ is defined by $f(x^*) = 0$. We
+saw above, the slope of $f(x)$ at a fixed point determines its stability
+[@strogatz_nonlinear_2001]:
+
+-   if the slope of the graph of $f(x^*)$ is negative, the fixed point
+    is stable
+
+-   if the slope of the graph of $f(x^*)$ is positive, the fixed point
+    is unstable
+
+-   if the slope of the graph of $f(x^*)$ is zero ($f(x^*)$ just touches
+    the x-axis), then further analysis is needed to determine stability.
+
+### models with nonlinear terms: logistic model
+
+We have already seen the logistic population model in discrete time. The
+motivation and the form of the model are the same as before: population
+growth is generally slower at larger populations, which can be expressed
+as a higher death rate or a lower birth date, or both. We will assume
+there are separate birth and death rates, and that the birth rate
+declines as the population grows, while the death rate increases.
+Suppose there are inherent birth rates $b$ and $d$, and the overall
+birth and death rates $B$ and $D$ depend linearly on population size
+$P$: $B  =  b - aP $ and $D  =  d + cP $
+
+To model the actual rate of change of the population, we need to
+multiply the rates $B$ and $D$ by the population size $P$, since each
+individual can reproduce or die. Also, since the death rate $D$
+decreases the population, we need to put a negative sign on it. The
+resultant model is: $$\dot P = BP - DP = [(b-d)-(a+c)P]P$$ The
+parameters of the model, the constants $a,b,c,d$, have different
+meanings. Performing dimensional analysis, we find that $b$ and $d$ have
+the units of $1/[t]$, the same as the rate $r$ in the exponential growth
+model. However, the units of $a$ (and $c$) must obey the relation:
+$[P]/[t] = [a][P]^2$, and thus, $$[a]=[c] = \frac{1}{[t][P]}$$
+
+This shows that the constants $a$ and $c$ have to be treated differently
+than $b$ and $d$. Let us define the inherent growth rate of the
+population, to be $r_0=b-d$ (if the death rate is greater than the birth
+rate, the population will inherently decline). Then let us introduce
+another constant $K$, such that $(a+c)=r_0/K$. It should be clear from
+the dimensional analysis that $K$ has units of $P$, population size. Now
+we can write down the logistic equation in the canonical form:
+$$\dot P = r(1-\frac{P}{K})P
+\label{eq:log_cont_model}$$ This model can be re-written as
+$\dot P = aP -bP^2$, so it is clear that there is a *linear term* ($aP$)
+and a *nonlinear term* ($-bP^2$). When $P$ is sufficiently small (and
+positive) the linear term is greater, and the population grows. When $P$
+is large enough, the nonlinear term wins and the population declines.
+
+It should be apparent that there are two fixed points, at $P=0$ and at
+$P=K$. The first one corresponds to a population with no individuals. On
+the other hand, $K$ signifies the population at which the negative
+effect of population size balances out the inherent population growth
+rate, and is called the *carrying capacity* of a population in its
+environment. We will analyze the stability of these fixed points in the
+analytical section of this chapter.
+
+![Line flow analysis of the logistic model $\dot P = (1-P/90)P$; red
+arrows indicate the direction field in the intervals separated by the
+fixed
+points[]{data-label="fig:line_flow_logistic"}](images//lec2_fig2.jpg){width="4in"}
+
+**Example: semi-stable fixed point.** The function $f(x) =  -x^3 + x^2 $
+is plotted in figure , showing two fixed
+points at $x = 0, 1$. The red arrows on the x-axis show the direction of
+the flow in the three different regions separated by the fixed points.
+Flow is to the right for $x<1$, to the left for for $x>1$; it is plain
+to see that the arrows approach the fixed point from both sides, and
+thus the fixed point is stable, as the negative slope of $f(x)$ at $x=1$
+indicates. The fixed point at $x=0$ presents a more complicated
+situation: the slope of $f(x)$ is zero, and the flow is rightward on
+both sides of the fixed point. This type of fixed point is sometimes
+called *semi-stable*, because it is stable when approached from one
+side, and unstable when approached from the other.
+
+![Line flow analysis of the nonlinear ODE $ \dot x = -x^3 + x^2 $; red
+arrows indicate the direction field in the intervals separated by the
+fixed
+points.[]{data-label="fig:line_flow_example"}](images//lec2_fig1.jpg){width="4in"}
