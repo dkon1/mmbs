@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Models with one variable in continuous time &#8212; Mathematical Methods for Biology</title>
+    <title>3. Models with one variable in continuous time &#8212; Mathematical Methods for Biology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -38,7 +38,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Discrete models of higher order: age-structured population models" href="chapter2.html" />
+    <link rel="next" title="4. Graphical analysis of ordinary differential equations" href="chapter4.html" />
+    <link rel="prev" title="2. Discrete models of higher order: age-structured population models" href="chapter2.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -78,25 +79,30 @@
   </a>
  </li>
 </ul>
-<p class="caption">
- <span class="caption-text">
-  One-variable dynamical systems
- </span>
-</p>
 <ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="chapter1.html">
-   Models with one variable in discrete time
+  <a class="reference internal" href="chapter1_intro.html">
+   1. Models with one variable in discrete time
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter2.html">
-   Discrete models of higher order: age-structured population models
+   2. Discrete models of higher order: age-structured population models
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Models with one variable in continuous time
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html#graphical-and-qualitative-analysis-of-odes">
+   5. Graphical and qualitative analysis of ODEs
   </a>
  </li>
 </ul>
@@ -171,108 +177,93 @@
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   Introduction
+   3.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#review-of-linear-odes">
-   Review of linear ODEs
+  <a class="reference internal nav-link" href="#building-odes">
+   3.2. Building ODEs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#growth-proportional-to-population-size">
-     growth proportional to population size
+     3.2.1. growth proportional to population size
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#chemical-kinetics">
-     chemical kinetics
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#concepts-of-odes">
-     concepts of ODEs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solutions-of-linear-odes">
-     solutions of linear ODEs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution-of-inhomogeneous-odes">
-     solution of inhomogeneous ODEs
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#model-of-drug-concentration">
-     model of drug concentration
+     3.2.2. chemical kinetics
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#graphical-and-qualitative-analysis-of-odes">
-   Graphical and qualitative analysis of ODEs
+  <a class="reference internal nav-link" href="#analytic-solutions-of-linear-odes">
+   3.3. Analytic solutions of linear ODEs
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#fixed-points-in-ode">
-     fixed points in ODE
+    <a class="reference internal nav-link" href="#concepts-of-odes">
+     3.3.1. concepts of ODEs
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#plotting-flow-on-the-line">
-     plotting flow on the line
+    <a class="reference internal nav-link" href="#solutions-via-separate-and-integrate">
+     3.3.2. solutions via separate-and-integrate
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#models-with-nonlinear-terms-logistic-model">
-     models with nonlinear terms: logistic model
+    <a class="reference internal nav-link" href="#solution-of-nonhomogeneous-odes">
+     3.3.3. solution of nonhomogeneous ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-of-drug-concentration">
+     3.3.4. model of drug concentration
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#computation-simple-numerical-schemes">
-   Computation: simple numerical schemes
+   3.4. Computation: simple numerical schemes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#forward-euler-method">
-     Forward Euler method
+     3.4.1. Forward Euler method
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#error-in-numerical-solutions">
-     error in numerical solutions
+     3.4.2. error in numerical solutions
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#backward-euler-method">
-     backward Euler method
+     3.4.3. backward Euler method
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#synthesis-membrane-as-electric-circuit">
-   Synthesis: membrane as electric circuit
+   3.5. Synthesis: membrane as electric circuit
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#synthesis-sis-model-of-epidemics">
-   Synthesis: SIS model of epidemics
+   3.6. Synthesis: SIS model of epidemics
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modeling-setup">
-     modeling setup
+     3.6.1. modeling setup
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#graphical-analysis-of-the-sis-model">
-     graphical analysis of the SIS model
+     3.6.2. graphical analysis of the SIS model
     </a>
    </li>
   </ul>
@@ -288,15 +279,15 @@
               <div>
                 
   <div class="section" id="models-with-one-variable-in-continuous-time">
-<h1>Models with one variable in continuous time<a class="headerlink" href="#models-with-one-variable-in-continuous-time" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">3. </span>Models with one variable in continuous time<a class="headerlink" href="#models-with-one-variable-in-continuous-time" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In the previous chapter we have considered discrete time models, in which time is measured in integers. This worked well to describe processes that happen in periodic cycles, like cell division or heart pumping. Many biological systems do not work this way. Change can happen continuously, that is, at any point in time. For instance, the concentration of a biological molecule in the cell changes gradually, as does the voltage across the cell membrane in a neuron.</p>
 <p>The models for continuously changing variables require their own set of mathematical tools. Differential equations use derivatives to describe how a variable changes with time. There is a tremendous amount of knowledge accumulated by mathematicians, physicists and engineers for analyzing and solving differential equations. There are many classes of differential equations for which it is possible to find analytic solutions, often in the form of “special functions.” Differential equations courses for physicists and engineers are typically focused on learning about the variety of existing tools for solving a few types of differential equations. For the purposes of biological modeling, knowing how to solve a limited number of differential equations is of limited usefulness. We will instead focus on learning how to analyze the behavior of differential equations in general, without having to solve them on paper.</p>
 <p>I assume that you have seen basic differential equations before and thus will begin with a brief review of linear differential equations and their solutions. In contrast to linear differential equations, which can be solved in general, nonlinear differential equations may not be solvable even theoretically. When solutions cannot be found on paper, we have two options: 1) qualitative or graphical tools, such as finding equilibrium points and their stability, allow us to predict the long-term dynamics of the solution; 2) numerical solutions, which use computational methods to construct a sequence of numbers that approximate the true solution.</p>
 </div>
-<div class="section" id="review-of-linear-odes">
-<h2>Review of linear ODEs<a class="headerlink" href="#review-of-linear-odes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="building-odes">
+<h2><span class="section-number">3.2. </span>Building ODEs<a class="headerlink" href="#building-odes" title="Permalink to this headline">¶</a></h2>
 <p>We consider models with <em>continuous time</em>, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -312,20 +303,20 @@ x_{t+1} - x_t = g(x)
 <p>In general, an ordinary differential equation is defined as follows:</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) with respect to an independent variable (e.g. <span class="math notranslate nohighlight">\(t\)</span>).```</p>
+<p>An ordinary differential equation is an equation that contains derivatives of the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) with respect to an independent variable (e.g. <span class="math notranslate nohighlight">\(t\)</span>).</p>
 </div>
-<p>For example:
-$<span class="math notranslate nohighlight">\( 
+<p>For example:</p>
+<div class="math notranslate nohighlight">
+\[ 
 \frac{dx^2}{dt^2}+ 0.2 \frac{dx}{dt} - 25 = 0
-\)</span>$</p>
+\]</div>
 <p>There are at least two good reasons to use differential equations for many applications. First, some events happen very frequently and non-periodically, so it is more reasonable to allow time to flow continuously instead of in steps. The second reason is mathematical: it turns out that dynamical systems with continuous time, described by differential equations, are better behaved than difference equations. This has to do with the essential “jumpiness” of difference equations. Even for simple nonlinear equations, the value of the variable after one time step can be far removed from its last value. This can lead to highly complicated solutions, as we saw in the logistic model in Chapter 1.</p>
 <div class="section" id="growth-proportional-to-population-size">
-<h3>growth proportional to population size<a class="headerlink" href="#growth-proportional-to-population-size" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.1. </span>growth proportional to population size<a class="headerlink" href="#growth-proportional-to-population-size" title="Permalink to this headline">¶</a></h3>
 <p>We will now build up some of the most common differential equations models. First up, a simple population growth model with a constant growth rate. Suppose that in a population each individual reproduces with the average reproductive rate <span class="math notranslate nohighlight">\(r\)</span>. This is reflected in the following differential equation:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-linear-ode">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-linear-ode" title="Permalink to this equation">¶</a></span>\[
 \frac{dx} {dt} = \dot x = r x
-\label{eq:linear_ode}
 \]</div>
 <p>This expression states that the rate of change of <span class="math notranslate nohighlight">\(x\)</span>, which we take to be population size, is proportional to <span class="math notranslate nohighlight">\(x\)</span> with multiplicative constant <span class="math notranslate nohighlight">\(r\)</span>. We will frequenlty use the notation <span class="math notranslate nohighlight">\(\dot x\)</span> for the time derivative of <span class="math notranslate nohighlight">\(x\)</span> for aesthetic reasons.</p>
 <p>First, we apply dimensional analysis to this model. The units of the derivative are population per time, as can be deduced from the Newton’s quotient definition. Thus, the units in the equation have the following relationship:</p>
@@ -336,7 +327,7 @@ $<span class="math notranslate nohighlight">\(
 <p>This shows that as in the discrete time models, the dimension of the population growth rate <span class="math notranslate nohighlight">\(r\)</span> is inverse time, or frequency. The difference with the discrete time population models lies in the time scope of the rate. In the case of the difference equation, <span class="math notranslate nohighlight">\(r\)</span> is the rate of change per one time step of the model. In the differential equation, <span class="math notranslate nohighlight">\(r\)</span> is the <em>instantaneous rate of population growth</em>. It is less intuitive than the growth rate per single reproductive cycle, just like the slope of a curve is less intuitive than the slope of a line. The population growth happens continuously, so the growth rate of <span class="math notranslate nohighlight">\(r\)</span> individuals per year does not mean that if we start with one individual, there will be <span class="math notranslate nohighlight">\(r\)</span> after one year. In order to make quantitative predictions, we need to find the solution of the equation, which we will see in the next section.</p>
 </div>
 <div class="section" id="chemical-kinetics">
-<h3>chemical kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.2.2. </span>chemical kinetics<a class="headerlink" href="#chemical-kinetics" title="Permalink to this headline">¶</a></h3>
 <p>Reactions between molecules in cells occur continuously, driven by molecular collisions and physical forces. In order to model this complex behavior, it is generally assumed that reactions occur with a particular speed, known as the <em>kinetic rate</em>. A simple reaction of conversion from one type of molecule (<span class="math notranslate nohighlight">\(A\)</span>) to another (<span class="math notranslate nohighlight">\(B\)</span>) can be written as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -344,16 +335,17 @@ A \rightarrow^k B
 \]</div>
 <p>In this equation the parameter <span class="math notranslate nohighlight">\(k\)</span> is the kinetic rate, describing the speed of conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>, per concentration of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>Chemists and biochemists use differential equations to describe the change in molecular concentration during a reaction. These equations are known as the <em>laws of mass action</em>. For the reaction above, the concentration of molecule <span class="math notranslate nohighlight">\(A\)</span> decreases continuously proportionally to itself, and the concentration of molecule <span class="math notranslate nohighlight">\(B\)</span> increases continuously proportionally to the concentration of <span class="math notranslate nohighlight">\(A\)</span>. This is expressed by the following two differential equations:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}\begin{aligned}
-\label{eq:lin_chem_kin}
+<div class="math notranslate nohighlight" id="equation-lin-chem-kin">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-lin-chem-kin" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}
 \dot A &amp;=&amp; - k A \\
-\dot B &amp;=&amp; kA\end{aligned}
+\dot B &amp;=&amp; kA
+\end{aligned}
 \end{split}\]</div>
-<p>Several conclusions can be drawn by inspection of the equations. First, the dynamics depend only on the concentration of <span class="math notranslate nohighlight">\(A\)</span>, so keeping track of the concentration of <span class="math notranslate nohighlight">\(B\)</span> is superfluous. The second observation reinforces the first: the sum of the concentrations of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is constant. This is mathematically demonstrated by adding the two equations together to obtain the following:
-$<span class="math notranslate nohighlight">\(
+<p>Several conclusions can be drawn by inspection of the equations. First, the dynamics depend only on the concentration of <span class="math notranslate nohighlight">\(A\)</span>, so keeping track of the concentration of <span class="math notranslate nohighlight">\(B\)</span> is superfluous. The second observation reinforces the first: the sum of the concentrations of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is constant. This is mathematically demonstrated by adding the two equations together to obtain the following:</p>
+<div class="math notranslate nohighlight">
+\[
 \dot A + \dot B = -kA + kA = 0
-\)</span>$</p>
+\]</div>
 <p>One of the basic properties of the derivative is that the sum of derivatives is the same as the derivative of the sum:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -361,403 +353,214 @@ $<span class="math notranslate nohighlight">\(
 \]</div>
 <p>This means that the sum of the concentrations of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is a constant. This is a mathematical expression of the law of conservation in chemistry: molecules can change from one type to another, but they cannot appear or disappear in other ways. In this case, a single molecule of <span class="math notranslate nohighlight">\(A\)</span> becomes a single molecule of <span class="math notranslate nohighlight">\(B\)</span>, so it follows that the sum of the two has to remain the same. If the reaction were instead two molecules of <span class="math notranslate nohighlight">\(A\)</span> converting to a molecule of <span class="math notranslate nohighlight">\(B\)</span>, then the conserved quantity is <span class="math notranslate nohighlight">\(2A + B\)</span>. The concept of conserved quantity is very useful for the analysis of differential equations. We will see in later chapters how it can help us find solutions, and explain the behavior of complex dynamical systems.</p>
 </div>
+</div>
+<div class="section" id="analytic-solutions-of-linear-odes">
+<h2><span class="section-number">3.3. </span>Analytic solutions of linear ODEs<a class="headerlink" href="#analytic-solutions-of-linear-odes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="concepts-of-odes">
-<h3>concepts of ODEs<a class="headerlink" href="#concepts-of-odes" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.3.1. </span>concepts of ODEs<a class="headerlink" href="#concepts-of-odes" title="Permalink to this headline">¶</a></h3>
 <p>Let us define some terminology for ODEs:</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>The <em>order</em> of an ODE is the highest order of the derivative of the dependent variable <span class="math notranslate nohighlight">\(x\)</span>.</p>
 </div>
-<p>For example, <span class="math notranslate nohighlight">\(\dot x = rx\)</span> is a first order ODE, while <span class="math notranslate nohighlight">\(\ddot x = - mx\)</span> is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to ODEs with the highest derivative being of first order. In general, we can write all such ODEs as follows:</p>
-<div class="math notranslate nohighlight">
-\[
-\frac{d x} {dt} = \dot x = f(x,t)
+<p>For example, <span class="math notranslate nohighlight">\(\dot x = rx\)</span> is a first order ODE, while <span class="math notranslate nohighlight">\(\ddot x = - mx\)</span> is a second order ODE (double dot stands for second derivative). In this chapter we will restrict ourselves to first-order ODEs that can be generally written as follows:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A <em>first-order</em> ODE is one where the derivative <span class="math notranslate nohighlight">\(dx/dt\)</span> is  equal to a <em>defining function</em> <span class="math notranslate nohighlight">\(f(x,t)\)</span>, like this:</p>
+</div>
+<div class="math notranslate nohighlight" id="equation-first-order-ode">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-first-order-ode" title="Permalink to this equation">¶</a></span>\[
+\frac{dx} {dt} = \dot x = f(x,t)
 \]</div>
 <p>Note that the function may depend on both the dependent variable <span class="math notranslate nohighlight">\(x\)</span> and the independent variable <span class="math notranslate nohighlight">\(t\)</span>. This leads to the next definition:</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>An ODE is <em>autonomous</em> if the function <span class="math notranslate nohighlight">\(f\)</span> depends only on the dependent variable <span class="math notranslate nohighlight">\(x\)</span> and not on <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>An ODE is <em>autonomous</em> if the defining function <span class="math notranslate nohighlight">\(f\)</span> depends only on the dependent variable <span class="math notranslate nohighlight">\(x\)</span> and not on <span class="math notranslate nohighlight">\(t\)</span>.</p>
 </div>
 <p>For example, <span class="math notranslate nohighlight">\(\dot x = 5x -4\)</span> is an autonomous equation, while <span class="math notranslate nohighlight">\(\dot x = 5t \)</span> is not. An autonomous ODE is also said to have <em>constant coefficients</em> (e.g. 5 and -4 in the first equation above).</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>An ODE is <em>homogeneous</em> if every term involves either the dependent variable <span class="math notranslate nohighlight">\(x\)</span> or its derivative.</p>
+<p>An ODE is <em>homogeneous</em> if every term in the defining function involves either the dependent variable <span class="math notranslate nohighlight">\(x\)</span> or its derivative.</p>
 </div>
 <p>For example, <span class="math notranslate nohighlight">\(\dot x = x^2 + \sin(x)\)</span> is homogeneous, while <span class="math notranslate nohighlight">\(\dot x = -x + 5t\)</span> is not. Most simple biological models that we will encounter in the next two chapters are autonomous, homogeneous ODEs. However, inhomogeneous equations are important in many applications, and we will encounter them at the end of the present section.</p>
+</div>
+<div class="section" id="solutions-via-separate-and-integrate">
+<h3><span class="section-number">3.3.2. </span>solutions via separate-and-integrate<a class="headerlink" href="#solutions-via-separate-and-integrate" title="Permalink to this headline">¶</a></h3>
+<p>In contrast with algebraic equations, we cannot simply isolate <span class="math notranslate nohighlight">\(x\)</span> on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of <span class="math notranslate nohighlight">\(t\)</span>. We will discuss some of the difficulties later, but let us start with equations that we can solve.</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
-<p>The <em>solution of a differential equation</em> is a function of the independent variable that satisfies the equation for a range of values of the independent variable.</p>
+<p>The <em>analytic (or exact) solution</em> of an ordinary differential equation is a function of the independent variable that satisfies the equation. If no initial value is given, then the <em>general solution</em> function will contain an uknown <em>integration constant</em>. If an initial value is specified, the integration constant can be found to obtain a <em>specific solution</em>.</p>
 </div>
+<p>This means that the solution function obeys the relationship between the derivative and the defining function that is specified by the ODE. To verify that a function is a solution of a given ODE, take its derivative and check whether it matches the other side of the equation.</p>
+<p><strong>Example</strong>. The function <span class="math notranslate nohighlight">\(x(t) = 3t^2 +C\)</span> is a general solution of the ODE <span class="math notranslate nohighlight">\(\dot x = 6t\)</span>, which can be verified by taking the derivative: <span class="math notranslate nohighlight">\(\dot x (t) = 6t\)</span>. Since this matches the right-hand side of the ODE, the solution is valid.</p>
+<p><strong>Example</strong>. The function <span class="math notranslate nohighlight">\(x(t) = Ce^{5t}\)</span> is a general solution of the ODE <span class="math notranslate nohighlight">\(\dot x = 5x\)</span>. This can be verified by the taking the derivative: <span class="math notranslate nohighlight">\(\dot x = 5C e^{5t}\)</span> and comparing it with the right-hand side of the ODE: <span class="math notranslate nohighlight">\(5x = 5 Ce^{5t}\)</span>. Since the two sides of the equation agree, the solution is valid.</p>
 <p>In contrast with algebraic equations, we cannot simply isolate <span class="math notranslate nohighlight">\(x\)</span> on one side of the equal sign and find the solutions as one, or a few numbers. Instead, solving ordinary differential equations is very tricky, and no general strategy for solving an arbitrary ODE exists. Moreover, a solution for an ODE is not guaranteed to exist at all, or not for all values of <span class="math notranslate nohighlight">\(t\)</span>. We will discuss some of the difficulties later, but let us start with equations that we can solve.</p>
-</div>
-<div class="section" id="solutions-of-linear-odes">
-<h3>solutions of linear ODEs<a class="headerlink" href="#solutions-of-linear-odes" title="Permalink to this headline">¶</a></h3>
 <p>The most obvious strategy for solving an ODE is integration. Since a differential equation contains derivatives, integrating it can remove the derivative. In the case of the general first order equation, we can integrate both sides to obtain the following:</p>
 <div class="math notranslate nohighlight">
 \[
-\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x + C = \int f(x,t) dt
+\int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x(t) + C = \int f(x,t) dt
 \]</div>
-<p>The constant of integration <span class="math notranslate nohighlight">\(C\)</span> appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
-<p>The simplest method of analytical solution of a first-order ODEs, which I call <em>separate-and-integrate</em> consists of the following steps:</p>
+<p>The constant of integration <span class="math notranslate nohighlight">\(C\)</span> appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution <span class="math notranslate nohighlight">\(x(t)\)</span>. Unless the function <span class="math notranslate nohighlight">\(f(x,t)\)</span> depends only on <span class="math notranslate nohighlight">\(t\)</span>, it is not possible to evaluate the integral above. Instead, various tricks are used to find the analytic solution. The simplest method of analytical solution of a first-order ODEs, which I call <em>separate-and-integrate</em> consists of the following steps:</p>
 <ol class="simple">
-<li><p>use algebra to place the dependent and independent variables on
-different sides of the equations, including the differentials (e.g.
-<span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dt\)</span>)</p></li>
-<li><p>integrate both sides with respect to the different variables, don’t
-forget the integration constant</p></li>
-<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>)</p></li>
-<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
-integration constant</p></li>
+<li><p>use algebra to place the dependent and independent variables on different sides of the equations, including the differentials (e.g. <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dt\)</span>)</p></li>
+<li><p>integrate both sides with respect to the different variables, don’t forget the integration constant</p></li>
+<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) to find the <em>general solution</em></p></li>
+<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the integration constant and find the <em>specific solution</em></p></li>
 </ol>
-<p><strong>Example.</strong> Consider a very simple differential equation:
-<span class="math notranslate nohighlight">\(\dot x  = a\)</span>, where <span class="math notranslate nohighlight">\(\dot x\)</span> stands for the time derivative of the
-dependent variable <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(a\)</span> is a constant. It can be solved by
-integration:
-$<span class="math notranslate nohighlight">\(\int \frac{dx}{dt} dt  = \int a dt  \Rightarrow x(t) + C = at\)</span><span class="math notranslate nohighlight">\( This
-solution contains an undetermined integration constant; if an initial
-condition is specified, we can determine the complete solution.
-Generally speaking, if the initial condition is \)</span>x(0) = x_0<span class="math notranslate nohighlight">\(, we need to
-solve an algebraic equation to determine \)</span>C<span class="math notranslate nohighlight">\(: \)</span>x_0 = a*0 - C<span class="math notranslate nohighlight">\(, which
-results in \)</span>C = -x_0<span class="math notranslate nohighlight">\(. The complete solution is then \)</span>x(t) = at + x_0<span class="math notranslate nohighlight">\(.
-To make the example more specific, if \)</span>a = 5<span class="math notranslate nohighlight">\( and the initial condition
-is \)</span>x(0) = -3<span class="math notranslate nohighlight">\(, the solution is \)</span>x(t) = 5t -3$.</p>
-<p><strong>Example</strong>. Let us solve the linear population growth model in equation
-[eq:linear_ode]: <span class="math notranslate nohighlight">\(\dot x = rx\)</span>. The equation can be solved by first
-dividing both sides by <span class="math notranslate nohighlight">\(x\)</span> and then integrating:
-$<span class="math notranslate nohighlight">\(\int \frac{1}{x} \frac{d x}{dt}  dt = \int \frac{dx}{x} = \int r dt \Longrightarrow \log |x| = rt + C  \Longrightarrow  x =  e^{rt+C} = Ae^{rt}\)</span><span class="math notranslate nohighlight">\(
-We used basic algebra to solve for \)</span>x<span class="math notranslate nohighlight">\(, exponentiating both sides to get
-rid of the logarithm on the left side. As a result, the additive
-constant \)</span>C<span class="math notranslate nohighlight">\( gave rise to the multiplicative constant \)</span>A=e^C<span class="math notranslate nohighlight">\(. Once
-again, the solution contains a constant which can be determined by
-specifying an initial condition \)</span>x(0) = x_0<span class="math notranslate nohighlight">\(. In this case, the
-relationship is quite straightforward: \)</span>x(0) = A e^0 = A<span class="math notranslate nohighlight">\(. Thus, the
-complete solution for equation \[eq:linear\_ode\] is:
-\)</span><span class="math notranslate nohighlight">\(x(t) = x_0e^{rt}\)</span>$ As in the case of the discrete-time models,
-population growth with a constant birth rate has exponential form. Once
-again, please pause and consider this fact, because the exponential
-solution of linear equations is one of the most basic and powerful tools
-in applied mathematics. Immediately, it allows us to classify the
-behavior of linear ODE into three categories:</p>
+<p><strong>Example.</strong> Consider a very simple differential equation: <span class="math notranslate nohighlight">\(\dot x  = a\)</span>, where <span class="math notranslate nohighlight">\(\dot x\)</span> stands for the time derivative of the
+dependent variable <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(a\)</span> is a constant. It can be solved by integration:</p>
+<div class="math notranslate nohighlight">
+\[
+\int \frac{dx}{dt} dt  = \int a dt  \Rightarrow x(t) + C = at
+\]</div>
+<p>This solution contains an undetermined integration constant; if an initial condition is specified, we can determine the complete solution. Generally speaking, if the initial condition is <span class="math notranslate nohighlight">\(x(0) = x_0\)</span>, we need to solve an algebraic equation to determine <span class="math notranslate nohighlight">\(C\)</span>: <span class="math notranslate nohighlight">\(x_0 = a \times 0 - C\)</span>, which results in <span class="math notranslate nohighlight">\(C = -x_0\)</span>. The complete solution is then <span class="math notranslate nohighlight">\(x(t) = at + x_0\)</span>. To make the example more specific, if <span class="math notranslate nohighlight">\(a = 5\)</span> and the initial condition is <span class="math notranslate nohighlight">\(x(0) = -3\)</span>, the solution is <span class="math notranslate nohighlight">\(x(t) = 5t -3\)</span>.</p>
+<p><strong>Example</strong>. Let us solve the linear population growth model in equation <a class="reference internal" href="#equation-linear-ode">(3.1)</a>: <span class="math notranslate nohighlight">\(\dot x = rx\)</span>. The equation can be solved by first dividing both sides by <span class="math notranslate nohighlight">\(x\)</span> and then integrating:</p>
+<div class="math notranslate nohighlight">
+\[
+\int \frac{1}{x} \frac{d x}{dt}  dt = \int \frac{dx}{x} = \int r dt \Longrightarrow \log |x| = rt + C  \Longrightarrow  x =  e^{rt+C} = Ae^{rt}
+\]</div>
+<p>We used basic algebra to solve for <span class="math notranslate nohighlight">\(x\)</span>, exponentiating both sides to get rid of the logarithm on the left side. As a result, the additive constant <span class="math notranslate nohighlight">\(C\)</span> gave rise to the multiplicative constant <span class="math notranslate nohighlight">\(A=e^C\)</span>. Once again, the solution contains a constant which can be determined by specifying an initial condition <span class="math notranslate nohighlight">\(x(0) = x_0\)</span>. In this case, the relationship is quite straightforward: <span class="math notranslate nohighlight">\(x(0) = A e^0 = A\)</span>. Thus, the complete solution for equation <a class="reference internal" href="#equation-linear-ode">(3.1)</a> is:</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) = x_0e^{rt}
+\]</div>
+<p>As in the case of the discrete-time models, population growth with a constant birth rate has exponential form. Once again, please pause and consider this fact, because the exponential solution of linear equations is one of the most basic and powerful tools in applied mathematics. Immediately, it allows us to classify the behavior of linear ODE into three categories:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( r &gt; 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> grows without bound</p></li>
-<li><p><span class="math notranslate nohighlight">\( r &lt; 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> decays to 0</p></li>
-<li><p><span class="math notranslate nohighlight">\( r = 0 \)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> remains constant at the initial value</p></li>
+<li><p><span class="math notranslate nohighlight">\(r &gt;0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> grows without bound</p></li>
+<li><p><span class="math notranslate nohighlight">\(r &lt;0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> decays to 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(r = 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> remains constant at the initial value</p></li>
 </ul>
-<p>The rate <span class="math notranslate nohighlight">\(r\)</span> being positive reflects the dominance of birth rate over
-death rate in the population, leading to unlimited population growth. If
-the death rate is greater, the population will decline and die out. If
-the two are exactly matched, the population size will remain unchanged.</p>
-<p><strong>Example.</strong> The solution for the biochemical kinetic model in equation
-[eq:lin_chem_kin] is identical except for the sign:
-<span class="math notranslate nohighlight">\( A(t) = A_0 e^{-kt}\)</span>. When the reaction rate <span class="math notranslate nohighlight">\(k\)</span> is positive, as it is
-in chemistry, the concentration of <span class="math notranslate nohighlight">\(A\)</span> decays to 0 over time. This
-should be obvious from our model, since there is no back reaction, and
-the only chemical process is conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>. The
-concentration of <span class="math notranslate nohighlight">\(B\)</span> can be found by using the fact that the total
-concentration of molecules in the model is conserved. Let us call it
-<span class="math notranslate nohighlight">\(C\)</span>. Then <span class="math notranslate nohighlight">\(B(t) = C - A(t) = C- A_0e^{-kt}\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span>
-increases to the asymptotic limit of <span class="math notranslate nohighlight">\(C\)</span>, meaning that all molecules of
-<span class="math notranslate nohighlight">\(A\)</span> have been converted to <span class="math notranslate nohighlight">\(B\)</span>.</p>
+<p>The rate <span class="math notranslate nohighlight">\(r\)</span> being positive means that the birth rate is greater than the death rate in the population, leading to unlimited population growth. If the death rate is greater, the population will decline and die out. If the two are exactly matched, the population size will remain unchanged.</p>
+<p><strong>Example.</strong> The solution for the biochemical kinetic model in equation <a class="reference internal" href="#equation-lin-chem-kin">(3.2)</a> is identical except for the sign:
+<span class="math notranslate nohighlight">\(A(t) = A_0 e^{-kt}\)</span>. When the reaction rate <span class="math notranslate nohighlight">\(k\)</span> is positive, as it is in chemistry, the concentration of <span class="math notranslate nohighlight">\(A\)</span> decays to 0 over time. This is consistent with the arrow diagram of this model, since there is no back reaction, and the only chemical process is conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span> can be found by using the fact that the total concentration of molecules in the model is conserved. Let us call it <span class="math notranslate nohighlight">\(C\)</span>. Then <span class="math notranslate nohighlight">\(B(t) = C - A(t) = C- A_0e^{-kt}\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span> increases to the asymptotic limit of <span class="math notranslate nohighlight">\(C\)</span>, meaning that all molecules of <span class="math notranslate nohighlight">\(A\)</span> have been converted to <span class="math notranslate nohighlight">\(B\)</span>.</p>
 </div>
-<div class="section" id="solution-of-inhomogeneous-odes">
-<h3>solution of inhomogeneous ODEs<a class="headerlink" href="#solution-of-inhomogeneous-odes" title="Permalink to this headline">¶</a></h3>
-<p>The two models we have seen above are non-homogeneous, because they
-involve a term without a dependent variable, and linear, because the
-relationship with the dependent variable term is proportional. They can
-be solved on paper using the same separate-and-integrate method,
-modified slightly to handle the constant term. Here are the steps to
-solve the generic linear ODE with a constant term <span class="math notranslate nohighlight">\(\dot x = ax +b \)</span>:</p>
+<div class="section" id="solution-of-nonhomogeneous-odes">
+<h3><span class="section-number">3.3.3. </span>solution of nonhomogeneous ODEs<a class="headerlink" href="#solution-of-nonhomogeneous-odes" title="Permalink to this headline">¶</a></h3>
+<p>ODEs that contain at least one term without the dependent variable are a bit more complicated. If the defining function is <span class="math notranslate nohighlight">\(f(x,t)\)</span> is <em>linear</em> in the dependent variable <span class="math notranslate nohighlight">\(x\)</span>, they can be solved on paper using the same separate-and-integrate method, modified slightly to handle the constant term. Here are the steps to solve the generic linear ODE with a constant term <span class="math notranslate nohighlight">\(\dot x = ax +b\)</span>:</p>
 <ol class="simple">
-<li><p>separate the dependent and independent variables on different sides
-of the equations, by dividing both sides by the right hand side
-<span class="math notranslate nohighlight">\(ax+b\)</span>, and multiplying both sides by the differential <span class="math notranslate nohighlight">\(dt\)</span></p></li>
-<li><p>integrate both sides with respect to the different variables, don’t
-forget the integration constant!</p></li>
-<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>)</p></li>
-<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
-integration constant</p></li>
+<li><p>separate the dependent and independent variables on different sides of the equations, by dividing both sides by the right hand side <span class="math notranslate nohighlight">\(ax+b\)</span>, and multiplying both sides by the differential <span class="math notranslate nohighlight">\(dt\)</span></p></li>
+<li><p>integrate both sides with respect to the different variables, don’t forget the integration constant!</p></li>
+<li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) to find the <em>general solution</em></p></li>
+<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the integration constant and find the <em>specific solution</em></p></li>
 </ol>
-<p><strong>Example:</strong> Let us solve the following ODE model using separate and
-integrate with the given initial value:
-$<span class="math notranslate nohighlight">\(\frac{dx}{dt} = 4x -100;  \; x(0) = 32\)</span>$</p>
-<ol class="simple">
-<li><p>separate the dependent and independent variables:
-$<span class="math notranslate nohighlight">\(\frac{dx}{4x - 100} = dt\)</span>$</p></li>
-<li><p>integrate both sides:
-$<span class="math notranslate nohighlight">\(\int \frac{dx}{4x -100} =  \int dt \Rightarrow \frac{1}{4} \int \frac{du}{u} = \frac{1}{4} \ln | 4x- 100 |  = t + C\)</span><span class="math notranslate nohighlight">\(
-The integration used the substitution of the new variable
-\)</span>u=4x -100<span class="math notranslate nohighlight">\(, with the concurrent substitution of \)</span>dx = du/4$.</p></li>
-<li><p>solve for the dependent variable:
-$<span class="math notranslate nohighlight">\(\ln | 4x- 100 |  = 4t + C \Rightarrow 4x-100 = e^{4t} B  \Rightarrow x = 25  + Be^{4t}\)</span><span class="math notranslate nohighlight">\(
-Here the first step was to multiply both sides by 4, and the second
-to use both sides as the exponents of \)</span>e<span class="math notranslate nohighlight">\(, removing the natural log
-from the left hand side, and finally simple algebra to solve for \)</span>x<span class="math notranslate nohighlight">\(
-as a function of \)</span>t$.</p></li>
-<li><p>solve for the integration constant:
-$<span class="math notranslate nohighlight">\(x(0) = 25  + B = 32 \Rightarrow B = 7\)</span><span class="math notranslate nohighlight">\( Here the exponential
-“disappeared” because \)</span>e^0=1$.</p></li>
-</ol>
-<p>Therefore, the complete solution of the ODE with the given initial value
-is $<span class="math notranslate nohighlight">\(x(t) =  25  + 5e^{4t}\)</span>$</p>
-<p>At this point, you might have noticed something about solutions of
-linear ODEs: they always involve an exponential term, with time in the
-exponent. Knowing this, it is possible to bypass the whole process of
-separate-and-integrate by using the following short-cut.</p>
-<p><strong>Important fact:</strong> Any linear ODE of the form <span class="math notranslate nohighlight">\(\dot x= ax +b \)</span> has an
-analytic solution of the form: $<span class="math notranslate nohighlight">\(x(t) = Ce^{at} + D\)</span><span class="math notranslate nohighlight">\( This can be tested
-by plugging the solution back into the ODE to see if it satisfies the
-equation. First, take the derivative of the solution to get the
-left-hand side of the ODE: \)</span> \frac{dx}{dt} = Ca e^{at}<span class="math notranslate nohighlight">\(; the plug in
-\)</span>x(t)<span class="math notranslate nohighlight">\( into the right hand side of the ODE: \)</span> aCe^{at} + aD +b<span class="math notranslate nohighlight">\(. Setting
-the two sides equal, we get: \)</span>Ca e^{at} =
-aCe^{at} + aD +b<span class="math notranslate nohighlight">\(, which is satisfied if \)</span>aD+b= 0<span class="math notranslate nohighlight">\(, which means
-\)</span>D= -b/a<span class="math notranslate nohighlight">\(. This is consistent with the example above, the additive
-constant in the solution was 0.8, which is \)</span>-b/a= -(4)/5=0.8$.</p>
-<p>In short, if you want to solve a linear ODE <span class="math notranslate nohighlight">\(\dot x= ax +b\)</span> , you can
-bypass the separate-and-integrate process, because the general solution
-always has the form: $<span class="math notranslate nohighlight">\(x(t) = Ce^{at} - \frac{b}{a}
-\label{eq:ch15_ode_sol}\)</span><span class="math notranslate nohighlight">\( The unknown constant \)</span>C<span class="math notranslate nohighlight">\( can be determined
-from a given initial value. So the upshot is that all linear ODEs have
-solutions which are exponential in time with exponential constant coming
-from the slope constant \)</span>a<span class="math notranslate nohighlight">\( in the ODE. The dynamics of the solution are
-determined by the sign of the constant \)</span>a<span class="math notranslate nohighlight">\(: if \)</span>a&gt;0<span class="math notranslate nohighlight">\(, the solution grows
-(or declines) without bound; and if \)</span>a&lt;0<span class="math notranslate nohighlight">\(, the solution approaches an
-asymptote at \)</span>-b/a$ (from above or below, depending on the initial
-value).</p>
+<p><strong>Example:</strong> Let us solve the following ODE model using separate and integrate with the given initial value:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dx}{dt} = 4x -100;  \; x(0) = 30
+\]</div>
+<ul class="simple">
+<li><p>Separate the dependent and independent variables:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\frac{dx}{4x - 100} = dt
+\]</div>
+<ul class="simple">
+<li><p>Integrate both sides:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\int \frac{dx}{4x -100} =  \int dt \Rightarrow \frac{1}{4} \int \frac{du}{u} = \frac{1}{4} \ln | 4x- 100 |  = t + C
+\]</div>
+<p>The integration used the substitution of the new variable <span class="math notranslate nohighlight">\(u=4x -100\)</span>, with the concurrent substitution of <span class="math notranslate nohighlight">\(dx = du/4\)</span>.</p>
+<ul class="simple">
+<li><p>Solve for the dependent variable:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+\ln | 4x- 100 |  = 4t + C \Rightarrow 4x-100 = e^{4t} B  \Rightarrow x = 25  + Be^{4t}
+\]</div>
+<p>Here the first step was to multiply both sides by 4, and the second to use both sides as the exponents of <span class="math notranslate nohighlight">\(e\)</span>, removing the natural log from the left hand side, and finally simple algebra to solve for <span class="math notranslate nohighlight">\(x\)</span> as a function of <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<ul class="simple">
+<li><p>Solve for the integration constant:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+x(0) = 25  + B = 30 \Rightarrow B = 5
+\]</div>
+<p>Here the exponential “disappeared” because <span class="math notranslate nohighlight">\(e^0=1\)</span>. Therefore, the specific solution of the ODE with the given initial value is</p>
+<div class="math notranslate nohighlight">
+\[
+x(t) =  25  + 5e^{4t}
+\]</div>
+<p>At this point, you might have noticed something about solutions of linear ODEs: they always involve an exponential term, with time in the exponent. Knowing this, it is possible to bypass the whole process of separate-and-integrate by using the following short-cut.</p>
+<div class="tip admonition">
+<p class="admonition-title">Important Fact</p>
+<p>Any linear ODE of the form <span class="math notranslate nohighlight">\(\dot x= ax +b \)</span> has an analytic solution of the form:</p>
+<div class="math notranslate nohighlight" id="equation-sol-nonhom">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-sol-nonhom" title="Permalink to this equation">¶</a></span>\[
+x(t) = Ce^{at} + D
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(D = -b/a\)</span> and <span class="math notranslate nohighlight">\(C\)</span> determined by the initial value <span class="math notranslate nohighlight">\(x(0)\)</span>.</p>
+</div>
+<p>This can be verified by plugging the solution back into the ODE to see if it satisfies the equation. First, take the derivative of the solution to get the left-hand side of the ODE: <span class="math notranslate nohighlight">\(\frac{dx}{dt} = Ca e^{at}\)</span>; then plug in <span class="math notranslate nohighlight">\(x(t)\)</span> into the right hand side of the ODE: <span class="math notranslate nohighlight">\( aCe^{at} + aD +b\)</span>. Setting the two sides equal, we get: <span class="math notranslate nohighlight">\(Ca e^{at} =  aCe^{at} + aD +b\)</span>, which is satisfied if <span class="math notranslate nohighlight">\(aD + b = 0\)</span>, which means <span class="math notranslate nohighlight">\(D= -b/a\)</span>. This is consistent with the example above, the additive constant in the solution was 25, which is <span class="math notranslate nohighlight">\(-b/a= -(-100)/4 = 25\)</span>.</p>
+<p>Thus, if you want to solve a linear no ODE <span class="math notranslate nohighlight">\(\dot x= ax +b\)</span> , you can bypass the separate-and-integrate process, because the general solution always has the form in equation <a class="reference internal" href="#equation-sol-nonhom">(3.4)</a>. So the upshot is that all linear ODEs have solutions which are exponential in time with exponential constant coming from the slope constant <span class="math notranslate nohighlight">\(a\)</span> in the ODE. The dynamics of the solution are determined by the sign of the constant <span class="math notranslate nohighlight">\(a\)</span>: if <span class="math notranslate nohighlight">\(a&gt;0\)</span>, the solution grows (or declines) without bound; and if <span class="math notranslate nohighlight">\(a&lt;0\)</span>, the solution approaches an asymptote at <span class="math notranslate nohighlight">\(-b/a\)</span> (from above or below, depending on the initial value).</p>
 </div>
 <div class="section" id="model-of-drug-concentration">
-<h3>model of drug concentration<a class="headerlink" href="#model-of-drug-concentration" title="Permalink to this headline">¶</a></h3>
-<p>Describing and predicting the dynamics of drug concentration in the body
-is the goal of <em>pharmacokinetics</em>. Any drug that humans take goes
-through several stages: first it is administered (put into the body),
-then absorbed, metabolized (transformed), and excreted (removed from the
-body). Almost any drug has a dose at which it has a toxic effect, and
-most can kill a human if the dose is high enough. Drugs which are used
-for medical purposes have a <em>therapeutic range</em>, which lies between the
-lowest possible concentration (usually measured in the blood plasma)
-that achieves the therapeutic effect and the concentration which is
-toxic. One of the basic questions that medical practitioners need to
-know is how much and how frequently to administer a drug to maintain
-drug concentration in the therapeutic range.</p>
-<p>The concentration of a drug is a dynamic variable which depends on the
-rates of several processes, most directly on the rate of administration
-and the rate of metabolism. Drugs can be <em>administered</em> through various
-means (e.g. orally or intravenously) which influences their rate of
-absorption and thus how the concentration increases. Once in the blood
-plasma, drugs are metabolized primarily by enzymes in the liver,
-converting drug molecules into compounds that can be excreted through
-the kidneys or the large intestine. The process of <em>metabolism</em> proceeds
-at a rate, which depends on both the concentration of the drug and on
-the enzyme that catalyzes the reaction. For some drugs the metabolic
-rate may be <em>constant</em>, or independent of the drug concentration, since
-the enzymes are already working at full capacity and can’t turn over any
-more reactions, for example alcohol is metabolized at a constant rate of
-about 1 drink per hours for most humans. For other drugs, if the plasma
-concentration is low enough, the enzymes are not occupied all the time
-and increasing the drug concentration leads to an increase in the rate
-of metabolism. In the simplest case, the rate of metabolism is <em>linear</em>,
-or proportional to the concentration of the drug, with proportionality
-constant called the first-order metabolic rate.</p>
-<p>Let us build an ODE model for a simplified pharmacokinetics situation.
-Suppose that a drug is administered at a constant rate of <span class="math notranslate nohighlight">\(M\)</span>
-(concentration units per time unit) and that it is metabolized at a rate
-proportional to its plasma concentration <span class="math notranslate nohighlight">\(C\)</span> with metabolic rate
-constant <span class="math notranslate nohighlight">\(k\)</span>. Then the ODE model of the concentration of the drug over
-time <span class="math notranslate nohighlight">\(C(t)\)</span> is: $<span class="math notranslate nohighlight">\(\frac{dC}{dt} = M - kC\)</span><span class="math notranslate nohighlight">\( The two rate constants \)</span>M<span class="math notranslate nohighlight">\(
-and \)</span>k$ have different dimensions, which you should be able to determine
-yourself. The ODE can be solved using the separate-and-integrate method:</p>
-<ol class="simple">
-<li><p>Divide both sides by the right hand side <span class="math notranslate nohighlight">\(M-kC\)</span>, and multiply both
-sides by the differential <span class="math notranslate nohighlight">\(dt\)</span> $<span class="math notranslate nohighlight">\(\frac{dC}{M-kC} = dt\)</span>$</p></li>
-<li><p>integrate both sides with respect to the different variables, don’t
-forget the integration constant!
-$<span class="math notranslate nohighlight">\(\int \frac{dC}{M-kC} = \int dt \Rightarrow\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(-\frac{1}{k} \log |M-kC| = t + A\)</span>$</p></li>
-<li><p>solve for the dependent variable <span class="math notranslate nohighlight">\(C(t)\)</span>
-$<span class="math notranslate nohighlight">\(\exp(\log |M-kC| ) = -\exp(kt +A) \Rightarrow\)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(M - kC = B e^{-kt} \Rightarrow\)</span><span class="math notranslate nohighlight">\( \)</span><span class="math notranslate nohighlight">\(C(t) = \frac{M}{k}- Be^{-kt}\)</span><span class="math notranslate nohighlight">\(
-Notice that I changed the values of integration constants \)</span>A<span class="math notranslate nohighlight">\( and
-\)</span>B$ during the derivation, which shouldn’t matter because they have
-not been determined yet.</p></li>
-<li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the
-integration constant If we know the initial value <span class="math notranslate nohighlight">\(C(0) = C_0\)</span>, then
-we can plug it in and get the following algebraic expression:
-$<span class="math notranslate nohighlight">\(C_0 =  \frac{M}{k} - B \Rightarrow\)</span><span class="math notranslate nohighlight">\( \)</span><span class="math notranslate nohighlight">\(B = C_0 -  \frac{M}{k}\)</span><span class="math notranslate nohighlight">\(
-Then the complete solution is:
-\)</span><span class="math notranslate nohighlight">\(C(t) =  \frac{M}{k} - (C_0- \frac{M}{k})e^{-kt}\)</span>$</p></li>
-</ol>
-<p>The solution predicts that after a long time the plasma concentration
-will approach the value <span class="math notranslate nohighlight">\(M/k\)</span>, since the exponential term decays to
-zero. Notice that mathematically this is the same type of solution we
-obtained in equation [eq:ch15_ode_sol] for a generic linear ODE with
-a constant term.</p>
+<h3><span class="section-number">3.3.4. </span>model of drug concentration<a class="headerlink" href="#model-of-drug-concentration" title="Permalink to this headline">¶</a></h3>
+<p>Describing and predicting the dynamics of drug concentration in the body is the goal of <em>pharmacokinetics</em>. Any drug that humans take goes through several stages: first it is administered (put into the body), then absorbed, metabolized (transformed), and excreted (removed from the body) \citep{rosenbaum_basic_2011}. Almost any drug has a dose at which it has a toxic effect, and most can kill a human if the dose is high enough. Drugs which are used for medical purposes have a <em>therapeutic range</em>, which lies between the lowest possible concentration (usually measured in the blood plasma) that achieves the therapeutic effect and the concentration which is toxic. One of the basic questions that medical practitioners need to know is how much and how frequently to administer a drug to maintain drug concentration in the therapeutic range.</p>
+<p>The concentration of a drug is a dynamic variable which depends on the rates of several processes, most directly on the rate of administration and the rate of metabolism. Drugs can be administered through various means (e.g. orally or intravenously) which influences their rate of absorption and thus how the concentration increases. Once in the blood plasma, drugs are metabolized primarily by enzymes in the liver, converting drug molecules into compounds that can be excreted through the kidneys or the large intestine. The process of \index{kinetics!drug metabolism} *metabolism proceeds at a rate that depends on both the concentration of the drug and on the enzyme that catalyzes the reaction. For some drugs the metabolic rate may be constant, or independent of the drug concentration, since the enzymes are already working at full capacity and can’t turn over any more reactions, for example alcohol is metabolized at a constant rate of about 1 drink per hours for most humans. <a class="reference internal" href="#fig-alc-met"><span class="std std-numref">Fig. 3.1</span></a> shows the time plots of the blood alcohol concentration for 4 males who ingested different amounts of alcohol, and the curves are essentially linear with the same slope after the peak.  For other drugs, if the plasma concentration is low enough, the enzymes are not occupied all the time and increasing the drug concentration leads to an increase in the rate of metabolism. One can see this behavior in the metabolism of the anti-depressant drug bupropion in figure <a class="reference internal" href="#fig-bupropion"><span class="std std-numref">Fig. 3.2</span></a>, where the concentration curve shows a faster decay rate for higher concentration of the drug than for lower concentration. In the simplest case, the rate of metabolism is linear, or proportional to the concentration of the drug, with proportionality constant called the first-order metabolic rate.</p>
+<div class="figure align-default" id="fig-alc-met">
+<img alt="_images/aa35graf.png" src="_images/aa35graf.png" />
+<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Blood alcohol content after ingesting different numbers of drinks, from 4 in the top curve to 1 in the bottom (figure from the National Institute on Alcohol Abuse and Alcoholism in public domain)</span><a class="headerlink" href="#fig-alc-met" title="Permalink to this image">¶</a></p>
 </div>
+<div class="figure align-default" id="fig-bupropion">
+<img alt="_images/2000px-Bupropion_bioequivalency.png" src="_images/2000px-Bupropion_bioequivalency.png" />
+<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Blood concentration of bupropion for two different drugs in clinical trials (image by CMBJ based on FDA data under CC-BY 3.0 via Wikimedia Commons)</span><a class="headerlink" href="#fig-bupropion" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="graphical-and-qualitative-analysis-of-odes">
-<h2>Graphical and qualitative analysis of ODEs<a class="headerlink" href="#graphical-and-qualitative-analysis-of-odes" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="fixed-points-in-ode">
-<h3>fixed points in ODE<a class="headerlink" href="#fixed-points-in-ode" title="Permalink to this headline">¶</a></h3>
-<p>Generally, ODE models for realistic biological systems are nonlinear,
-and most nonlinear differential equations cannot be solved analytically.
-Instead, we will analyze the behavior of the solutions without finding
-an exact formula. The first step to understanding the dynamics of an ODE
-is finding its fixed points. The concept is the same as in the case of
-difference equations: a fixed point is a value of the solution at which
-the dynamical system stays constant. Thus, the derivative of the
-solution must be zero, which leads us to to the formal definition:</p>
-<p>For a differential equation <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span>, a point <span class="math notranslate nohighlight">\(x^*\)</span> which
-satisfies <span class="math notranslate nohighlight">\(f(x^*)=0\)</span> is called a <em>fixed point</em> or <em>equilibrium</em>, and the
-solution with the initial condition <span class="math notranslate nohighlight">\(x(0)=x^*\)</span> is <span class="math notranslate nohighlight">\(x(t)=x^*\)</span>.</p>
-<p>For instance, the linear equation <span class="math notranslate nohighlight">\(\dot x  = rx\)</span> has a single fixed
-point at <span class="math notranslate nohighlight">\(x^* = 0\)</span>. For a more interesting example, consider a logistic
-equation: <span class="math notranslate nohighlight">\(\dot x = x - x^2 \)</span>. Its fixed points are the solutions of
-<span class="math notranslate nohighlight">\(x - x^2 = 0\)</span>, therefore there two fixed points: <span class="math notranslate nohighlight">\(x^* = 0, 1\)</span>. We know
-that if the solution has either of the fixed points as the initial
-condition, it will remain at that value for all time.</p>
-<p>Locating the fixed points is not sufficient to predict the global
-behavior of the dynamical system, however. The next question to address
-is the behavior of the solution if the initial condition is <strong>near</strong> the
-fixed point. This is the same notion of stability that we saw for
-discrete dynamical systems. The definition is identical:</p>
-<p>A fixed point <span class="math notranslate nohighlight">\(x^*\)</span> of an ODE <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span> is called <em>stable (sink)</em>,
-if for a sufficiently small number <span class="math notranslate nohighlight">\(\epsilon\)</span>, the solution <span class="math notranslate nohighlight">\(x(t)\)</span> with
-the initial condition <span class="math notranslate nohighlight">\(x_0 = x^* + \epsilon\)</span> approaches the fixed point
-<span class="math notranslate nohighlight">\(x^*\)</span> as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>. If the solution <span class="math notranslate nohighlight">\(x(t)\)</span> does not
-approach <span class="math notranslate nohighlight">\(x^*\)</span> for all nonzero <span class="math notranslate nohighlight">\(\epsilon\)</span>, the fixed point is called
-<em>unstable (source)</em>.</p>
-<p>We will see that the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> determines whether a fixed point is
-stable. We use the same methodology as we did in Chapter 1. First,
-define <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> to be the deviation of the solution <span class="math notranslate nohighlight">\(x(t)\)</span> from the
-fixed point <span class="math notranslate nohighlight">\(x^*\)</span>, that is, write <span class="math notranslate nohighlight">\(x(t) = x^* + \epsilon(t)\)</span>. Assuming
-that <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> is small, we can write the function <span class="math notranslate nohighlight">\(f(x)\)</span> using
-Taylor’s formula:
-$<span class="math notranslate nohighlight">\(f(x^*+\epsilon(t))= f(x^*)+f'(x^*) \epsilon(t) + ... = f'(x^*) \epsilon(t) + ...\)</span><span class="math notranslate nohighlight">\(
-The term \)</span>f(x^<em>)<span class="math notranslate nohighlight">\( vanished because it is zero by definition of a fixed
-point. The ellipsis indicates terms of order \)</span>\epsilon(t)^2<span class="math notranslate nohighlight">\( and higher,
-which are very small by assumption. Thus, we can write the following
-approximation to the ODE \)</span>\dot x = f(x)<span class="math notranslate nohighlight">\( near a fixed point:
-\)</span><span class="math notranslate nohighlight">\(\dot x =  \frac{ d(x^* + \epsilon(t))}{dt} = \dot \epsilon(t) =  f'(x^*) \epsilon(t)\)</span><span class="math notranslate nohighlight">\(
-This differential equation describes the dynamics of the deviation
-\)</span>\epsilon(t)<span class="math notranslate nohighlight">\( near the fixed point \)</span>x^</em><span class="math notranslate nohighlight">\(; note that the derivative
-\)</span>f’(x^*)<span class="math notranslate nohighlight">\( is a constant for any given fixed point. We have obtained a
-linear equation for \)</span>\epsilon(t)<span class="math notranslate nohighlight">\(, known as the linearization of the ODE
-near the fixed point. We have classified the behavior of solutions for
-the general linear ODE \)</span>\dot x = rx<span class="math notranslate nohighlight">\(, and now we apply this
-classification to the behavior of the deviation \)</span>\epsilon(t)$:</p>
+<div class="topic">
+<p class="topic-title">Example: ODE  model of drug kinetics</p>
+<p>Let us build an ODE model for a simplified pharmacokinetics situation. Suppose that a drug is administered at a constant rate of <span class="math notranslate nohighlight">\(M\)</span> (concentration units per time unit) and that it is metabolized at a rate proportional to its plasma concentration <span class="math notranslate nohighlight">\(C\)</span> with metabolic rate constant <span class="math notranslate nohighlight">\(k\)</span>. Then the ODE model of the concentration of the drug over time <span class="math notranslate nohighlight">\(C(t)\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{dC}{dt} = M - kC
+\]</div>
+<p>The two rate constants <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(k\)</span> have different dimensions, which you should be able to determine yourself. The ODE can be solved using the separate-and-integrate method:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(f'(x^*) &gt; 0\)</span>: the deviation <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> grows exponentially, and
-the solution moves away from the fixed point <span class="math notranslate nohighlight">\(x^*\)</span>, therefore the
-fixed point is <strong>unstable</strong>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(f'(x^*) &lt; 0\)</span>: the deviation <span class="math notranslate nohighlight">\(\epsilon(t)\)</span> decays to 0, therefore
-the fixed point is <strong>stable</strong>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(f'(x^*) = 0\)</span>: the situation is more complicated.</p></li>
+<li><p>Divide both sides by the right hand side <span class="math notranslate nohighlight">\(M-kC\)</span>, and multiply both sides by the differential <span class="math notranslate nohighlight">\(dt\)</span></p></li>
 </ul>
-<p>The classification of the behavior near a fixed point is directly
-analogous to that in discrete time models, with the difference that the
-discrimination between stable and unstable depends on the sign of the
-derivative, rather than whether its absolute value is greater than or
-less than 1. As before, the borderline situation is tricky, because if
-the first derivative is zero, higher order terms that we neglected make
-the difference. We will mostly avoid such borderline cases, but they are
-important in some applications.</p>
-<p>We have learned to find fixed points and analyze their stability. This
-will be the bedrock of our analysis of continuous-time dynamical
-systems, first in one variable and then in higher dimensions.</p>
-</div>
-<div class="section" id="plotting-flow-on-the-line">
-<h3>plotting flow on the line<a class="headerlink" href="#plotting-flow-on-the-line" title="Permalink to this headline">¶</a></h3>
-<p>The defining function of the ODE <span class="math notranslate nohighlight">\(\dot x = f(x)\)</span> gives the rate of
-change of <span class="math notranslate nohighlight">\(x(t)\)</span> depending on the value of <span class="math notranslate nohighlight">\(x\)</span>. If <span class="math notranslate nohighlight">\(f(x)\)</span> is large and
-positive, that means the dependent variable <span class="math notranslate nohighlight">\(x(t)\)</span> is increasing
-rapidly. If <span class="math notranslate nohighlight">\(f(x)\)</span> is small and negative, <span class="math notranslate nohighlight">\(x(t)\)</span> is decreasing at a slow
-rate. If <span class="math notranslate nohighlight">\(f(x)=0\)</span>, this value of <span class="math notranslate nohighlight">\(x\)</span> is a fixed point, and <span class="math notranslate nohighlight">\(x\)</span> is not
-changing at all.</p>
-<p>For an ODE with one dependent variable, we can sketch the <em>flow on the
-line</em> defined by the differential equation. The “flow” stands for the
-direction of change at every point, specifically increasing, decreasing,
-or not changing. We will plot the flow on the horizontal x-axis, so if
-<span class="math notranslate nohighlight">\(x\)</span> is increasing, the flow will be indicated by a rightward arrow, and
-if it is decreasing, the flow will point to the left. The fixed points
-separate the regions of increasing (rightward) flow and decreasing
-(leftward) flow.</p>
-<p>The graphical approach to finding areas of right and left flow is based
-on graphing the function <span class="math notranslate nohighlight">\(f(x)\)</span>, and dividing the x-axis based on the
-sign of <span class="math notranslate nohighlight">\(f(x)\)</span>. In the areas where <span class="math notranslate nohighlight">\(f(x) &gt; 0\)</span>, its graph is above the
-x-axis, and the flow is to the right; conversely, when <span class="math notranslate nohighlight">\(f(x) &lt; 0\)</span>, its
-graph is below the x-axis, and the flow is to the left. The fixed points
-are found at the intersections of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span> with the x-axis.</p>
-<p>Graphical analysis is also used to determine the stability of fixed
-points. To summarize, a fixed point <span class="math notranslate nohighlight">\(x^*\)</span> is defined by <span class="math notranslate nohighlight">\(f(x^*) = 0\)</span>. We
-saw above, the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at a fixed point determines its stability
-[&#64;strogatz_nonlinear_2001]:</p>
+<div class="math notranslate nohighlight">
+\[ 
+\frac{dC}{M-kC} = dt
+\]</div>
 <ul class="simple">
-<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is negative, the fixed point
-is stable</p></li>
-<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is positive, the fixed point
-is unstable</p></li>
-<li><p>if the slope of the graph of <span class="math notranslate nohighlight">\(f(x^*)\)</span> is zero (<span class="math notranslate nohighlight">\(f(x^*)\)</span> just touches
-the x-axis), then further analysis is needed to determine stability.</p></li>
+<li><p>Integrate both sides with respect to the different variables, don’t forget the integration constant!</p></li>
 </ul>
+<div class="math notranslate nohighlight">
+\[ 
+\int \frac{dC}{M-kC} = \int dt \Rightarrow  -\frac{1}{k} \log |M-kC| = t + A
+\]</div>
+<ul class="simple">
+<li><p>Solve for the dependent variable <span class="math notranslate nohighlight">\(C(t)\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ 
+\exp(\log |M-kC| ) = -\exp(kt +A) \Rightarrow M - kC = B e^{-kt} \Rightarrow 
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+C(t) = \frac{M}{k}- Be^{-kt}
+\]</div>
+<p>Notice that I changed the values of integration constants <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> during the derivation, which shouldn’t matter because they have not been determined yet.</p>
+<ul class="simple">
+<li><p>Plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the integration constant
+If we know the initial value <span class="math notranslate nohighlight">\(C(0) = C_0\)</span>, then we can plug it in and get the following algebraic expression:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ 
+C_0 =  \frac{M}{k} - B \Rightarrow B = C_0 -  \frac{M}{k}
+\]</div>
+<p>Then the complete solution is:</p>
+<div class="math notranslate nohighlight">
+\[
+C(t) =  \frac{M}{k} - (C_0- \frac{M}{k})e^{-kt}
+\]</div>
+<p>The solution predicts that after a long time the plasma concentration will approach the value <span class="math notranslate nohighlight">\(M/k\)</span>, since the exponential term decays to zero. Notice that mathematically this is the same type of solution we obtained in equation <a class="reference internal" href="#equation-sol-nonhom">(3.4)</a> for a generic linear ODE with a constant term.</p>
 </div>
-<div class="section" id="models-with-nonlinear-terms-logistic-model">
-<h3>models with nonlinear terms: logistic model<a class="headerlink" href="#models-with-nonlinear-terms-logistic-model" title="Permalink to this headline">¶</a></h3>
-<p>We have already seen the logistic population model in discrete time. The
-motivation and the form of the model are the same as before: population
-growth is generally slower at larger populations, which can be expressed
-as a higher death rate or a lower birth date, or both. We will assume
-there are separate birth and death rates, and that the birth rate
-declines as the population grows, while the death rate increases.
-Suppose there are inherent birth rates <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(d\)</span>, and the overall
-birth and death rates <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> depend linearly on population size
-<span class="math notranslate nohighlight">\(P\)</span>: <span class="math notranslate nohighlight">\(B  =  b - aP \)</span> and <span class="math notranslate nohighlight">\(D  =  d + cP \)</span></p>
-<p>To model the actual rate of change of the population, we need to
-multiply the rates <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> by the population size <span class="math notranslate nohighlight">\(P\)</span>, since each
-individual can reproduce or die. Also, since the death rate <span class="math notranslate nohighlight">\(D\)</span>
-decreases the population, we need to put a negative sign on it. The
-resultant model is: $<span class="math notranslate nohighlight">\(\dot P = BP - DP = [(b-d)-(a+c)P]P\)</span><span class="math notranslate nohighlight">\( The
-parameters of the model, the constants \)</span>a,b,c,d<span class="math notranslate nohighlight">\(, have different
-meanings. Performing dimensional analysis, we find that \)</span>b<span class="math notranslate nohighlight">\( and \)</span>d<span class="math notranslate nohighlight">\( have
-the units of \)</span>1/[t]<span class="math notranslate nohighlight">\(, the same as the rate \)</span>r<span class="math notranslate nohighlight">\( in the exponential growth
-model. However, the units of \)</span>a<span class="math notranslate nohighlight">\( (and \)</span>c<span class="math notranslate nohighlight">\() must obey the relation:
-\)</span>[P]/[t] = [a][P]^2<span class="math notranslate nohighlight">\(, and thus, \)</span><span class="math notranslate nohighlight">\([a]=[c] = \frac{1}{[t][P]}\)</span>$</p>
-<p>This shows that the constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(c\)</span> have to be treated differently
-than <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(d\)</span>. Let us define the inherent growth rate of the
-population, to be <span class="math notranslate nohighlight">\(r_0=b-d\)</span> (if the death rate is greater than the birth
-rate, the population will inherently decline). Then let us introduce
-another constant <span class="math notranslate nohighlight">\(K\)</span>, such that <span class="math notranslate nohighlight">\((a+c)=r_0/K\)</span>. It should be clear from
-the dimensional analysis that <span class="math notranslate nohighlight">\(K\)</span> has units of <span class="math notranslate nohighlight">\(P\)</span>, population size. Now
-we can write down the logistic equation in the canonical form:
-$<span class="math notranslate nohighlight">\(\dot P = r(1-\frac{P}{K})P
-\label{eq:log_cont_model}\)</span><span class="math notranslate nohighlight">\( This model can be re-written as
-\)</span>\dot P = aP -bP^2<span class="math notranslate nohighlight">\(, so it is clear that there is a *linear term* (\)</span>aP<span class="math notranslate nohighlight">\()
-and a *nonlinear term* (\)</span>-bP^2<span class="math notranslate nohighlight">\(). When \)</span>P<span class="math notranslate nohighlight">\( is sufficiently small (and
-positive) the linear term is greater, and the population grows. When \)</span>P$
-is large enough, the nonlinear term wins and the population declines.</p>
-<p>It should be apparent that there are two fixed points, at <span class="math notranslate nohighlight">\(P=0\)</span> and at
-<span class="math notranslate nohighlight">\(P=K\)</span>. The first one corresponds to a population with no individuals. On
-the other hand, <span class="math notranslate nohighlight">\(K\)</span> signifies the population at which the negative
-effect of population size balances out the inherent population growth
-rate, and is called the <em>carrying capacity</em> of a population in its
-environment. We will analyze the stability of these fixed points in the
-analytical section of this chapter.</p>
-<p><img alt="Line flow analysis of the logistic model ; redarrows indicate the direction field in the intervals separated by thefixedpoints[]{data-label=&quot;fig:line_flow_logistic&quot;}" src="_images/lec2_fig2.jpg" />{width=”4in”}</p>
-<p><strong>Example: semi-stable fixed point.</strong> The function <span class="math notranslate nohighlight">\(f(x) =  -x^3 + x^2 \)</span>
-is plotted in figure , showing two fixed
-points at <span class="math notranslate nohighlight">\(x = 0, 1\)</span>. The red arrows on the x-axis show the direction of
-the flow in the three different regions separated by the fixed points.
-Flow is to the right for <span class="math notranslate nohighlight">\(x&lt;1\)</span>, to the left for for <span class="math notranslate nohighlight">\(x&gt;1\)</span>; it is plain
-to see that the arrows approach the fixed point from both sides, and
-thus the fixed point is stable, as the negative slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span>
-indicates. The fixed point at <span class="math notranslate nohighlight">\(x=0\)</span> presents a more complicated
-situation: the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> is zero, and the flow is rightward on
-both sides of the fixed point. This type of fixed point is sometimes
-called <em>semi-stable</em>, because it is stable when approached from one
-side, and unstable when approached from the other.</p>
-<p><img alt="Line flow analysis of the nonlinear ODE ; redarrows indicate the direction field in the intervals separated by thefixedpoints.[]{data-label=&quot;fig:line_flow_example&quot;}" src="_images/lec2_fig1.jpg" />{width=”4in”}</p>
 </div>
 </div>
 <div class="section" id="computation-simple-numerical-schemes">
-<h2>Computation: simple numerical schemes<a class="headerlink" href="#computation-simple-numerical-schemes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.4. </span>Computation: simple numerical schemes<a class="headerlink" href="#computation-simple-numerical-schemes" title="Permalink to this headline">¶</a></h2>
 <p>Analytic solutions are very useful for a modeler because they allow
 prediction of the variable of interest at any time in the future.
 However, for many differential equations they are not easy to find, and
@@ -778,7 +581,7 @@ can be evaluated at any point in time, but instead is a sequence of
 numbers calculated every time step, which hopefully are close to the
 exact solution <span class="math notranslate nohighlight">\(x(t)\)</span>.</p>
 <div class="section" id="forward-euler-method">
-<h3>Forward Euler method<a class="headerlink" href="#forward-euler-method" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.1. </span>Forward Euler method<a class="headerlink" href="#forward-euler-method" title="Permalink to this headline">¶</a></h3>
 <p>Let us introduce all the players: first, we need to pick the time step
 <span class="math notranslate nohighlight">\(\Delta t\)</span>, which is the length of time between successive values of
 <span class="math notranslate nohighlight">\(y\)</span>. In the difference equation notation one can use <span class="math notranslate nohighlight">\(y_i\)</span> to mean
@@ -858,7 +661,7 @@ other words, for a given time period the number of time steps is
 inversely proportional to the time step.</p>
 </div>
 <div class="section" id="error-in-numerical-solutions">
-<h3>error in numerical solutions<a class="headerlink" href="#error-in-numerical-solutions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.2. </span>error in numerical solutions<a class="headerlink" href="#error-in-numerical-solutions" title="Permalink to this headline">¶</a></h3>
 <p>One of the main concerns of numerical analysis is to minimize the
 difference between the true solution and the numerical solution, which
 is known as the <em>error</em>. There are at least two distinct sources of
@@ -945,7 +748,7 @@ use for practical numerical solutions of ODEs, due to its low accuracy
 and to its lack of stability under certain conditions.</p>
 </div>
 <div class="section" id="backward-euler-method">
-<h3>backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.4.3. </span>backward Euler method<a class="headerlink" href="#backward-euler-method" title="Permalink to this headline">¶</a></h3>
 <p>More sophisticated numerical methods generally offer better stability
 than Forward Euler. For instance, there is a class of methods called
 <em>implicit</em> schemes which rely on evaluating the value of the derivative
@@ -1004,7 +807,7 @@ investigating with numerical experimentation.</p>
 </div>
 </div>
 <div class="section" id="synthesis-membrane-as-electric-circuit">
-<h2>Synthesis: membrane as electric circuit<a class="headerlink" href="#synthesis-membrane-as-electric-circuit" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.5. </span>Synthesis: membrane as electric circuit<a class="headerlink" href="#synthesis-membrane-as-electric-circuit" title="Permalink to this headline">¶</a></h2>
 <p>In this example we will construct and analyze a model of electric
 potential across a membrane. The potential is determined by the
 difference in concentrations of charged particles (ions) on the two
@@ -1087,9 +890,9 @@ converges, if the exponential term has a negative constant up in its
 power.</p>
 </div>
 <div class="section" id="synthesis-sis-model-of-epidemics">
-<h2>Synthesis: SIS model of epidemics<a class="headerlink" href="#synthesis-sis-model-of-epidemics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">3.6. </span>Synthesis: SIS model of epidemics<a class="headerlink" href="#synthesis-sis-model-of-epidemics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="modeling-setup">
-<h3>modeling setup<a class="headerlink" href="#modeling-setup" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.6.1. </span>modeling setup<a class="headerlink" href="#modeling-setup" title="Permalink to this headline">¶</a></h3>
 <p>The field of <em>epidemiology</em> studies the distribution of disease and
 health states in populations. Epidemiologists describe and model these
 issues with the goal of helping public health workers devise
@@ -1168,7 +971,7 @@ biological interpretation, if the transmission rate <span class="math notranslat
 than the recovery rate <span class="math notranslate nohighlight">\(\gamma\)</span>, then the epidemic will persist.</p>
 </div>
 <div class="section" id="graphical-analysis-of-the-sis-model">
-<h3>graphical analysis of the SIS model<a class="headerlink" href="#graphical-analysis-of-the-sis-model" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">3.6.2. </span>graphical analysis of the SIS model<a class="headerlink" href="#graphical-analysis-of-the-sis-model" title="Permalink to this headline">¶</a></h3>
 <p>We can use our graphical analysis skills to illustrate the situation.
 Consider a situation in which <span class="math notranslate nohighlight">\(\gamma &lt; \beta N\)</span>. As predicted by
 stability analysis, the zero infection equilibrium should be unstable,
@@ -1221,7 +1024,8 @@ negative, and thus has no biological significance.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="chapter2.html" title="previous page">Discrete models of higher order: age-structured population models</a>
+    <a class='left-prev' id="prev-link" href="chapter2.html" title="previous page"><span class="section-number">2. </span>Discrete models of higher order: age-structured population models</a>
+    <a class='right-next' id="next-link" href="chapter4.html" title="next page"><span class="section-number">4. </span>Graphical analysis of ordinary differential equations</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

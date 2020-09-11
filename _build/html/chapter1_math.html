@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1.1. Building dynamic models &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="1.3. Plotting in Python" href="chapter1_python.html" />
+    <link rel="prev" title="1. Models with one variable in discrete time" href="chapter1_intro.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="chapter1_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     1.1. Building dynamic models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#solutions-of-linear-difference-models">
+     1.2. Solutions of linear difference models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter1_python.html">
+     1.3. Plotting in Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="chapter1_python.html#numeric-solutions-of-discrete-models">
+     1.4. Numeric solutions of discrete models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter2_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter3_intro.html">
+   3. Discrete models of higher order: age-structured population models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4_intro.html">
+   4. Models with one variable in continuous time
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/chapter1_math.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#static-population">
+   1.1.1. static population
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-population-growth">
+   1.1.2. exponential population growth
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-with-birth-and-death">
+   1.1.3. example with birth and death
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dimensions-of-birth-and-death-rates">
+   1.1.4. dimensions of birth and death rates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-demographic-model">
+   1.1.5. general demographic model
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="building-dynamic-models">
+<h1><span class="section-number">1.1. </span>Building dynamic models<a class="headerlink" href="#building-dynamic-models" title="Permalink to this headline">¶</a></h1>
+<p>Let us construct our first models of biological systems. We will start by considering a population of some species, with the goal of tracking its growth or decay over time. The variable of interest is the number of individuals in the population, which we will call <span class="math notranslate nohighlight">\(N\)</span>. This is called the dependent variable, since its value changes depending on time; it would make no sense to say that time changes depending on the population size. Throughout the study of dynamical systems, we will denote the independent variable of time by <span class="math notranslate nohighlight">\(t\)</span>. To denote the population size at
+time <span class="math notranslate nohighlight">\(t\)</span>, we can write <span class="math notranslate nohighlight">\(N(t)\)</span> but sometimes use <span class="math notranslate nohighlight">\(N_t\)</span>.</p>
+<div class="section" id="static-population">
+<h2><span class="section-number">1.1.1. </span>static population<a class="headerlink" href="#static-population" title="Permalink to this headline">¶</a></h2>
+<p>In order to describe the dynamics, we need to write down a rule for how the population changes. Consider the simplest case, in which the population stays the same for all time. (Maybe it is a pile of rocks?) Then the following equation describes this situation:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) = N(t)
+\]</div>
+<p>This equation mandates that the population at the next time step be the same as at the present time <span class="math notranslate nohighlight">\(t\)</span>. This type of equation is generally called a <em>difference equation</em>, because it can be written as a difference between the values at the two different times:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) - N(t) = 0
+\]</div>
+<p>This version of the model illustrates that a difference equation at its core describes the <em>increments</em> of <span class="math notranslate nohighlight">\(N\)</span> from one time step to the next. In this case, the increments are always 0, which makes it plain that the population does not change from one time step to the next.</p>
+</div>
+<div class="section" id="exponential-population-growth">
+<h2><span class="section-number">1.1.2. </span>exponential population growth<a class="headerlink" href="#exponential-population-growth" title="Permalink to this headline">¶</a></h2>
+<p>Let us consider a more interesting situation: as a colony of dividing bacteria. such as <em>E. coli</em>, shown in <a class="reference internal" href="#fig-cell-div"><span class="std std-numref">Fig. 1.1</span></a>. We assume that each bacterial cell divides and produces two daughter cells at fixed intervals of time, and let us further suppose that bacteria never die. Essentially, we are assuming a population of immortal bacteria with clocks. This means that after each cell division the population size doubles. As before, we denote the number of cells in each generation by <span class="math notranslate nohighlight">\(N(t)\)</span>, and obtain the equation describing each successive generation:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) = 2N(t)
+\]</div>
+<p>It can also be written in the difference form, as above:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) - N(t) = N(t)
+\]</div>
+<p>The increment in population size is determined by the current population size, so the population in this model is forever growing. This type of behavior is termed <em>exponential growth</em> and we will see how to express the solution algebraically in the next section.</p>
+<div class="figure align-default" id="fig-cell-div">
+<img alt="_images/Ecoli_dividing.png" src="_images/Ecoli_dividing.png" />
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Scanning electron micrograph of a dividing <em>Escherichia coli</em> bacteria (image by Evangeline Sowers, Janice Haney Carr (CDC) in public domain via Wikimedia Commons)</span><a class="headerlink" href="#fig-cell-div" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="example-with-birth-and-death">
+<h2><span class="section-number">1.1.3. </span>example with birth and death<a class="headerlink" href="#example-with-birth-and-death" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that a type of fish lives to reproduce only once after a period of maturation, after which the adults die. In this simple scenario, half of the population is female, a female always lays 1000 eggs, and of those, 1% survive to maturity and reproduce. Let us set up the model for the population growth of this idealized fish population. The general idea, as before, is to relate the population size at the next time step <span class="math notranslate nohighlight">\(N(t+1)\)</span> to the population at the present time <span class="math notranslate nohighlight">\(N(t)\)</span>.</p>
+<p>Let us tabulate both the increases and the decreases in the population size. We have <span class="math notranslate nohighlight">\(N(t)\)</span> fish at the present time, but we know they all die after reproducing, so there is a decrease of <span class="math notranslate nohighlight">\(N(t)\)</span> in the population. Since half of the population is female, the number of new offspring produced by <span class="math notranslate nohighlight">\(N(t)\)</span> fish is <span class="math notranslate nohighlight">\(500N(t)\)</span>. Of those, only 1% survive to maturity (the next time step), and the other 99% (<span class="math notranslate nohighlight">\(495N(t)\)</span>) die. We can add all the terms together to obtain the following difference equation:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) = N(t) - N(t) + 500N(t) - 495 N(t)  = 5N(t)
+\]</div>
+<p>The number 500 in the expression is the <em>birth rate</em> of the population per individual, and the negative terms add up to the <em>death rate</em> of 496 per individual. We can re-write the equation in difference form:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) - N(t) = 4N(t)
+\]</div>
+<p>This expression again generates growth in the population, because the birth rate outweighs the death rate. [&#64;allman_mathematical_2003]</p>
+</div>
+<div class="section" id="dimensions-of-birth-and-death-rates">
+<h2><span class="section-number">1.1.4. </span>dimensions of birth and death rates<a class="headerlink" href="#dimensions-of-birth-and-death-rates" title="Permalink to this headline">¶</a></h2>
+<p>What distinguishes a mathematical model from a mathematical equation is that the quantities involved have a real-world meaning. Each quantity represents a measurement, and associated with each one are the <em>units</em> of measurement, which are familiar from science courses. In addition to units, each variable and parameter has a meaning, which is called the <em>dimension</em> of the quantity. For example, any measurement of length or distance has the same dimension, although the units may vary. The value
+of a quantity depends on the units of measurement, but its essential dimensionality does not. One can convert a measurement in meters to that in light-years or cubits, but one cannot convert a measurement in number of sheep to seconds - that conversion has no meaning.</p>
+<p>Thus leads us to the fundamental rule of mathematical modeling: <strong>terms that are added or subtracted must have the same dimension</strong>. This gives mathematical modelers a useful tool called <em>dimensional analysis</em>, which involves replacing the quantities in an equation with their dimensions. This serves as a check that all dimensions match, as well as allowing to deduce the dimensions of any parameters for which the dimension was not specified.</p>
+<p>In the case of population models, the birth and death rates measure the number of individuals that are born (or die) within a reproductive cycle for every individual at the present time. Their dimensions must be such that the terms in the equation all match:</p>
+<div class="math notranslate nohighlight">
+\[
+[N(t+1) - N(t)] = [population] = [r] [N(t)] = [r] *[population]
+\]</div>
+<p>This implies that <span class="math notranslate nohighlight">\([r]\)</span> is algebraically dimensionless. However, the meaning of <span class="math notranslate nohighlight">\(r\)</span> is the rate of change of population over one (generation) time step. <span class="math notranslate nohighlight">\(r\)</span> is the birth or death rate of the population <em>per generation</em>, which is what makes is dimensionless. If the length of the generation were to change, but the reproduction and death per generation remain the same, then the paramter <span class="math notranslate nohighlight">\(r\)</span> would be the same, because it had been <em>rescaled</em> by the length of the generation. If they were to be reported in <em>absolute</em> units (e.g. individuals per year) then the rate would be different.</p>
+</div>
+<div class="section" id="general-demographic-model">
+<h2><span class="section-number">1.1.5. </span>general demographic model<a class="headerlink" href="#general-demographic-model" title="Permalink to this headline">¶</a></h2>
+<p>We will now write a general difference equation for any population with constant birth and death rates. This will allow us to substitute arbitrary values of the birth and death rates to model different biological situations. Suppose that a population has the birth rate of <span class="math notranslate nohighlight">\(b\)</span> per individual, and the death rate <span class="math notranslate nohighlight">\(d\)</span> per individual. Then the general model of the population size is:</p>
+<div class="math notranslate nohighlight" id="equation-lin-pop">
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-lin-pop" title="Permalink to this equation">¶</a></span>\[
+N(t+1) = (1 + b - d)N(t)
+\]</div>
+<p>The general equation also allows us to check the dimensions of birth and death rates, especially as written in the
+incremental form: <span class="math notranslate nohighlight">\(N(t+1) - N(t) = (b - d)N(t)\)</span>. The change in population rate over one reproductive cycle is given by the current population size multiplied by the difference of birth and death rates, which as we saw are algebraically dimensionless. The right hand side of the equation has the dimensions of population size, matching the difference on the left hand side. [&#64;edelstein-keshet_mathematical_2005]</p>
+</div>
+</div>
+<div class="section" id="solutions-of-linear-difference-models">
+<h1><span class="section-number">1.2. </span>Solutions of linear difference models<a class="headerlink" href="#solutions-of-linear-difference-models" title="Permalink to this headline">¶</a></h1>
+<p>We saw in the last section that we can write down equations to describe, step by step, how a variable changes over time. Let us define what the terminology of these equations:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>An equation to describe a variable (e.g. N) that changes over discrete time steps described by the integer variable <span class="math notranslate nohighlight">\(t\)</span> is called a <em>difference equation</em> or a <em>discrete-time dynamic model</em>. These equations can be written in two ways, either in <em>recurrent form</em>:</p>
+<div class="math notranslate nohighlight" id="equation-recur-eq">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
+N(t+1) = f(N(t))
+\]</div>
+<p>or in <em>increment form</em>:</p>
+<div class="math notranslate nohighlight" id="equation-recur-eq">
+<span class="eqno">(1.3)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
+N(t+1) - N(t) = g(N(t))
+\]</div>
+</div>
+<div class="section" id="simple-linear-difference-models">
+<h2><span class="section-number">1.2.1. </span>simple linear difference models<a class="headerlink" href="#simple-linear-difference-models" title="Permalink to this headline">¶</a></h2>
+<p>Having set up the difference equation models, we would naturally like to solve them to find out how the dependent variable, such as population size, varies over time. A solution may be <em>analytic</em>, meaning that it can be written as a formula, or <em>numeric</em>, in which case it is generated by a computer in the form of a sequence of values of the dependent variable over a period of time. In this section, we will find some simple analytic solutions and learn to analyze the behavior of difference equations which we cannot solve exactly.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A function <span class="math notranslate nohighlight">\(N(t)\)</span> is a <em>solution</em> of a difference equation <span class="math notranslate nohighlight">\(N(t+1) = f(N(t))\)</span> if it satisfies that equation for all values of time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+</div>
+<p>For instance, let us take our first model of the static population, <span class="math notranslate nohighlight">\(N(t+1) = N(t)\)</span>. Any constant function is a solution, for example, <span class="math notranslate nohighlight">\(N(t) = 0\)</span>, or <span class="math notranslate nohighlight">\(N(t) = 10\)</span>. There are actually as many solutions as there are numbers, that is, infinitely many! In order to specify exactly what happens in the model, we need to specify the size of the population at some point, usually, at the “beginning of time”, <span class="math notranslate nohighlight">\(t = 0\)</span>. This is called the <em>initial condition</em> for the model, and for a well-behaved difference equation it is enough to determine a unique solution. For the static model, specifying the initial condition is the same as specifying the population size for all time.</p>
+<p>Now let us look at the general model of population growth with constant birth and death rates. We saw in equation <a class="reference internal" href="#equation-lin-pop">(1.1)</a> above that these can be written in the form <span class="math notranslate nohighlight">\(N(t+1) = (1 + b - d) N(t)\)</span>. To simplify, let us combine the numbers into one growth parameter <span class="math notranslate nohighlight">\(r = 1 + b - d\)</span>, and write down the general equation for population growth with constant growth rate:</p>
+<div class="math notranslate nohighlight" id="equation-lin-pop-r">
+<span class="eqno">(1.4)<a class="headerlink" href="#equation-lin-pop-r" title="Permalink to this equation">¶</a></span>\[
+N(t+1) =  rN(t)
+\]</div>
+<p>To find the solution, consider a specific example, where we start with the initial population size <span class="math notranslate nohighlight">\(N_0 = 1\)</span>, and the growth rate <span class="math notranslate nohighlight">\(r=2\)</span>. The sequence of population sizes is: 1, 2, 4, 8, 16, etc. This is described by the formula <span class="math notranslate nohighlight">\(N(t) = 2^t\)</span>.</p>
+<p>In the general case, each time step the solution is multiplied by <span class="math notranslate nohighlight">\(r\)</span>, so the solution has the same exponential form. The initial condition <span class="math notranslate nohighlight">\(N_0\)</span> is a multiplicative constant in the solution, and one can verify that when <span class="math notranslate nohighlight">\(t=0\)</span>, the solution matches the initial value:</p>
+<div class="math notranslate nohighlight" id="equation-lin-pop-sol">
+<span class="eqno">(1.5)<a class="headerlink" href="#equation-lin-pop-sol" title="Permalink to this equation">¶</a></span>\[
+N(t)  = r^t N_0
+\]</div>
+<p>I would like the reader to pause and consider this remarkable formula. No matter what the birth and death parameters are selected, this solution predicts the population size at any point in time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>In order to verify that the formula for <span class="math notranslate nohighlight">\(N(t)\)</span> is actually a solution in the meaning of definition, we need to check that it actually satisfies the difference equation for all <span class="math notranslate nohighlight">\(t\)</span>, not just a few time steps. This can be done algebraically by plugging in <span class="math notranslate nohighlight">\(N(t+1)\)</span> into the left side of the dynamic model and <span class="math notranslate nohighlight">\(N(t)\)</span> into the right side and checking whether they match. For <span class="math notranslate nohighlight">\(N(t)\)</span> given by equation <a class="reference internal" href="#equation-lin-pop-sol">(1.5)</a>, <span class="math notranslate nohighlight">\(N(t+1) = r^{t+1} N_0\)</span>, and thus the dynamic model becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+r^{t+1} N_0 = r \times r^t N_0
+\]</div>
+<p>Since the two sides match, this means the solution is correct.</p>
+<p>The solutions in equation <a class="reference internal" href="#equation-lin-pop-sol">(1.5)</a> are exponential functions, which have a limited menu of behaviors, depending on the value of <span class="math notranslate nohighlight">\(r\)</span>. If <span class="math notranslate nohighlight">\(r &gt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> increases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will grow (see <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 1.2</span></a>. If <span class="math notranslate nohighlight">\(r &lt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> decreases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will decay (see <a class="reference internal" href="#fig-exp-decay"><span class="std std-numref">Fig. 1.3</span></a>). Finally, if <span class="math notranslate nohighlight">\(r=1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> leaves the population size unchanged, like in the pile of rocks model. Here is the complete classification of the behavior of population models with constant birth and death rates (assuming <span class="math notranslate nohighlight">\(r&gt;0\)</span>):</p>
+<div class="tip admonition">
+<p class="admonition-title">Classification of solutions of linear dynamic models</p>
+<p>For a difference equation <span class="math notranslate nohighlight">\(N(t+1) = rN(t)\)</span>, solutions can behave in one of three ways:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|r| &gt; 1\)</span>: <span class="math notranslate nohighlight">\(N(t)\)</span> grows without bound</p></li>
+<li><p><span class="math notranslate nohighlight">\(|r| &lt; 1\)</span>: <span class="math notranslate nohighlight">\(N(t)\)</span> decays to 0</p></li>
+<li><p><span class="math notranslate nohighlight">\(|r| = 1 \)</span>: the absolute value of <span class="math notranslate nohighlight">\(N(t)\)</span> remains constant</p></li>
+</ul>
+</div>
+<p>Se examples of graphs of solutions of such equations with <span class="math notranslate nohighlight">\(r\)</span> greater than 1 in <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 1.2</span></a> and solutions for <span class="math notranslate nohighlight">\(r\)</span> less than 1 in <a class="reference internal" href="#fig-exp-decay"><span class="std std-numref">Fig. 1.3</span></a>.</p>
+<div class="figure align-default" id="fig-exp-growth">
+<img alt="_images/ch1_exp_growth.png" src="_images/ch1_exp_growth.png" />
+<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Growth of a population that doubles every generation over 6 generations.</span><a class="headerlink" href="#fig-exp-growth" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-exp-decay">
+<img alt="_images/ch1_exp_decay.png" src="_images/ch1_exp_decay.png" />
+<p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Decay of a population in which half the individuals die every time step over 6 generations</span><a class="headerlink" href="#fig-exp-decay" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="linear-difference-models-with-a-constant-term">
+<h2><span class="section-number">1.2.2. </span>linear difference models with a constant term<a class="headerlink" href="#linear-difference-models-with-a-constant-term" title="Permalink to this headline">¶</a></h2>
+<p>Now let us consider a dynamic model that combines two different rates: a proportional rate (<span class="math notranslate nohighlight">\(rN\)</span>) and a constant rate which does not depend on the value of the variable <span class="math notranslate nohighlight">\(N\)</span>. We can write such a generic model as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) =  rN(t) + a
+\]</div>
+<p>The right-hand-side of this equation is a linear function of <span class="math notranslate nohighlight">\(N\)</span>, so this is a linear difference equation with a constant term. What function <span class="math notranslate nohighlight">\(N(t)\)</span> satisfies it? One can quickly check that that the same solution <span class="math notranslate nohighlight">\(N(t) = r^t N_0\)</span> does not work because of
+the pesky constant term <span class="math notranslate nohighlight">\(a\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+r^{t+1} N_0 \neq r \times r^t N_0 + a
+\]</div>
+<p>To solve it, we need to try a different form: specifically, an exponential with an added constant. The exponential can be reasonably surmised to have base <span class="math notranslate nohighlight">\(r\)</span> as before, and then leave the two constants as unknown: <span class="math notranslate nohighlight">\(N(t) = c_1 r^t + c_2\)</span>. To figure out whether this is a solution, plug it into the linear difference equation above and check whether a choice of constants can make the two sides agree:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) =  c_1 r^{t +1} + c_2 = rN(t) + a  = rc_1 r^t + rc_2+ a
+\]</div>
+<p>This equation has the same term <span class="math notranslate nohighlight">\(c_1 r^{t +1}\)</span> on both sides, so they can be subtracted out. The remaining equation involves only <span class="math notranslate nohighlight">\(c_2\)</span>, and its solution is <span class="math notranslate nohighlight">\(c_2 = a/(1-r)\)</span>. Therefore, the general solution of this linear difference equation is the following expreis which is determined from the initial value by plugging <span class="math notranslate nohighlight">\(t=0\)</span> and solving for <span class="math notranslate nohighlight">\(c\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+N(t) = c r^t  + \frac{a}{1-r}
+\label{eq:ch14_sol_wconst}
+\]</div>
+<p><strong>Example.</strong> Take the difference equation <span class="math notranslate nohighlight">\(N(t+1) = 0.5 N(t) + 40\)</span> with initial value <span class="math notranslate nohighlight">\(N(0)= 100\)</span>. The solution, according to our formula is <span class="math notranslate nohighlight">\(N(t) = c 0.5^t + 80\)</span>. At <span class="math notranslate nohighlight">\(N(0) = 100 = c+80\)</span>, so <span class="math notranslate nohighlight">\(c=20\)</span>. Then the compete solution is  <span class="math notranslate nohighlight">\(N(t) = 20*0.5^t + 80\)</span>. To check that this actually works, plug this solution back into the difference equation:</p>
+<div class="math notranslate nohighlight">
+\[
+N(t+1) = 20 \times 0.5^{t+1} + 80 = 0.5 \times (20 \times 0.5^t + 80) + 40 =  20 \times 0.5^{t+1} + 80
+\]</div>
+<p>The equation is satisfied and therefore the solution is correct.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="chapter1_intro.html" title="previous page"><span class="section-number">1. </span>Models with one variable in discrete time</a>
+    <a class='right-next' id="next-link" href="chapter1_python.html" title="next page"><span class="section-number">1.3. </span>Plotting in Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

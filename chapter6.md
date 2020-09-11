@@ -1,478 +1,671 @@
-Fourier series: decomposition by frequency
-==========================================
+Classification of linear models: eigenvalues and eigenvectors
+=============================================================
 
 Introduction
 ------------
 
-In this part of the course we will turn to areas of mathematics and
-computation that have applications to data analysis. Depending on the
-source of the data and the goals of the analyst, one can extract
-different kinds of information from a data set. There is usually one
-common goal of data analysis: simplification. It stand to reason, since
-if the data set were simple, quantitative analysis would be superfluous.
-Fortunately, there is no shortage of complex, messy data in biology.
+In the last chapter we introduced and analyzed population models with
+multiple variables representing different demographic groups. In those
+models, the populations at the next time step depend on the population
+at the current time step in a linear fashion. More generally, any model
+with only linear dependencies can be represented in matrix form. In this
+chapter we will learn how to analyze the behavior of these models, and
+identify all possible classes of linear dynamical systems.
 
-At least two kinds of data analysis can be distinguished: extraction of
-simplified information, and fitting a model to the data. In chapters 13
-and 14 we will present the method of Fourier analysis, which extracts
-information about frequency from a data set, while in chapters 15 and 16
-we discuss optimization, which, among many other uses, enables the
-fitting of models to data sets.
+The main concept of this chapter are the special numbers and vectors
+associated with a matrix, called eigenvalues and eigenvectors. Any
+matrix can be thought of as an operator acting on vectors, and
+transforming them in certain ways. Loosely speaking, this transformation
+can be expressed in terms of special directions (eigenvectors) and
+special numbers that describe what happens along those special
+directions. Finding the eigenvalues and eigenvectors of a matrix allows
+us to understand the dynamics of biological models by classifying them
+into distinct categories.
 
-In the modeling section we motivate the notion of frequency analysis
-with the example of electro-encephalogram recordings of electrical
-activity of the central nervous system. The analytic section develops
-the mathematical notion of function spaces, and the basis of sine and
-cosine functions. This is used for Fourier decomposition, or description
-of an arbitrary periodic function as a sum of sines and cosines. In the
-computational section, we describe the computation of Fourier
-decomposition using an efficient algorithm called the Fast Fourier
-Transform, which is a seminal development in the history of computation.
+In the modeling section, we will develop some intuition for modeling
+activators and inhibitors of biochemical reactions. We will then learn
+how to draw the flow of two-dimensional dynamical systems in the plane.
+In the analytical section, we will define eigenvectors and eigenvalues,
+and use this knowledge to find the general solution of linear
+multi-variable systems. In the computational section, numerical
+solutions of eigenvalues and eigenvectors will be applied to classifying
+all linear multi-dimensional systems, and to plotting the solutions,
+both over time and in the plane. Finally, in the synthesis section we
+will use a light-hearted model of relationship dynamics to illustrate
+how to analyze linear dynamical systems.
 
-Modeling: periodicity and its applications
-------------------------------------------
+Modeling: flow in the phase plane
+---------------------------------
 
-### amplitude, period, and frequency
+### activators and inhibitors in biochemical reactions
 
-Many biological processes are periodic, that is repetitive, with a
-particular pattern that serves biological needs; common examples are
-waves of activity in the heart muscle, repeated spikes of voltage across
-neural membranes, and daily Circadian rhythms in physiological
-regulation. It is highly useful to measure the properties of these
-periodic activities, and to describe them using idealized mathematical
-functions, specifically sines and cosines.
+Suppose two gene products (proteins) regulate each others’ expression.
+Activator protein $A$ binds to the promoter of the gene for $I$ and
+activates its expression, while inhibitor protein $I$ binds to the
+promoter of the gene for $A$ and inhibits its expression (here the
+variables stand for concentrations of the two proteins in the cell):
+$$\begin{aligned}
+\dot  A & = & - \alpha I\\
+\dot  I & = & \beta A\end{aligned}$$ $\alpha$ and $\beta$ are positive
+rate constants. They represent the rate of inhibition of $A$ by $I$, and
+of activation of $I$ by $A$, respectively. Let us now complicate the
+model by adding self-inhibition. It is common for regulatory proteins to
+inhibit their own production. Then, we have the following system of
+equations: $$\begin{aligned}
+\dot  A & = & - \gamma A - \alpha I\\
+\dot  I & = & \beta A - \delta I\end{aligned}$$ Here we have added two
+rates of self-inhibition $\gamma$ and $\delta$. This is a system of two
+coupled ODEs, and we will learn how to analyze these models both
+analytically and graphically.
 
-As a reminder sines and cosines both have period $2\pi$, but the sine is
-an odd function: $\sin(x) = -\sin(-x)$, whereas the cosine is an even
-function: $\cos(x) = \cos(-x)$. Furthermore, by adding a couple of
-parameters, one can produce a sine or cosine wave of any period and any
-amplitude. In the following expression, the amplitude of both the sine
-and the cosine is $L$, and thus the frequency is $1\L$, while the
-amplitude of the sine is $A$ and that of the cosine is $B$.
-$$A \cos(2\pi x/L); \;  B\sin(2\pi x/L)$$
+### phase plane portraits
 
-### brain waves in EEG
+Before we learn about the analytical tools of linear algebra, let us
+think intuitively about the effect of the variables on each other. The
+best way to describe this is through plotting the geometry of the *flow*
+prescribed by the differential equations. As we saw, for one-dimensional
+ODEs the direction of the change of the dependent variable (also known
+as the flow) could be shown as arrows on a line. A single variable can
+only increase, decrease, or stay the same (at a fixed point). In two
+dimensions there is more freedom. The flow is plotted on the *phase
+plane*, where for any combination of the two variables (say $x,y$) the
+ODE gives the derivatives of $x$ and $y$. This vector gives the flow, or
+the rate of change at the particular point in the plane. Intuitively,
+the flow describes the direction in which the system is pulling the
+2-dimensional solution. If we plot the progress of a solution of ODE
+(all the values of $x$ and $y$ starting with the initial condition) we
+will obtain a *trajectory* in the phase plane. The arrows of the flow
+are tangent to any trajectory curve, since they plot the derivatives of
+$x,y$.
 
-Of course, not all periodic functions are sines and cosines, but sines
-and cosines can be used to describe the types of frequencies present in
-a periodic signal. Consider the following electroencephalograph (EEG)
-data collected from electrodes on the scalp of a human:
+**Example: positive relationship between the variables** Consider the
+following system of differential equations: $$\begin{aligned}
+\dot x & = & x + y \\
+\dot y & = & x + 2y \nonumber
+\label{eq:positive}\end{aligned}$$ This is system is coupled, with $x$
+having an effect on $y$ and vice versa. Specifically, the signs of the
+constants mean that positive values of $x$ have the effect of increasing
+$y$ (and vice versa), while negative values of $x$ have the effect of
+decreasing $y$ (and vice versa). For any pair of values of $(x,y)$,
+there is a flow prescribed by the ODEs. E.g., when $x=1, y=1$, the
+derivatives are $\dot x = 2, \dot y = 3$. This means that the flow at
+that point is given by the vector $(2,3)$, and can be plotted in the
+$x,y$ phase plane. This can be done for any pair of values of $x$ and
+$y$, and plotted to give the phase plane portrait, as in figure .
 
-![EEG data
-example[]{data-label="fig:EEG_recording"}](images/EEG_recording.png)
+![Phase plane flow for the system in equation []{data-label="fig:pp5"}](images/week6_pp5.png){width="3.5in"}
 
-By inspection, it appears as if there are some periodic processes
-producing these data, but these are not neat periodic sine or cosine
-waves. Instead, we have many different overlapping signals, produced by
-huge numbers of electrical pulses in the brain, each with different
-frequency. In order to analyze this signal, we need to *decompose* it
-into contributions of different frequencies. Signals of different
-frequencies,called brain waves in neuroscience, serve distinct purposes:
-for instance, different stages of sleep can be characterized by the
-frequencies of the brain waves. In the following section we will learn
-how to describe complex, periodic data sets, such as the one in figure
-\[fig:EEG\_recording\], in terms of the contributions, or amplitudes, of
-sines and cosines of different frequencies. This way we can quantify the
-presence of different types of brain waves in a given EEG recording.
+Observe that the overall dynamics of the systems are directed outward
+from the origin, as we expect from the ODEs. The blue lines on the plot
+are some sample trajectories. The solution over time for both $x$ and
+$y$ will either grow toward positive infinity, or decay to negative
+infinity.
 
-Analytical: sines and cosines as a basis set for periodic functions
--------------------------------------------------------------------
+**Example: negative relationship between the variables** Consider the
+following system of differential equations, where $y$ has an effect on
+$\dot x$ opposite of its own sign. That is, negative values of $y$
+contribute to the growth of $x$, and vice versa. $$\begin{aligned}
+\dot x & = & -y \\
+\dot y & = & x  \nonumber
+\label{eq:negative}\end{aligned}$$ As above, the flow at any one point
+is given by the ODEs. E.g. at $(0,1)$ the two derivatives prescribe flow
+in the $(1,0)$ (up) direction, while at $(1,0)$ the flow is in the
+$(0,-1)$ direction. Figure shows the arrows of flow in the
+phase plane around the origin. Note that the arrows go around in a
+circular pattern around the origin.
 
-We now introduce the idea of a space of functions, instead of vectors,
-and describe how to decompose any given function in terms of a basis of
-other functions. Joseph Fourier postulated in 1822 that any function can
-be described by an infinite sum of sine functions. Some of the details
-were incorrect, but he introduced an a revolutionary concept that has
-found fundamental applications in a multitude of fields of science, from
-acoustics to medical imaging. The fact is that any function on a finite
-interval of length $L$ (or a periodic function with period $L$, which is
-equivalent) can be represented exactly by an infinite sum of sines and
-cosines, plus a constant term:
-$$f(x) = a_0 + \sum_{k=1}^\infty a_k \cos(2\pi k x/L)   + \sum_{i=1}^\infty b_k \sin(2\pi k x/L)$$
-Notice that this is the same concept of decomposition in terms of a
-basis set. Any such function can be written as the sum of sines and
-cosines, and only the coefficients are different for different
-functions. The main difference is that vector spaces (such as
-$\mathbb{R}^3$) have finite basis sets of vectors, while a function
-space (e.g. the space of all functions with period $L$) has an infinite
-basis set of functions (e.g. sines and cosines with different
-frequencies.) To be specific, let us define these concepts.
+![Phase plane flow for the system in equation []{data-label="fig:pp2"}](images/week6_pp2.png){width="3.7in"}
 
-A *function space* is a collection of all functions defined over a given
-domain, for example the interval $[-L/2, L/2]$, that have a finite norm,
-to be defined below.
+Let us consider the trajectories of $x$ and $y$ in time. The blue curves
+in the phase plane plot demonstrate the solutions go around the origin
+and return to the same point. This means that the behavior of the
+solutions over time is *periodic*, with oscillations going from positive
+to negative numbers and back forever.
 
-The notion of the norm of a function is similar to the norm, or
-magnitude of a vector. The reason for restricting function spaces to
-functions with a finite norm, is to ensure that computations of various
-quantities of interests are valid and do not blow up. Now let us define
-the function norm:
+Analytical: eigenvectors and eigenvalues
+----------------------------------------
 
-The *norm* of a function $f(x)$, denoted $||f||$, is a mapping from the
-function space into nonnegative real numbers, which obeys the following
-rules:
+### basic linear algebra terminology
 
-1.  $||f|| = 0$ iff $f(x) = 0$ (the function is zero everywhere)
+We have seen matrix notation introduced in the previous chapter, along
+with the definition of matrix multiplication. One basic advantage of
+this notation is that it makes it possible to write any set of *linear
+equations* as a single matrix equation. By linear equations we mean
+those that contain only constants or first powers of the variables. The
+field of mathematics studying matrices and their generalizations is
+called *linear algebra*; it is fundamental to both pure and applied
+mathematics. In this section we will learn some basic facts about
+matrices and their properties. First of all, let us define some basic
+terms:
 
-2.  $||af|| = a||f||$ for any real number $a$
+-   A matrix $A$ is a rectangular array of *elements* $A_{ij}$, in which
+    $i$ denotes the row number (index), counted from the top, and $j$
+    denotes the column number (index), counted from left to right.
 
-3.  $|| f+g || \leq ||f|| + ||g||$ for any functions $f$ and $g$ in the
-    function space (triangle inequality)
+-   The elements of a matrix $A$ which have the same row and column
+    index, e.g. $A_{33}$ are called the *diagonal elements*. Those which
+    do not lie on the diagonal are called the *off-diagonal* elements.
+    For instance, in the 3 x 3 matrix below, the elements $a, e, i$ are
+    the diagonal elements:
+    $$A = \left(\begin{array}{ccc}a & b & c \\d & e & f \\g & h & i\end{array}\right)$$
 
-The norm that we will utilize in the function spaces is called the $L^2$
-norm and it is defined as follows:
+-   The *trace* $\tau$ of a matrix $A$ is the sum of the diagonal
+    elements: $\tau = \sum_i A_{ii}$
 
-The $L^2$ norm of a real-valued function $f(x)$ over an interval
-$[-L/2,L/2]$ is defined as follows:
-$$||f|| =\sqrt{ \int_{-L/2}^{L/2} f(x)^2 dx}$$
+-   The *determinant* $\Delta$ of a 2x2 matrix $A$ is given by the
+    following: $\Delta = ad - bc$, where
+    $$A = \left(\begin{array}{cc}a & b \\c & d\end{array}\right)$$ For
+    larger matrices, the determinant is defined recursively, in terms of
+    2x2 submatrices of the larger matrix, but we will not give the full
+    definition here.
 
-The $L^2$ norm in function spaces is the square root of the integral of
-the square of the function values over the interval of its definition
-(which can be extended to the entire real number line, in the limit of
-$L \to \infty$). This is the equivalent of the Euclidean distance norm
-in vector spaces, which if you recall is the square root of the sum of
-squares of all the components of the vector. There are many possible
-norms of function spaces, but the $L^2$ norm is mathematically special,
-because it is derived from the inner product of the function space:
+In chapter 3 you learned the rule of matrix multiplication, and we can
+write $C = A \times B$, so long as the number of columns in $A$ matches
+the number of rows in $B$. However, what if we want to reverse the
+process? If we know the resulting matrix $C$, and one of the two
+matrices, e.g. $A$, how can we find $B$? Naively, we would like to be
+able to divide both sides by the matrix $A$, and find $B = C/A$.
+However, things are more complicated for matrices.
 
-The *inner product* between two functions $f$ and $g$ defined on the
-same interval $[-L/2,L/2]$ is:
-$$<f, g>  = \int_{-L/2}^{L/2} f(x)g(x) dx$$
+Properly speaking, we need to introduce the *inverse* of a matrix $A$.
+If we think about inverses of real numbers, $a^{-1}$ is a number that
+when it multiplies $a$, results in one. In order to define the
+equivalent for matrices, we first need to introduce the unity of matrix
+multiplication.
 
-The function norm can be defined in terms of the inner product:
-$||f(x)|| = \sqrt{<f(x), f(x)>}$. This defines the machinery for
-computing the “size” of a function, measured by its norm, as well as the
-“similarity” between two functions, measured by the inner product. If
-two functions $f$ and $g$ are very similar, the inner product is close
-to the square of the norm of $f$ (or $g$). If $f$ and $g$ are very
-similar, but flipped by a negative sign, the inner product is close to
-negative of the square of the norm of $f$ (or $g$). On the other hand,
-if the two functions are dissimilar - loosely speaking, if $f$ is
-positive, $g$ is sometimes positive, sometimes negative, then the
-product of the values of $f$ and $g$ is sometimes positive and sometimes
-negative, and thus its integral will add to be close to zero. This is
-how one can define orthogonality of two functions:
+The *identity matrix* is an N x N square matrix in which all the
+diagonal elements are 1 and all the off-diagonal elements are zero, as
+shown here:
+$$I = \left(\begin{array}{ccccc}1 & 0 & ... & 0 & 0 \\0 & 1 & ... & ... & 0 \\... & ... & ... & ... & ... \\0 & ... & ... & 1 & 0 \\0 & 0 & ... & 0 & 1\end{array}\right)$$
 
-Two functions $f$ and $g$ in a function space are *orthogonal* if
-$<f,g> = 0$.
+The main property of the identity matrix is that when multiplied by any
+matrix of matching size, the result is unchanged: $$AI = IA = A$$ You
+should be able to convince yourself that this is true for any 2x2 matrix
+and the identity. Now that we have a matrix unity, we can define the
+inverse of a matrix:
 
-Now that we can describe the coefficients for the sines are cosines, by
-using the inner product of the function we are decomposing, with the
-basis functions (sines and cosines) in a manner analogous to the basis
-decomposition described for vector spaces in Chapter 8. The coefficients
-for the sines and cosines of the Fourier decomposition of a function
-$f(x)$ with period $L$ are found as follows:
-$$a_k = \frac{ <f(x),\cos(2\pi k x/L) > }{  <\cos(2\pi k x/L) ,\cos(2\pi k x/L) >} =\frac{2}{L} \int _{-\frac{L}{2}} ^{\frac{L}{2}} f(x) \cos(2\pi k x/L) dx$$
+A square matrix $A$ has an *inverse matrix* $A^{-1}$ if it satisfies the
+following: $$A^{-1} A = A A^{-1} = I$$
 
-$$b_k = \frac{ <f(x), \sin(2\pi k x/L)> }{  < \sin(2\pi k x/L), \sin(2\pi k x/L)>} = \frac{2}{L} \int _{-\frac{L}{2}} ^{\frac{L}{2}} f(x) \sin(2\pi k x/L) dx$$
+Finding the inverse of a matrix is not simple, and we will be content to
+let computers handle the dirty work. In fact, not every matrix possesses
+an inverse. There is a test for existence of an inverse of $A$, and it
+depends on the determinant [@strang_linear_2005]:
 
-$$a_0 = \frac{1}{L} \int _{-\frac{L}{2}} ^{\frac{L}{2}} f(x)dx$$ The
-factor of $L/2$ in front of the integrals serves to divide out the norm
-of the basis function. Note that the constant term $c_0$ is the mean
-value of the function on the interval $(-L/2, L/2)$ - it moves the
-function up or down, while the sines and cosines all have the mean value
-of zero.
+A square matrix $A$ possesses an inverse $A^{-1}$ and is called
+*invertible* if and only if its determinant is not zero.
 
-**Example: Fourier decomposition of a square wave.** Take a common
-example of a simple function subject to Fourier decomposition: a square
-wave, which is a function which equals one constant value (e.g. -1) for
-half of the interval, and another constant (e.g. 1) for the other half
-of the interval. Here is how we find the coefficients of the sines and
-cosines analytically:
+### matrices transform vectors
 
-![Approximations of a square wave with successive contributions of the
-Fourier
-series.[]{data-label="fig:square_series"}](images/square_series.png)
+In this section we will learn to characterize square matrices by finding
+special numbers and vectors associated with them. At the core of this
+analysis lies the concept of a matrix as an *operator* that transforms
+vectors by multiplication. To be clear, in this section we take as
+default that the matrices $A$ are square, and that vectors $\vec v$ are
+column vectors, and thus will multiply the matrix on the right:
+$A \times  \vec v$.
 
-$$a_k = \frac{2}{L} \int _{-\frac{L}{2}} ^{\frac{L}{2}} f(x) \cos(2\pi k x/L) dx = \frac{2}{L} \int _{-\frac{L}{2}} ^0 -\cos(2\pi k x/L) dx + \frac{2}{L} \int _0 ^{\frac{L}{2}}  \cos(2\pi k x/L) dx =$$
-$$= \frac{2}{L} \left[ \frac{L}{2\pi k} \sin(2\pi k x/L) |_{-\frac{L}{2}} ^0   -  \frac{L}{2\pi k}  \sin(2\pi k x/L)|_0^{\frac{L}{2}} \right] = \frac{1}{\pi k} \left[ 0-0 -0+0\right] = 0$$
+A matrix multiplied by a vector produces another vector, provided the
+number of columns in the matrix is the same as the number of rows in the
+vector. This can be interpreted as the matrix transforming the vector
+$\vec v$ into another one: $ A  \times  \vec v = \vec u$. The resultant
+vector $\vec u$ may or may not resemble $\vec v$, but there are special
+vectors for which the transformation is very simple.
 
-$$b_k = \frac{2}{L} \int _{-\frac{L}{2}} ^{\frac{L}{2}} f(x) \sin(2\pi k x/L) dx = \frac{2}{L} \int _{-\frac{L}{2}} ^0 -\sin(2\pi k x/L) dx + \frac{2}{L} \int _0 ^{\frac{L}{2}}  \sin(2\pi k x/L) dx =$$
-$$= \frac{2}{L} \left[ -\frac{L}{2\pi k} \cos(2\pi k x/L) |_{-\frac{L}{2}} ^0   + \frac{L}{2\pi k}  \cos(2\pi k x/L)|_0^{\frac{L}{2}} \right] = \frac{1}{\pi k} \left[ 1 -  \cos(\pi k)  + 1 - \cos(\pi k) \right] = 0 \; or \; \frac{4}{\pi k}$$
+**Example.** Let us multiply the following matrix and vector (specially
+chosen to make a point):
+$$\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ -1 \end{array}\right) = \left(\begin{array}{c}2 -1 \\ 2 - 3 \end{array}\right) =  \left(\begin{array}{c} 1 \\ -1 \end{array}\right)$$
+We see that this particular vector is unchanged when multiplied by this
+matrix, or we can say that the matrix multiplication is equivalent to
+multiplication by 1. Here is another such vector for the same matrix:
+$$\left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)\left(\begin{array}{c}1 \\ 2 \end{array}\right) = \left(\begin{array}{c}2 +2 \\ 2 + 6 \end{array}\right) =  \left(\begin{array}{c} 4 \\ 8 \end{array}\right)$$
+In this case, the vector is changed, but only by multiplication by a
+constant (4). Thus the geometric direction of the vector remained
+unchanged.
 
-The coefficients for the cosines are zeros, but there are nonzero values
-for the sines, when $k$ is odd, and $\cos(\pi k)  = -1$. When $k$ is
-even, $\cos(\pi k)  = 1$, and the expression reduces to 0. Thus, the
-Fourier series representing the square wave with period $L$ looks like
-this:
-$$f(x) = \frac{4}{\pi}\sin(2 \pi x/ L)  + \frac{4}{3\pi}\sin(2 \pi 3 x/ L) +  \frac{4}{5\pi}\sin(2 \pi 5 x/ L) + ...$$
-Notice how the coefficients decline for higher frequency terms. This
-means that one can take a finite, often just a handful of
-lowest-frequency terms and have a decent approximation of the function.
-This is typical for most reasonable functions, as we will discuss below.
+Generally, a square matrix has an associated set of vectors for which
+multiplication by the matrix is equivalent to multiplication by a
+constant. This can be written down as a definition:
 
-### complex Fourier series
+An *eigenvector* of a square matrix $A$ is a vector $\vec v$ for which
+matrix multiplication by $A$ is equivalent to multiplication by a
+constant. This constant $\lambda$ is called its *eigenvalue* of $A$
+corresponding the the eigenvector $\vec v$. The relationship is
+summarized in the following equation:
+$$A  \times  \vec v = \lambda \vec v$$ \[def:eigen\]
 
-We have seen that periodic functions can be approximated by a sum of
-sines and/or cosines of different frequencies, which is called the
-Fourier series. Because both sines and cosines are needed to represent a
-function that is not purely odd or even, a more compact complex
-representation of the Fourier series is used:
-$$f(x) = \sum_{n=-\infty}^\infty c_k e^{i2\pi x k/L}$$ Here $L$ denotes
-the length of the period of the function $f(x)$, and $c_n$ are the
-complex coefficients of the Fourier series, each corresponding to the
-frequency $n/L$. They are found by the same integration as the ones for
-sine and cosines series:
+Note that this equation combines a matrix ($A$), a vector ($\vec v$) and
+a scalar $\lambda$, and that both sides of the equation are column
+vectors. This definition is illustrated in figure , showing a vector ($v$) multiplied by a matrix
+$A$, and the resulting vector $\lambda v$, which is in the same
+direction as $v$, due to scalar multiplying all elements of a vector,
+thus either stretching it if $\lambda>1$ or compressing it if
+$\lambda < 1$. This assumes that $\lambda$ is a real number, which is
+not always the case, but we will leave that complication aside for the
+purposes of this chapter.
 
-$$c_k = \frac{1}{L}\int_{-L/2}^{L/2} f(x) e^{-i2\pi kx/L}dx; \; \; -\infty < k < \infty$$
-The coefficient $c_0$, as can be seen from the integral, is the average
-value of $f(x)$ on the interval $[-L/2,L/2]$.
+![Illustration of the geometry of a matrix $A$ multiplying its
+eigenvector $v$, resulting in a vector in the same direction
+$\lambda v$. Figure by Lantonov under CC BY-SA 4.0 via Wikimedia
+Commons.[]{data-label="fig:ch13_eigenvector"}](images/Eigenvalue_equation.png){width="3in"}
 
-In the complex Fourier series, positive and negative frequencies are
-used in order to combine both sines and cosines into the same series, by
-using the expressions
-$e^{i2\pi x k/L} + e^{- i2\pi x k/L} =  2\cos(\pi x n/L)$ and
-$e^{i2\pi x n/L} - e^{- i2\pi x n/L} =  2i\sin(2\pi x n/L)$. Thus, the
-complex coefficients $c_n$ are related to the coefficients $a_k$ and
-$b_k$ of the cosine and sine series as follows:
-$$c_k = \frac{a_k -ib_k}{2}; \; c_{-k} = \frac{a_k + ib_k}{2}; \; k \geq 1$$
-Note that as long as $a_n$ and $b_n$ are real (which is the same as
-saying the function $f(x)$ is real) the coefficients with opposite signs
-will be complex conjugates of each other.
+The definition does not specify how many such eigenvectors and
+eigenvalues can exist for a given matrix $A$. There are usually as many
+such vectors $\vec v$ and corresponding numbers $\lambda$ as the number
+of rows or columns of the square matrix $A$, so a 2 by 2 matrix has two
+eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One
+ironclad rule is that there cannot be more distinct eigenvalues than the
+matrix dimension. Some matrices possess fewer eigenvalues than the
+matrix dimension, those are said to have a *degenerate* set of
+eigenvalues, and at least two of the eigenvectors share the same
+eigenvalue.
 
-### Sampling theorem and aliasing
+The situation with eigenvectors is trickier. There are some matrices for
+which any vector is an eigenvector, and others which have a limited set
+of eigenvectors. What is difficult about counting eigenvectors is that
+an eigenvector is still an eigenvector when multiplied by a constant.
+You can show that for any matrix, multiplication by a constant is
+commutative: $cA = Ac $, where $A$ is a matrix and $c$ is a constant.
+This leads us to the important result that if $\vec v$ is an eigenvector
+with eigenvalue $\lambda$, then any scalar multiple $c \vec v$ is also
+an eigenvector with the same eigenvalue. The following demonstrates this
+algebraically:
+$$A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \vec v)$$
+This shows that when the vector $c \vec v$ is multiplied by the matrix
+$A$, it results in its being multiplied by the same number $\lambda$, so
+by definition it is an eigenvector. Therefore, an eigenvector $\vec v$
+is not unique, as any constant multiple $c \vec v$ is also an
+eigenvector. It is more useful to think not of a single eigenvector
+$\vec v$, but of a **collection of vectors that can be interconverted by
+scalar multiplication** that are all essentially the same eigenvector.
+Another way to represent this, if the eigenvector is real, is that an
+eigenvector as a **direction that remains unchanged by multiplication by
+the matrix**, such as direction of the vector $v$ in figure . As mentioned above, this is true only for
+real eigenvalues and eigenvectors, since complex eigenvectors cannot be
+used to define a direction in a real space.
 
-By representing a periodic function $f(x)$ in terms of the Fourier
-series, we reduce its description to the values of the coefficients
-$c_k$. We say that this set of coefficients is a representation in the
-*frequency domain* as opposed to the time or space domain of the
-original variable $x$. This is very useful for analyzing the types of
-frequencies that a function contains.
+To summarize, eigenvalues and eigenvectors of a matrix are a set of
+numbers and a set of vectors (up to scalar multiple) that describe the
+action of the matrix as a multiplicative operator on vectors.
+“Well-behaved” square $n$ by $n$ matrices have $n$ distinct eigenvalues
+and $n$ eigenvectors pointing in distinct directions. In a deep sense,
+the collection of eigenvectors and eigenvalues defines a matrix $A$,
+which is why an older name for them is characteristic vectors and
+values.
 
-To elaborate, $c_k$ gives the weight of the sine or the cosine function
-with frequency $k$, that is, one which has $k$ repetitions within the
-period $L$. Higher frequency terms are more wiggly, and are needed to
-represent functions with high slopes. Lower frequency terms represent
-the larger, slower varying shape of the function. For any reasonable
-function, the higher frequency terms will generally have smaller
-coefficients than lower-frequency terms, and for really high frequencies
-will be very small. This enables one simple use of the Fourier series: a
-periodic function can be approximated by a few lower-frequency terms, so
-it can be represented by a few numbers. This has great applications in
-image and sound compression.
+### calculating eigenvalues
 
-The highest frequency possibly in a sample of $N$ data points is called
-the *Nyquist critical frequency* $f_c$. It depends on the sampling
-interval $\Delta$ like this: $f_c = 1/2\Delta$. The intuition behind
-this is that in order to detect a frequency $f$, one needs to make at
-least two measurements during one period $1/f_c$. (Convince yourself of
-this by drawing a sine wave and sampling it two or fewer times per
-period.) Since each measurement takes $\Delta$ units, the highest
-frequency we can sample is $1/2\Delta$. This leads to a remarkable
-result, called the Sampling Theorem:
+Finding the eigenvalues and eigenvectors analytically, that is on paper,
+is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger
+ones there is no analytical solution. In practice, the task is
+outsourced to a computer, and MATLAB has a number of functions for this
+purpose. Nevertheless, it is useful to go through the process in 2
+dimensions in order to gain an understanding of what is involved. From
+the definition \[def:eigen\] of eigenvalues and eigenvectors, the
+condition can be written in terms of the four elements of a 2 by 2
+matrix:
+$$\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)$$
+This is now a system of two linear algebraic equations, which we can
+solve by substitution. First, let us solve for $v_1$ in the first row,
+to get $$v_1 = \frac{-bv_2}{a-\lambda}$$ Then we substitute this into
+the second equation and get:
+$$\frac{-bcv_2}{a-\lambda} +(d-\lambda)v_2 = 0$$ Since $v_2$ multiplies
+both terms, and is not necessarily zero, we require that its
+multiplicative factor be zero. Doing a little algebra, we obtain the
+following, known as the *characteristic equation* of the matrix:
+$$-bc +(a-\lambda)(d-\lambda) = \lambda^2-(a+d)\lambda +ad-bc = 0$$ This
+equation can be simplified by using two quantities we defined at the
+beginning of the section: the sum of the diagonal elements called the
+trace $\tau = a+d$, and the determinant $\Delta = ad-bc$. The quadratic
+equation has two solutions, dependent solely on $\tau$ and $\Delta$:
+$$\lambda = \frac{\tau \pm \sqrt{\tau^2-4\Delta}}{2}
+\label{eq:2D_eig}$$ This is the general expression for a 2 by 2 matrix,
+showing there are two possible eigenvalues. Note that if
+$\tau^2-4\Delta>0$, the eigenvalues are real, if $\tau^2-4\Delta<0$,
+they are complex (have real and imaginary parts), and if
+$\tau^2-4\Delta=0$, there is only one eigenvalue. This situation is
+known as degenerate, because two eigenvectors share the same eigenvalue.
 
-**Theorem:** If a function $h(x)$ contains no higher frequencies than
-some $f_c$, more precisely its Fourier transform $\hat h(f) = 0$ for any
-$f>f_c$, then this function can be completely represented by a sample
-with the interval $\Delta$ such that $\Delta < 1/2f_c$.
+**Example.** Let us take the same matrix we looked at in the previous
+subsection:
+$$A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)$$ The trace
+of this matrix is $\tau = 2+3 =5$ and the determinant is
+$\Delta = 6 - 2 = 4$. Then by our formula, the eigenvalues are:
+$$\lambda = \frac{5 \pm \sqrt{5^2-4 \times 4}}{2}  =  \frac{5 \pm 3}{2}  = 4, 1$$
+These are the multiples we found in the example above, as expected.
 
-Practically, this means that any function that does not change too
-abruptly (which requires higher frequency terms) can be represented by a
-discrete set of low-frequency terms. However, in practice there is
-always noise or abrupt changes, so one cannot have what is known a
-*bandwidth limit* (meaning the band of frequencies contributing to the
-function is limited). Then, when we try to represent a function with a
-discrete set of points that we Fourier-transform, when we perform the
-inverse FT, we get error due to lack of the high-frequency terms. This
-is called *aliasing* error.
+A real matrix can have complex eigenvalues and eigenvectors, but
+whenever it acts on a real vector, the result is still real. This is
+because the complex numbers cancel each other’s imaginary parts. For
+discrete time models, it is enough to consider the absolute value of a
+complex eigenvalue, which is defined as following:
+$|a +b i |= \sqrt{a^2 + b^2}$. As before, the eigenvalue with the
+largest absolute value “wins” in the long term.
 
-### Discrete Fourier Transform
+### calculation of eigenvectors on paper
 
-Now let us consider a series of data points, instead of idealized
-functions, since in reality the data are never described by perfect
-continuous functions. Let us suppose that they come from measuring a
-certain function $f(x)$ over a range of length $L$ at regular intervals.
-This is called *sampling* of the function and the sampling interval (in
-units of $x$) between the sample points is called $\Delta = L/N$, where
-$N$ is the number of sample points. As a result, we get a sequence of
-$N$ measurements $\{x_i\}$. In order to decompose the sampled inputs
-into their frequency components, we need to find the coefficients of the
-Fourier series. Let us use the notation $\{X_k\}$ for the Fourier
-coefficients, and define the following the *Discrete Fourier Transform*:
-$$X_{k} = \sum_{n=0}^{N-1} x_{n} e^{-i 2\pi kn /N}
- \label{eq:dft}$$ It is called the Discrete Fourier Transform because it
-is based on the finite data set, and thus computation of coefficients
-requires summation instead of integration. Let us consider what
-frequency each coefficient $X_k$ corresponds to. When $k=0$, $e^0=1$ and
-we just have the sum of all the sample points. This is called the zero
-frequency term, or sometimes the DC (direct current) term by electrical
-engineers. The other terms have frequencies given by $k/N$, all the way
-up to $(N-1)/N$. Note here that we assume for convenience that the
-interval $\Delta$ is 1, so the frequency corresponds to the fraction of
-points in the cycle (e.g. $k/N$). The frequency ranges from the lowest
-of $1/N$ to the highest of $(N-1)/N$. However, the highest frequency is
-actually equivalent to $-1/N$, because going around the $(N-1)/N$
-fraction of a circle in one direction is the same as going $1/N$
-fraction in the opposite direction.
+The surprising fact is that, as we saw in the last subsection, the
+eigenvalues of a matrix can be found without knowing its eigenvectors!
+However, the converse is not true: to find the eigenvectors, one first
+needs to know the eigenvalues. Given an eigenvalue $\lambda$, let us
+again write down the defining equation of the eigenvector for a generic
+2 by 2 matrix:
+$$\left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}v_1 \\ v_2 \end{array}\right) = \left(\begin{array}{c}av_1 +b v_2\\ cv_1+ dv_2 \end{array}\right) = \lambda \left(\begin{array}{c}v_1 \\ v_2 \end{array}\right)$$
+This vector equation is equivalent to two algebraic equations:
+$$\begin{aligned}
+av_1 + b v_2 &= \lambda v_1 \\
+cv_1 + d v_2 &= \lambda v_2 \end{aligned}$$ Since we’ve already found
+$\lambda$ by solving the characteristic equation, this is two linear
+equations with two unknowns ($v_1$ and $v_2$). You may remember from
+advanced algebra that such equations may either have a single solution
+for each unknown, but sometimes they may have none, or infinitely many
+solutions. Since there are unknowns on both sides of the equation, we
+can make both equations be equal to zero: $$\begin{aligned}
+(a-\lambda)v_1 + b v_2 &= 0 \\
+cv_1 + (d-\lambda ) v_2 &=0\end{aligned}$$ So the first equation yields
+the relationship $v_1 = -v_2 b/(a-\lambda) $ and the second equation is
+$v_1 = -v_2(d-\lambda)/c$, which we already obtained in the last
+subsection. We know that these two equations must be the same, since the
+ratio of $v_1$ and $v_2$ is what defines the eigenvector. So we can use
+either expression to find the eigenvector.
 
-Thus, the first half of the coefficients correspond to positive
-frequencies in increasing order, until the frequency $1/2$ is reached,
-and then the coefficients correspond to negative frequencies in
-descending order of the absolute value. In fact, if the input points are
-real, the coefficients of positive and negative frequencies are
-symmetric, and so for the MATLAB indexing above, we have:
-$C(k+1) = C(N-k+1)$ (for $k>0$). This is because the complex terms have
-to add up to real numbers, so this ensures that terms with opposite
-frequencies are complex conjugates (convince yourself of this fact).
+**Example.** Let us return to the same matrix we looked at in the
+previous subsection:
+$$A = \left(\begin{array}{cc}2 & 1 \\ 2& 3\end{array}\right)$$ The
+eigenvalues of the matrix are 1 and 4. Using our expression above, where
+the element $a=2$ and $b=1$, let us find the eigenvector corresponding
+to the eigenvalue 1: $$v_1 = - v_2 \times  1/(2-1) = - v_2$$ Therefore
+the eigenvector is characterized by the first and second elements being
+negatives of each other. We already saw in the example two subsections
+above that the vector $(1,-1)$ is such as eigenvector, but it is also
+true of the vectors $(-1,1)$, $(-\pi, \pi)$ and $(10^6, -10^6)$. This
+infinite collection of vectors, all along the same direction, can be
+described as the eigenvector (or eigendirection) corresponding to the
+eigenvalue 1.
 
-Computational: Fast Fourier Transform
--------------------------------------
+Repeating this procedure for $\lambda = 4$, we obtain the linear
+relationship: $$v_1 = - v_2 \times  1/(2-4) = 0.5 v_2$$ Once again, the
+example vector we saw two subsections $(2,1)$ is in agreement with our
+calculation. Other vectors that satisfy this relationship include
+$(10,5)$, $(-20,-10)$, and $(-0.4,-0.2)$. This is again a collection of
+vectors that are all considered the same eigenvector with eigenvalue 4
+which are all pointing in the same direction, with the only difference
+being their length.
 
-Now let us get down to the business of computing the Fourier
-decomposition of an input of $N$ data points. In equation \[eq:dft\] in
-the discrete Fourier transform section, we found an analytic formula for
-finding the coefficients of a complex Fourier series by summation of $N$
-components. In order to obtain all $N$ Fourier coefficients, we would
-need to perform approximately $N^2$ operations ($N$ multiplications plus
-$N-1$ additions for each of the $N$ coefficients). This means that as
-the number of inputs grows, the computational cost of performing the
-Discrete Fourier Transform grows quadratically. This is a major problem
-because Discrete Fourier Transforms are so ubiquitous - they are at the
-heart of graphics engines, audio and image analysis, and many other
-computationally intensive applications. In this section we will describe
-a truly transformational algorithm which dramatically reduces the
-computational cost of a DFT, descriptively called the Fast Fourier
-Transform (FFT). Specifically, we will describe the classic Cooley-Tukey
-algorithm \cite{}, which was the first type of FFT; subsequently other
-variations were developed, which have some advantages, but the original
-FFT is so fundamental to modern computing that I will present it in this
-section.
+Analytical: solutions of linear 2D ODEs
+---------------------------------------
 
-### splitting the data into even and odd inputs
+Let us start by considering two variable ODEs that do not affect each
+other: **Example: two uncoupled ODEs** In general, for a two-variable
+system, the value of one variable affects the other. In the equations
+above, the terms with the constants $b$ and $c$ provide what is known as
+*coupling* between the two variables. Let us look at the primitive
+situation where the two variables are uncoupled, as an illustration of
+solving two-dimensional ODEs. If we set the coupling constants $b$ and
+$c$ to 0, we get: $$\begin{aligned}
+\dot x & = & ax \\
+\dot y & = & dy\end{aligned}$$ Using our knowledge of 1D linear ODE, we
+can solve the two equations independently to get the following:
+$x(t) = x_0 e^{at}$ and $y(t) = y_0 e^{dt}$. The solutions can be
+written in vector form:
+$$\left(\begin{array}{c}x(t) \\y(t)\end{array}\right) = x_0 e^{at} \left(\begin{array}{c}1 \\0\end{array}\right)+y_0 e^{dt}\left(\begin{array}{c}0\\1\end{array}\right)$$
+This is another way of writing that the dynamics of variable $x$ is
+exponential growth (or decay) with rate $a$, and ditto $y$, with rate
+$d$. Given the initial conditions $(x_0, y_0)$, we can divide the
+behavior of the solutions into a sum of two vectors, each growing or
+decaying at its own rate.
 
-Let the set of inputs for the Discrete Fourier Transform consist of $N$
-numbers, $\{x_n\}$. This number $N$ could be large, and practicing
-computational scientists have thought about a way of simplifying the
-calculation. It turns out that there is a beautiful symmetry in the
-Fourier calculation that enables the calculation of the Fourier
-coefficients of $N$ data points in terms of the Fourier coefficients of
-two halves of the data set: the even and the odd numbered inputs. First,
-let us write down the expression in equation \[eq:dft\] in terms of sums
-of the $N/2$ even and the $N/2$ odd inputs, as follows:
-$$X_{k} = \sum_{n=0}^{N-1} x_{n} e^{-i 2\pi kn /N} = \sum_{m=0}^{N/2-1} x_{2m} e^{-i2\pi (2m)k/N} + \sum_{m=0}^{N/2-1} x_{2m+1} e^{-i2\pi (2m+1)k/N}$$
-The two sums look very similar to the sum that produces the Fourier
-coefficients for the $N$ inputs. In fact, the first sum, is identical to
-the DFT of the even-numbered inputs, which we will denote as
-$X_{k}^{(e)}$. The second sum can be transformed by taking the factor
-$e^{-i2\pi k/N}$ out of the sum into the sum for the DFT of the
-odd-numbered inputs , which we denote $X_k^{(o)}$. Conventionally in
-Fourier literature, the factor $e^{-i2\pi k/N}$, which is the $N$th root
-of unity raised to the $k$th power, is called the *twiddle* factor, and
-is notated $w^k$ (for $N$ inputs). Therefore, we have the following
-expression: $$X_k = X_{k}^{(e)} + w^k X_k^{(o)}$$ Note that this formula
-works for $0\leq k \leq N/2-1$, since the DFTs of halves of the data set
-have only half of the outputs ($N/2$). However, due to its periodicity,
-the DFT repeats itself for coefficients that go beyond the size of the
-inputs; for a DFT of size $N$, $X_{k} = X_{k-N}$. Therefore, we can
-compute the other half of the Fourier coefficients of the original data
-set ($0 \leq k \leq N/2-1$) to obtain the same formula:
-$$X_{k} = X_{k}^{(e)} + w^{k} X_{k}^{(o)}
- \label{DL_lemma}$$ This result, known as the *Danielson-Lanczos lemma*,
-allows the calculation of a DFT with $N$ inputs, in terms of the
-coefficients of two DFTs with $N/2$ inputs. It is clear that even
-applying this splitting once leads to computational advantage, since as
-we noted above, DFT requires on the order of $N^2$ arithmetic
-operations. Thus, performing DFTs on half of the number of inputs will
-reduce the number of calculations by a factor of 4, and since it is
-performed for each half of the data, this results in approximately
-two-fold reduction in operations, as it requires only on the order of
-$N$ additional operations to reassemble the full DFT.
+Linear algebra allows us to find the solution for two-dimensional ODEs
+where the variables are interdependent using the same idea. The general
+(homogeneous) ODE with two dependent variables can be written as
+follows: $$\begin{aligned}
+\dot x & = & ax + by \\
+\dot y & = & cx + dy\end{aligned}$$ We can write this in matrix form
+like this:
+$$\left(\begin{array}{c}\dot x \\ \dot y \end{array}\right) = \left(\begin{array}{cc}a & b \\c & d\end{array}\right)\left(\begin{array}{c}x \\ y \end{array}\right)$$
 
-### recursive splitting and reassembly
+Let us call the matrix $A$, and represent the vector $(x,y)$ as
+$\vec {x}$, then the general linear equation can be written like this:
+$$\dot{ \vec{ x}} = A \vec {x }$$ This notation is intended to make
+plain the similarity with the linear 1D ODE: $\dot x = a x$. This
+similarity is deep and substantial, in that linear equations in multiple
+dimensions share the same basic exponential form. In general, all
+solutions of linear equations can be written as a sum of exponentials
+multiplying different vectors, so in 2D we have:
+$$\left(\begin{array}{c} x(t) \\  y(t) \end{array}\right) =C_1e^{\lambda_1 t} \left(\begin{array}{c}x_1\\y_1\end{array}\right)+C_2 e^{\lambda_2 t}\left(\begin{array}{c}x_2\\y_2\end{array}\right)$$
+The constants $C_1, C_2$ are determined by the initial conditions, while
+the constants $\lambda_1, \lambda_2$ are the eigenvalues and the vectors
+$(x_1,y_1)$ and $(x_2,y_2)$ are the eigenvectors of the matrix $A$. We
+will now consider the application of this general result using
+computational tools.
 
-If splitting the problem in half once reduces the computational cost,
-why not do it again? and again? This was the idea that Cooley and Tukey
-came up with in 1965. For example, if the number of inputs is divisible
-by 4, one can split the data sets into even- and odd-numbered halves,
-and then split each of those into even and odd-numbered halves, and
-perform DFT on the quarter-data sets separately. The resulting four sets
-of Fourier coefficients will be labeled $\{X^{(ee)}\}$, $\{X^{(eo)}\}$,
-$\{X^{(oe)}\}$, and $\{X^{(oo)}\}$ (e.g. the second one represents the
-quarter of data set that had even indices in the original set, and odd
-indices in the even half, corresponding to indices 2,6,10, etc.), and
-they can be recombined in order to compute the Fourier coefficients of
-the entire set. Using the above formula, we can find the the expression
-for reassembling the four quarter-size DFTs to compute the DFT. The
-twiddle factor for quarter-size data sets is
-$e^{-i2\pi k/(N/2)} =e^{-i2\pi 2k/N}  = w^{2k}$. Therefore, the formula
-for the DFT, for indices $0 \leq k \leq N-1$ is:
-$$X_k =  X^{(ee)} + w^{2k}X^{(eo)}  + w^k X^{(oe)} + w^{3k} X^{(oo)}$$
+Computation: classification of linear systems
+---------------------------------------------
 
-We can continue further dividing the data into halves and reassembling
-the resulting DFT coefficients, as long as the number of data points in
-the subsets is divisible by two. In order to achieve maximal
-decomposition, let us assume that the number of inputs is a power of 2
-($N=2^M$). Then after $M$ such divisions into even and odd subsets, the
-data are subdivided into $N$ subsets of single values. The DFT of a
-single data point, by the formula above in equation \[eq:dft\], is just
-the data point. Therefore, for any data point with a given pattern of
-even and odd divisions, e.g. $ooeeo...$, there is a corresponding
-singlet DFT with index $n$: $$x_n  =  X^{(ooeeo...)}$$ The question is,
-how does the index $n$ of the data point correspond to the string of
-even and odd divisions in the DFT? The answer turns out to be simple and
-elegant in binary representation of indices. Consider, for example, a
-data set of four input values, indexed $\{x_0,x_1,x_2, x_3\}$. The first
-division splits them into $\{x_0,x_2\}$ and $\{x_1,x_3\}$, and the
-second subdivides them into singleton sets:
-$\{x_0\},\{x_2\},\{x_1\},\{x_3\}$. The rearrangement of indices due to
-divisions into evens and odds is captured by *bit reversal* of the
-binary indices. In binary, we can write $0=00; 1=01; 2=10; 3=11$.
-Reversing the bits, that is re-writing the binary numbers from right to
-left, yields: $00=0, 10=2, 01=1; 11=3$, which is exactly the order we
-produced by two splittings. Therefore, we can find the DFTs of each of
-the resulting singleton sets by reordering the input values by
-bit-reversal and then recombining them using the Danielson-Lanczos
-formula above.
+We have seen that linear algebra allows us to write down the solution of
+a multivariable dynamical system into a sum of exponential terms. In
+this section we use computational techniques to find the eigenvalues and
+eigenvectors of a system, and then produce the *phase portraits* of the
+linear systems. There are only a few different types of flow possible
+for linear systems, and we will classify them.
 
-**Example.** Let us calculate the DFT for the data set
-$\{x_0, x_1, x_2, x_3\} = \{2,  -1, 2, -1 \}$. As we saw above, we split
-the four inputs into halves twice until we are left with singleton sets,
-which are then arranges as follows:
-$ \{x_0, x_1, x_2, x_3 \}  = \{2,  2 -1, -1 \}$. Then we recombine the
-value with appropriate twiddle factors to calculate the DFT. First,
-Calculate the twiddle factors for DFT with $N=2$:
-$$w_0 = 1; \;  w_1 = e^{-i\pi} = -1$$ $$X_0^{(e)} = x_0 + x_2 = 4$$
-$$X_1^{(e)} = x_0 + w^1x_2 = 0$$ $$X_0^{(o)} =  x_1 + x_3 =  - 2$$
-$$X_1^{(o)} =  x_1 + w^1 x_3 =  0$$ Calculate the twiddle factors for
-$N=4$:
-$$w_0 = 1; \;  w_1 = e^{-i\pi/2} = -i ; \; w_2 = e^{-i\pi } = -1 ;\;  w_3 = e^{-i3\pi/2} = i$$
-$$X_0 =  X_0^{(e)}  + X_0^{(o)} = 2$$
-$$X_1 =  X_1^{(e)}  + w^1 X_1^{(o)}  = 0$$
-$$X_2 =  X_0^{(e)}  + w^2 X_1^{(o)}  = 6$$
-$$X_3 =  X_1^{(e)}  + w^3 X_1^{(o)} =  0$$ Each DFT coefficient contains
-information about the periodicity of the data set: the zeroth one is the
-sum (average signal); the first one measures the strength of the period
-one component (in this case, none), the second one is the strength of
-the period two component (in this case, the only frequency present), and
-the third one mirrors the period one (since there cannot be a period
-three signal measured in four points.)
+![Phase plane flow for a linear system with a saddle
+point[]{data-label="fig:pp1"}](images/week6_pp1.png){width="3.7in"}
 
-This calculation a small data set how the FFT algorithm reduce the
-calculation of the DFT coefficients to reassembling the values of the
-inputs $x_k$ with the bit-reversed indices with appropriate twiddle
-factors. This is illustrated in the following figure
-\[fig:fft\_butterfly\], known as the “FFT butterfly” for its visual
-appearance. The figure demonstrates how the original data points on the
-left, if arranged in the bit-reversed order are scrambled up by the
-even/odd divisions, and how they end up in the normal order on the right
-hand side.
+### real eigenvalues
 
-The result of the FFT calculation is exactly the same as the direct DFT,
-but the FFT takes fewer arithmetic operations to perform. As mentioned
-above, computing the DFT directly requires $O(N^2)$ operations (the
-notation means a scalar multiple of $N^2$). The FFT starts by
-rearranging the data using bit-reversal (which takes only a small number
-of calculations). The key to efficiency is recursive reassembly of the
-DFT, which happens $\log_2 (N)$ times, one for each split (assuming that
-$N$ is a power of two, which allows for a clean division into
-singletons.) This calculation, as shown in equation \[DL\_lemma\],
-requires only two operations (an addition and a multiplication by the
-precomputed twiddle factor) for each of the $N$ DFT coefficients.
-Therefore, the total number of operations for FFT is $O(N \log_2 (N) )$
-instead of $O(N^2)$ for DFT. This results is a huge gain in efficiency
-for large data sets, for example, for a million data points
-$\log_2(10^6) \approx 20$, the number of operations is reduced by a
-factor of 50,000.
+Let us consider the fixed points of the linear system: since both
+$\dot x =0 $ and $\dot y = 0$ must be zero, the only fixed point is the
+origin $(0,0)$. We will see that the stability of the fixed point
+depends on the sign of the real part of the eigenvalue.
 
-![FFT butterfly for 8 input
-points[]{data-label="fig:fft_butterfly"}](images/fft_butterfly.png)
+Suppose we have a positive real eigenvalue. The solution in the
+direction of the corresponding eigenvector is then described by
+$Ce^{\lambda t}$, $\lambda > 0$, which is exponential growth. The means
+that the solution is going to grow in the direction of the eigenvector
+away from the origin, and thus the origin is an unstable fixed point (in
+this direction). On the other hand, if $\lambda < 0$, the solution
+decays exponentially and thus approaches the origin, so the fixed point
+is stable (in this direction).
+
+There are two different eigenvalues, and one may be positive while
+another is negative. In this case, the fixed point is is called a
+*saddle point* for geometric reasons: solutions flow toward it in one
+direction, like a marble along the forward-backward axis of a saddle on
+a horse and flow away from it along the sideways direction on a saddle.
+Then, the fixed point is stable when approached along one eigenvector,
+but unstable along the other. What happens if the initial condition is
+not on either eigenvector? I will use a fact of linear algebra that
+given any two (non-colinear) 2D vectors, any vector in the plane can
+represented as a sum (with some coefficients) of these two. Thus, the
+general solution can be written as follows:
+$$\left(\begin{array}{c} x(t) \\  y(t) \end{array}\right) =C_1e^{at} \left(\begin{array}{c}v_1\\v_2\end{array}\right)+C_2 e^{-bt}\left(\begin{array}{c}u_1\\u_2\end{array}\right)$$
+where $a,b>0$. Then we see that the component in the direction of the
+first eigenvector will grow, while the component along the second
+eigenvector will decay. Thus, as $t \rightarrow \infty$, all solutions
+will approach the vector with the unstable eigenvalue, except those with
+initial conditions right on the eigenvector corresponding to the stable
+eigenvalue. This means that the fixed point is essentially unstable,
+because only trajectories which start exactly along the stable direction
+approach the fixed point in the long run, while others, may approach the
+fixed point for a finite time, flow away when the unstable component
+with the positive eigenvalue takes over, as shown in figure .
+
+![Exponentially decaying oscillations: time plot of $x$, and phase plane
+of both $x$ and
+$y$[]{data-label="fig:exp_osc"}](images/lec7_exp_osc.png "fig:"){width="3.4in"}
+![Exponentially decaying oscillations: time plot of $x$, and phase plane
+of both $x$ and
+$y$[]{data-label="fig:exp_osc"}](images/lec7_pp1.png "fig:"){width="2.6in"}
+
+### complex eigenvalues
+
+If the argument of the square root is negative, eigenvalues may be
+complex numbers, which we can write like this: $a+bi$. Using Euler’s
+formula, we can write down the time-dependent part of the solutions as
+the following:
+$$e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))$$ The
+behavior of these solutions combines exponential growth or decay from
+the real part, with the oscillations produced by the imaginary part.
+This describes either exponentially growing or decaying oscillations,
+which look like decaying waves in time, or as a spiral in the phase
+plane:
+
+Thus we see that the stability of the fixed point with complex
+eigenvalues depends on the sign of the real part. Purely imaginary
+eigenvalues produce periodic oscillations, which keep the same
+amplitude, as we saw in the example in the modeling section.
+
+### classification of linear systems
+
+   Stability:   $Re(\lambda_1, \lambda_2)>0$   $Re(\lambda_1, \lambda_2)<0$   $Re(\lambda_1)<0 , Re(\lambda_2)>0$   $Re(\lambda_1\; or \; \lambda_2)= 0 $
+  ------------ ------------------------------ ------------------------------ ------------------------------------- ---------------------------------------
+     real:             unstable node                   stable node                       saddle point                            fixed line
+    complex:          unstable spiral                 stable spiral                           N/A                               center point
+
+  : Eigenvalues of linear ODEs define type of phase plane
+
+\[default\]
+
+The table above summarizes all the different types of flows in the phase
+plane possible for linear systems, in terms of the behavior of solutions
+relative to the fixed point at the origin. If the eigenvalues are real,
+the solutions will be exponential in nature. There are three
+possibilities for nonzero eigenvalues: *stable node* (both eigenvalues
+are negative), *unstable node* (both eigenvalues are positive), and a
+*saddle point* (mixed signs). If one of the eigenvalues is zero, this
+means that there is not flow along one direction, so there is a *line of
+fixed points* in the direction of the corresponding eigenvector (if both
+eigenvalues are zero, there is no flow at all.)
+
+For complex eigenvalues, there are three possibilities: if the real part
+is positive, the solution will grow and oscillate (oscillations with
+exponentially increasing amplitude), if the real part is negative, the
+solution will decay and oscillation (oscillations with exponentially
+increasing amplitude), and if the real part is zero (pure imaginary
+eigenvalues) the solution will oscillate with constant amplitude. The
+first type is called an *unstable spiral*, the second a *stable spiral*,
+and the third a *center*. It is not possible for complex eigenvalues of
+two-dimensional systems to have different signs of real parts, because
+as the formula shows, the real part is the same for both and is equal to
+the trace divided by two.
+
+Synthesis: dynamics of romantic relationships
+---------------------------------------------
+
+We examine a model, taken from [@strogatz_nonlinear_2001], that applies
+dynamical systems modeling to a pressing concern for many humans: the
+prediction of dynamics of a romantic relationship. There are several
+unrealistic assumptions involved in the following model: first, that
+love or affection can be quantified, second, that any changes in
+relationship depend only on the emotions of the two people involved, and
+third, that the rate of change of the two love variables depend linearly
+on each other.
+
+If we can give those assumptions the benefit of the doubt (which is how
+all relationships begin), we can write down a system of ODEs to describe
+a romantically involved couple. Here $X$ and $Y$ are dynamic variables
+that quantify the emotional states of the two lovers: $$\begin{aligned}
+\dot  X & = & aX+ bY \\
+\dot  Y & = & cX + dY\end{aligned}$$ Let us denote positive feelings
+(love) with positive values of $X,Y$, while negative values signify
+negative feelings (hate.) The significance of the parameters can be
+interpreted as follows: $a,d$ describe the response of the two people to
+their own feelings, while $b,c$ correspond to the effect the other
+person’s feeling has on their own. For example, a person whose feeling
+grow as the other person’s affection increases can be modeled with a
+positive value of $b$ (or $c$). On the other hand, a person whose own
+feelings are dampened by the other one’s excessively positive emotions,
+can be decribed by a negative value of $b$ or $c$. Their own feelings
+can also play a role, either positive or negative, reflected in the sign
+of the constants $a$ and $d$.
+
+Using mathematical modeling, we can answer the following basic
+questions:
+
+1.  Given a set of values for parameters $a, b, c, d$, predict the
+    dynamic behavior of the model relationship.
+
+2.  Find conditions for stability and existence of oscillations in the
+    dynamical system, expressed as a function of the parameters.
+
+To address the first question, here are some simplified scenarios for
+our two lovers in the model.
+
+**Detached lovers:** Let the emotional state of the two lovers depend
+only on their own emotions, for example: $$\begin{aligned}
+\dot  X & = & X \\
+\dot  Y & = &  -Y\end{aligned}$$ To classify the behavior of the model,
+we find the eigenvalues of the system. In this case, they are the
+diagonal elements of the matrix, 1 and -1. This mean that the origin is
+a saddle point, and therefore it is unstable. In the $X$ direction, the
+emotions are going to grow without bound, either in the love or hate
+direction, while in the $Y$ direction, the emotions are going to decay
+to zero (indifference). This should be no surprise, that since the two
+equations are independent, the lovers have no emotional effect on each
+other.
+
+**Lovers with no self-awareness:** Here is an alternate situation:
+suppose two lovers were not influenced by their own emotions, but were
+instead attuned to the emotional state of the other. Then we might have
+the following model, in which lover $X$ reacts in the opposite way by
+emotions of lover $Y$, but lover $Y$ is, contrariwise, spurred by the
+love or hate of $X$ in the same direction: $$\begin{aligned}
+\dot  X & = & -Y \\
+\dot  Y & = &  X\end{aligned}$$ We find the eigenvalues of the system by
+using the expression in equation \[eg:2D\_eig\]:
+$\lambda =  (0 \pm \sqrt{-4})/2 = \pm i$. Pure imaginary eigenvalues
+tell us that the origin is a center point, with the solutions periodic
+orbits around the origin. Psychologically, we can interpret this
+scenario as cycles of love and hate, never growing and never decaying.
+The magnitude of these oscillations depends on the initial state of the
+system, that is, the feelings the lovers had at the beginning of the
+relationship.
+
+We can now address the second question, and find under what
+circumstances different types of dynamic behaviors occur. We consider
+the general model, and ask what kinds of eigenvalues are possible for
+different parameter values. First, we write down the general expression
+for the eigenvalues, from equation \[eg:2D\_eig\]:
+$$\lambda =  \frac{a+d \pm \sqrt{(a+d)^2-4(ad-bc)}}{2}$$ There are two
+properties we are interested in: stability and existence of
+oscillations. Recall that stability is determined by the sign of the
+real part of the eigenvalues. If the square root is imaginary, then the
+real part is simply the trace ($a+d$), but if the square root is real,
+we have to consider the whole expression to determine stability. So let
+us first state the condition for existence of oscillations (imaginary
+square root):
+
+1.  Complex eigenvalues: oscillatory solutions $$4(ad-bc) > (a+d)^2$$ If
+    this expression holds, the square root is imaginary, and the
+    stability is determined by the sign of the trace. That is, if
+    $a+d > 0$, the system is unstable, and will grow into unbounded love
+    or hate, but if $a+d < 0$, then the system is stable, and will
+    spiral to indifference. The special case $a+d = 0$, such as we saw
+    above, means that strictly periodic love/hate cycles are the
+    solutions.
+
+2.  Real eigenvalues: exponential growth and/or decay
+    $$4(ad-bc) < (a+d)^2$$ In this case, the square root is real, and no
+    oscillatory solutions exist. In order to determine whether this
+    implies exponential growth, decay, or a combination, we must weigh
+    the relative sizes of $(a+d)$ and $\sqrt{(a+d)^2-4(ad-bc)}$. If
+    $|a+d| > \sqrt{(a+d)^2-4(ad-bc)}$, then adding or subtracting the
+    square root does not change the sign of $(a+d)$: if it is negative,
+    both eigenvalues are negative, and the origin is a stable node, and
+    if the trace is positive, the origin is an unstable node.
+
+    However, if the absolute value of the root outweighs the absolute
+    value of the trace $|a+d| < \sqrt{(a+d)^2-4(ad-bc)}$ , then either
+    adding or subtracting the root will change the sign of the
+    eigenvalues. Therefore, one eigenvalue is positive and the other is
+    negative, and the origin is a saddle point. The emotions will run
+    unchecked in some preferred direction, possibly combining love and
+    hate of the two lovers.
+
+These conditions are not intuitive, and it took some work to express
+them. The benefit is that now, given any values of the self-involvement
+parameters $a,d$ and the sensitivity parameters $b,c$ we can predict the
+long-term dynamics of the model relationship. Whether the results have
+any bearing on reality, of course, depends on how well the reality is
+described by these primitive assumptions.

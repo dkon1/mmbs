@@ -1,10 +1,19 @@
 - file: intro
-  numbered: false
-  
-- part: One-variable dynamical systems
-  chapters: 
-  - file: chapter1
-    sections: 
-    - file: notebooks
-  - file: chapter2
-  - file: chapter3
+  numbered: true
+    
+- file: chapter1_intro
+  sections:
+    - file: chapter1_math
+    - file: chapter1_python  
+- file: chapter2_intro
+  sections:
+    - file: chapter2_math
+    - file: chapter2_python
+- file: chapter3_intro
+  sections:
+    - file: chapter3_math
+    - file: chapter3_python
+- file: chapter4_intro
+  sections:
+    - file: chapter4_math
+    - file: chapter4_python
