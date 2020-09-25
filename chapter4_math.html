@@ -92,7 +92,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="chapter3_intro.html">
-   3. Discrete models of higher order: age-structured population models
+   3. Discrete models of higher order
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -126,6 +126,16 @@
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter5_intro.html">
+   5. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter6_intro.html">
+   6. Classification of linear models: eigenvalues and eigenvectors
+  </a>
  </li>
 </ul>
 
@@ -332,12 +342,15 @@ A \rightarrow^k B
 \int \frac{dx}{dt} dt = \int f(x,t) dt \Rightarrow x(t) + C = \int f(x,t) dt
 \]</div>
 <p>The constant of integration <span class="math notranslate nohighlight">\(C\)</span> appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution <span class="math notranslate nohighlight">\(x(t)\)</span>. Unless the function <span class="math notranslate nohighlight">\(f(x,t)\)</span> depends only on <span class="math notranslate nohighlight">\(t\)</span>, it is not possible to evaluate the integral above. Instead, various tricks are used to find the analytic solution. The simplest method of analytical solution of a first-order ODEs, which I call <em>separate-and-integrate</em> consists of the following steps:</p>
+<div class="tip admonition">
+<p class="admonition-title">Outline of separate-and-integrate method</p>
 <ol class="simple">
 <li><p>use algebra to place the dependent and independent variables on different sides of the equations, including the differentials (e.g. <span class="math notranslate nohighlight">\(dx\)</span> and <span class="math notranslate nohighlight">\(dt\)</span>)</p></li>
 <li><p>integrate both sides with respect to the different variables, don’t forget the integration constant</p></li>
 <li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) to find the <em>general solution</em></p></li>
 <li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the integration constant and find the <em>specific solution</em></p></li>
 </ol>
+</div>
 <p><strong>Example.</strong> Consider a very simple differential equation: <span class="math notranslate nohighlight">\(\dot x  = a\)</span>, where <span class="math notranslate nohighlight">\(\dot x\)</span> stands for the time derivative of the
 dependent variable <span class="math notranslate nohighlight">\(x\)</span>, and <span class="math notranslate nohighlight">\(a\)</span> is a constant. It can be solved by integration:</p>
 <div class="math notranslate nohighlight">
@@ -356,11 +369,14 @@ dependent variable <span class="math notranslate nohighlight">\(x\)</span>, and 
 x(t) = x_0e^{rt}
 \]</div>
 <p>As in the case of the discrete-time models, population growth with a constant birth rate has exponential form. Once again, please pause and consider this fact, because the exponential solution of linear equations is one of the most basic and powerful tools in applied mathematics. Immediately, it allows us to classify the behavior of linear ODE into three categories:</p>
+<div class="tip admonition">
+<p class="admonition-title">Classification of solutions of generic linear ODE <span class="math notranslate nohighlight">\(\dot x = rx\)</span></p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(r &gt;0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> grows without bound</p></li>
 <li><p><span class="math notranslate nohighlight">\(r &lt;0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> decays to 0</p></li>
 <li><p><span class="math notranslate nohighlight">\(r = 0\)</span>: <span class="math notranslate nohighlight">\(x(t)\)</span> remains constant at the initial value</p></li>
 </ul>
+</div>
 <p>The rate <span class="math notranslate nohighlight">\(r\)</span> being positive means that the birth rate is greater than the death rate in the population, leading to unlimited population growth. If the death rate is greater, the population will decline and die out. If the two are exactly matched, the population size will remain unchanged.</p>
 <p><strong>Example.</strong> The solution for the biochemical kinetic model in equation <a class="reference internal" href="#equation-lin-chem-kin">(4.2)</a> is identical except for the sign:
 <span class="math notranslate nohighlight">\(A(t) = A_0 e^{-kt}\)</span>. When the reaction rate <span class="math notranslate nohighlight">\(k\)</span> is positive, as it is in chemistry, the concentration of <span class="math notranslate nohighlight">\(A\)</span> decays to 0 over time. This is consistent with the arrow diagram of this model, since there is no back reaction, and the only chemical process is conversion of <span class="math notranslate nohighlight">\(A\)</span> into <span class="math notranslate nohighlight">\(B\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span> can be found by using the fact that the total concentration of molecules in the model is conserved. Let us call it <span class="math notranslate nohighlight">\(C\)</span>. Then <span class="math notranslate nohighlight">\(B(t) = C - A(t) = C- A_0e^{-kt}\)</span>. The concentration of <span class="math notranslate nohighlight">\(B\)</span> increases to the asymptotic limit of <span class="math notranslate nohighlight">\(C\)</span>, meaning that all molecules of <span class="math notranslate nohighlight">\(A\)</span> have been converted to <span class="math notranslate nohighlight">\(B\)</span>.</p>
@@ -368,12 +384,15 @@ x(t) = x_0e^{rt}
 <div class="section" id="solution-of-nonhomogeneous-odes">
 <h2><span class="section-number">4.2.3. </span>solution of nonhomogeneous ODEs<a class="headerlink" href="#solution-of-nonhomogeneous-odes" title="Permalink to this headline">¶</a></h2>
 <p>ODEs that contain at least one term without the dependent variable are a bit more complicated. If the defining function is <span class="math notranslate nohighlight">\(f(x,t)\)</span> is <em>linear</em> in the dependent variable <span class="math notranslate nohighlight">\(x\)</span>, they can be solved on paper using the same separate-and-integrate method, modified slightly to handle the constant term. Here are the steps to solve the generic linear ODE with a constant term <span class="math notranslate nohighlight">\(\dot x = ax +b\)</span>:</p>
+<div class="topic">
+<p class="topic-title">solution of linear ODE of the form <span class="math notranslate nohighlight">\(\dot x = ax +b\)</span></p>
 <ol class="simple">
 <li><p>separate the dependent and independent variables on different sides of the equations, by dividing both sides by the right hand side <span class="math notranslate nohighlight">\(ax+b\)</span>, and multiplying both sides by the differential <span class="math notranslate nohighlight">\(dt\)</span></p></li>
 <li><p>integrate both sides with respect to the different variables, don’t forget the integration constant!</p></li>
 <li><p>solve for the dependent variable (e.g. <span class="math notranslate nohighlight">\(x\)</span>) to find the <em>general solution</em></p></li>
 <li><p>plug in <span class="math notranslate nohighlight">\(t=0\)</span> and use the initial value <span class="math notranslate nohighlight">\(x(0)\)</span> to solve for the integration constant and find the <em>specific solution</em></p></li>
 </ol>
+</div>
 <p><strong>Example:</strong> Let us solve the following ODE model using separate and integrate with the given initial value:</p>
 <div class="math notranslate nohighlight">
 \[

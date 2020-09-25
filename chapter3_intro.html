@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Discrete models of higher order: age-structured population models &#8212; Mathematical Methods for Biology</title>
+    <title>3. Discrete models of higher order &#8212; Mathematical Methods for Biology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -92,7 +92,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   3. Discrete models of higher order: age-structured population models
+   3. Discrete models of higher order
   </a>
   <ul>
    <li class="toctree-l2">
@@ -125,6 +125,16 @@
  <li class="toctree-l1">
   <a class="reference internal" href="chapter4_intro.html">
    4. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter5_intro.html">
+   5. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter6_intro.html">
+   6. Classification of linear models: eigenvalues and eigenvectors
   </a>
  </li>
 </ul>
@@ -205,8 +215,8 @@
         
               <div>
                 
-  <div class="section" id="discrete-models-of-higher-order-age-structured-population-models">
-<h1><span class="section-number">3. </span>Discrete models of higher order: age-structured population models<a class="headerlink" href="#discrete-models-of-higher-order-age-structured-population-models" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="discrete-models-of-higher-order">
+<h1><span class="section-number">3. </span>Discrete models of higher order<a class="headerlink" href="#discrete-models-of-higher-order" title="Permalink to this headline">¶</a></h1>
 <p>It is not unusual for biological systems to have multiple variables which influence each other, and thus need to be accounted in any model that aims to be useful. In this unit we will learn how to construct such models, and the methods for analyzing, solving, and numerically simulating them. We will see how models with two or more variables are used in a variety of biological fields: to describe population demographics, motility of cochlear cells, psychology of human relationships, gene regulation, and motion of molecular structures.</p>
 <p>We will need new mathematical tools in order to analyze models with multiple variables. These methods are primarily from the realm of linear algebra. We will express multiple equations in terms of matrices and vectors, and learn how to operate on these objects. The dynamics of these models can be analyzed by doing calculations with the matrices, specifically finding special numbers and vectors known as eigenvalues and eigenvectors. These concepts, which will be introduced later, are absolutely central to all of applied mathematics, and to computational biology in particular.</p>
 <p>In this chapter, the section on modeling is devoted to an old model of a population where individuals live for two generations, known as the Fibonacci model. We then describe how this model can be written down either as a single difference equation of second order, or as two equation of the first order, which may be represented in matrix form. In the analytical section, we will learn to solve second order difference equations with an explicit formula, and then introduce some elementary matrix operations. In the computational section we will use the matrix notation to compute numerical solutions for higher order difference equations. Finally, in the synthesis section we will analyze two demographic population models, in which the population is broken into age groups. The matrix notation will be important for concisely representing different parameters for each age group.</p>

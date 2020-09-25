@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.4. Numeric solutions of higher order difference equations &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Linear ODEs with two variables" href="linear_pp_intro.html" />
+    <link rel="prev" title="5.1. higher order difference equations" href="discrete_higher_math.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_1var_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ode_1var_intro.html">
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph_ode_intro.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   5. Discrete models of higher order
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html">
+     5.1. higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html#solutions-for-linear-higher-order-difference-equations">
+     5.2. Solutions for linear higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html#age-structured-population-models">
+     5.3. Age-structured population models
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.4. Numeric solutions of higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#matrix-models-in-python">
+     5.5. Matrix models in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_pp_intro.html">
+   6. Linear ODEs with two variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forces_pot_intro.html">
+   7. Forces and potentials in biological modeling
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/discrete_higher_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/discrete_higher_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/discrete_higher_python.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="numeric-solutions-of-higher-order-difference-equations">
+<h1><span class="section-number">5.4. </span>Numeric solutions of higher order difference equations<a class="headerlink" href="#numeric-solutions-of-higher-order-difference-equations" title="Permalink to this headline">¶</a></h1>
+<p>The solution of a difference equation can be found numerically using the matrix and vector form we introduced above. As we saw in the Fibonacci example, the next vector in the sequence can be obtained by multiplying the previous vector by the defining matrix. Let <span class="math notranslate nohighlight">\(\vec x_t\)</span> be the vector containing <span class="math notranslate nohighlight">\(n\)</span> values of the dependent variables, and <span class="math notranslate nohighlight">\(A\)</span> be the defining matrix of dimension <span class="math notranslate nohighlight">\(k\)</span> by <span class="math notranslate nohighlight">\(k\)</span>. The solutions are obtained by repeated multiplication by the matrix <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\vec x_{t+1} = A  \vec x_{t}
+\]</div>
+<p>We will now show how to implement this procedure in a program. For the simulation to be run, the program must set the following required components: the matrix defining the difference map, sufficient number of initial values, and the number of steps desired to iterate the solution. At each step, the current value of the vector of dependent variables is multiplied by the matrix <span class="math notranslate nohighlight">\(A\)</span>. In the following pseudocode I use two-dimensional arrays with two indices (row and column), and a colon in place of index indicates all of the elements in that dimension, e.g. <span class="math notranslate nohighlight">\(x[0,:]\)</span> indicates the entire first row of array <span class="math notranslate nohighlight">\(x\)</span>. I assume that programming language has an operator for multiplying matrices, which is indicated by the multiplication symbol <span class="math notranslate nohighlight">\(\times\)</span>.</p>
+<div class="tip admonition">
+<p class="admonition-title">Solution of matrix discrete-time models</p>
+<ul class="simple">
+<li><p>set the number of variables <span class="math notranslate nohighlight">\(k\)</span></p></li>
+<li><p>set age-structured matrix <span class="math notranslate nohighlight">\(A\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(n\)</span> to be the number of iterations (time steps)</p></li>
+<li><p>set the initial condition vector <span class="math notranslate nohighlight">\(x_0\)</span></p></li>
+<li><p>initialize array <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(n\)</span> rows and <span class="math notranslate nohighlight">\(n + 1\)</span> columns</p></li>
+<li><p>set the first column to <span class="math notranslate nohighlight">\(x_0\)</span></p></li>
+<li><p>for <span class="math notranslate nohighlight">\(i\)</span> from 0 to <span class="math notranslate nohighlight">\(n - 1\)</span></p>
+<ul>
+<li><p><span class="math notranslate nohighlight">\(x[:, i+1] \gets A \times x[:, i]\)</span></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This code produces a rectangular array <span class="math notranslate nohighlight">\(x\)</span> with <span class="math notranslate nohighlight">\(k\)</span> rows and <span class="math notranslate nohighlight">\(n + 1\)</span> columns. The values of the variables at time <span class="math notranslate nohighlight">\(j\)</span> are stored in the vector <span class="math notranslate nohighlight">\(x[:,j]\)</span>. Conversely, in order to follow the dynamics of a particular variable over time, e.g. number <span class="math notranslate nohighlight">\(i\)</span>, through all <span class="math notranslate nohighlight">\(n\)</span> time steps, we can plot the vector <span class="math notranslate nohighlight">\(x[:,i]\)</span>.</p>
+<p>Let us take the Fibonacci model again in the matrix form, with the matrix <span class="math notranslate nohighlight">\(A\)</span> and initial vector <span class="math notranslate nohighlight">\(\vec x_0\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A =  \left(\begin{array}{cc}1 &amp; 1\\1 &amp; 0\end{array}\right); \;  \vec x_0 =   \left(\begin{array}{c}1 \\1 \end{array}\right)
+\end{split}\]</div>
+<p>After iterating the matrix equation for 10 time steps, we obtain the following array <span class="math notranslate nohighlight">\(X\)</span>, with the fist and second row representing the population at the current and the previous time step, respectively, and the column representing time step:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{cccccccccc} 
+ 1 &amp; 2 &amp; 3 &amp; 5 &amp; 8 &amp; 13 &amp; 21 &amp; 34 &amp; 55 &amp; 89 \\
+ 1 &amp; 1 &amp; 2 &amp; 3 &amp; 5 &amp; 8 &amp; 13  &amp;  21 &amp; 34 &amp; 55  \\
+ \end{array}
+\end{split}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Necessary imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#package for work with arrays and matrices -- this week including some linear algebra</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#package with plotting capabilities</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="matrix-models-in-python">
+<h1><span class="section-number">5.5. </span>Matrix models in Python<a class="headerlink" href="#matrix-models-in-python" title="Permalink to this headline">¶</a></h1>
+<p>In this section you will use Python’s linear algebra library to compute the characteristic polynomial, eigenvalues, and eigenvectors of the models.</p>
+<p>We saw in the section above that the found the eigenvalues by rewriting the equation for <span class="math notranslate nohighlight">\(\lambda\)</span> as a kth order polynomial, then found its roots. Python has a command for that, we can construct the characteristic polynomial of a matrix using the function poly(A), where A is a matrix. More specifically, we can find the coefficients for the characteristic polynomial.</p>
+<p>Consider the Leslie population model from the example above:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\left(\begin{array}{c}j_{t+1}\\ m_{t+1}\end{array}\right) =  \left(\begin{array}{cc}0 &amp; 2 \\0.4 &amp; 0\end{array}\right) \times \left(\begin{array}{c}j_{t}\\ m_{t}\end{array}\right)
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(j_t\)</span> is the number of juveniles after <span class="math notranslate nohighlight">\(t\)</span> generations and <span class="math notranslate nohighlight">\(m_t\)</span> is the number of mature individuals after <span class="math notranslate nohighlight">\(t\)</span> generations. Propagation of this model requires multiplication of the matrix and the population vector. There is a special symbol in Python for this operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span> <span class="c1"># define Leslie matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span> <span class="c1"># define population column vector</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+<span class="n">new_pop</span> <span class="o">=</span> <span class="n">L</span><span class="nd">@pop</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">new_pop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.  2. ]
+ [0.4 0. ]]
+[50 10]
+[20. 20.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>This propagates the population by one time step only. To compute a numeric solution of this population over a number of time steps, use a for loop like in our last week’s assignment. The only difference is that the solution is now a two-dimensional array instead of a one-dimensional one, with two rows for the two ages and numsteps+1 columns, and it needs to be pre-allocated before the for loop:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">#number of time steps</span>
+<span class="n">L</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]])</span> <span class="c1"># define Leslie matrix</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pop</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">500</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span> <span class="c1">#initialize the array with 50 juveniles and 10 adults</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">pop</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">L</span><span class="nd">@pop</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="c1">#propagate the population vector for one step</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;juveniles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;adults&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Leslie population model dynamics&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_higher_python_5_0.png" src="_images/discrete_higher_python_5_0.png" />
+</div>
+</div>
+<div class="section" id="eigenvalue-and-eigenvector-analysis">
+<h2><span class="section-number">5.5.1. </span>Eigenvalue and eigenvector analysis<a class="headerlink" href="#eigenvalue-and-eigenvector-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The <em>eigenvalues</em> of the matrix L determine the dynamics of the population, the the <em>eigenvectors</em> determine the population structure. Python has a single function for finding eigenvalues and eigenvectors: <code class="docutils literal notranslate"><span class="pre">np.linalg.eig()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eVals</span><span class="p">,</span> <span class="n">eVecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalues:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eVals</span><span class="p">)</span> <span class="c1">#the order is flipped from the other method, but that&#39;s ok</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvectors:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eVecs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Eigenvalues:
+[-0.84582364  0.94582364]
+Eigenvectors:
+[[-0.92102181 -0.90400779]
+ [ 0.38951101 -0.42751597]]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each column of the eVecs matrix corresponds to an eigenvaluein the eVals array (i.e. the first column of eigenvectors corresponds to the first element in eVals).</p>
+<p>The largest (in absolute value) eigenvalue is the <em>dominant eigenvalue</em> and determines the long term behavior of the population. In this example, both eigenvalues are equal in absolute value and are less than 1, which predicts population decay.</p>
+<p>The lack of a single dominant eigenvalue means that the population structure (ratio of juveniles and adults) does not converge to a stable fraction:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">/</span><span class="n">pop</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population ratio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ratio of juveniles to adults&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_higher_python_9_0.png" src="_images/discrete_higher_python_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="eigenvectors-and-population-structure">
+<h2><span class="section-number">5.5.2. </span>Eigenvectors and population structure<a class="headerlink" href="#eigenvectors-and-population-structure" title="Permalink to this headline">¶</a></h2>
+<p>Let us modify the Leslie matrix to allow the adults to survive with probability 0.2, which creates an Usher matrix with the following eigenvalues and eigenvectors. Below we also calculate the fraction of juveniles and adults in the long-term population:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span> <span class="c1"># define Usher matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="n">eVals</span><span class="p">,</span> <span class="n">eVecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvalues:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eVals</span><span class="p">)</span> <span class="c1">#the order is flipped from the other method, but that&#39;s ok</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Eigenvectors:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eVecs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The long term fractions of juveniles and adults are: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">eVecs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">eVecs</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.  2. ]
+ [0.4 0.2]]
+Eigenvalues:
+[-0.8  1. ]
+Eigenvectors:
+[[-0.92847669 -0.89442719]
+ [ 0.37139068 -0.4472136 ]]
+The long term fractions of juveniles and adults are: [0.66666667 0.33333333]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Why did we use the second column (index 1)? Because it corresponds to the dominant eigenvalue 1, as you can check by looking at eVals. Notice that the population distribution remains stable in this population even as the total population declines, as can be seen by plotting the ratio of the juveniles to the adults:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">#number of time steps</span>
+<span class="n">U</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]])</span> <span class="c1"># define Leslie matrix</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pop</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span> <span class="c1">#initialize the array with 50 juveniles and 10 adults</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">pop</span><span class="p">[:,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="nd">@pop</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="c1">#propagate the population vector for one step</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;juveniles&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;adults&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Leslie population model dynamics&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pop</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span><span class="o">/</span><span class="n">pop</span><span class="p">[</span><span class="mi">1</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Population ratio&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Ratio of juveniles to adults&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">3.24</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_higher_python_13_0.png" src="_images/discrete_higher_python_13_0.png" />
+<img alt="_images/discrete_higher_python_13_1.png" src="_images/discrete_higher_python_13_1.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.8
+</pre></div>
+</div>
+</div>
+</div>
+<p>The juvenile/adult ratio converges to 2, as predicted by the leading eigenvector.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="discrete_higher_math.html" title="previous page"><span class="section-number">5.1. </span>higher order difference equations</a>
+    <a class='right-next' id="next-link" href="linear_pp_intro.html" title="next page"><span class="section-number">6. </span>Linear ODEs with two variables</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
