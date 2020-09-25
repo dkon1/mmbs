@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 8 - limit cycles and bifurcations &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_1var_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ode_1var_intro.html">
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph_ode_intro.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   5. Discrete models of higher order
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_pp_intro.html">
+   6. Linear ODEs with two variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forces_pot_intro.html">
+   7. Forces and potentials in biological modeling
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lab8_solutions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lab8_solutions.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Lab8_solutions.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#name">
+   Name:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-section">
+   Lab section:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assignment-overview">
+   Assignment Overview:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-fhn-model-with-applied-current">
+   Part 2: FHN model with applied current
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rubric">
+   Rubric:
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lab-8-limit-cycles-and-bifurcations">
+<h1>Lab 8 - limit cycles and bifurcations<a class="headerlink" href="#lab-8-limit-cycles-and-bifurcations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="name">
+<h2>Name:<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="lab-section">
+<h2>Lab section:<a class="headerlink" href="#lab-section" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Necessary imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#package for work with arrays and matrices</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#package with plotting capabilities</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">ode</span> <span class="c1">#ode solver package</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">e9c1c349f2d8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#package for work with arrays and matrices</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#package with plotting capabilities</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">ode</span> <span class="c1">#ode solver package</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="assignment-overview">
+<h2>Assignment Overview:<a class="headerlink" href="#assignment-overview" title="Permalink to this headline">¶</a></h2>
+<p>We learned about limit cycles, which are isolated closed orbits in the phase plane. The Poincare-Bendixson (PB) theorem states that “a region of the plane which contains a single unstable fixed point, and for which the direction of the flow everywhere on the boundary is inward, must contain a limit cycle.” In today’s lab, you will use the theorem to analyze the FitzHugh Nagumo (FHN) model.</p>
+<p>First, a quick summary of action potential dynamics. In the simplest terms, for a resting neuron there is a resting membrane potential at which level the neuron is ‘quiet’ (i.e., the inward and outward currents are balanced). This potential is negative, which means that there is more negative charge inside the neuron than outside. A neuron can be perturbed from its resting state by several mechanisms, the most classic of which is a depolarization in which the membrane potential decreases (i.e., the difference between the inside of the cell and outside of the cell decreases). If this depolarization reaches a certain ‘threshold’, then a cascade of events starts that will end up giving us the classical action potential. First, voltage gated <span class="math notranslate nohighlight">\(Na^+\)</span> channels open, which allows the influx of <span class="math notranslate nohighlight">\(Na^+\)</span> ions and the further depolarization of the neuron (this is the upstroke) that results in a positive feedback until the maximal number of <span class="math notranslate nohighlight">\(Na^+\)</span> ion channels are open, at which point they enter an inactive period. This inactivation reduces the inward flow of <span class="math notranslate nohighlight">\(Na^+\)</span> ions. The <span class="math notranslate nohighlight">\(K^+\)</span> channels are now open, which allows an outward flow of positive charge. Both of these lead to the neuron repolarizing (the downstroke). Typically, the neuron will then enter a refractory period in which it may not be able to generate another action potential for some period. The classic Hodgkin-Huxley model takes all of these factors, and more, into account, which is one of the reasons it ends up being a system of four equations.</p>
+<p>The FHN model has only two variables, which allows us to graph the system in the plane and thereby to visualize its properties. While it gives up biological realism, it still captures many of the dynamics of an action potential. In this lab you will also be asked to relate voltage traces (against time) to a phase portrait.</p>
+<p>The FHN is defined as:</p>
+<div class="math notranslate nohighlight">
+\[    dV/dt = V(a-V)(V-1) - w + I \]</div>
+<div class="math notranslate nohighlight">
+\[    dw/dt = bV - cw \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V\)</span> mimics the membrane voltage</p></li>
+<li><p><span class="math notranslate nohighlight">\(w\)</span> mimics the outward current; sometimes called the recovery variable</p></li>
+<li><p><span class="math notranslate nohighlight">\(a\)</span> determines the shape of the cubic nullcline</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span>  determine the kinetics of <span class="math notranslate nohighlight">\(w\)</span> (<span class="math notranslate nohighlight">\(b&gt;0, c&gt;=0\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(I\)</span> is the injection current.</p></li>
+</ul>
+<p><strong>Part 1: FHN model with no applied current</strong></p>
+<p>Set the applied current <span class="math notranslate nohighlight">\(I\)</span> to zero and analyze the FHN model with different parameter values by doing the following:</p>
+<ol class="simple">
+<li><p>Plot the <em>global</em> phase plane flow by picking a range that includes all the fixed points. Overlay the nullclines using different colors for the V-nullcline and the w-nullcline.</p></li>
+<li><p>Solve the FHN ODE using the ode solver and plot 4 solution trajectories (with different initial conditions) on top of the phase plane portrait. Describe the behavior of the solution trajectories you plotted.</p></li>
+<li><p>Describe the global phase portrait by 1) noting all the fixed points and their stability; 2) noting the presence of trapping regions and limit cycles; 3) describing what happens for different solutions in the long run.</p></li>
+</ol>
+<p><strong>Q1.1:</strong> Use <span class="math notranslate nohighlight">\(a=4; b=5; c=1; I=0\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">I</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c1"># 1. Make phase plane plot</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">wmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">wmax</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">dv</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+<span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>  <span class="c1">#create a grid</span>
+    
+<span class="n">dV</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">w</span><span class="o">+</span><span class="n">I</span>
+<span class="n">dW</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">w</span>
+
+<span class="n">Vvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span> <span class="c1"># create a vector of V</span>
+<span class="n">Vnull</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">Vvec</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">Vvec</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Vvec</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># V-nullcline</span>
+<span class="n">Wnull</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">Vvec</span> <span class="c1"># W-nullcline</span>
+
+
+<span class="c1">#Then plot the arrows given by arrays dx,dy at points x,y:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">dW</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Vnull</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot the  V-nullcline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Wnull</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="c1"># plot the W-nullcline</span>
+
+
+<span class="c1"># 2. Plot four solutions</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">I</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+
+
+<span class="c1"># Set up arrays of initial values</span>
+<span class="n">Vinit</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Winit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vinit</span><span class="p">)):</span>
+
+    <span class="c1"># Set the initial values.</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+    <span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Vinit</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Winit</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="c1">#[intial x, initial y]</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="c1"># Create the array `t` of time values at which to compute</span>
+    <span class="c1"># the solution, and create an array to hold the solution.</span>
+    <span class="c1"># Put the initial value in the solution array.</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+    <span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+    <span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;FitzHugh - Nagumo model with a=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; b=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; c=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; I=&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.6/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab8_solutions_5_1.png" src="_images/Lab8_solutions_5_1.png" />
+</div>
+</div>
+<p>For these paratemer values there is one stable fixed point at (0,0). There is only one basin of attraction and no limit cycles.</p>
+<p><strong>Q1.2:</strong> Keeping the other parameters the same, gradually decrease <span class="math notranslate nohighlight">\(b\)</span> from 5 to 0 and describe the type of bifurcation that occurs and how it changes the global phase plan flow. Report (appoximately) the critical value of <span class="math notranslate nohighlight">\(b_c\)</span>, and do tasks 1 through 3 above for some value of <span class="math notranslate nohighlight">\(b\)</span> below the critical value. Are oscillation possible for these parameters?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">I</span><span class="o">=</span><span class="mi">0</span>
+
+<span class="c1"># 1. Make phase plane plot</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">wmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span>
+<span class="n">wmax</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">dv</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+<span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>  <span class="c1">#create a grid</span>
+    
+<span class="n">dV</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">w</span><span class="o">+</span><span class="n">I</span>
+<span class="n">dW</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">w</span>
+
+<span class="n">Vvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span> <span class="c1"># create a vector of V</span>
+<span class="n">Vnull</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">Vvec</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">Vvec</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Vvec</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># V-nullcline</span>
+<span class="n">Wnull</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">Vvec</span> <span class="c1"># W-nullcline</span>
+
+
+<span class="c1">#Then plot the arrows given by arrays dx,dy at points x,y:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">dW</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Vnull</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot the  V-nullcline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Wnull</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="c1"># plot the W-nullcline</span>
+
+
+<span class="c1"># 2. Plot four solutions</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">I</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+
+
+<span class="c1"># Set up arrays of initial values</span>
+<span class="n">Vinit</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Winit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vinit</span><span class="p">)):</span>
+
+    <span class="c1"># Set the initial values.</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+    <span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Vinit</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Winit</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="c1">#[intial x, initial y]</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="c1"># Create the array `t` of time values at which to compute</span>
+    <span class="c1"># the solution, and create an array to hold the solution.</span>
+    <span class="c1"># Put the initial value in the solution array.</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+    <span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+    <span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;FitzHugh - Nagumo model with a=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; b=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; c=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; I=&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.6/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab8_solutions_8_1.png" src="_images/Lab8_solutions_8_1.png" />
+</div>
+</div>
+<p>There is a bifurcation that occurs between b=2 and b=3. This is called a saddle-node bifurcation. Below the critical value there are three fixed points: two stable and one unstable (saddle). There are two basins of attraction, but no limit cycles, since there are no flow trapping regions without a stable fixed point within.</p>
+</div>
+<div class="section" id="part-2-fhn-model-with-applied-current">
+<h2>Part 2: FHN model with applied current<a class="headerlink" href="#part-2-fhn-model-with-applied-current" title="Permalink to this headline">¶</a></h2>
+<p>In this part you will experiment with increasing the applied current I in the model. Once again, do the following tasks:</p>
+<ol class="simple">
+<li><p>Plot the <em>global</em> phase plane flow by picking a range that includes all the fixed points. Overlay the nullclines using different colors for the V-nullcline and the w-nullcline.</p></li>
+<li><p>Solve the FHN ODE using the ode solver and plot 4 solution trajectories (with different initial conditions) on top of the phase plane portrait. Describe the behavior of the solution trajectories you plotted.</p></li>
+<li><p>Describe the global phase portrait by 1) noting all the fixed points and their stability; 2) noting the presence of trapping regions and limit cycles; 3) describing what happens for different solutions in the long run.</p></li>
+</ol>
+<p><strong>Q2.1:</strong> Starting with the same parameter values as in 1.1, increase the current <span class="math notranslate nohighlight">\(I\)</span> gradually until you observe a bifurcation in the phase portrait. (Hint: you will need to adjust the limits of the phase plane window to see the change.) Report the critical value <span class="math notranslate nohighlight">\(I_c\)</span> (approximately) at which this occurs and classify the bifurcation.  For a value <span class="math notranslate nohighlight">\(I\)</span> above the critical value, do tasks 1 through 3 above. Are oscillation possible in this regime?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">I</span><span class="o">=</span><span class="mi">4</span>
+
+<span class="c1"># 1. Make phase plane plot</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">wmin</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">wmax</span> <span class="o">=</span> <span class="mi">12</span>
+<span class="n">dv</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+<span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>  <span class="c1">#create a grid</span>
+    
+<span class="n">dV</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">w</span><span class="o">+</span><span class="n">I</span>
+<span class="n">dW</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">w</span>
+
+<span class="n">Vvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span> <span class="c1"># create a vector of V</span>
+<span class="n">Vnull</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">Vvec</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">Vvec</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Vvec</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># V-nullcline</span>
+<span class="n">Wnull</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">Vvec</span> <span class="c1"># W-nullcline</span>
+
+
+<span class="c1">#Then plot the arrows given by arrays dx,dy at points x,y:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">dW</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Vnull</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot the  V-nullcline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Wnull</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="c1"># plot the W-nullcline</span>
+
+
+<span class="c1"># 2. Plot four solutions</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">I</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+
+
+<span class="c1"># Set up arrays of initial values</span>
+<span class="n">Vinit</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Winit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vinit</span><span class="p">)):</span>
+
+    <span class="c1"># Set the initial values.</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+    <span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Vinit</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Winit</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="c1">#[intial x, initial y]</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="c1"># Create the array `t` of time values at which to compute</span>
+    <span class="c1"># the solution, and create an array to hold the solution.</span>
+    <span class="c1"># Put the initial value in the solution array.</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+    <span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+    <span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;FitzHugh - Nagumo model with a=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; b=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; c=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; I=&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.6/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab8_solutions_12_1.png" src="_images/Lab8_solutions_12_1.png" />
+</div>
+</div>
+<p>There is a bifurcation  between I=3 and I=4. This is called a Hopf bifurcation. Below the critical value there is one stable fixed point and above it the fixed point is unstable. At I=4 there are no basins of attraction, but there is a flow trapping region which produces a limit cycle.</p>
+<p><strong>Q2.2:</strong> Now increase <span class="math notranslate nohighlight">\(I\)</span> further until you observe another bifurcation. Report the second critical value <span class="math notranslate nohighlight">\(I_{c2}\)</span> (approximately) at which this occurs and classify the bifurcation.   For a value <span class="math notranslate nohighlight">\(I\)</span> above the second critical value, do tasks 1 through 3 above. Are oscillation possible in this regime?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">I</span><span class="o">=</span><span class="mi">8</span>
+
+<span class="c1"># 1. Make phase plane plot</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">wmin</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">wmax</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">dv</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dw</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span>
+<span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">,</span> <span class="n">dw</span><span class="p">)</span>
+<span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">W</span><span class="p">)</span>  <span class="c1">#create a grid</span>
+    
+<span class="n">dV</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">w</span><span class="o">+</span><span class="n">I</span>
+<span class="n">dW</span> <span class="o">=</span> <span class="n">b</span><span class="o">*</span><span class="n">v</span> <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">w</span>
+
+<span class="n">Vvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">,</span> <span class="n">dv</span><span class="p">)</span> <span class="c1"># create a vector of V</span>
+<span class="n">Vnull</span> <span class="o">=</span> <span class="n">I</span> <span class="o">+</span> <span class="n">Vvec</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">Vvec</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">Vvec</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># V-nullcline</span>
+<span class="n">Wnull</span> <span class="o">=</span> <span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">Vvec</span> <span class="c1"># W-nullcline</span>
+
+
+<span class="c1">#Then plot the arrows given by arrays dx,dy at points x,y:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">dV</span><span class="p">,</span> <span class="n">dW</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span> <span class="n">wmax</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Vnull</span> <span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plot the  V-nullcline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Vvec</span><span class="p">,</span><span class="n">Wnull</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">)</span> <span class="c1"># plot the W-nullcline</span>
+
+
+<span class="c1"># 2. Plot four solutions</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">I</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+
+
+<span class="c1"># Set up arrays of initial values</span>
+<span class="n">Vinit</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Winit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vinit</span><span class="p">)):</span>
+
+    <span class="c1"># Set the initial values.</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+    <span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Vinit</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Winit</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="c1">#[intial x, initial y]</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="c1"># Create the array `t` of time values at which to compute</span>
+    <span class="c1"># the solution, and create an array to hold the solution.</span>
+    <span class="c1"># Put the initial value in the solution array.</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+    <span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+    <span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;FitzHugh - Nagumo model with a=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; b=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; c=&#39;</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; I=&#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">I</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.6/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab8_solutions_15_1.png" src="_images/Lab8_solutions_15_1.png" />
+</div>
+</div>
+<p>Between I=7 and I=8 there is another Hopf bifurcation. Below the critical value there is an ustable fixed point and above it the fixed point is stable. At I=8 there is one basin of attraction for the stable spiral at about (3,14) and no limit cycles.</p>
+<p><strong>Q2.3:</strong>  For some set of parameter values that produce oscillatory dynamics, compare the solution trajectory and the plot of potential over time.  What part of the trajectory in the phase plane corresponds to the upstroke in the action potential (inward current)? What part corresponds to the downstroke (outward current)?</p>
+<p>Use your code from the Fourier transform assignment to plot the power spectrum of the membrane potential solution that you produced and report the frequency peak you see. Vary the parameter <span class="math notranslate nohighlight">\(a\)</span> (gradually, so that the oscillations are not destroyed) and describe whether it has an effect on the frequency of the oscillations in the power spectrum. Do the same for applied current <span class="math notranslate nohighlight">\(I\)</span> (again, change it gradually in both directions) and report whether and how it affects the frequency in the power spectrum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mf">4.5</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">5</span>
+<span class="n">c</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">I</span><span class="o">=</span><span class="mi">6</span>
+
+
+<span class="c1"># 2. Make one solution</span>
+<span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">I</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="p">(</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">I</span><span class="p">,</span> <span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">I</span><span class="p">)</span>
+
+
+<span class="c1"># Set up arrays of initial values</span>
+<span class="n">Vinit</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Winit</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Vinit</span><span class="p">)):</span>
+
+    <span class="c1"># Set the initial values.</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+    <span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="n">Vinit</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Winit</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="c1">#[intial x, initial y]</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+    <span class="c1"># Create the array `t` of time values at which to compute</span>
+    <span class="c1"># the solution, and create an array to hold the solution.</span>
+    <span class="c1"># Put the initial value in the solution array.</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+    <span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+    <span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+    <span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+        <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+
+<span class="n">Fs</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">dt</span> <span class="c1"># sampling rate  </span>
+
+<span class="n">fake_signal</span> <span class="o">=</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># frequency stuff</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fake_signal</span><span class="p">)</span> <span class="c1"># length of the signal</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="c1"># all the frequency indices</span>
+<span class="n">frq</span> <span class="o">=</span> <span class="n">k</span><span class="o">/</span><span class="n">t1</span>  <span class="c1"># two sides frequency range</span>
+<span class="n">num_freq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span> <span class="c1"># number of frequencies</span>
+<span class="n">frq</span> <span class="o">=</span> <span class="n">frq</span><span class="p">[</span><span class="n">num_freq</span><span class="p">]</span> <span class="c1"># non-redundant frequency range</span>
+
+<span class="c1"># FFT and power spectrum calculations</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">fake_signal</span><span class="p">)</span><span class="o">/</span><span class="n">n</span> <span class="c1"># fft computing and normalization</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="p">[</span><span class="n">num_freq</span><span class="p">]</span>
+<span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># power spectrum</span>
+
+<span class="c1"># plotting the signal and the power spectrum</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">fake_signal</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Voltage&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">frq</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="c1"># plotting the power spectrum</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Freq (Hz)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;|Y(freq)^2|&#39;</span><span class="p">)</span>
+<span class="c1">#plt.title(&#39;FitzHugh - Nagumo model with a=&#39; +str(a)+&#39; b=&#39;+str(b)+&#39; c=&#39; +str(c)+&#39; I=&#39;+ str(I))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.6/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab8_solutions_18_1.png" src="_images/Lab8_solutions_18_1.png" />
+</div>
+</div>
+<p>It’s easier to see the power spectrum without the zero frequency and limited to less than 1 Hz. That way there are two peaks one at 0.2 Hz and a smaller peak a bit above 0.4 Hz. Changing both a and the current I can shift the dominant frequency peak between 0.2 and 0.25, but for some parameter values it is insensitive to one or the other parameter.</p>
+</div>
+<div class="section" id="rubric">
+<h2>Rubric:<a class="headerlink" href="#rubric" title="Permalink to this headline">¶</a></h2>
+<p><strong>Part 1:</strong></p>
+<p>1.1 6 pts (2 pts per task)</p>
+<p>1.2 8 pts (2 pts for bifurcation + 2 pts per task)</p>
+<p><strong>Part 2:</strong></p>
+<p>2.1 8 pts (2 pts for bifurcation + 2 pts per task)</p>
+<p>2.2 8 pts (2 pts for bifurcation + 2 pts per task)</p>
+<p>2.2 8 pts (2 pts for answers about voltage plot + 2 pts per power spectrum analysis + 2 points for analysis of <span class="math notranslate nohighlight">\(a\)</span> dependence + 2 pts for analysis of <span class="math notranslate nohighlight">\(I\)</span> dependence)</p>
+<p><strong>Total: 38 pts</strong></p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

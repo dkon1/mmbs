@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 4 - Linear ODEs in the plane &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_1var_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ode_1var_intro.html">
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph_ode_intro.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   5. Discrete models of higher order
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_pp_intro.html">
+   6. Linear ODEs with two variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forces_pot_intro.html">
+   7. Forces and potentials in biological modeling
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Lab4_template.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Lab4_template.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/Lab4_template.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#name">
+   Name:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lab-section">
+   Lab section:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#producing-phase-plane-plots-via-quiver">
+   Producing phase plane plots via quiver
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-2-solutions-using-dopri5">
+   Part 2: Solutions using dopri5
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#part-3-analyzing-relationship-dynamics">
+   Part 3: Analyzing relationship dynamics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rubric">
+   Rubric
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="lab-4-linear-odes-in-the-plane">
+<h1>Lab 4 - Linear ODEs in the plane<a class="headerlink" href="#lab-4-linear-odes-in-the-plane" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="name">
+<h2>Name:<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="lab-section">
+<h2>Lab section:<a class="headerlink" href="#lab-section" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Necessary imports</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#package for work with arrays and matrices</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#package with plotting capabilities</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">ode</span> <span class="c1">#ode solver package</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">e9c1c349f2d8</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1">#package for work with arrays and matrices</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1">#package with plotting capabilities</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">ode</span> <span class="c1">#ode solver package</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;scipy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="producing-phase-plane-plots-via-quiver">
+<h2>Producing phase plane plots via quiver<a class="headerlink" href="#producing-phase-plane-plots-via-quiver" title="Permalink to this headline">¶</a></h2>
+<p>We are going to plot phase diagrams for linear ODEs that have the form</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(dx/dt = a*x + b*y\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(dy/dt = c*x + d*y\)</span></p>
+</div></blockquote>
+<p>Python’s ax.quiver() function allows you to display velocity
+vectors with arrows made of the components <span class="math notranslate nohighlight">\((u,v)\)</span>, which is
+exactly what we need.</p>
+<p>The function takes 4 inputs <span class="math notranslate nohighlight">\((x,y,u,v)\)</span>. <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are the grid points
+(remember when you had to make these yourself for the slope field?). <span class="math notranslate nohighlight">\(u\)</span>
+and <span class="math notranslate nohighlight">\(v\)</span> are the <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> components of the vector, which are given by our
+ODEs.</p>
+<p>In order to make the grid points <span class="math notranslate nohighlight">\((x,y)\)</span>, we will use the function
+np.meshgrid(). It’s a pretty handy function that takes as input a range of
+<span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> values and returns two matrices <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> that together give us the
+grid points. Here is the code to produce a grid with an <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>
+range from (-1.5, 1.5) with a spacing of 0.2, we could do the following:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span> <span class="c1">#create a grid</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Define the arrays dx and dy based on the ODE in order to compute the flow vectors on that grid. Here is a linear example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">d</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">y</span> <span class="c1">#overwrites the other dx</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="n">y</span> <span class="c1">#overwrites the other dy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then plot the arrows given by arrays dx,dy at points x,y:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Phase plane example&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/Lab4_template_7_0.png" src="_images/Lab4_template_7_0.png" />
+</div>
+</div>
+<p><strong>Part 1: Analysis through eigenvalues</strong></p>
+<p>For each of the six two-variable ODEs in problem set 4 do the following:</p>
+<ul class="simple">
+<li><p>Produce a phase plane plot</p></li>
+<li><p>Find the eigenvalues of the defining matrix and</p></li>
+<li><p>Classify the phase plane according to the eigenvalues.</p></li>
+</ul>
+<p><strong>Q1.1:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q1.2:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q1.3:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q1.4:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q1.5:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q1.6:</strong> matrix 1 from problem set 4</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+</div>
+<div class="section" id="part-2-solutions-using-dopri5">
+<h2>Part 2: Solutions using dopri5<a class="headerlink" href="#part-2-solutions-using-dopri5" title="Permalink to this headline">¶</a></h2>
+<p>Python has an entire suite of ode solvers. We’ll use dopri5,
+which uses the Runge-Kutta method. To do this, we define the ode
+solver using a function we’ve written, set the solver’s integrator to
+‘dopri5’, set the parameters (a,b,c,d) and initial values, and integrate
+inside a for loop to fill a matrix full of x and y values over time.</p>
+<p>Here is the sample code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">xy</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">newxy</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">newxy</span>
+
+<span class="c1"># Create an `ode` instance to solve the system of differential</span>
+<span class="c1"># equations defined by `fun`, and set the solver method to &#39;dopri45&#39;.</span>
+<span class="n">solver</span> <span class="o">=</span> <span class="n">ode</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_integrator</span><span class="p">(</span><span class="s1">&#39;dopri5&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Give the parameter values to the solver. This is passed to</span>
+<span class="c1"># `fun` when the solver calls it.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">d</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_f_params</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+
+<span class="c1"># Set the initial values.</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c1">#initial time</span>
+<span class="n">xy0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span> <span class="c1">#[intial x, initial y]</span>
+<span class="n">solver</span><span class="o">.</span><span class="n">set_initial_value</span><span class="p">(</span><span class="n">xy0</span><span class="p">,</span> <span class="n">t0</span><span class="p">)</span>
+
+<span class="c1"># Create the array `t` of time values at which to compute</span>
+<span class="c1"># the solution, and create an array to hold the solution.</span>
+<span class="c1"># Put the initial value in the solution array.</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">numsteps</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span> <span class="c1">#number of steps including the initial</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span> <span class="n">t1</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">numsteps</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xy0</span>
+
+<span class="c1"># Repeatedly call the `integrate` method to advance the</span>
+<span class="c1"># solution to time t[i], and save the solution in sol[i].</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">solver</span><span class="o">.</span><span class="n">integrate</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">sol</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">y</span>
+    
+
+<span class="c1"># Plot the solution...</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ODE solver example x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ODE solver example y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span> <span class="c1">#change the parameters here to control the range of the axes</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.5</span>
+<span class="n">ymax</span> <span class="o">=</span> <span class="mf">1.5</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the x-step on the grid</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#set the size of the y-step on the grid</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">);</span>  <span class="c1">#create a grid</span>
+    
+<span class="n">dx</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">b</span><span class="o">*</span><span class="n">y</span>
+<span class="n">dy</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">x</span><span class="o">+</span><span class="n">d</span><span class="o">*</span><span class="n">y</span>
+
+<span class="c1">#Then plot the arrows given by arrays dx,dy at points x,y:</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">sol</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span> <span class="c1">#use more informative labels for a real model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ODE solver example phase plane&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/dkon/anaconda3/lib/python3.7/site-packages/scipy/integrate/_ode.py:1177: UserWarning: dopri5: step size becomes too small
+  self.messages.get(istate, unexpected_istate_msg)))
+</pre></div>
+</div>
+<img alt="_images/Lab4_template_28_1.png" src="_images/Lab4_template_28_1.png" />
+<img alt="_images/Lab4_template_28_2.png" src="_images/Lab4_template_28_2.png" />
+<img alt="_images/Lab4_template_28_3.png" src="_images/Lab4_template_28_3.png" />
+</div>
+</div>
+<p>TO DO:
+Modify the code provided above
+to solve the ODEs, then put a <em>for loop</em> around the code in order
+to plot 6 separate solution trajectories starting from six initial
+conditions which you set as two vectors before the loop begins. Your
+results for each model should include:</p>
+<ul class="simple">
+<li><p>overlay the phase portrait with 6 different trajectories</p></li>
+<li><p>plot 6 solutions of X in one window and 6 solutions of Y in another</p></li>
+<li><p>comment on where <em>each variable</em> (X and Y) of the solution ends up, and whether/how it depends on the intial values</p></li>
+<li><p>comment on how the classification you provided in part 1 is reflected in the dynamics of the solution trajectories</p></li>
+</ul>
+<p>Q2.1-6: Use the same models that you used in Q1.1-6.</p>
+<p><strong>Q2.1:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q2.2:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q2.3:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q2.4:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q2.5:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+<p><strong>Q2.6:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>(your written answer goes here)</p>
+</div>
+<div class="section" id="part-3-analyzing-relationship-dynamics">
+<h2>Part 3: Analyzing relationship dynamics<a class="headerlink" href="#part-3-analyzing-relationship-dynamics" title="Permalink to this headline">¶</a></h2>
+<p>Suppose person <span class="math notranslate nohighlight">\(A\)</span> and person <span class="math notranslate nohighlight">\(B\)</span> are in a romantic relationship and their
+feelings (positive or negative) are described the system of linear ODEs:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(dA/dt = a*A + b*B\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(dB/dt = c*A + d*B\)</span></p>
+</div></blockquote>
+<p>in which <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(d\)</span> are the self-awareness parameters and <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> are the
+parameters of responsiveness to the other. Analyze the following
+scenarios by <em>a)</em> calculating the eigenvalues (for a particular set of
+parameter values), <em>b)</em> plotting the solutions in the phase plane, <em>c)</em>
+descibing the possible future dynamics of the relationship.</p>
+<p><strong>Q3.1:</strong> <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are opposite: <span class="math notranslate nohighlight">\(a\)</span> = <span class="math notranslate nohighlight">\(-d\)</span> and <span class="math notranslate nohighlight">\(b\)</span> = <span class="math notranslate nohighlight">\(-c\)</span>. Describe the possible
+dynamics and plot example solution trajectories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>c) (your written answer goes here)</p>
+<p><strong>Q3.2:</strong> <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> have identical responsiveness <span class="math notranslate nohighlight">\(b=c\)</span> to each other, but <span class="math notranslate nohighlight">\(A\)</span> has
+positive self-awareness <span class="math notranslate nohighlight">\((a&gt;0)\)</span> while <span class="math notranslate nohighlight">\(B\)</span> has negative self-awareness <span class="math notranslate nohighlight">\((d&lt;0)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>c) (your written answer goes here)</p>
+<p><strong>Q3.3:</strong> <span class="math notranslate nohighlight">\(A\)</span> is a detached lover <span class="math notranslate nohighlight">\((a&lt;0, b=0)\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is an eager beaver <span class="math notranslate nohighlight">\((c&gt;0, d&gt;0)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>c) (your written answer goes here)</p>
+<p><strong>Q3.4:</strong> <span class="math notranslate nohighlight">\(A\)</span> is a contrarian counterpart <span class="math notranslate nohighlight">\((a&gt;0, b&lt;0)\)</span> and <span class="math notranslate nohighlight">\(B\)</span> is a malevolent
+misanthrope <span class="math notranslate nohighlight">\((c&lt;0, d&lt;0)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#your code goes here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>c) (your written answer goes here)</p>
+</div>
+<div class="section" id="rubric">
+<h2>Rubric<a class="headerlink" href="#rubric" title="Permalink to this headline">¶</a></h2>
+<p><strong>Part 1</strong></p>
+<ul class="simple">
+<li><p>Q1.1-6 - 3 pts each: code (1), plot (1), classification of ODE (1)</p></li>
+</ul>
+<p><strong>Part 2</strong></p>
+<ul class="simple">
+<li><p>Q2.1-6 - 6 pts each: code (1), phase plots with 6 trajectories (1), plot of 6 x and y solutions (2), description of where each coordinate ends up (1), comparison with the classification (1)</p></li>
+</ul>
+<p><strong>Part 3</strong></p>
+<ul class="simple">
+<li><p>Q3.1-4 - 24 pts total: code (1), eigenvalues (1), phase plane plot (2), description of the future dynamics (2)</p></li>
+</ul>
+<p><em>Total: 78 points</em></p>
+<p>MAKE SURE YOUR CODE RUNS BEFORE SUBMITTING IT</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

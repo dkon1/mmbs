@@ -1,0 +1,605 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.4. Graphical analysis of difference equations &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Models with one variable in continuous time" href="ode_1var_intro.html" />
+    <link rel="prev" title="2.1. Logistic population model" href="discrete_nonlinear_math.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_1var_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html">
+     2.1. Logistic population model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html#qualitative-analysis-of-difference-equations">
+     2.2. Qualitative analysis of difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html#analysis-of-logistic-population-model">
+     2.3. Analysis of logistic population model
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     2.4. Graphical analysis of difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="#graphical-analysis-of-the-logistic-model">
+     2.5. Graphical analysis of the logistic model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ode_1var_intro.html">
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph_ode_intro.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   5. Discrete models of higher order
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_pp_intro.html">
+   6. Linear ODEs with two variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forces_pot_intro.html">
+   7. Forces and potentials in biological modeling
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/discrete_nonlinear_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/discrete_nonlinear_python.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/master/discrete_nonlinear_python.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-of-the-updating-function">
+   2.4.1. plot of the updating function
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cobweb-plot">
+   2.4.2. cobweb plot
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="graphical-analysis-of-difference-equations">
+<h1><span class="section-number">2.4. </span>Graphical analysis of difference equations<a class="headerlink" href="#graphical-analysis-of-difference-equations" title="Permalink to this headline">¶</a></h1>
+<p>In addition to calculating numeric solutions, computaers can be used to perform <em>graphical analysis</em> of discrete time models. A lot of information can be gleaned by plotting the graph of the updating function of an recurrent difference equaiotn <span class="math notranslate nohighlight">\(x_{t+1} = f(x_t)\)</span>. Here is a summary of what we can learn from the graph of the function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<div class="tip admonition">
+<p class="admonition-title">Graph of the updating function</p>
+<ol class="simple">
+<li><p>The location of the fixed points of the iterated map. Since the condition for a fixed point is <span class="math notranslate nohighlight">\(f(x) = x\)</span>, they can be found at the intersections of the graph of <span class="math notranslate nohighlight">\(y=f(x)\)</span> and <span class="math notranslate nohighlight">\(y=x\)</span> (the identity straight line).</p></li>
+<li><p>The stability of fixed points. We learned that the derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> at a fixed point determines its stability. Graphically, this means that the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at the point of intersection with <span class="math notranslate nohighlight">\(y=x\)</span> can be used for this purpose; if it is steeper (in absolute value) than the straight line <span class="math notranslate nohighlight">\(y=x\)</span>, then the fixed point is unstable, but if its slope is less than one in absolute value, the equilibrium is stable.</p></li>
+<li><p>Graphical iteration of the difference equation. The value of the function <span class="math notranslate nohighlight">\(f(x)\)</span> gives the value of <span class="math notranslate nohighlight">\(x\)</span> at the next time step, and this fact can be used to produce a graph of successive values of the dependent variable: <span class="math notranslate nohighlight">\(x_0, x_1, x_2, ...\)</span></p></li>
+</ol>
+</div>
+<p>Below we will demonstrate how to plot the updating function in Python and how to peform this analysis.</p>
+<div class="section" id="plot-of-the-updating-function">
+<h2><span class="section-number">2.4.1. </span>plot of the updating function<a class="headerlink" href="#plot-of-the-updating-function" title="Permalink to this headline">¶</a></h2>
+<p>Let us consider a linear discrete-time model:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{t+1} = 5x_t - 10
+\]</div>
+<p>Instead of iterating this equation starting from a particular initial value to produce a sequence of values, we will plot the function <span class="math notranslate nohighlight">\(f(x) = 0.5 x - 10\)</span> and use it to predict how solutions behave starting from <em>any</em> initial value. To do this, we will plot this function over a range of x values, along the the line <span class="math notranslate nohighlight">\(y=x\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> <span class="c1"># package for work with arrays and matrices</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># package with plotting capabilities</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># range of x values</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># values of the updating function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;updating function&#39;</span><span class="p">)</span> <span class="c1"># plot the updating function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;identity line&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Graphical analysis of f(x) = 0.5x +1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_nonlinear_python_2_0.png" src="_images/discrete_nonlinear_python_2_0.png" />
+</div>
+</div>
+<p>The plot show thats the updating function intersects the identity line at <span class="math notranslate nohighlight">\(x=2\)</span>, which is the (only) fixed point of this dynamic model. But it is stable or unstable? And how will solutions behave?</p>
+</div>
+<div class="section" id="cobweb-plot">
+<h2><span class="section-number">2.4.2. </span>cobweb plot<a class="headerlink" href="#cobweb-plot" title="Permalink to this headline">¶</a></h2>
+<p>Let us exploit the idea in the third point for graphical analysis of an iterated map. Starting with some initial condition <span class="math notranslate nohighlight">\(x_0\)</span>, the value of <span class="math notranslate nohighlight">\(x_1\)</span> is given by <span class="math notranslate nohighlight">\(f(x_0)\)</span>. To show this graphically, starting the point <span class="math notranslate nohighlight">\(x_0\)</span> on the axis, draw a vertical line to <span class="math notranslate nohighlight">\(y=f(x_0)\)</span>. Next, draw a horizontal line to the graph of <span class="math notranslate nohighlight">\(y=x\)</span>. Since the <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(x\)</span> coordinates are equal, we now have the value of <span class="math notranslate nohighlight">\(x_1 = f(x_0)\)</span> as the x coordinate. Then, repeat the process by drawing a vertical line to <span class="math notranslate nohighlight">\(y=f(x_1)\)</span>, and the a horizontal line <span class="math notranslate nohighlight">\(y=x\)</span>, etc. The resulting sequence of x coordinates is a quick way of assessing the dynamics of the iterated map. For instance, the values may converge to a fixed point, or grow to infinity, or bounce around without settling down. The resulting graph of alternating vertical and horizontal line segments is called a cobweb plot:</p>
+<div class="tip admonition">
+<p class="admonition-title">Cobweb plot pseudocode</p>
+<ul class="simple">
+<li><p>define the updating function <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>plot the graph of <span class="math notranslate nohighlight">\(f(x)\)</span></p></li>
+<li><p>plot the identity line <span class="math notranslate nohighlight">\(y=x\)</span></p></li>
+<li><p>set n to be the number of steps</p></li>
+<li><p>initialize an array x of length 2*n</p></li>
+<li><p>initialize an array y of length 2*n</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x[0]\)</span> to the initial value</p></li>
+<li><p>set <span class="math notranslate nohighlight">\(y[0]\)</span> to 0</p></li>
+<li><p>for n steps repeat (with i increasing by 2):</p>
+<ul>
+<li><p>set <span class="math notranslate nohighlight">\(x[i+1] \gets x[i]\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(y[i+1] \gets f(x[i])\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(x[i+2] \gets y[i+1]\)</span></p></li>
+<li><p>set <span class="math notranslate nohighlight">\(y[i+2] \gets y[i+1]\)</span></p></li>
+</ul>
+</li>
+<li><p>plot the sequence of points <span class="math notranslate nohighlight">\((x,y)\)</span> on the same plot</p></li>
+</ul>
+</div>
+<p>Here is an implementation of the cobweb plot for the same linear model as above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.1</span><span class="p">)</span> <span class="c1"># range of x values</span>
+<span class="n">fx</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># values of the updating function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fx</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;updating function&#39;</span><span class="p">)</span> <span class="c1"># plot the updating function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;identity line&#39;</span><span class="p">)</span>
+
+<span class="c1"># the cobweb plot script</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># number of steps</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">3</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># keep the same x coordinate</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># the updating function</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># move to the next x value</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># keep the same y coordinate</span>
+<span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># finish the last half-iteration</span>
+<span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># finish the last half-iteration</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;numeric solution&#39;</span><span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Graphical analysis of f(x) = 0.5x + 1&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
+[0 2 4 6 8]
+</pre></div>
+</div>
+<img alt="_images/discrete_nonlinear_python_5_1.png" src="_images/discrete_nonlinear_python_5_1.png" />
+</div>
+</div>
+<p>You can see that the solution, shown in green, start from initial value of -3 and steps upward toward the fixed point at 2. You can experiment by trying a different initial value, say 10 (you will have to change the domain of the plotted function) but you should still observe convergence to the fixed point at 2.</p>
+<p>This could be predicted from the analysis performed in the previous section: the slope of the updating function is 0.5 (everywhere, since it’s a straight line) and since that is less than 1 in absolute value, the fixed point is stable, and solutions are expected to converge to it.</p>
+<p>We now have at our disposal analytical, numerical, and graphical tools to analyze and predict the behavior of a dynamical system. In the next section we will use all three to analyze a more complex model of population growth.</p>
+</div>
+</div>
+<div class="section" id="graphical-analysis-of-the-logistic-model">
+<h1><span class="section-number">2.5. </span>Graphical analysis of the logistic model<a class="headerlink" href="#graphical-analysis-of-the-logistic-model" title="Permalink to this headline">¶</a></h1>
+<p>As we saw, we can learn a lot about the behavior of a dynamical system from analyzing the graph of the defining function. Let us consider two quadratic functions for the logistic model: <span class="math notranslate nohighlight">\(f(N) = 2N(1-N/2)\)</span> and <span class="math notranslate nohighlight">\(f(N) = 4N(1-N/4)\)</span> .</p>
+<p>First, plotting the graphs of <span class="math notranslate nohighlight">\(y=f(N)\)</span> and <span class="math notranslate nohighlight">\(y=N\)</span>, allows us to find the fixed points of the logistic model. Since it is a , we see that there are fixed points at <span class="math notranslate nohighlight">\(N = 0\)</span> for both functions, and carrying capacity sizes at <span class="math notranslate nohighlight">\(N=2\)</span> and <span class="math notranslate nohighlight">\(N=3\)</span>, respectively. The reader should check that this is in agreement with the analytic prediction of <span class="math notranslate nohighlight">\(N^* = (r-1)/r\)</span>.</p>
+<p>Second, we can obtain information about stability of the two fixed points by considering the slope of the curve <span class="math notranslate nohighlight">\(y=f(N)\)</span> at the points where it crosses <span class="math notranslate nohighlight">\(y=N\)</span>. On the graph of the first function, the slope is clearly 0, which indicates that the fixed point is stable, in agreement with the analytical prediction. On the graph of the second function, the slope is negative and steeper than -1. This indicates that the fixed point is unstable, again consistent with our analysis above.</p>
+<p>Third, we graph a few iterations of the cobweb plot to obtain an idea about the dynamics of the population over time. As expected, for the first function with <span class="math notranslate nohighlight">\(r=2\)</span>, the solution quickly approaches the carrying capacity ({numref. In the second function, however, <span class="math notranslate nohighlight">\(r = 4\)</span> and the carrying capacity is unstable. In <a class="reference internal" href="#fig-cobweb2"><span class="std std-numref">Fig. 2.2</span></a> we observe a wild pattern of jumps that never approach any particular value.</p>
+<div class="figure align-default" id="fig-cobweb1">
+<img alt="_images/ch1_cobweb_1.png" src="_images/ch1_cobweb_1.png" />
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Cobweb plot of the logistic model with <span class="math notranslate nohighlight">\(r=2\)</span>, showing a solution converging to the stable fixed point at the intersection of the graphs of the function and the identity line</span><a class="headerlink" href="#fig-cobweb1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-cobweb2">
+<img alt="_images/ch1_cobweb_2.png" src="_images/ch1_cobweb_2.png" />
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Cobweb plot of the logistic model with <span class="math notranslate nohighlight">\(r=4\)</span>, showing a as solution bouncing around the unstable fixed point</span><a class="headerlink" href="#fig-cobweb2" title="Permalink to this image">¶</a></p>
+</div>
+<p>We have seen how graphical tools can be used to analyze and predict the behavior of a dynamical system. In the case of the logistic model, we never found the analytic solution, because it frequently does not exist as a formula. Finding the fixed points and analyzing their stability, in conjunction with looking at the behavior of a cobweb plot, allowed us to describe the dynamics of population growth in the logistic model, without doing any “mathematics”. Together, the analytical and graphical analysis provide complementary tools for biological modelers.</p>
+<div class="section" id="chaos-in-discrete-dynamical-systems">
+<h2><span class="section-number">2.5.1. </span>chaos in discrete dynamical systems<a class="headerlink" href="#chaos-in-discrete-dynamical-systems" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we learned to analyze the dynamics of solutions of nonlinear discrete-time dynamical systems without solving them on paper. In the last two sections we focused on the logistic difference equation as a simple nonlinear model with a rich array of dynamic behaviors. In this section we will summarize the analysis and draw conclusions for difference equation models in biology. This behavior was brought to the attention of biologists by John Maynard Smith [&#64;smith_mathematical_1968] and Robert May [&#64;may_bifurcations_1976].</p>
+<p>Why does the logistic model behave so strangely in the second example above? We can use numerical simulations to plot the long-term solutions for the dependent variable for a range of parameter values, let us say between <span class="math notranslate nohighlight">\(2.5 &lt; r &lt; 4\)</span>. Then we plot the values to which the simulation converged (whether it is one, two, or many) on the y-axis, and the value of the parameter <span class="math notranslate nohighlight">\(r\)</span> on the x-axis. The resulting <em>bifurcation diagram</em> in shown in <a class="reference internal" href="#fig-log-bifur"><span class="std std-numref">Fig. 2.3</span></a>. The value of the parameter <span class="math notranslate nohighlight">\(r\)</span> is plotted on the horizontal axis, and the set of values that the dependent variable takes in the long run is shown on the vertical axis. There is only one stable fixed point for <span class="math notranslate nohighlight">\(r&lt;3\)</span>, then we see a 2-cycle appear for <span class="math notranslate nohighlight">\(3&lt;r&lt;3.45\)</span>. For values of <span class="math notranslate nohighlight">\(r\)</span> greater than about 3.45, a series of period-doubling bifurcations occur with shorter and shorter intervals of <span class="math notranslate nohighlight">\(r\)</span>. This is called a <em>period-doubling cascade</em>, which culminates at the value of <span class="math notranslate nohighlight">\(r \approx 3.57\)</span>, where the number of points in the cycle becomes essentially infinite. The sequence of values of <span class="math notranslate nohighlight">\(r\)</span> at which period-doubling occurs is approximately:</p>
+<ul class="simple">
+<li><p>period 2; <span class="math notranslate nohighlight">\(r_1 = 3\)</span></p></li>
+<li><p>period 4; <span class="math notranslate nohighlight">\(r_2 \approx 3.449\)</span></p></li>
+<li><p>period 8; <span class="math notranslate nohighlight">\(r_3 \approx  3.544\)</span></p></li>
+<li><p>period 16; <span class="math notranslate nohighlight">\(r_4 \approx  3.564\)</span></p></li>
+<li><p>period 32; <span class="math notranslate nohighlight">\(r_5 \approx 3.569\)</span></p></li>
+<li><p>period <span class="math notranslate nohighlight">\(\infty\)</span> (chaos); <span class="math notranslate nohighlight">\(r_\infty \approx  3.570\)</span></p></li>
+</ul>
+<div class="figure align-default" id="fig-log-bifur">
+<img alt="_images/logistic_bifurc.png" src="_images/logistic_bifurc.png" />
+<p class="caption"><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Bifurcation diagram for the logistic map <span class="math notranslate nohighlight">\(N(t+1)  = r(1 - N(t)) N(t)\)</span>, with the parameter <span class="math notranslate nohighlight">\(r\)</span> on the horizontal axis and the vertical axis showing the values of the stable fixed point (for <span class="math notranslate nohighlight">\(r&lt;3\)</span>), then the values of the period two oscillation, the period four oscillation, etc., and for <span class="math notranslate nohighlight">\(r\)</span> greater than the critical value shows some of the values the solution chaotically jumps through.</span><a class="headerlink" href="#fig-log-bifur" title="Permalink to this image">¶</a></p>
+</div>
+<p>For <span class="math notranslate nohighlight">\(r &gt; r_\infty\)</span>, we observe a remarkable behavior found only in nonlinear dynamical systems, called <em>chaos</em>. Chaos is characterized by two qualities:</p>
+<div class="admonition-characteristics-of-chaos admonition">
+<p class="admonition-title">Characteristics of chaos</p>
+<ol class="simple">
+<li><p><strong>Aperiodic behavior</strong>: the dependent variable never repeats a value exactly, instead bouncing around an infinite set of values for all time</p></li>
+<li><p><strong>Sensitive dependence on initial conditions</strong>: no matter how close two initial conditions in a chaotic system, given enough time the two trajectories will diverge and lose any resemblance</p></li>
+</ol>
+</div>
+<p>What is especially surprising about chaos is that for a given initial condition a chaotic model gives a completely predictable and reproducible sequence of values of the dependent variable. However, given finite machine precision, or any error in initial conditions, a chaotic system is practically unpredictable and irreproducible. But there is a fundamental difference between deterministic chaos and a stochastic system, e.g. the model of coin tosses where knowing the previous result of the coin flip does not allow us to predict the next result, even under ideal conditions.</p>
+<p>Notice in figure , that for <span class="math notranslate nohighlight">\(r &gt; r_\infty\)</span>, chaotic behavior is observed only for some values of <span class="math notranslate nohighlight">\(r\)</span>. As you can see in figure , there are “bands of periodicity”, where the attractor is a  sequence of <span class="math notranslate nohighlight">\(n\)</span> numbers (and periods of 3,5, etc. are observed), alternating with bands of chaos. This illustrates that even the simplest nonlinear discrete dynamical systems can have incredibly complex behavior. When these results were first published by May in the 1970s, they revolutionized both the mathematical understanding of dynamical systems, and the field of theoretical biology. In one-variable dynamic systens, chaos occurs only in discrete-time dynamical models, but for three or more variables continuous time (ODE) dynamical systems also can behavechaotically.</p>
+<p>As a mathematical side-note, if one looks at the differences between successive values of <span class="math notranslate nohighlight">\(r_n\)</span>, they behave like a geometric sequence, getting smaller and smaller by a constant fraction:</p>
+<div class="math notranslate nohighlight">
+\[
+\delta_n = \frac{r_{n}-r_{n-1}}{r_{n+1}-r_{n}}
+\]</div>
+<p>It is a remarkable fact that <span class="math notranslate nohighlight">\(\delta_n\)</span> approaches a constant value when <span class="math notranslate nohighlight">\(n\)</span> gets large, <span class="math notranslate nohighlight">\(4.6692...\)</span>, known as the Feigenbaum constant. It can be proven that this constant is the same for other iterated maps with the same shape as the downward parabola of the logistic map (e.g. <span class="math notranslate nohighlight">\(f(x) = \sin(x)\)</span>). Explaining why this deep mathematical fact is true is far outside the bounds of this course. [&#64;strogatz_nonlinear_2001]</p>
+<p>Chaos was a popular topic back in the 1980s and 90s, and even inspired popular books [&#64;gleick_chaos:_1988]. It is in fact remarkable that very simple difference equations can have solutions of apparently great complexity. This is intriguing because it appeals to a fairly universal human desire for simple explanations for complicated phenomena. The popular exposure to what was dubbed “chaos theory” (which is not an actual mathematical topic) spawned some inaccurate cliches, such as “a butterfly flapping its wings in South America can cause a hurricane to form and hit Florida”. The image refers to the phenomenon of sensitive dependence on initial conditions, but of course it is utterly ridiculous to draw a causal arrow between a butterfly (one of an enumerable number of things changing the “initial conditions”) and large-scale atmospheric phenomena. While there is some evidence that weather patters are complex systems that exhibit chaotic behavior, we lack the ability to isolate and control all influences that may perturb it, so pinning it on a butterfly is pretty unfair.</p>
+<p>Despite the initial flurry of excitement, so-called chaos theory has failed to make a big impact on our understanding of complex biological systems. Although it is still quite fascinating intellectually, a simple model like the logistic model is not an adequate model for any realistic population, particularly for large values of <span class="math notranslate nohighlight">\(r\)</span> where the chaotic behavior occurs. We now appreciate that the essential complexity of biological system requires multiple interacting variables which cannot be reduced to a single equation. However, there has been some successful observation of chaotic behavior in a population of flour beetles, which seemed to agree with predictions of a three-variable difference equation model [&#64;costantino_chaotic_1997].</p>
+<p>We have seen how graphical tools can be used to analyze and predict the behavior of a discrete-time dynamical system. We investigated the logistic model by finding the fixed points and analyzing their stability. Together with analysis of the graph of the updating function and making a cobweb plot, this allowed us to describe the dynamics of population growth in the logistic model, without doing any “math”. Together, analytical and graphical analysis provide powerful tools for biological modelers.</p>
+<p><strong>Q3.1:</strong> For the logistic model with an initial population of 0.5 and <span class="math notranslate nohighlight">\(r=1.1\)</span>,
+compute the first 50 iterations using the same for loop iteration
+you used above and plot the solution against time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">1.8</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">5</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#logistic population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.1: Logistic growth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+ 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_nonlinear_python_8_0.png" src="_images/discrete_nonlinear_python_8_0.png" />
+</div>
+</div>
+<p><strong>Q3.2:</strong> Change the parameter <span class="math notranslate nohighlight">\(r\)</span> to the following values: 0.5, 2.0, and 3.2,
+and in each case plot the solutions against time in separate figures.
+Describe each plot with a sentence.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">5</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=0.5&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.75</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=2.0&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">3.2</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">5</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=3.2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_nonlinear_python_10_0.png" src="_images/discrete_nonlinear_python_10_0.png" />
+<img alt="_images/discrete_nonlinear_python_10_1.png" src="_images/discrete_nonlinear_python_10_1.png" />
+<img alt="_images/discrete_nonlinear_python_10_2.png" src="_images/discrete_nonlinear_python_10_2.png" />
+</div>
+</div>
+<p>Answer:</p>
+<ul class="simple">
+<li><p>The solution for r=0.5 decreases to zero</p></li>
+<li><p>The solution for r=2.0 stays at the fixed point of 0.5</p></li>
+<li><p>The solution for r=3.2 oscillates between two values indefinitely</p></li>
+</ul>
+<p><strong>Q3.3:</strong> Increase the parameter <span class="math notranslate nohighlight">\(r\)</span> further until you see strange, aperiodic
+behavior called chaos. Report at least one value of <span class="math notranslate nohighlight">\(r\)</span> at which you see
+chaotic dynamics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">3.7</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">7</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;N0 =&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">numsteps</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#set number of iterations</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mf">3.7</span> <span class="c1">#set parameter</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
+<span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">701</span> <span class="c1">#initial value</span>
+<span class="n">t</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialze time vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;N0 =&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="c1">#plot solution</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.3: Logistic growth, r=3.7&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/discrete_nonlinear_python_13_0.png" src="_images/discrete_nonlinear_python_13_0.png" />
+</div>
+</div>
+<p>Answer: At r=3.7 the solution bounces around without any apparent pattern, which is called chaos.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="discrete_nonlinear_math.html" title="previous page"><span class="section-number">2.1. </span>Logistic population model</a>
+    <a class='right-next' id="next-link" href="ode_1var_intro.html" title="next page"><span class="section-number">3. </span>Models with one variable in continuous time</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

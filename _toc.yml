@@ -1,19 +1,30 @@
 - file: intro
   numbered: true
     
-- file: chapter1_intro
+- file: discrete_1var_intro
   sections:
-    - file: chapter1_math
-    - file: chapter1_python  
-- file: chapter2_intro
+    - file: discrete_1var_math
+    - file: discrete_1var_python  
+- file: discrete_nonlinear_intro
   sections:
-    - file: chapter2_math
-    - file: chapter2_python
-- file: chapter3_intro
+    - file: discrete_nonlinear_math
+    - file: discrete_nonlinear_python
+- file: ode_1var_intro
   sections:
-    - file: chapter3_math
-    - file: chapter3_python
-- file: chapter4_intro
+    - file: ode_1var_math
+    - file: ode_1var_python
+- file: graph_ode_intro
   sections:
-    - file: chapter4_math
-    - file: chapter4_python
+    - file: graph_ode_math
+- file: discrete_higher_intro
+  sections:
+    - file: discrete_higher_math
+    - file: discrete_higher_python
+- file: linear_pp_intro
+  sections:
+    - file: linear_pp_math
+    - file: linear_pp_python
+- file: forces_pot_intro
+  sections:
+    - file: forces_pot_math
+
