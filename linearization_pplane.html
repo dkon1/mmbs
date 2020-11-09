@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>8. Linearization of ODEs &#8212; Mathematical Methods for Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="7.1. Forces and simple springs" href="forces_pot_math.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_1var_intro.html">
+   1. Models with one variable in discrete time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   2. Nonlinear discrete-time dynamic models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="ode_1var_intro.html">
+   3. Models with one variable in continuous time
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph_ode_intro.html">
+   4. Graphical analysis of ordinary differential equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   5. Discrete models of higher order
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_pp_intro.html">
+   6. Linear ODEs with two variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forces_pot_intro.html">
+   7. Forces and potentials in biological modeling
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   8. Linearization of ODEs
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/linearization_pplane.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   8.1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-product-terms-in-nonlinear-differential-equations">
+   8.2. Modeling: product terms in nonlinear differential equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ecological-competition">
+     8.2.1. ecological competition
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#chemical-reactions-with-two-molecules">
+     8.2.2. chemical reactions with two molecules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#analytical-linearization-in-multiple-dimensions">
+   8.3. Analytical: linearization in multiple dimensions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#finding-fixed-points-of-nonlinear-odes">
+     8.3.1. finding fixed points of nonlinear ODEs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-stability-analysis-of-fixed-points">
+     8.3.2. linear stability analysis of fixed points
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computational-analysis-of-jacobian-matrices">
+   8.4. Computational analysis of Jacobian matrices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#application-sir-model">
+   8.5. Application: SIR model
+  </a>
+ </li>
+</ul>
+
+        </nav>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="linearization-of-odes">
+<h1><span class="section-number">8. </span>Linearization of ODEs<a class="headerlink" href="#linearization-of-odes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2><span class="section-number">8.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Previously we have learned to analyze and solve linear ODEs with two variables. The main idea was that the type of dynamics in a multivariable ODE is completely determined by the eigenvalues of the defining matrix, with the eigenvectors and initial conditions providing the relative weights of the variables. We will use these ideas to analyze  nonlinear models, for which, typically, no analytical solution exists. Instead, we will focus on phase plane analysis to qualitatively describe the types of solutions possible for a dynamical system.</p>
+<p>The main idea of this chapter is linearization, or approximating a nonlinear dynamical system with a matrix near a particular fixed point. This enables the use of the tools of linear algebra to characterize the local dynamics of the system. Linearization is an essential tool of applied mathematics and is quite powerful, even though it is not exact, and only applies in a local, possibly small neighborhood of a fixed point. In the next chapter, the stability of fixed points and the direction of flow of solutions will be used to obtain a more comprehensive picture of dynamics in the phase plane.</p>
+<p>In this chapter, we will see examples of nonlinear ODEs in biology in the modeling section, and discuss the origin of product terms. In the analytical section, we will learn to linearize differential equations with more than one variable, and to analyze the dynamics near fixed points for two-variable ODEs. In the computational section, we will use numerical methods to find the eigenvalues of the linearized systems, and use computational tools for drawing the phase plane portraits near the fixed points. We will then use these techniques to analyze the dynamics of infections in a SIR epidemiology model.</p>
+</div>
+<div class="section" id="modeling-product-terms-in-nonlinear-differential-equations">
+<h2><span class="section-number">8.2. </span>Modeling: product terms in nonlinear differential equations<a class="headerlink" href="#modeling-product-terms-in-nonlinear-differential-equations" title="Permalink to this headline">¶</a></h2>
+<p>Nonlinear ODE is not a particularly descriptive term: it includes all equations that contain terms other than a constant or a constant times the dependent variable, e.g. <span class="math notranslate nohighlight">\(x^2, y^3, ae^{x-y}\)</span>. One common type of nonlinearity is a product term <span class="math notranslate nohighlight">\(axy\)</span> (<span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are dependent variables, and <span class="math notranslate nohighlight">\(a\)</span> is a constant). This term arises in diverse biological models, as illustrated below. The significance of the product terms is that they quantify the effect of <strong>independent encounters</strong> between the two entities modeled by the dependent variables, influence their rates of change. Thus, a product of the two variables captures this dependence, which grows proportional to the size of both variables, and is zero if either variable vanishes.</p>
+<div class="section" id="ecological-competition">
+<h3><span class="section-number">8.2.1. </span>ecological competition<a class="headerlink" href="#ecological-competition" title="Permalink to this headline">¶</a></h3>
+<p>Suppose two species are competing for the same resources, e.g. rabbits and sheep want to graze in the same fields. Let their individual growth rates be governed by logistic equations, with certain carrying capacities <span class="math notranslate nohighlight">\(K_r\)</span> and <span class="math notranslate nohighlight">\(K_s\)</span> and rates of growth <span class="math notranslate nohighlight">\(a_r\)</span> and <span class="math notranslate nohighlight">\(a_s\)</span>. In addition, the two species influence each others’ rates of growth when their respective populations grow, by using up resources that both populations need to survive. Thus, the effect of competition can be represented by a term proportional to the <strong>product of the two populations</strong>. The effect of competition on the rabbits is represented by <span class="math notranslate nohighlight">\(c_r\)</span> and that on the sheep <span class="math notranslate nohighlight">\(c_s\)</span>, and the two parameters need not be the same, e.g. because the sheep are less sensitive to competition from rabbits than vice versa. The two variable ODE model can then be written as follows, with <span class="math notranslate nohighlight">\(S\)</span> representing sheep and <span class="math notranslate nohighlight">\(R\)</span> rabbits:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot S &amp;=&amp; a_s S(K_s -S) - c_s SR \\
+\dot R &amp;=&amp; a_r R(K_r - R) - c_r SR
+\end{split}\]</div>
+<p>These equations are nonlinear due to the squared terms and the <span class="math notranslate nohighlight">\(SR\)</span> terms. We cannot apply the powerful methods of linear algebra and find the eigenvalues of the system, since the equations cannot be written in matrix-vector form.  In the analytical section, we will learn to use the method of linearization around a fixed point to determine behavior locally near equilibrium points.</p>
+</div>
+<div class="section" id="chemical-reactions-with-two-molecules">
+<h3><span class="section-number">8.2.2. </span>chemical reactions with two molecules<a class="headerlink" href="#chemical-reactions-with-two-molecules" title="Permalink to this headline">¶</a></h3>
+<p>Many biochemical reactions depend on <strong>encounters between two molecules</strong>, e.g. an enzyme and a substrate. As we would expect, this process is represented by a product terms in models of chemical kinetics. Take, for instance, a reversible bimolecular reaction:</p>
+<div class="math notranslate nohighlight">
+\[
+A + B {\textstyle \overset{k_1}{\underset{k_{-1}}{\rightleftarrows}}} C
+%A + B \xrightleftharpoons[k_{-1}]{k_1}C
+\]</div>
+<p>The chemical reaction rates <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_{-1}\)</span> are related to the speed of the forward (association) and backward (dissociation) reactions, but the two processes are fundamentally different, as in the SIS model above. The forward reaction depends on molecule <span class="math notranslate nohighlight">\(A\)</span> encountering molecule <span class="math notranslate nohighlight">\(B\)</span>, and thus its rate is proportional to the product of their concentrations. The dissociation reaction rate depends linearly on the concentration of <span class="math notranslate nohighlight">\(C\)</span>. Thus, the differential equations describing the rates of change of the concentrations of the three molecules are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot A &amp;=&amp;  -k_1 AB + k_{-1} C \\
+\dot  B &amp;=&amp;  -k_1 AB + k_{-1} C\\
+\dot C &amp;=&amp; k_1 AB - k_{-1} C
+\end{split}\]</div>
+<p>The equation are redundant, as the rates of change of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are equal. Therefore, if <span class="math notranslate nohighlight">\(A_0\)</span> and <span class="math notranslate nohighlight">\(B_0\)</span> are the initial concentrations of the two molecules, the concentration of <span class="math notranslate nohighlight">\(B(t)\)</span> at some further time is given by <span class="math notranslate nohighlight">\(B(t) = A(t) - A_0 + B_0\)</span> (adjusting for the difference in initial concentrations).</p>
+<p>Further, there is a conserved quantity found by adding either <span class="math notranslate nohighlight">\(\dot A + \dot C = 0 \)</span> or <span class="math notranslate nohighlight">\(\dot B + \dot C = 0\)</span>. Thus, the sum of either the number of molecules <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(C\)</span> or of <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> is constant in the course of the reaction. Let <span class="math notranslate nohighlight">\(C_0\)</span> be the initial concentration of <span class="math notranslate nohighlight">\(C\)</span>. Since the sum of two  concentrations is constant,  <span class="math notranslate nohighlight">\(C(t) + A(t) = C_0 + A_0 \Rightarrow C(t) = C_0 + A_0 - A(t)\)</span>. Note that the total number of molecules <span class="math notranslate nohighlight">\(A+B+C\)</span> is not conserved, since the reactions change the number of molecules. The two redundancies make it possible to reduce the three equations to one:</p>
+<div class="math notranslate nohighlight">
+\[\dot A = -k_1A(A-A_0+B_0) + k_{-1} A(C_0 + A_0 - A)\]</div>
+<p>This equation can be examined using standard stability analysis for one-dimensional ODEs.</p>
+</div>
+</div>
+<div class="section" id="analytical-linearization-in-multiple-dimensions">
+<h2><span class="section-number">8.3. </span>Analytical: linearization in multiple dimensions<a class="headerlink" href="#analytical-linearization-in-multiple-dimensions" title="Permalink to this headline">¶</a></h2>
+<p>In this section we learn to analyze the stability of fixed points in multiple dimensions. The concepts of fixed points and stability are the same as for one-dimensional dynamical systems. A fixed point is a point in the phase space (line, plane, etc.) at which all time derivatives are zero, i.e. there is no flow. The flow near a fixed point determines its stability: if all solutions in a neighborhood of a fixed point approach it for all time, the the fixed point is stable, otherwise it is not. We will now learn the mathematical to tools to do this analysis.</p>
+<div class="section" id="finding-fixed-points-of-nonlinear-odes">
+<h3><span class="section-number">8.3.1. </span>finding fixed points of nonlinear ODEs<a class="headerlink" href="#finding-fixed-points-of-nonlinear-odes" title="Permalink to this headline">¶</a></h3>
+<p>A fixed point for a dynamical system of more than one variable is a set of values of all the variables, at which the dynamical system has no changes in any direction. More precisely,</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>For a dynamical system of <span class="math notranslate nohighlight">\(N\)</span> variables <span class="math notranslate nohighlight">\(\{x_i(t)\}\)</span> defined by <span class="math notranslate nohighlight">\(N\)</span> first-order ordinary differential equations of the form <span class="math notranslate nohighlight">\(\dot x_i = f_i(x_1, x_2, ..., x_N)\)</span>, a <em>fixed point</em> is a vector of values of all <span class="math notranslate nohighlight">\(N\)</span> variables, <span class="math notranslate nohighlight">\(\vec x^* = (x_1^*, x_2^*, ... , x_N^*)\)</span> for which every time derivative is zero, that is, <span class="math notranslate nohighlight">\( 0 = f_i(x_1^*, x_2^*, ..., x_N^*)\)</span> for all <span class="math notranslate nohighlight">\(i = 1, ..., N\)</span>.</p>
+</div>
+<p>It follows from the definition that to find a fixed point in multiple dimensions, we must solve several nonlinear algebraic equations simultaneously. This is not always easy, nor is it necessarily possible to do by hand. One standard approach is to consider the equations separately, and then the points where they all agree are the fixed points.</p>
+<p>In two dimensions, this process is easy to visualize in terms of flow in the phase plane. Let us call the two dependent variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, with differential equations <span class="math notranslate nohighlight">\(\dot x = f_1(x,y)\)</span> and <span class="math notranslate nohighlight">\(\dot y = f_2(x,y)\)</span>. The two equations for the fixed points are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0 &amp;=&amp; f_1(x, y) \\
+0 &amp;=&amp; f_2(x,y)
+\end{split}\]</div>
+<p>The first equation specificies the condition that <span class="math notranslate nohighlight">\(dx/dt = 0\)</span>, while the second corresponds to <span class="math notranslate nohighlight">\(dy/dt = 0\)</span>. In terms of the geometry of the phase plane with <span class="math notranslate nohighlight">\(x\)</span> on the horizontal axis and <span class="math notranslate nohighlight">\(y\)</span> on the vertical, it means that at any point <span class="math notranslate nohighlight">\((x,y)\)</span> that satisfies the first equation, the flow is strictly vertical, with no horizontal component, while for a point that satisfies the second equation, the flow is strictly horizontal, with no vertical component. This leads us to a useful new concept in the phase plane:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>For a two-dimensional autonomous ODE defined by <span class="math notranslate nohighlight">\(\dot x = f_1(x,y)\)</span> and <span class="math notranslate nohighlight">\(\dot y = f_2(x,y)\)</span>, the set of points which satisfy <span class="math notranslate nohighlight">\(0 = f_1(x,y)\)</span> is called the <em>x-nullcline</em>, and the set of points which satisfy <span class="math notranslate nohighlight">\(0 = f_2(x,y)\)</span> is called the <em>y-nullcline</em>. The direction of flow at any point on the x-nullcline is strictly vertical, while on the y-nullcline it is strictly horizontal.</p>
+</div>
+<p>This idea gives us a graphical tool for visualizing the flow in the phase plane. The sets of points that satisfy the equations <span class="math notranslate nohighlight">\(0=f_1(x,y)\)</span> and <span class="math notranslate nohighlight">\(0=f_2(x,y)\)</span> may be found by solving the equation for <span class="math notranslate nohighlight">\(y\)</span>, and then plotting the results as curves in the phase plane. In some cases, the equation may not be solvable analytically (e.g. a transcendental equation) but one can still find the nullcline numerically and to plot its graph. Once all the nullclines are graphed, one may find the fixed points at the intersections of the x- and y-nullclines.</p>
+<p><strong>Example: sheep and rabbits</strong></p>
+<p>The fixed points of the model introduced in the modeling section, equation \ref{eq:rs_competition} must satisfy the conditions <span class="math notranslate nohighlight">\(\dot s = \dot r = 0\)</span>. Let us set the following constants for our example <span class="math notranslate nohighlight">\(K_s = 2\)</span>, <span class="math notranslate nohighlight">\(K_r = 3\)</span>, <span class="math notranslate nohighlight">\(a_s = a_r = 1\)</span>, <span class="math notranslate nohighlight">\(c_s = 1\)</span>, <span class="math notranslate nohighlight">\(c_r = 2\)</span>. Then the two equations that define the fixed points are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+0 &amp;=&amp;  s(2 -s) - sr \\
+0 &amp;=&amp;  r(3 -r) - 2sr
+\end{split}\]</div>
+<p>Let us find the nullclines of this dynamical system. The first equation is satisfied under two conditions: either <span class="math notranslate nohighlight">\(s=0\)</span> or <span class="math notranslate nohighlight">\(r = 2-s\)</span>; these are the two <span class="math notranslate nohighlight">\(s\)</span>-nullclines. The second equation is satisfied under two conditions as well: either <span class="math notranslate nohighlight">\(r=0\)</span> or <span class="math notranslate nohighlight">\(2s = 3-r\)</span>; these are the two <span class="math notranslate nohighlight">\(r\)</span>-nullclines.</p>
+<p>We then look for the intersections of the nullclines to determine the fixed points. First, <span class="math notranslate nohighlight">\(s=0\)</span> and <span class="math notranslate nohighlight">\(r=0\)</span> intersect at the origin, so <span class="math notranslate nohighlight">\(s=r=0\)</span> is a fixed point. Second, <span class="math notranslate nohighlight">\(s=0\)</span> intersects the line <span class="math notranslate nohighlight">\(2s = 3-r\)</span> at <span class="math notranslate nohighlight">\(s=0; r=3\)</span>, so this is a second fixed point. Third, <span class="math notranslate nohighlight">\(r=0\)</span> intersects the line <span class="math notranslate nohighlight">\(r=2-s\)</span> at <span class="math notranslate nohighlight">\(s=2; r=0\)</span>, and we have the third fixed point, Finally, the two lines <span class="math notranslate nohighlight">\(r=2-s\)</span> and <span class="math notranslate nohighlight">\(2s=3-r\)</span> intersect at <span class="math notranslate nohighlight">\(s=1; r=1\)</span>, which may be found either by sibstitution of <span class="math notranslate nohighlight">\(r=2-s\)</span> into <span class="math notranslate nohighlight">\(2s=3-r\)</span> or by graphing the two lines. We have found four fixed points, and because all the nullclines have straight line graphs, they can only intersect once, therefore this is the complete list of fixed points.</p>
+<p>Let us interpret these equilibria. The one at the origin corresponds to the situation when there are no sheep or rabbits, so it is the dual extinction equilibrium. The two fixed points on the axes (<span class="math notranslate nohighlight">\(s=0; r=3\)</span> and <span class="math notranslate nohighlight">\(s=2, r=0\)</span>) correspond to one species surviving and reaching its carrying capacity, with the other one dying off. The final fixed point <span class="math notranslate nohighlight">\(s=1, r=1\)</span> is called a <em>coexistence equilibrium</em>, in which both species survive.</p>
+</div>
+<div class="section" id="linear-stability-analysis-of-fixed-points">
+<h3><span class="section-number">8.3.2. </span>linear stability analysis of fixed points<a class="headerlink" href="#linear-stability-analysis-of-fixed-points" title="Permalink to this headline">¶</a></h3>
+<p>We now turn to the question of stability of fixed points. As mentioned above, the definition of stability in multiple dimensions is identical to that is one dimension.</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>A fixed point <span class="math notranslate nohighlight">\(\vec x^*\)</span> of a dynamical system is <em>stable</em> if there exists a neighborhood of the fixed point (open set containing <span class="math notranslate nohighlight">\(\vec x^*\)</span>) such that any trajectory with initial value in that neighborhood approaches the fixed point for all time.</p>
+</div>
+<div class="math notranslate nohighlight">
+\[ f(x^*+u,y^*+v) = u\frac{\partial f}{\partial x} + v\frac{\partial f}{\partial y} + O((u,v)^2)\]</div>
+<p>Note that these partial derivatives are the directions of flow <strong>at a particular fixed point</strong>, thus they have to evaluated at <span class="math notranslate nohighlight">\((x^*,y^*)\)</span>. Therefore, this approximation is linear in terms of the small increments <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, and the partial derivatives play the role of constants, the local rates of change in <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> directions. The last term incorporates all the error from higher-order terms, but since <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span> are very small, raising them to higher powers produces very small numbers that can be neglected (although sometimes they must be considered, when linear stability analysis is inconclusive).</p>
+<p>Let us focus on two-dimensional systems, for specificity. We can now approximate the functions <span class="math notranslate nohighlight">\(f_1(x,y)\)</span> and <span class="math notranslate nohighlight">\(f_2(x,y)\)</span> in the vicinity of a fixed point <span class="math notranslate nohighlight">\((x^*, y^*)\)</span> using their partial derivatives as above. We can express the two variables near the fixed point as <span class="math notranslate nohighlight">\(x = x^* + u\)</span> and <span class="math notranslate nohighlight">\(y = y^*+v\)</span> and therefore obtain a local linear approximation for the system of two ODEs:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot u &amp;=&amp; u\frac{\partial f_1}{\partial x} \vert_{(x^*,y^*)} + v \frac{\partial f_1}{\partial y} \vert_{(x^*,y^*)} \\
+\dot v &amp;=&amp; u\frac{\partial f_2}{\partial x} \vert_{(x^*, y^*)} + v\frac{\partial f_2}{\partial y} \vert_{(x^*, y^*)}
+\end{split}\]</div>
+<p>What this achieves is an approximation of nonlinear differential equations by a set of linear differential equations, with the dependent variables expressed in terms of deviations from the fixed point. We now have a linear dynamical system, which can be written in matrix form:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} \left( \begin{array}{c} \dot u \\ \dot v \end{array} \right) = J \left( \begin{array}{c} u \\ v \end{array} \right) \end{split}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(J\)</span> is made up of partial derivatives of the two functions <span class="math notranslate nohighlight">\(f_1\)</span> and <span class="math notranslate nohighlight">\(f_2\)</span> evaluated at some particular point <span class="math notranslate nohighlight">\((x,y)\)</span>, and it has a special name:</p>
+<div class="admonition-definition admonition">
+<p class="admonition-title">Definition</p>
+<p>Let <span class="math notranslate nohighlight">\((f_1(x,y), f_2(x,y)): \Re^2 \to \Re^2\)</span> (a function that takes in a two dimensional vector, and returns a two dimensional vector) be differentiable with  to both variables <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. Then its <em>Jacobian</em> matrix is defined as the matrix of first partial derivatives as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} J(x,y) =  \left( \begin{array}{cc} \frac{\partial f_1}{\partial x}\vert_{(x,y)} &amp; \frac{\partial f_1}{\partial y}\vert_{(x,y)} \\ 
+\frac{\partial f_2}{\partial x}\vert_{(x,y)} &amp; \frac{\partial f_2}{\partial y}\vert_{(x,y)} \end{array} \right) \end{split}\]</div>
+</div>
+<p>The Jacobian matrix, evaluated at a fixed point, defines a linear dynamical system which approximates the original nonlinear dynamical system, in the vicinity of the fixed point. Thus, we can now use the tools from linear dynamical systems to determine the stability of a given fixed point. Much as the stability of a fixed point of a one-dimensional ODE was determined by the value of the derivative of the defining function at the fixed point, in higher dimensions the stability is determined by the eigenvalues of the Jacobian matrix at the fixed point.</p>
+<p>To summarize, here is the outline for the steps for finding and analyzing the stability of fixed points of two-dimensional dynamical systems:</p>
+<div class="tip admonition">
+<p class="admonition-title">Outline for analyzing fixed points of 2-variable ODEs</p>
+<ul class="simple">
+<li><p>find the fixed points, as two dimensional vectors <span class="math notranslate nohighlight">\((x^*, y^*)\)</span></p></li>
+<li><p>find the expression for the Jacobian matrix of the ODE <span class="math notranslate nohighlight">\(J(x,y)\)</span></p></li>
+<li><p>plug in the values of the fixed points to find the local linearizations around each fixed point <span class="math notranslate nohighlight">\(J(x^*, y^*)\)</span></p></li>
+<li><p>find the eigenvalues of each Jacobian matrix and classify the local dynamics</p></li>
+</ul>
+</div>
+<p><strong>Example: sheep and rabbits, cont.</strong>
+Let us write down the linear approximation (first terms of the Taylor series) for the two functions defining the differential equation in the ecological competition model from equation \ref{eq:rs_competition}, with specific parameters that we chose above.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot u &amp;=&amp;  (2 -2s - r)u + -sv\\
+\dot v &amp;=&amp;  (3 -r - 2s)v -2ru
+\end{split}\]</div>
+<p>You see that we have turned the nonlinear ODE into a linear system with variables <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(v\)</span>, defined by the Jacobian matrix evaluated at a point <span class="math notranslate nohighlight">\((r,s)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{c}  \dot u \\ \dot v \end{array}\right)  = \left(\begin{array}{cc}2-2s-r &amp; -s\\-2r &amp; 3-2r-2s\end{array}\right)\left(\begin{array}{c}  u \\  v \end{array}\right) \end{split}\]</div>
+<p>In practice, one can typically proceed directly to calculating the Jacobian by finding the partial derivatives and putting them in the right places. Let me emphasize that the linearization only describes the behavior of the system near a particular fixed point. For each fixed point, the linear equation is different. In order to analyze stability of each of the fixed points, we need to plug in the four values of the fixed points individually:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r=0,s=0\)</span>. The matrix is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left(\begin{array}{cc}2&amp; 0\\ 0 &amp; 3\end{array}\right)\end{split}\]</div>
+<p>and clearly has eigenvalues <span class="math notranslate nohighlight">\(\lambda=2,3\)</span> with the corresponding eigenvectors on the two axes (1,0) and (0,1). This is an unstable node, with exponential growth away from it.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r=0, s=2\)</span>. The matrix is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} \left(\begin{array}{cc}-2&amp; -2\\ 0 &amp; -1\end{array}\right) \end{split}\]</div>
+<p>with eigenvalues <span class="math notranslate nohighlight">\(\lambda=-1,-2\)</span> with the corresponding eigenvectors (-2,1) and (1,0). This is a stable node (exponential decay toward the fixed point).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r=3, s=0\)</span>. The  matrix is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} \left(\begin{array}{cc}-1 &amp; 0\\ -6&amp; -3\end{array}\right) \end{split}\]</div>
+<p>with eigenvalues <span class="math notranslate nohighlight">\(\lambda=-1,-6\)</span> with the corresponding eigenvectors (-1,3) and (0,1). This is a stable node (exponential decay toward the fixed point).</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(r=1, s=1\)</span>. The  matrix is</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split} \left(\begin{array}{cc}-1 &amp; -1\\ -2&amp; -1\end{array}\right) \end{split}\]</div>
+<p>with eigenvalues <span class="math notranslate nohighlight">\(\lambda=-1\pm \sqrt{2}\)</span> with the eigenvectors (1, <span class="math notranslate nohighlight">\(-\sqrt 2\)</span>) for the positive <span class="math notranslate nohighlight">\(\lambda\)</span> and (1, <span class="math notranslate nohighlight">\(\sqrt 2\)</span>) for the negative one. This is a saddle point, with one  stable direction and one unstable.</p>
+<p>The linear stability analysis we employed yielded only local information around each individual fixed point. We now know that starting with a very small population of rabbits and sheep, neither population will approach extinction, and that starting close to the carrying capacity for one population, and close to zero for the other, the solution will approach those two fixed points. The saddle point at the coexistence equilibrium appears more complex, but for practical purposes it is an unstable fixed point, and almost any solution near the coexistence equilibrium (but not exactly at <span class="math notranslate nohighlight">\(s=1, r=1\)</span>) will deviate away from it. However, this analysis gives no information for what happens to the solutions once they are away from the fixed points. In the next section we will demonstrate how to describe the global flow in the phase plane.</p>
+</div>
+</div>
+<div class="section" id="computational-analysis-of-jacobian-matrices">
+<h2><span class="section-number">8.4. </span>Computational analysis of Jacobian matrices<a class="headerlink" href="#computational-analysis-of-jacobian-matrices" title="Permalink to this headline">¶</a></h2>
+<p>In practice scientists usually employ computational tools to find the eigenvalues of Jacobian matrices of dynamical systems. The procedure is identical for a two-dimensional or an <span class="math notranslate nohighlight">\(N\)</span>-dimensional differential equation, with the important difference that it is impractical to diagonalize matrices larger than 2 by 2 by hand. One can use any number of computational algorithms for finding eigenvalues, e.g. QR method \cite{press_numerical_2007}. We will leave out the discussion of these algorithms, instead rely on the reader having access to an implementation of such algorithms, for instance in Matlab.</p>
+<div class="tip admonition">
+<p class="admonition-title">Outline for classification of fixed points for a two-dimensional ODE</p>
+<ul class="simple">
+<li><p>define the Jacobian function <span class="math notranslate nohighlight">\(Jac(x,y)\)</span> which takes in two scalars <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> and returns the Jacobian matrix at that point</p></li>
+<li><p>obtain a list of <span class="math notranslate nohighlight">\(N\)</span> fixed points in two arrays <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p>for loop through all <span class="math notranslate nohighlight">\(N\)</span> fixed points</p>
+<ul>
+<li><p>obtain the Jacobian by calling <span class="math notranslate nohighlight">\(Jac(x[i],y[i])\)</span></p></li>
+<li><p>calculated its eigenvalues <span class="math notranslate nohighlight">\(v[0]\)</span> and <span class="math notranslate nohighlight">\(v[1]\)</span> (by calling an eigenvalue function)</p></li>
+<li><p>if <span class="math notranslate nohighlight">\( Re(v[0]) &gt; 0\)</span> and <span class="math notranslate nohighlight">\(Re(v[1]) &gt; 0\)</span></p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(Im(v[0]) == 0\)</span></p>
+<ul>
+<li><p>print ‘unstable node’</p></li>
+</ul>
+</li>
+<li><p>else</p>
+<ul>
+<li><p>print ‘unstable spiral’</p></li>
+</ul>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(Re(v[0]) &lt; 0\)</span> and <span class="math notranslate nohighlight">\(Re(v[1]) &lt; 0\)</span></p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(Im(v[0])) == 0\)</span></p>
+<ul>
+<li><p>print ‘stable node’</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>else</p>
+<ul>
+<li><p>print ‘stable spiral’</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(Re(v[0])*Re(v[1]) &lt; 0\)</span></p>
+<ul>
+<li><p>print ‘saddle point’</p></li>
+</ul>
+</li>
+<li><p>if <span class="math notranslate nohighlight">\(Re(v[0])*Re(v[1])) == 0\)</span></p>
+<ul>
+<li><p>if <span class="math notranslate nohighlight">\(Im(v[0]) \neq 0\)</span></p>
+<ul>
+<li><p>print ‘center point’</p></li>
+</ul>
+</li>
+<li><p>else</p>
+<ul>
+<li><p>print ‘line of fixed points’</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="application-sir-model">
+<h2><span class="section-number">8.5. </span>Application: SIR model<a class="headerlink" href="#application-sir-model" title="Permalink to this headline">¶</a></h2>
+<p>Mathematical epidemiology models the dynamics of infectious disease in human (or other) populations. In Chapter 3, we saw the simplest models divide the population into two groups: those not infected (a.k.a. susceptible <span class="math notranslate nohighlight">\(S\)</span>) and infected (<span class="math notranslate nohighlight">\(I\)</span>). Here we will add a third category: recovered individuals (a group which may include those who died from the disease). There are two dynamic processes: the susceptible become infected at some rate upon encountering an infected individual, and the infected can recover. These two processes are different: the rate of infection fundamentally depends on <strong>encounters between susceptible and infected individuals</strong>, and thus is modeled as a product of <span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(I\)</span>, while the rate of recovery depends only on the infected individuals, and is thus is represented by a linear term proportional to <span class="math notranslate nohighlight">\(I\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+ S + I &amp; \xrightarrow{\beta}2 I \\
+I &amp; \xrightarrow{\gamma} R
+\end{split}\]</div>
+<p>This is known as the Kermack-McKendrick model \cite{}, or SIR model of epidemics, and it can be described by the following system of equations:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot S &amp;=&amp;  - \beta IS\\
+\dot  I &amp;=&amp; -\gamma I + \beta IS \\
+\dot R &amp;=&amp; \gamma I
+\end{split}\]</div>
+<p>Notice that, just like the simpler SIS model in Chapter 3, this system has a conserved quantity, the total number of individuals <span class="math notranslate nohighlight">\(N\)</span>. This can be shown by adding all three equations together, to see that <span class="math notranslate nohighlight">\(\dot S + \dot I + \dot R = 0\)</span>, and therefore the sum of the three categories of individuals <span class="math notranslate nohighlight">\(N\)</span> is constant. This makes intuitive sense because all the dynamics in the model consists of transferring individuals from one category to another, but we are assuming no births or deaths, outside of those we rolled into the recovered category.</p>
+<p>Since there is a conserved quantity, the three variables can be reduced to two, e.g. by expressing <span class="math notranslate nohighlight">\(R = N - I - S\)</span>. Since <span class="math notranslate nohighlight">\(R\)</span> has no effect on the dynamics of <span class="math notranslate nohighlight">\(S\)</span> or <span class="math notranslate nohighlight">\(I\)</span>, let us leave it out, and analyze the two-variable ODE:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot S &amp;=&amp; -\beta IS \\
+\dot I &amp;=&amp; -\gamma I + \beta IS 
+\end{split}\]</div>
+<p>First, let us find its fixed points. There are two nullclines for <span class="math notranslate nohighlight">\(S\)</span>: <span class="math notranslate nohighlight">\(I = 0\)</span> and <span class="math notranslate nohighlight">\(S=0\)</span>. Similarly, there are two nullclines for <span class="math notranslate nohighlight">\(I\)</span>: <span class="math notranslate nohighlight">\(I = 0\)</span> and <span class="math notranslate nohighlight">\(S = \beta/\gamma\)</span>. Notice that the two directions have one nullcline in common <span class="math notranslate nohighlight">\(I=0\)</span>. This means that the line <span class="math notranslate nohighlight">\(I=0\)</span> (the <span class="math notranslate nohighlight">\(S\)</span>-axis) is a line of fixed points! As strange as it may seem, it should make sense: when there are no infected individuals, there can be no epidemic. There are no other fixed points, since if <span class="math notranslate nohighlight">\(I \neq 0\)</span>, the fixed points would have to lie on the intersection of <span class="math notranslate nohighlight">\(S=0\)</span> and <span class="math notranslate nohighlight">\(S=\beta/\gamma\)</span>, which does not exist as long as the parameters are positive numbers.</p>
+<p>Now let’s find the Jacobian of the system:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J(S,I) = \left( \begin{array}{cc} -\beta I &amp; -\beta S \\ \beta I &amp; -\gamma + \beta S \end{array} \right)
+\end{split}\]</div>
+<p>On the line of fixed points, <span class="math notranslate nohighlight">\(I=0\)</span>, the Jacobian becomes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+J = \left( \begin{array}{cc} 0 &amp; -\beta S \\ 0 &amp; -\gamma + \beta S \end{array} \right)
+\end{split}\]</div>
+<p>This matrix is obviously singular, and has a zero eigenvalue with eigenvector <span class="math notranslate nohighlight">\((1,0)\)</span>. This means that the flow on the <span class="math notranslate nohighlight">\(S\)</span>-axis (provided it is horizontal) is strictly vertical. The other eigenvalue is <span class="math notranslate nohighlight">\(-\gamma + \beta S\)</span>, with eigenvector <span class="math notranslate nohighlight">\((0,1)\)</span>. This eigenvalue changes with <span class="math notranslate nohighlight">\(S\)</span>, or position on the <span class="math notranslate nohighlight">\(S\)</span>-axis. For <span class="math notranslate nohighlight">\(S &gt; \gamma/\beta\)</span>, the eigenvalue is positive, while for <span class="math notranslate nohighlight">\(S &lt; \gamma/\beta\)</span>, the eigevalue is negative. Thus, we can predict stability of the infection-free equilibrium based on the size of <span class="math notranslate nohighlight">\(S\)</span> relative to the threshold <span class="math notranslate nohighlight">\(\gamma/\beta\)</span>.</p>
+<p>We can now predict the local dynamics of an epidemic, starting with a small number of infected individuals <span class="math notranslate nohighlight">\(I_0\)</span>. Further, let us assume that initially there are no recovered individuals, therefore <span class="math notranslate nohighlight">\(N = I_0 + S_0 \approx S_0\)</span>.  If <span class="math notranslate nohighlight">\(N \beta /\gamma &gt; 1\)</span>, the number of infected individuals with increase, because the eigenvalue is positive and the flow takes the solution away from <span class="math notranslate nohighlight">\(I=0\)</span>, and the infection will spread. If <span class="math notranslate nohighlight">\(N \beta / \gamma &lt; 1\)</span>, the number of infected individuals will decrease, and the epidemic will die out. <span class="math notranslate nohighlight">\(N \beta/ \gamma\)</span>, as in the SIS model, is called the disease reproductive ratio (and often denoted <span class="math notranslate nohighlight">\(R_0\)</span>, in what may be considered notational abuse, since it has nothing to do with the number of recovered individuals). Notice that in both situations, the infection will spread beyond the initially infected individuals. The difference between the two scenarios is that in the first one, the number of infected individuals at a given time increases, while in the second one the number of infected  at a given time decreases. However, in both cases, the number of people infected over the course of the epidemic is greater than the initial number <span class="math notranslate nohighlight">\(I_0\)</span>.</p>
+<p>As noted before, the local stability analysis does not describe the behavior away from the line of fixed points, but we have drawn some  conclusions about the global dynamics of epidemics, based on the features of the flow in the phase plane. The total number of individuals is fixed, and all the infected individuals eventually recover, with no-reinfection possible. Therefore, no epidemic can persist, unlike in the SIS model, in which reinfection was possible. In fact, all solution trajectories eventually approach the line of fixed points at <span class="math notranslate nohighlight">\(I=0\)</span>. If the reproductive ratio <span class="math notranslate nohighlight">\(R_0 &lt; 1\)</span>, the solution heads for <span class="math notranslate nohighlight">\(I=0\)</span> right away, but if <span class="math notranslate nohighlight">\(R_0 &gt; 1\)</span>, the solution first travels away from <span class="math notranslate nohighlight">\(I=0\)</span>, reaches its peak where it crosses the vertical nullcilne <span class="math notranslate nohighlight">\(S=\beta/\gamma\)</span> (the direction of flow on that nullcline is strictly horizontal) and then turns toward <span class="math notranslate nohighlight">\(I=0\)</span>, and eventually approaches an equilibrium of no infections, having burned itself out. The dynamics of the model for the two cases are shown in figure \ref{fig:sir_phase_plane}. There are other interesting mathematical properties of the Kermack-McKendrick model, for a good summary of which see \cite{}.</p>
+<div class="figure align-default" id="fig-sir-r02">
+<img alt="_images/sir_r02.png" src="_images/sir_r02.png" />
+<p class="caption"><span class="caption-number">Fig. 8.1 </span><span class="caption-text">Dynamics in the phase plane of SIR models depends on the rep both have a line of fixed points on the <span class="math notranslate nohighlight">\(x\)</span> axis. Shown here is the phase plane with <span class="math notranslate nohighlight">\(R_0 = 2\)</span>, with infections that start to the right of the vertical nullcline spread  before running out and approaching <span class="math notranslate nohighlight">\(y=0\)</span>.</span><a class="headerlink" href="#fig-sir-r02" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-sir-r005">
+<img alt="_images/sir_r005.png" src="_images/sir_r005.png" />
+<p class="caption"><span class="caption-number">Fig. 8.2 </span><span class="caption-text">Dynamics in the phase plane of SIR models depends on the rep both have a line of fixed points on the <span class="math notranslate nohighlight">\(x\)</span> axis. Shown here is the phase plane with <span class="math notranslate nohighlight">\(R_0=0.5\)</span> and infections with any initial number of infecteds immediately decrease to zero.</span><a class="headerlink" href="#fig-sir-r005" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="forces_pot_math.html" title="previous page"><span class="section-number">7.1. </span>Forces and simple springs</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dmitry Kondrashov<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
