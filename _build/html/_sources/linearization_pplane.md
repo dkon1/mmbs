@@ -100,10 +100,28 @@ We now turn to the question of stability of fixed points. As mentioned above, th
 A fixed point $\vec x^*$ of a dynamical system is *stable* if there exists a neighborhood of the fixed point (open set containing $\vec x^*$) such that any trajectory with initial value in that neighborhood approaches the fixed point for all time.
 ```
 
+To analyze the behavior of the ODE in the vicinity of the fixed point, we use the power of partial deriviatives, which are defined as follows:
+
+```{admonition} Definition
+For a multivariable function, e.g. $f(x,y)$ a *partial derivative* $\frac{\partial f}{\partial x}$ is the derivative of the function calculated while treating the other variables (e.g. $y$) constant. The partial derivative can then be evaluated at any point $(x_0,y_0)$ to obtain the rate of change of the function in the $x$ direction at that point.
+```
+
+** Example:** For $f(x,y) = 4x^3y - 5y^2$ the partial derivatives are:
+
+* $\frac{\partial f}{\partial x} = 12x^2y$ 
+
+* $\frac{\partial f}{\partial y} = 4x^3 - 10y$ 
+
+* Evaluated at the point $(x,y) = (1,2)$ the partials are $\frac{\partial f}{\partial x}(1,2) = 24$ and $\frac{\partial f}{\partial y} (1,2) = - 16$
+
+
+The partial derivatives of a nonlinear function evaluated at a point allow us to approximate the behavior of the function using only linear terms. This is analogous to the linear Taylor approximation of a function of one variable, which approximates a nonlinear function with its tangent line. Specifically, for a function $f(x,y)$ which is zero at a particular point $(x^*, y^*)$ - that is it, it's a fixed point - the function can be approximated like this:
 
 $$ f(x^*+u,y^*+v) = u\frac{\partial f}{\partial x} + v\frac{\partial f}{\partial y} + O((u,v)^2)$$
 
-Note that these partial derivatives are the directions of flow **at a particular fixed point**, thus they have to evaluated at $(x^*,y^*)$. Therefore, this approximation is linear in terms of the small increments $u$ and $v$, and the partial derivatives play the role of constants, the local rates of change in $x$ and $y$ directions. The last term incorporates all the error from higher-order terms, but since $u$ and $v$ are very small, raising them to higher powers produces very small numbers that can be neglected (although sometimes they must be considered, when linear stability analysis is inconclusive). 
+The new variables $u$ and $v$ represent the deviations from the fixed point in the $x$ and $y$ direction, respectively and the $O((u,v)^2)$ term represents the higher-order terms that are neglected by using only the linear terms. Since in the vicinity of the fixed point $u$ and $v$ are very small, raising them to higher powers produces very small numbers that can be neglected (although sometimes they must be considered, when linear stability analysis is inconclusive). 
+
+Note that these partial derivatives are the directions of flow **at a particular fixed point**, thus they have to calculated separately for each fixed point $(x^*,y^*)$. This produces a linera approximation in terms of the small increments $u$ and $v$, and the partial derivatives play the role of constants, the local rates of change in $x$ and $y$ directions. 
 
 Let us focus on two-dimensional systems, for specificity. We can now approximate the functions $f_1(x,y)$ and $f_2(x,y)$ in the vicinity of a fixed point $(x^*, y^*)$ using their partial derivatives as above. We can express the two variables near the fixed point as $x = x^* + u$ and $y = y^*+v$ and therefore obtain a local linear approximation for the system of two ODEs:
 
@@ -221,7 +239,7 @@ In practice scientists usually employ computational tools to find the eigenvalue
 Mathematical epidemiology models the dynamics of infectious disease in human (or other) populations. In Chapter 3, we saw the simplest models divide the population into two groups: those not infected (a.k.a. susceptible $S$) and infected ($I$). Here we will add a third category: recovered individuals (a group which may include those who died from the disease). There are two dynamic processes: the susceptible become infected at some rate upon encountering an infected individual, and the infected can recover. These two processes are different: the rate of infection fundamentally depends on **encounters between susceptible and infected individuals**, and thus is modeled as a product of $S$ and $I$, while the rate of recovery depends only on the infected individuals, and is thus is represented by a linear term proportional to $I$. 
 
 $$
- S + I & \xrightarrow{\beta}2 I \\
+S + I & \xrightarrow{\beta}2 I \\
 I & \xrightarrow{\gamma} R
 $$
 
