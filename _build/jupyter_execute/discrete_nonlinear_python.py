@@ -198,7 +198,7 @@ for i in range(numsteps):
 plt.plot(t,N) #plot solution
 plt.xlabel('time')
 plt.ylabel('population')
-plt.title('Q3.1: Logistic growth')
+plt.title('Solution of logistic model wtih r='+str(r))
 plt.show()
  
 
@@ -214,13 +214,9 @@ t = range(numsteps+1) #initialze time vector
 a = -10
 for i in range(numsteps):
     N[i+1] = r*N[i]*(1-N[i]) #linear population model
-plt.plot(t,N) #plot solution
-plt.xlabel('time')
-plt.ylabel('population')
-plt.title('Q3.2: Logistic growth, r=0.5')
-plt.show()
+plt.plot(t,N, label = 'r='+str(r)) #plot solution
 
-numsteps = 50 #set number of iterations
+
 r = 2.0 #set parameter
 N = np.zeros(numsteps+1) #initialize solution vector
 N[0]=0.75 #initial value
@@ -228,13 +224,9 @@ t = range(numsteps+1) #initialze time vector
 a = -10
 for i in range(numsteps):
     N[i+1] = r*N[i]*(1-N[i]) #linear population model
-plt.plot(t,N) #plot solution
-plt.xlabel('time')
-plt.ylabel('population')
-plt.title('Q3.2: Logistic growth, r=2.0')
-plt.show()
+plt.plot(t,N, label = 'r='+str(r)) #plot solution
 
-numsteps = 50 #set number of iterations
+
 r = 3.2 #set parameter
 N = np.zeros(numsteps+1) #initialize solution vector
 N[0]=.5 #initial value
@@ -242,20 +234,20 @@ t = range(numsteps+1) #initialze time vector
 a = -10
 for i in range(numsteps):
     N[i+1] = r*N[i]*(1-N[i]) #linear population model
-plt.plot(t,N) #plot solution
+print(N)
+plt.plot(t,N, label = 'r='+str(r)) #plot solution
 plt.xlabel('time')
 plt.ylabel('population')
-plt.title('Q3.2: Logistic growth, r=3.2')
+plt.title('Solutions of logistic model with different parameters')
+plt.legend()
 plt.show()
 
-Answer:
+
  - The solution for r=0.5 decreases to zero
  - The solution for r=2.0 stays at the fixed point of 0.5
  - The solution for r=3.2 oscillates between two values indefinitely
 
-**Q3.3:** Increase the parameter $r$ further until you see strange, aperiodic 
-behavior called chaos. Report at least one value of $r$ at which you see
-chaotic dynamics.
+Increase the parameter $r$ further until you see strange, aperiodic behavior called chaos. Report at least one value of $r$ at which you see chaotic dynamics.
 
 numsteps = 100 #set number of iterations
 r = 3.7 #set parameter
@@ -279,8 +271,8 @@ plt.plot(t,N, label = 'N0 =' + str(N[0])) #plot solution
 
 plt.xlabel('time')
 plt.ylabel('population')
-plt.title('Q3.3: Logistic growth, r=3.7')
+plt.title('Logistic model, r='+str(r))
 plt.legend()
 plt.show()
 
-Answer: At r=3.7 the solution bounces around without any apparent pattern, which is called chaos.
+At $r=3.7$ the solution bounces around without any apparent pattern, which is called chaos.

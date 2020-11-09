@@ -142,6 +142,11 @@
    7. Forces and potentials in biological modeling
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linearization_pplane.html">
+   8. Linearization of ODEs
+  </a>
+ </li>
 </ul>
 
 </nav>
@@ -439,7 +444,7 @@ you used above and plot the solution against time.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.1: Logistic growth&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Solution of logistic model wtih r=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
  
 </pre></div>
@@ -462,13 +467,9 @@ Describe each plot with a sentence.</p>
 <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
     <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=0.5&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;r=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="c1">#plot solution</span>
 
-<span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+
 <span class="n">r</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1">#set parameter</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
 <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.75</span> <span class="c1">#initial value</span>
@@ -476,13 +477,9 @@ Describe each plot with a sentence.</p>
 <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
     <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=2.0&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;r=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="c1">#plot solution</span>
 
-<span class="n">numsteps</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#set number of iterations</span>
+
 <span class="n">r</span> <span class="o">=</span> <span class="mf">3.2</span> <span class="c1">#set parameter</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsteps</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#initialize solution vector</span>
 <span class="n">N</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=.</span><span class="mi">5</span> <span class="c1">#initial value</span>
@@ -490,29 +487,37 @@ Describe each plot with a sentence.</p>
 <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsteps</span><span class="p">):</span>
     <span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">#linear population model</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="c1">#plot solution</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;r=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span> <span class="c1">#plot solution</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.2: Logistic growth, r=3.2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Solutions of logistic model with different parameters&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/discrete_nonlinear_python_10_0.png" src="_images/discrete_nonlinear_python_10_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.5        0.8        0.512      0.7995392  0.51288406 0.7994688
+ 0.51301899 0.79945762 0.51304043 0.79945583 0.51304386 0.79945554
+ 0.51304441 0.7994555  0.51304449 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451 0.79945549 0.51304451 0.79945549
+ 0.51304451 0.79945549 0.51304451]
+</pre></div>
+</div>
 <img alt="_images/discrete_nonlinear_python_10_1.png" src="_images/discrete_nonlinear_python_10_1.png" />
-<img alt="_images/discrete_nonlinear_python_10_2.png" src="_images/discrete_nonlinear_python_10_2.png" />
 </div>
 </div>
-<p>Answer:</p>
 <ul class="simple">
 <li><p>The solution for r=0.5 decreases to zero</p></li>
 <li><p>The solution for r=2.0 stays at the fixed point of 0.5</p></li>
 <li><p>The solution for r=3.2 oscillates between two values indefinitely</p></li>
 </ul>
-<p><strong>Q3.3:</strong> Increase the parameter <span class="math notranslate nohighlight">\(r\)</span> further until you see strange, aperiodic
-behavior called chaos. Report at least one value of <span class="math notranslate nohighlight">\(r\)</span> at which you see
-chaotic dynamics.</p>
+<p>Increase the parameter <span class="math notranslate nohighlight">\(r\)</span> further until you see strange, aperiodic behavior called chaos. Report at least one value of <span class="math notranslate nohighlight">\(r\)</span> at which you see chaotic dynamics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numsteps</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1">#set number of iterations</span>
@@ -537,7 +542,7 @@ chaotic dynamics.</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Q3.3: Logistic growth, r=3.7&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Logistic model, r=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -547,7 +552,7 @@ chaotic dynamics.</p>
 <img alt="_images/discrete_nonlinear_python_13_0.png" src="_images/discrete_nonlinear_python_13_0.png" />
 </div>
 </div>
-<p>Answer: At r=3.7 the solution bounces around without any apparent pattern, which is called chaos.</p>
+<p>At <span class="math notranslate nohighlight">\(r=3.7\)</span> the solution bounces around without any apparent pattern, which is called chaos.</p>
 </div>
 </div>
 
