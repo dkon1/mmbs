@@ -211,7 +211,7 @@ In practice scientists usually employ computational tools to find the eigenvalue
 :class: tip 
 
 * define the Jacobian function $Jac(x,y)$ which takes in two scalars $x$ and $y$ and returns the Jacobian matrix at that point
-*  obtain a list of $N$ fixed points in two arrays $x$ and $y$
+* obtain a list of $N$ fixed points in two arrays $x$ and $y$
 * for loop through all $N$ fixed points
     - obtain the Jacobian by calling $Jac(x[i],y[i])$
     - calculated its eigenvalues $v[0]$ and $v[1]$ (by calling an eigenvalue function)
@@ -220,9 +220,9 @@ In practice scientists usually employ computational tools to find the eigenvalue
             - print 'unstable node'  
         - else 
             - print 'unstable spiral'
-        - if $Re(v[0]) < 0$ and $Re(v[1]) < 0$
-            - if $Im(v[0])) == 0$
-                - print 'stable node'
+    - if $Re(v[0]) < 0$ and $Re(v[1]) < 0$
+        - if $Im(v[0])) == 0$
+            - print 'stable node'
         - else
             - print 'stable spiral'
     - if $Re(v[0])*Re(v[1]) < 0$
