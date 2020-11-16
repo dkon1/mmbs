@@ -28,4 +28,3 @@
   sections:
     - file: forces_pot_math
 - file: linearization_pplane
-

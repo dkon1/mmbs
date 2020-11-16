@@ -2,7 +2,7 @@
 
 
 ## Introduction
-Previously we have learned to analyze and solve linear ODEs with two variables. The main idea was that the type of dynamics in a multivariable ODE is completely determined by the eigenvalues of the defining matrix, with the eigenvectors and initial conditions providing the relative weights of the variables. We will use these ideas to analyze  nonlinear models, for which, typically, no analytical solution exists. Instead, we will focus on phase plane analysis to qualitatively describe the types of solutions possible for a dynamical system.
+Previously we learned to analyze and solve linear ODEs with two variables. The main idea was that the type of dynamics in a multivariable ODE is completely determined by the eigenvalues of the defining matrix, with the eigenvectors and initial conditions providing the relative weights of the variables. We will use these ideas to analyze  nonlinear models, for which, typically, no analytical solution exists. Instead, we will focus on phase plane analysis to qualitatively describe the types of solutions possible for a dynamical system.
 
 The main idea of this chapter is linearization, or approximating a nonlinear dynamical system with a matrix near a particular fixed point. This enables the use of the tools of linear algebra to characterize the local dynamics of the system. Linearization is an essential tool of applied mathematics and is quite powerful, even though it is not exact, and only applies in a local, possibly small neighborhood of a fixed point. In the next chapter, the stability of fixed points and the direction of flow of solutions will be used to obtain a more comprehensive picture of dynamics in the phase plane. 
 
