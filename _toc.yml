@@ -28,3 +28,4 @@
   sections:
     - file: forces_pot_math
 - file: linearization_pplane
+- file: nonlinear_oscillations
