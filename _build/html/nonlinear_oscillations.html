@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; Mathematical Methods for Biology</title>
+    <title>Nonlinear oscillations in biology &#8212; Mathematical Methods for Biology</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -187,7 +187,53 @@
             <i class="fas fa-list"></i> Contents
         </div>
         <nav id="bd-toc-nav">
-            
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modeling-nonlinear-oscillations">
+   Modeling: nonlinear oscillations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#van-der-pol-oscillator">
+     Van der Pol oscillator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#oscillatory-behavior-in-biology">
+     oscillatory behavior in biology
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#limit-cycles-and-flow-trapping-regions">
+   Limit cycles and flow-trapping regions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#limit-cycles">
+     limit cycles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#glycolytic-oscillator">
+     glycolytic oscillator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fitzhugh-nagumo-model-of-neural-excitation">
+   Fitzhugh-Nagumo model of neural excitation
+  </a>
+ </li>
+</ul>
+
         </nav>
     </div>
 </div>
@@ -196,109 +242,146 @@
         
               <div>
                 
-  <p>\chapter[Limit cycles]{Nonlinear oscillations in biology}
-\section{Introduction}
-In previous chapters we examined periodic solutions that arise in linear or conservative nonlinear systems. These solutions show up in the phase plane as closed trajectories, looping around a fixed point of the center classification; they are known as linear oscillations, since their time plots are oscillatory, and because the dynamics around the fixed point are correctly described by the linear approximation. In this chapter we will see a new kind of closed trajectories, known as nonlinear oscillations. These solution describe very different dynamics, which is found in many biological systems, characterized by cycles with excitatory and refractory phases, for example action potentials in neurons.</p>
+  <div class="section" id="nonlinear-oscillations-in-biology">
+<h1>Nonlinear oscillations in biology<a class="headerlink" href="#nonlinear-oscillations-in-biology" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In previous chapters we examined periodic solutions that arise in linear or conservative nonlinear systems. These solutions show up in the phase plane as closed trajectories, looping around a fixed point of the center classification; they are known as linear oscillations, since their time plots are oscillatory, and because the dynamics around the fixed point are correctly described by the linear approximation. In this chapter we will see a new kind of closed trajectories, known as nonlinear oscillations. These solution describe very different dynamics, which is found in many biological systems, characterized by cycles with excitatory and refractory phases, for example action potentials in neurons.</p>
 <p>In the modeling section, we will see a simple prototype model which produces nonlinear oscillations, and then describe the qualitative properties of excitatory systems in biology. In the analytic section, we will describe some types bifurcations in the plane. In particular, we will describe the bifurcation which results in the birth of nonlinear oscillations. Finally, in the synthesis section we will analyze the classic neuroscience model of an action potential, called the Fitzhugh-Nagumo model.</p>
-<p>\section{Modeling: nonlinear oscillations}
-\subsection{van der Pol oscillator}
-Let us consider a harmonic oscillator model with a nonlinear damping term, known as the van der Pol oscillator (here <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> are positive parameters):
-$<span class="math notranslate nohighlight">\(m\ddot x= -kx - \mu(x^2-1)\dot x \)</span><span class="math notranslate nohighlight">\(
-This equation is similar to the damped harmonic oscillator equation we saw in the chapter 10, but in this model the damping coefficient, or the multiplier of velocity \)</span>\dot x<span class="math notranslate nohighlight">\(, is \)</span>\mu(x^2-1)<span class="math notranslate nohighlight">\( and thus depends on the variable \)</span>x<span class="math notranslate nohighlight">\(. If \)</span>x&gt;1<span class="math notranslate nohighlight">\(, the coefficient of damping is positive (with a negative sign in front) and there are damped harmonic oscillations. However, if \)</span>x&lt;1<span class="math notranslate nohighlight">\(, the coefficient is negative, so instead of damping, there is amplification of oscillations.  Let us write this as two first-order ODEs, and analyze its behavior is the phase plane.
-\begin{eqnarray*}
+</div>
+<div class="section" id="modeling-nonlinear-oscillations">
+<h2>Modeling: nonlinear oscillations<a class="headerlink" href="#modeling-nonlinear-oscillations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="van-der-pol-oscillator">
+<h3>Van der Pol oscillator<a class="headerlink" href="#van-der-pol-oscillator" title="Permalink to this headline">¶</a></h3>
+<p>Let us consider a harmonic oscillator model with a nonlinear damping term, known as the van der Pol oscillator (here <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> are positive parameters):</p>
+<div class="math notranslate nohighlight">
+\[m\ddot x= -kx - \mu(x^2-1)\dot x \]</div>
+<p>This equation is similar to the damped harmonic oscillator equation we saw in the chapter 10, but in this model the damping coefficient, or the multiplier of velocity <span class="math notranslate nohighlight">\(\dot x\)</span>, is <span class="math notranslate nohighlight">\(\mu(x^2-1)\)</span> and thus depends on the variable <span class="math notranslate nohighlight">\(x\)</span>. If <span class="math notranslate nohighlight">\(x&gt;1\)</span>, the coefficient of damping is positive (with a negative sign in front) and there are damped harmonic oscillations. However, if <span class="math notranslate nohighlight">\(x&lt;1\)</span>, the coefficient is negative, so instead of damping, there is amplification of oscillations.  Let us write this as two first-order ODEs, and analyze its behavior is the phase plane.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \dot x &amp;=&amp; y \\
 \dot y &amp;=&amp;  -\frac{k}{m}x - \frac{\mu}{m}(x^2-1)y
-\end{eqnarray*}
-There is only one fixed point, at \)</span>x=0, y=0<span class="math notranslate nohighlight">\(. It is unstable because of the amplification (reverse damping) effect when \)</span>x<span class="math notranslate nohighlight">\( is small. This can be properly shown by linearizing around the fixed point and finding the eigenvalues - we'll leave it as an exercise. However, since damping kicks in for \)</span>x&gt;1<span class="math notranslate nohighlight">\( and is stronger for higher values of \)</span>x$, trajectories that start far away from the origin will flow toward it. The effect of the outward flow from the origin combined with flow toward the origin (from trajectories that start sufficiently far away) creates a new type of periodic trajectory, called a \emph{limit cycle}.</p>
-<p>\subsection{oscillatory behavior in biology}
-The properties of linear oscillations do not correspond well to periodic behavior in living systems. Closed trajectories around center points can have any amplitude as determined by the initial conditions, and a frequency which is determined by the eigenvalues of the Jacobian, therefore independent of the amplitude of oscillations. In biological systems (and many other natural systems) periodic behavior typically has an optimal period as well as an optimal amplitude. For instance, the action potential of a neuron, as we will discuss in the Synthesis section, has a well-defined maximum and minimum membrane voltage, as well as a set period between peak voltages (neuron firing). Other periodic biological processes, such as oscillations in metabolism (see glycolytic oscillator in the Analytical section) or circadian rhythms, share the same property of having well-defined frequency and amplitude. For a mathematical modeler this suggests constructing dynamical systems that have a \emph{unique and attracting} periodic trajectory.</p>
+\end{split}\]</div>
+<p>There is only one fixed point, at <span class="math notranslate nohighlight">\(x=0, y=0\)</span>. It is unstable because of the amplification (reverse damping) effect when <span class="math notranslate nohighlight">\(x\)</span> is small. This can be properly shown by linearizing around the fixed point and finding the eigenvalues - we’ll leave it as an exercise. However, since damping kicks in for <span class="math notranslate nohighlight">\(x&gt;1\)</span> and is stronger for higher values of <span class="math notranslate nohighlight">\(x\)</span>, trajectories that start far away from the origin will flow toward it. The effect of the outward flow from the origin combined with flow toward the origin (from trajectories that start sufficiently far away) creates a new type of periodic trajectory, called a <em>limit cycle</em>.</p>
+</div>
+<div class="section" id="oscillatory-behavior-in-biology">
+<h3>oscillatory behavior in biology<a class="headerlink" href="#oscillatory-behavior-in-biology" title="Permalink to this headline">¶</a></h3>
+<p>The properties of linear oscillations do not correspond well to periodic behavior in living systems. Closed trajectories around center points can have any amplitude as determined by the initial conditions, and a frequency which is determined by the eigenvalues of the Jacobian, therefore independent of the amplitude of oscillations. In biological systems (and many other natural systems) periodic behavior typically has an optimal period as well as an optimal amplitude. For instance, the action potential of a neuron, as we will discuss in the Synthesis section, has a well-defined maximum and minimum membrane voltage, as well as a set period between peak voltages (neuron firing). Other periodic biological processes, such as oscillations in metabolism or circadian rhythms, share the same property of having well-defined frequency and amplitude. For a mathematical modeler this suggests constructing dynamical systems that have a <em>unique and attracting</em> periodic trajectory.</p>
 <p>There are several common features of biological oscillatory models. One is the competitive interplay between an inhibiting and activating species, which are commonly seen in biochemical reactions or gene regulatory models. We will see such an example in the model of oscillations in glycolysis. The other is the so-called excitable systems, in which there is a threshold value, for stimulus to produce an oscillatory response. Such systems have oscillations which are divided into fast stages of excitation and slow stages of relaxation. We will see a prototypical model of this kind in the Synthesis section.</p>
-<p>\section{Analytical: limit cycles and flow-trapping regions}</p>
-<p>\subsection{limit cycles}
-There is an important result in dynamical systems theory that states that the only possible  attractors (sets of points which solutions approach in the long run) in two dimensions are either fixed points (steady states) or closed orbits (oscillations). We saw linear oscillations  in the harmonic oscillator model, and the oscillatory solutions in the Lotka-Volterra model similarly correspond to an infinite set of closed trajectories. Below we consider circumstances under which unique closed trajectories arise.</p>
-<p>A limit cycle is an isolated closed trajectory, which makes it different from oscillations around a center. Limit cycles can be stable (with nearby trajectories spiraling toward it), unstable (with nearby trajectories spiraling farther away) and half-stable (inner trajectories and outer trajectories behaving differently). This phenomenon requires some nonlinearity in the equations, like the nonlinear damping above, and thus limit cycles are known as \emph{nonlinear oscillations}. Limit cycles cannot be found by linearization (since it neglects the essential nonlinearity), so we need another method.
-\begin{theorem} [Poincar’e-Bendixson] A region of the plane which contains a single unstable fixed point, and for which the direction of the flow everywhere on the boundary is inward, must contain a limit cycle.
-\end{theorem}</p>
-<p>Another important difference between linear and nonlinear oscillations is in \emph{robustness} of the solutions to changes in parameters. Linear centers are fragile with respect to parameter changes, because in order for the eigenvalues to be purely imaginary, the trace of the matrix (sum of the diagonal elements) has to be exactly 0, and the smallest deviation will destroy the closed orbits, transforming them into a spiral. Limit cycles, in contrast, are generally robust to parameter changes, because a small change will not dramatically affect the direction of the flow into the region of Poincar’e-Bendixson Theorem.</p>
+</div>
+</div>
+<div class="section" id="limit-cycles-and-flow-trapping-regions">
+<h2>Limit cycles and flow-trapping regions<a class="headerlink" href="#limit-cycles-and-flow-trapping-regions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="limit-cycles">
+<h3>limit cycles<a class="headerlink" href="#limit-cycles" title="Permalink to this headline">¶</a></h3>
+<p>There is an important result in dynamical systems theory that states that the only possible  attractors (sets of points which solutions approach in the long run) in two dimensions are either fixed points (steady states) or closed orbits (oscillations). We saw linear oscillations  in the harmonic oscillator model, and the oscillatory solutions in the Lotka-Volterra model similarly correspond to an infinite set of closed trajectories. Below we consider circumstances under which unique closed trajectories arise.</p>
+<p>A limit cycle is an isolated closed trajectory, which makes it different from oscillations around a center. Limit cycles can be stable (with nearby trajectories spiraling toward it), unstable (with nearby trajectories spiraling farther away) and half-stable (inner trajectories and outer trajectories behaving differently). This phenomenon requires some nonlinearity in the equations, like the nonlinear damping above, and thus limit cycles are known as <em>nonlinear oscillations</em>. Limit cycles cannot be found by linearization (since it neglects the essential nonlinearity), so we need another method.</p>
+<div class="admonition-theorem-poincare-bendixson admonition">
+<p class="admonition-title">Theorem (Poincare - Bendixson)</p>
+<p>A region of the phase plane which contains no stable fixed points, and for which the direction of the flow everywhere on the boundary is inward, must contain a limit cycle.</p>
+</div>
+<p>Another important difference between linear and nonlinear oscillations is in <em>robustness</em> of the solutions to changes in parameters. Linear centers are fragile with respect to parameter changes, because in order for the eigenvalues to be purely imaginary, the trace of the matrix (sum of the diagonal elements) has to be exactly 0, and the smallest deviation will destroy the closed orbits, transforming them into a spiral. Limit cycles, in contrast, are generally robust to parameter changes, because a small change will not dramatically affect the direction of the flow into the region of Poincare-Bendixson Theorem.</p>
 <p>This result allows us to find limit cycles around fixed points by checking if there is a region with flow oriented in the opposite direction from that near the fixed point. In practice, finding such a region may be difficult, so we demonstrate one common type of ODE which satisfied the conditions of the theorem.</p>
-<p>\textbf{Example: cubic nullclines.} One common type of models in physics and biology which has limit cycle solutions are those with cubic terms in the governing ODEs. For instance, there is a class of models that look as follows:
-\begin{eqnarray*}
-\dot x &amp;=&amp; y - f(x) \
+<p>** Example: cubic nullclines.** One common type of models in physics and biology which has limit cycle solutions are those with cubic terms in the governing ODEs. For instance, there is a class of models that look as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot x &amp;=&amp; y - f(x) \\
 \dot y &amp;=&amp; -x
-\end{eqnarray*}
-This system has nullclines on the curves: <span class="math notranslate nohighlight">\(y=f(x)\)</span> and <span class="math notranslate nohighlight">\(x=0\)</span> (y-axis). If the function <span class="math notranslate nohighlight">\(f(x)\)</span> is a cubic function with a maximum and a minimum, e.g. <span class="math notranslate nohighlight">\(f(x) = x^3-x\)</span>, then the phase plane will look like figure \ref{fig:cub_null}.</p>
-<p>\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-\centering
-\includegraphics[width=4in]{fig_ch11/lec15_fig1.png}
-\caption{Cubic nullcline with a maximum and minimum generates a limit cycle}
-\label{fig:cub_null}
-\end{figure}
-Let us analyze the geometry of the flow. First, there is only one fixed point, at the origin, and the flow may circulate around it. To show that a limit cycle exists, we must:
-\begin{enumerate}
-\item Show that the fixed point is unstable
-\item Show that there is a region surrounding the fixed point, with inward flow on the boundary
-\end{enumerate}</p>
-<p>First, we will show geometrically that whether the flow is attracted to or repelled by the fixed point depends on the slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span>. To see this analytically, let’s do the linearization procedure of this ODE. The Jacobian matrix of the ODEs is:
-$<span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>This system has nullclines on the curves: <span class="math notranslate nohighlight">\(y=f(x)\)</span> and <span class="math notranslate nohighlight">\(x=0\)</span> (y-axis). If the function <span class="math notranslate nohighlight">\(f(x)\)</span> is a cubic function with a maximum and a minimum, e.g. <span class="math notranslate nohighlight">\(f(x) = x^3-x\)</span>, then the phase plane will look like figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-cub-null</span></code>.</p>
+<div class="figure align-default" id="fig-cub-null">
+<img alt="_images/lec15_fig1.png" src="_images/lec15_fig1.png" />
+<p class="caption"><span class="caption-text">Cubic nullcline with a maximum and minimum generates a limit cycle</span><a class="headerlink" href="#fig-cub-null" title="Permalink to this image">¶</a></p>
+</div>
+<p>Let us analyze the geometry of the flow. First, there is only one fixed point, at the origin, and the flow may circulate around it. To show that a limit cycle exists, we must:</p>
+<ul class="simple">
+<li><p>Show that the fixed point is unstable</p></li>
+<li><p>Show that there is a region surrounding the fixed point, with inward flow on the boundary</p></li>
+</ul>
+<p>First, we will show geometrically that whether the flow is attracted to or repelled by the fixed point depends on the slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span>. To see this analytically, let’s do the linearization procedure of this ODE. The Jacobian matrix of the ODEs is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
-\)</span><span class="math notranslate nohighlight">\(
-To assess stability, we find the eigenvalues:
-\)</span><span class="math notranslate nohighlight">\( \lambda = \frac{-f'(x) \pm \sqrt{f'(x)^2 -4}}{2} \)</span><span class="math notranslate nohighlight">\(
-The eigenvalues are real if \)</span>f’(x)^2 &gt;4<span class="math notranslate nohighlight">\( and complex if  \)</span>f’(x)^2 &lt;4<span class="math notranslate nohighlight">\(. If they are complex, the real part is \)</span>-f’(x)/2<span class="math notranslate nohighlight">\(, and so the stability is determined by the sign of \)</span>f’(x)<span class="math notranslate nohighlight">\(. If the eigenvalues are real, stability still depends on the sign of \)</span>f’(x)<span class="math notranslate nohighlight">\(, because \)</span>f’(x)&gt;\sqrt{f’(x)^2 -4}<span class="math notranslate nohighlight">\( and thus adding or subtracting the square root will not change the sign of the expression. This calculation is illustrated in figure \ref{fig:pos_neg_null}. Check for yourself the direction of the flow on the nullclines (e.g. for the \)</span>y<span class="math notranslate nohighlight">\(-nullcline, on which \)</span>\dot y = 0<span class="math notranslate nohighlight">\(, we need to consider when \)</span>\dot x &gt; 0<span class="math notranslate nohighlight">\( and when \)</span>\dot x &lt; 0<span class="math notranslate nohighlight">\(). In the picture on the left, the horizontal flow coming off the y-axis misses the nullcline that would turn it around, while in the picture on the left, the horizontal flow runs right into the positive-sloped nullcline. Thus, when \)</span>f’(x) &gt;0<span class="math notranslate nohighlight">\(, the fixed point is stable (either a node or a spiral), and when\)</span>f’(x) &gt;0$, the fixed point is unstable (either a node or a spiral). As a corollary, when the two nullclines are perpendicular, the fixed point is a center.</p>
-<p>\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-\centering
-\includegraphics[width=3in]{fig_ch11/nullclines_neg_slope.png}
-\includegraphics[width=3in]{fig_ch11/nullclines_pos_slope.png}
-\caption{Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point: a) unstable fixed point; b) stable fixed point.}
-\label{fig:pos_neg_null}
-\end{figure}</p>
-<p>Now let us go back to the cubic nullcline in figure  \ref{fig:cub_null}. It should be clear that there is a trapping region of phase space, because at any point sufficiently far from the origin, the direction of flow is toward the origin. Intuitively, the directions of flow on the nullclines ensure that the flow heads down on the right hand side of the plane, and upward on the left-hand side of the plane; the flow is trapped by the cubic ``arms’’ of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span>. One can construct a flow trapping-region more rigorously, but I will leave this as a potential exercise for the reader. Therefore, as long as there is an unstable fixed point inside a flow-trapping region, which is determined  by the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at the intersection of the nullclines, the Poincar’e-Bendixson theorem ensures the existence of a limit cycle in that region. This result is used in many biological models.</p>
-<p>\subsection{Glycolytic oscillator}</p>
-<p>\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-\centering
-\includegraphics[width=4in]{fig_ch11/glycolytic_stable.png}
-\includegraphics[width=4in]{fig_ch11/glycolytic_cycle.png}
-\caption{Two phase portraits of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): a) with the fixed point stable; b) fixed point is unstable, with a solution shown converging to a limit cycle.}
-\label{fig:glyco_oscillations}
-\end{figure}
-The metabolism of glucose to produce energy in the form of ATP (adenosine triphosphate) is a crucial process in most lifeforms. The process involves many stages, most of which involve phosphorylation, or attachment of a phosphate group, and each one is catalyzed by a specialized enzyme. One intermediate step involves the phosphorylation of Fructose 6-phosphate (Fru-6P) to produce Fructose 1,6-biphosphate (Fru-1,6bP), by an enzyme called phosphofructokinase (PFK). In many organisms this step is known to lead to periodic oscillations in the concentrations of the molecules involved \cite{}.</p>
-<p>The reaction involves several types of molecules: the two sugars, the enzyme, and a molecule of ATP and ADP:
-$<span class="math notranslate nohighlight">\( Fru-6P + ATP + PFK \rightarrow Fru-1,6bP + ADP + PFK\)</span><span class="math notranslate nohighlight">\(
-One other key feature is that one product of this reaction, ADP, allosterically activates the enzyme PFK, therefore leading to more ADP and Fru-1,6bP production. We will model these processes by keeping track of two dynamic variables: concentration of Fru-6P (\)</span>y<span class="math notranslate nohighlight">\() and concentration of ADP (\)</span>x$). The other species are closely related to these two, and the concentration of PFK is assumed to stay constant.</p>
-<p>ADP is produced with a rate proportional to the concentration of Fru-6P, but this rate depends on the concentration of ADP. Because it is known that two molecules of ADP need to bind to activate PFK, this dependence is quadratic, by the principles of mass action. In addition, ADP is depleted at a  rate proportional to its concentration by other cellular processes. The situation for Fru-6P is opposite, since it is depleted by this reaction. It is depleted at the rate which is a constant plus the square of ADP concentration. It is supplied with a constant rate from the upstream reaction, and thus independent of its own concentration. These assumptions were expressed in a simple, dimensionless model proposed by Sel’kov \cite{}:
-\begin{eqnarray*}
-\dot x &amp;=&amp; -x + (a+x^2)y \
+\end{split}\]</div>
+<p>To assess stability, we find the eigenvalues:</p>
+<div class="math notranslate nohighlight">
+\[ \lambda = \frac{-f'(x) \pm \sqrt{f'(x)^2 -4}}{2} \]</div>
+<p>The eigenvalues are real if <span class="math notranslate nohighlight">\(f'(x)^2 &gt;4\)</span> and complex if  <span class="math notranslate nohighlight">\(f'(x)^2 &lt;4\)</span>. If they are complex, the real part is <span class="math notranslate nohighlight">\(-f'(x)/2\)</span>, and so the stability is determined by the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>. If the eigenvalues are real, stability still depends on the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>, because <span class="math notranslate nohighlight">\(f'(x)&gt;\sqrt{f'(x)^2 -4}\)</span> and thus adding or subtracting the square root will not change the sign of the expression.  Check for yourself the direction of the flow on the nullclines (e.g. for the <span class="math notranslate nohighlight">\(y\)</span>-nullcline, on which <span class="math notranslate nohighlight">\(\dot y = 0\)</span>, we need to consider when <span class="math notranslate nohighlight">\(\dot x &gt; 0\)</span> and when <span class="math notranslate nohighlight">\(\dot x &lt; 0\)</span>). In figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-pos-slope</span></code>, the horizontal flow coming off the y-axis misses the nullcline that would turn it around, while in figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-neg-slope</span></code>, the horizontal flow runs right into the positive-sloped nullcline. Thus, when <span class="math notranslate nohighlight">\(f'(x) &lt;0\)</span>, the fixed point is stable (either a node or a spiral), and when <span class="math notranslate nohighlight">\(f'(x) &gt; 0\)</span>, the fixed point is unstable (either a node or a spiral). As a corollary, when the two nullclines are perpendicular, the fixed point is a center.</p>
+<div class="figure align-default" id="fig-pos-slope">
+<img alt="_images/nullclines_pos_slope.png" src="_images/nullclines_pos_slope.png" />
+<p class="caption"><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the positive slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an unstable fixed point.</span><a class="headerlink" href="#fig-pos-slope" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-neg-slope">
+<img alt="_images/nullclines_neg_slope.png" src="_images/nullclines_neg_slope.png" />
+<p class="caption"><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the negative slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an stable fixed point.</span><a class="headerlink" href="#fig-neg-slope" title="Permalink to this image">¶</a></p>
+</div>
+<p>Now let us go back to the cubic nullcline in figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-cub-null</span></code>. It should be clear that there is a trapping region of phase space, because at any point sufficiently far from the origin, the direction of flow is toward the origin. Intuitively, the directions of flow on the nullclines ensure that the flow heads down on the right hand side of the plane, and upward on the left-hand side of the plane; the flow is trapped by the cubic “arms” of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span>. One can construct a flow trapping-region more rigorously, but I will leave this as a potential exercise for the reader. Therefore, as long as there is an unstable fixed point inside a flow-trapping region, which is determined  by the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at the intersection of the nullclines, the Poincare-Bendixson theorem ensures the existence of a limit cycle in that region. This result is used in many biological models.</p>
+</div>
+<div class="section" id="glycolytic-oscillator">
+<h3>glycolytic oscillator<a class="headerlink" href="#glycolytic-oscillator" title="Permalink to this headline">¶</a></h3>
+<p>The metabolism of glucose to produce energy in the form of ATP (adenosine triphosphate) is a crucial process in most lifeforms. The process involves many stages, most of which involve phosphorylation, or attachment of a phosphate group, and each one is catalyzed by a specialized enzyme. One intermediate step involves the phosphorylation of Fructose 6-phosphate (Fru-6P) to produce Fructose 1,6-biphosphate (Fru-1,6bP), by an enzyme called phosphofructokinase (PFK). In many organisms this step is known to lead to periodic oscillations in the concentrations of the molecules involved.</p>
+<p>The reaction involves several types of molecules: the two sugars, the enzyme, and a molecule of ATP and ADP:</p>
+<div class="math notranslate nohighlight">
+\[ Fru-6P + ATP + PFK \rightarrow Fru-1,6bP + ADP + PFK\]</div>
+<p>One other key feature is that one product of this reaction, ADP, allosterically activates the enzyme PFK, therefore leading to more ADP and Fru-1,6bP production. We will model these processes by keeping track of two dynamic variables: concentration of Fru-6P (<span class="math notranslate nohighlight">\(y\)</span>) and concentration of ADP (<span class="math notranslate nohighlight">\(x\)</span>). The other species are closely related to these two, and the concentration of PFK is assumed to stay constant.</p>
+<p>ADP is produced with a rate proportional to the concentration of Fru-6P, but this rate depends on the concentration of ADP. Because it is known that two molecules of ADP need to bind to activate PFK, this dependence is quadratic, by the principles of mass action. In addition, ADP is depleted at a  rate proportional to its concentration by other cellular processes. The situation for Fru-6P is opposite, since it is depleted by this reaction. It is depleted at the rate which is a constant plus the square of ADP concentration. It is supplied with a constant rate from the upstream reaction, and thus independent of its own concentration. These assumptions were expressed in a simple, dimensionless model proposed by Sel’kov:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot x &amp;=&amp; -x + (a+x^2)y \\
 \dot y &amp;=&amp; b - (a+x^2)y
-\end{eqnarray*}</p>
-<p>Let us examine this model by our usual methods. First, let us find the nullclines: for <span class="math notranslate nohighlight">\(x\)</span> the nullcline is <span class="math notranslate nohighlight">\(y = x/(a+x^2)\)</span>, and for <span class="math notranslate nohighlight">\(y\)</span> the nullcline is <span class="math notranslate nohighlight">\(y=b/(a+x^2)\)</span>. These nullclines intersect at a single point <span class="math notranslate nohighlight">\(x=b\)</span> and <span class="math notranslate nohighlight">\(y=b/(a+b^2)\)</span>. The Jacobian of the ODE is:
-$<span class="math notranslate nohighlight">\( J(x,y) =  \left( \begin{array}{cc} -1+2xy &amp; a+x^2 \\ -2xy &amp; -(a+x^2)\end{array} \right) \)</span><span class="math notranslate nohighlight">\(
-and at the fixed point, the matrix is
-\)</span><span class="math notranslate nohighlight">\( J(b,b/(a+b^2)) =  \left( \begin{array}{cc} -1+2b^2/(a+b^2) &amp; a+b^2 \\ -2b^2/(a+b^2) &amp; -(a+b^2)\end{array} \right) \)</span><span class="math notranslate nohighlight">\(
-The Jacobian has determinant \)</span>\Delta = a+b^2<span class="math notranslate nohighlight">\( and trace
-\)</span><span class="math notranslate nohighlight">\(\tau = -\frac{b^4+(2a-1)b^2+(a+a^2)}{a+b^2}\)</span><span class="math notranslate nohighlight">\(
-Since the eigenvalue expression is this: \)</span>\lambda = (\tau \pm \sqrt{\tau^2-4\Delta})/2<span class="math notranslate nohighlight">\(, and the determinant is strictly positive, the stability of the fixed point depends solely on the sign of the trace. Doing a little algebra we can find the curve which divides the stable and the unstable region in the \)</span>a<span class="math notranslate nohighlight">\(-\)</span>b<span class="math notranslate nohighlight">\( parameter plane:
-\)</span><span class="math notranslate nohighlight">\( b^2 = \frac{1}{2}\left(1-2a \pm \sqrt{1-8a} \right)\)</span>$</p>
-<p>The second step in finding nonlinear oscillations is searching for a flow-trapping region. I will leave out the details here, but one can construct the following region, in which the direction of flow on the boundary is everywhere inward \cite{}. One boundary is the <span class="math notranslate nohighlight">\(y\)</span> axis from 0 to <span class="math notranslate nohighlight">\(b/a\)</span>. The second boundary is the line from <span class="math notranslate nohighlight">\((0,b/a)\)</span> to <span class="math notranslate nohighlight">\((b,b/a)\)</span>. the third segment is the line with slope -1, from the point <span class="math notranslate nohighlight">\((b,b/a)\)</span> to the <span class="math notranslate nohighlight">\(x\)</span> axis, and the final boundary is the <span class="math notranslate nohighlight">\(x\)</span> axis between (0,0) and the intersection with that line.</p>
-<p>Now that we have a flow-trapping region, which is independent of parameters, the existence of limit cycle depends on the stability of the fixed point inside the region. We have shown that for some values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the fixed point is unstable, and thus Poincar’e-Bendixson predicts the existence of a limit cycle. Figure \ref{fig:glyco_oscillations} shows the flow and plots of solutions in the phase plane for the two cases of the model.</p>
-<p>\section{Synthesis: Fitzhugh-Nagumo model of neural excitation}
-Limit cycles are often used to model \emph{excitable} systems, in which spikes of activity are followed by a period of relaxation. One such example is the action potential of a neuron, consisting of a quick spike and the depolarization of the potential built up across the membrane, followed by a slow return to the resting potential. A very simple, albeit largely unrealistic, model is one proposed independently by Fitzhugh and Nagumo \cite{}. In this model, the meaning of the variables is approximate, with <span class="math notranslate nohighlight">\(x\)</span> standing in for the membrane potential, and <span class="math notranslate nohighlight">\(y\)</span> signifying the extent of the recovery via active pumping of ions, and <span class="math notranslate nohighlight">\(z(t)\)</span> representing the external stimulus, such as an action potential from a connected neuron:
-\begin{eqnarray*}
-\dot x &amp;=&amp; c\left(y+x- \frac{x^3}{3}+z(t)\right) \
+\end{split}\]</div>
+<p>Let us examine this model by our usual methods. First, let us find the nullclines: for <span class="math notranslate nohighlight">\(x\)</span> the nullcline is <span class="math notranslate nohighlight">\(y = x/(a+x^2)\)</span>, and for <span class="math notranslate nohighlight">\(y\)</span> the nullcline is <span class="math notranslate nohighlight">\(y=b/(a+x^2)\)</span>. These nullclines intersect at a single point <span class="math notranslate nohighlight">\(x=b\)</span> and <span class="math notranslate nohighlight">\(y=b/(a+b^2)\)</span>. The Jacobian of the ODE is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} J(x,y) =  \left( \begin{array}{cc} -1+2xy &amp; a+x^2 \\ -2xy &amp; -(a+x^2)\end{array} \right) \end{split}\]</div>
+<p>and at the fixed point, the matrix is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} J(b,b/(a+b^2)) =  \left( \begin{array}{cc} -1+2b^2/(a+b^2) &amp; a+b^2 \\ -2b^2/(a+b^2) &amp; -(a+b^2)\end{array} \right) \end{split}\]</div>
+<p>The Jacobian has determinant <span class="math notranslate nohighlight">\(\Delta = a+b^2\)</span> and trace</p>
+<div class="math notranslate nohighlight">
+\[\tau = -\frac{b^4+(2a-1)b^2+(a+a^2)}{a+b^2}\]</div>
+<p>Since the eigenvalue expression is this: <span class="math notranslate nohighlight">\(\lambda = (\tau \pm \sqrt{\tau^2-4\Delta})/2\)</span>, and the determinant is strictly positive, the stability of the fixed point depends solely on the sign of the trace. Doing a little algebra we can find the curve which divides the stable and the unstable region in the <span class="math notranslate nohighlight">\(a\)</span>-<span class="math notranslate nohighlight">\(b\)</span> parameter plane:</p>
+<div class="math notranslate nohighlight">
+\[ b^2 = \frac{1}{2}\left(1-2a \pm \sqrt{1-8a} \right)\]</div>
+<p>The second step in finding nonlinear oscillations is searching for a flow-trapping region. I will leave out the details here, but one can construct the following region, in which the direction of flow on the boundary is everywhere inward. One boundary is the <span class="math notranslate nohighlight">\(y\)</span> axis from 0 to <span class="math notranslate nohighlight">\(b/a\)</span>. The second boundary is the line from <span class="math notranslate nohighlight">\((0,b/a)\)</span> to <span class="math notranslate nohighlight">\((b,b/a)\)</span>. the third segment is the line with slope -1, from the point <span class="math notranslate nohighlight">\((b,b/a)\)</span> to the <span class="math notranslate nohighlight">\(x\)</span> axis, and the final boundary is the <span class="math notranslate nohighlight">\(x\)</span> axis between (0,0) and the intersection with that line.</p>
+<p>Now that we have a flow-trapping region, which is independent of parameters, the existence of limit cycle depends on the stability of the fixed point inside the region. We have shown that for some values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the fixed point is unstable, and thus Poincare-Bendixson predicts the existence of a limit cycle. Figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-glyco-stable</span></code> shows the flow and a solution trajectory for the case where the fixed point is stable, and figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-glyco-cycle</span></code> shows the phase portrait when the fixed point is unstable and a solution converging to a limit cycle.</p>
+<div class="figure align-default" id="fig-glyco-stable">
+<img alt="_images/glycolytic_stable.png" src="_images/glycolytic_stable.png" />
+<p class="caption"><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with a stable fixed point.</span><a class="headerlink" href="#fig-glyco-stable" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-glyco-cycle">
+<img alt="_images/glycolytic_cycle.png" src="_images/glycolytic_cycle.png" />
+<p class="caption"><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with an unstable fixed point and a solution trajectory converging to a limit cycle.</span><a class="headerlink" href="#fig-glyco-cycle" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="fitzhugh-nagumo-model-of-neural-excitation">
+<h2>Fitzhugh-Nagumo model of neural excitation<a class="headerlink" href="#fitzhugh-nagumo-model-of-neural-excitation" title="Permalink to this headline">¶</a></h2>
+<p>Limit cycles are often used to model <em>excitable</em> systems, in which spikes of activity are followed by a period of relaxation. One such example is the action potential of a neuron, consisting of a quick spike and the depolarization of the potential built up across the membrane, followed by a slow return to the resting potential. A very simple, albeit largely unrealistic, model is one proposed independently by Fitzhugh and Nagumo. In this model, the meaning of the variables is approximate, with <span class="math notranslate nohighlight">\(x\)</span> standing in for the membrane potential, and <span class="math notranslate nohighlight">\(y\)</span> signifying the extent of the recovery via active pumping of ions, and <span class="math notranslate nohighlight">\(z(t)\)</span> representing the external stimulus, such as an action potential from a connected neuron:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\dot x &amp;=&amp; c\left(y+x- \frac{x^3}{3}+z(t)\right) \\
 \dot y &amp;=&amp; -\frac{x-a+by}{c}
-\end{eqnarray*}</p>
-<p>To properly analyze the stability of the fixed point,  find the Jacobian of the Fitzhugh-Nagumo model, which does not depend on the value of the inhomogenous term <span class="math notranslate nohighlight">\(z(t)\)</span>:
-$<span class="math notranslate nohighlight">\( J(x,y) =  \left( \begin{array}{cc} c - x^2 &amp; 1 \\ -1 &amp; b/c \end{array} \right) \)</span><span class="math notranslate nohighlight">\(
-The eigenvalues of the Jacobian are \)</span>\lambda = \left(c-x^2+b/c \pm \sqrt{(c-x^2+b/c)^2 - 4(b-bx^2/c +1} \right)/2<span class="math notranslate nohighlight">\(. As you can see, the analysis of stability by algebra is going to be painful, since we need to find the expressions for the fixed point and express it in terms of the parameters and the stimulus \)</span>z(t)$. Instead, we are going to use the qualitative analysis we developed in the analytic section to analyze the existence of limit cycles in the phase plane.</p>
+\end{split}\]</div>
+<p>To properly analyze the stability of the fixed point, find the Jacobian of the Fitzhugh-Nagumo model, which does not depend on the value of the inhomogenous term <span class="math notranslate nohighlight">\(z(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} J(x,y) =  \left( \begin{array}{cc} c - x^2 &amp; 1 \\ -1 &amp; b/c \end{array} \right) \end{split}\]</div>
+<p>The eigenvalues of the Jacobian are:</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \left(c-x^2+b/c \pm \sqrt{(c-x^2+b/c)^2 - 4(b-bx^2/c +1} \right)/2\]</div>
+<p>As you can see, the analysis of stability by algebra is going to be painful, since we need to find the expressions for the fixed point and express it in terms of the parameters and the stimulus <span class="math notranslate nohighlight">\(z(t)\)</span>. Instead, we are going to use the qualitative analysis we developed in the analytic section to analyze the existence of limit cycles in the phase plane.</p>
 <p>The nullclines of this system are similar to those in the generic cubic model analyzed above. The nullcline for <span class="math notranslate nohighlight">\(\dot x\)</span> is given by <span class="math notranslate nohighlight">\(y=x^3/3 -x -z(t)\)</span>, which is a cubic with a max and a min, with an extra term added. The nullcline for <span class="math notranslate nohighlight">\(\dot y\)</span> is given by <span class="math notranslate nohighlight">\(y=(a-x)/b\)</span>,  a negative-slope line, as opposed to the vertical line in the model above, but the directions of the flow relative to the blue nullcline remain the same (check by analyzing the equation for <span class="math notranslate nohighlight">\(\dot x\)</span>).</p>
-<p>Depending on the values of the parameters, and on the value of the external input <span class="math notranslate nohighlight">\(z\)</span>, the nullclines may intersect in different ways. If the cubic at the intersection has a positive slope, that, as we saw above, the fixed points will be stable (see fig \ref{fig:fn_stable_unstable}). If the line and cubic intersect in the negative-slope part of the cubic, then the fixed point is unstable.
-\begin{figure}[htbp] %  figure placement: here, top, bottom, or page
-\centering
-\includegraphics[width=4in]{fig_ch11/lec16_fn_stable.png}
-\includegraphics[width=4in]{fig_ch11/lec16_fn_unstable.png}
-\caption{Stable (left) and unstable (right) fixed points at the intersections of the nullclines of the Fitzhugh-Nagumo model}
-\label{fig:fn_stable_unstable}
-\end{figure}
-As above, if the fixed point is unstable, yet the shape of cubic prevents the flow from leaving a larger region, then there must exist a limit cycle. On the other hand, if the fixed point is stable, then there is no limit cycle. So the Fitzhugh-Nagumo provides a simple model for the transition between a resting state with constant voltage (stable fixed point) to the excited state where periodic action potentials are generated (limit cycle). The readers should convince themselves that the addition of the external signal <span class="math notranslate nohighlight">\(z(t)\)</span> can lead to this transition.</p>
+<p>Depending on the values of the parameters, and on the value of the external input <span class="math notranslate nohighlight">\(z\)</span>, the nullclines may intersect in different ways. If the cubic at the intersection has a positive slope, that, as we saw above, the fixed points will be stable, as can be seen seen in  figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-fn-stable</span></code>. If the line and cubic intersect in the negative-slope part of the cubic, then the fixed point is unstable, as illustrated in figure <code class="xref std std-numref docutils literal notranslate"><span class="pre">fig-fn-unstable</span></code>.</p>
+<div class="figure align-default" id="fig-fn-stable">
+<img alt="_images/lec16_fn_stable.png" src="_images/lec16_fn_stable.png" />
+<p class="caption"><span class="caption-text">Stable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-stable" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-fn-unstable">
+<img alt="_images/lec16_fn_unstable.png" src="_images/lec16_fn_unstable.png" />
+<p class="caption"><span class="caption-text">Unstable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-unstable" title="Permalink to this image">¶</a></p>
+</div>
+<p>As we saw above, if the fixed point is unstable and the shape of cubic prevents the flow from leaving a larger region, then there must exist a limit cycle. On the other hand, if the fixed point is stable, then there is no limit cycle. So the Fitzhugh-Nagumo provides a simple model for the transition between a resting state with constant voltage (stable fixed point) to the excited state where periodic action potentials are generated (limit cycle). The readers can convince themselves that the addition of the external signal <span class="math notranslate nohighlight">\(z(t)\)</span> can lead to this transition.</p>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
