@@ -1,14 +1,4 @@
-# Discrete models of higher order: age-structured population models
-
-## Introduction
-
-It is not unusual for biological systems to have multiple variables which influence each other, and thus need to be accounted in any model that aims to be useful. In this unit we will learn how to construct such models, and the methods for analyzing, solving, and numerically simulating them. We will see how models with two or more variables are used in a variety of biological fields: to describe population demographics, motility of cochlear cells, psychology of human relationships, gene regulation, and motion of molecular structures.
-
-We will need new mathematical tools in order to analyze models with multiple variables. These methods are primarily from the realm of linear algebra. We will express multiple equations in terms of matrices and vectors, and learn how to operate on these objects. The dynamics of these models can be analyzed by doing calculations with the matrices, specifically finding special numbers and vectors known as eigenvalues and eigenvectors. These concepts, which will be introduced in Chapter 4, are absolutely central to all of applied mathematics, and to computational biology in particular.
-
-In this chapter, the section on modeling is devoted to an old model of a population where individuals live for two generations, known as the Fibonacci model. We then describe how this model can be written down either as a single difference equation of second order, or as two equation of the first order, which may be represented in matrix form. In the analytical section, we will learn to solve second order difference equations with an explicit formula, and then introduce some elementary matrix operations. In the computational section we will use the matrix notation to compute numerical solutions for higher order difference equations. Finally, in the synthesis section we will analyze two demographic population models, in which the population is broken into age groups. The matrix notation will be important for concisely representing different parameters for each age group.
-
-## Modeling: higher order difference equations
+## higher order difference equations
 
 
 So far we have dealt with difference equations in which the value of the dependent variable at the next time step $x_{t+1}$ depends solely on the variable at the present time $x_t$. These are known as *first order* difference equations because they only require one step from the present to the future. We will now examine difference equations where the future value depends not only on the present value $x_t$, but also on the past values: $x_{t-1}$, etc. The number of time steps that the equation looks into the past is the the order of the scheme.
@@ -16,9 +6,11 @@ So far we have dealt with difference equations in which the value of the depende
 ### the Fibonacci model and sequence
 
 The Italian mathematician Leonardo Fibonacci, who lived in the late 12th - early 13th centuries, contributed greatly to the development of mathematics in the western world. For starters, he introduced the Hindu-Arabic numerals we use today, in place of the cumbersome Roman numerals. He also constructed an early model of population growth, which considered a population of individuals that lived for two generations. The first generation does not reproduce, but in the second generation each individual produces a single offspring (or each pair produces a new pair) and then dies. Then the total number of individuals at the next time step is the sum of the individuals in the previous two time steps ({numref}`fig-fib-rabbits`) This is described by the following second order difference equation: 
+
 $$
 N_{t+1} = N_t + N_{t-1}
-$$
+$$ (fibonacci)
+
 The famous Fibonacci sequence is a solution of this equation. For a second-order equations, two initial conditions are required, and if we take $N_0 = 0$ and $N_1 = 1$, then the resulting sequence will look as follows:
 
 $$
@@ -58,7 +50,8 @@ $$
 
 This representation is convenient and leads to a set of rules for matrix manipulation. We wrote the write-hand side as a product of a matrix containing the coefficients of $x_t$ and $y_t$ and the vector with the two variables. The product of the matrix and the vector is equal to the original vector.
 
-## Analytical: Solutions for linear higher order difference equations
+
+## Solutions for linear higher order difference equations
 
 
 ### solutions of linear difference equations
@@ -77,8 +70,9 @@ $$
 
 The solution for a second order difference equation is a sum of two terms that look like solutions to first order difference equations. There are two different types of constants in the solution: the bases of the exponential $\lambda_1, \lambda_2$ and the multiplicative constants $A$ and $B$. They are different because the exponential parameters depend on the equation itself, but not on the initial conditions, while the multiplicative constants depend only on the initial conditions. Therefore, they can be determined separately:
 
-**Outline for solving a second order linear difference equation**
 
+```{admonition} Outline for solving a second order linear difference equation
+:class: tip 
 1.  Substitute the solution $x_t = \lambda^t$ into the difference equation. For the general difference equation, we obtain a the
     following quadratic relation by dividing everything by $\lambda^{t-1}$:
 $$
@@ -106,8 +100,9 @@ Use $A = x_0 - B$ to plug into the second equation: $x_1 = (x_0 - B) \lambda_1 +
 $$
 B = \frac{x_1 -x_0 \lambda_1}{\lambda_2 - \lambda_1}; \; A =  \frac{x_0\lambda_2 - x_1}{\lambda_2 - \lambda_1}
 $$
+```
 
-Let us apply this approach to solving the Fibonacci difference equation:
+Let us apply this approach to solving the Fibonacci difference equation {eq}`fibonacci`:
 
 $$
 \lambda^{2}= \lambda + 1 \Longrightarrow \;  \lambda^2-\lambda-1= 0
@@ -127,21 +122,21 @@ $$
 A =  \frac{-1}{\lambda_2 - \lambda_1} =  \frac{1}{\sqrt 5} ; \; B = \frac{1}{\lambda_2 - \lambda_1} = \frac{-1}{\sqrt 5}
 $$
 
-The complete solution, which gives the $i$-th number in the Fibonacci sequence is:
+The complete solution, which gives the $t$-th number in the Fibonacci sequence is:
 
 $$
-N_i=  \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^i - \frac{1}{\sqrt 5}\left(\frac{1- \sqrt 5}{2}\right)^i
+N_t =  \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t - \frac{1}{\sqrt 5}\left(\frac{1- \sqrt 5}{2}\right)^t
 $$
 
-There are several remarkable things about this formula. First is the fact that despite the abundance of irrational numbers, for each integer $i$ the number $N_i$ is an integer. One can check this by programming the formula in your favorite language, and plugging in any value of $i$.
+There are several remarkable things about this formula. First is the fact that despite the abundance of irrational numbers, for each integer $t$ the number $N_t$ is an integer. One can check this by programming the formula in your favorite language, and plugging in any value of $t$.
 
-Second, an important feature of the Fibonacci sequence is the ratio between successive terms in the sequence. Notice that of the two terms in the formula, $( \frac{1+ \sqrt 5}{2})^i$ grows as $i$ increases, while $(\frac{1- \sqrt 5}{2})^i$ decreases to zero, because the first number is greater than 1, while the second is less than 1. This means that for large $i$, the terms in the Fibonacci sequence are approximately equal to:
+Second, an important feature of the Fibonacci sequence is the ratio between successive terms in the sequence. Notice that of the two terms in the formula, $(\frac{1+ \sqrt 5}{2})^t$ grows as $t$ increases, while $(\frac{1- \sqrt 5}{2})^t$ decreases to zero, because the first number is greater than 1, while the second is less than 1. This means that for large $t$, the terms in the Fibonacci sequence are approximately equal to:
 
 $$
-N_i \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^i
+N_t \approx \frac{1}{\sqrt 5}\left( \frac{1+ \sqrt 5}{2}\right)^t
 $$
 
-Since each successive term is multiplied by $(1+\sqrt5)/2$, the ratio between successive terms, $\phi = N_{i+1}/N_i$ approaches the value $\phi=(1+\sqrt5)/2 \approx 1.618$ for increasing $i$.
+Since each successive term is multiplied by $(1+\sqrt5)/2$, the ratio between successive terms, $\phi = N_{t+1}/N_t$ approaches the value $\phi=(1+\sqrt5)/2 \approx 1.618$ for increasing $t$.
 
 This number $(1+\sqrt 5)/2$ is called the *golden ratio* or *golden section*, and was known from antiquity as the most aesthetically pleasing proportion in architecture and art, when used as a ratio between the height and width of the piece of art. Algebraically, the golden ratio is defined to be the number that is both the ratio between two quantities, e.g. $a$ and $b$, and also the ratio between the sum of the two quantities ($a+b$) and the larger of the quantities e.g. $b$ ({numref}`fig-gold-ratio`). Geometrically, the golden ratio can be constructed as the ratio between two sides of a rectangle, $a$ and $b$, which are also part of the larger rectangle with sides $a+b$ and $a$. This construction is shown in {numref}`fig-gold-rect`.
 
@@ -151,7 +146,6 @@ name: fig-gold-ratio
 ---
 Line segments that are in golden proportion to each other <http://en.wikipedia.org/wiki/Golden_ratio>
 ```
-
 
 
 ```{figure} images/gold_rect_const.png
@@ -197,11 +191,7 @@ name: fig-mat-mult
 Multiplication of two matrices $A$ and $B$ results in a new matrix $C$
 ```
 
-
-
-**Example.** Let us multiply two matrices to illustrate how it’s done.
-Here both matrices are 2 by 2, so their inner dimensions match and the
-resulting matrix is 2 by 2 as well:
+**Example.** Let us multiply two matrices to illustrate how it’s done. Here both matrices are 2 by 2, so their inner dimensions match and the resulting matrix is 2 by 2 as well:
 
 $$
 \left(\begin{array}{cc}1 & 3 \\ 6 & 1\end{array}\right) \times \left(\begin{array}{cc}4 & 1 \\5 & -1 \end{array}\right) = \left(\begin{array}{cc}1 \times 4 + 3 \times 5 & 1 \times 1 +3 \times (-1) \\ 6 \times 4+ 1 \times 5 & 6 \times 1+1 \times (-1) \end{array}\right) = \left(\begin{array}{cc}19 & -2 \\ 29 & 5 \end{array}\right)
@@ -210,19 +200,22 @@ $$
 One important consequence of this definition is that **matrix multiplication is not commutative**. If you switch the order, e.g.
 $B \times A$, the resulting multiplication requires dot products of the rows of $B$ by the columns of $A$, and except in very special circumstances, they are not the same. In fact, unless $m$ and $n$ are the same integer, the product of $B \times A$ may not be defined at all.
 
-In the example above of the matrix representation of the Fibonacci
-model, we implicitly used the conventional rules for multiplying matrices and vectors. Each row of the matrix
+In the example above of the matrix representation of the Fibonacci model, we implicitly used the conventional rules for multiplying matrices and vectors. Each row of the matrix
+
 $$
 \left(\begin{array}{cc}1 & 1\\1 & 0\end{array}\right)
 $$
+
 contains the numbers that multiply the two elements of the vector
 
 $$
 \left(\begin{array}{c}x_t \\ x_{t-1} \end{array}\right)
 $$ 
+
 in order to generate the two equations $x_{t+1} = x_t + x_{t-1}$ and $x_t = x_t$.
 
 Take the matrix equation for the Fibonacci difference equation above. Put the first two values $0$ and $1$ into the vector. Then perform the multiplication of the matrix and the vector:
+
 $$
 \left(\begin{array}{cc}1 & 1\\1 & 0\end{array}\right)\left(\begin{array}{c}1\\ 0\end{array}\right) = \left(\begin{array}{c}0+ 1 \\ 1 \end{array}\right)  = \left(\begin{array}{c}1 \\ 1 \end{array}\right)
 $$
@@ -235,49 +228,13 @@ $$
 
 Multiplying matrices and vectors is a basic operation that depends on the orientation of the vector. One can only multiply a square matrix by a column vector on the left, as we saw above, not on the right. By the same token, a row vector can only multiply a matrix on the right, and not the left, because we must use the *rows* of the matrix on the left to multiply the *columns* of the matrix on the right. This underscores the important fact that matrix multiplication is not commutative.
 
-## Numeric solutions of higher order difference equations
-
-The solution of a difference equation can be found numerically using the matrix and vector form we introduced above. As we saw in the Fibonacci example, the next vector in the sequence can be obtained by multiplying the previous vector by the defining matrix. Let $\vec x_t$ be the vector containing $N$ values of the dependent variables, and $A$ be the defining matrix of dimension $N$ by $N$. The solutions are obtained by repeated multiplication by the matrix $A$:
-
-$$
-\vec x_{t+1} = A  \vec x_{t}
-$$
-
-We will now show how to implement this procedure in a program. For the simulation to be run, the program must set the following required components: the matrix defining the difference map, sufficient number of initial values, and the number of steps desired to iterate the solution. At each step, the current value of the vector of dependent variables is multiplied by the matrix $A$. In the following pseudocode I use two-dimensional arrays with two indices (row and column), and a colon in
-place of index indicates all of the elements in that dimension, e.g. $X[0,:]$ indicates the entire first row of array $X$. I assume that the language has matrix multiplication operator, which here is indicated by the multiplication symbol $\times$.
-
-set $Nvar$ to be the number of variables in the equation set $Niter$ to
-be the number of iterations (time steps) to propagate preallocate matrix
-of solutions $Sol$ ($Nvar$ by $N$iter) with 0s set an array of initial
-conditions $X0$ of length $N$ set the defining array $A$ ($Nvar$ by
-$Nvar$) choose number of iterations $Niter$
-
-$Sol [ : ,i+1] =  A \times Sol [: ,i]$
-
-\[alg:bifurcation-plot\]
-
-This code produces a rectangular array $X$ of dimensions $Niter$ by $N$.
-The $N$ values of the variables at time $j$ are stored in the vector
-$X[j,:]$. Conversely, in order to follow the dynamics of a particular
-variable over time, e.g. number $i$, through all $Niter$ time steps, we
-can plot the vector $X[:,i]$.
-
-Let us take the Fibonacci model again in the matrix form, with the
-matrix $A$ and initial vector $\vec x_0$ as follows:
-$$A =  \left(\begin{array}{cc}1 & 1\\1 & 0\end{array}\right); \;  \vec x_0 =   \left(\begin{array}{c}1 \\1 \end{array}\right)$$
-After iterating the matrix equation for 10 time steps, we obtain the
-following array $X$, with the fist and second row representing the
-population at the current and the previous time step, respectively, and
-column representing time steps: 
-$$\begin{array}{cccccccccc} 
- 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & 55 & 89 \\
- 1 & 1 & 2 & 3 & 5 & 8 & 13  &  21 & 34 & 55  \\
-   \end{array}
- $$
-
 ## Age-structured population models
 
-It is often useful to divide a population into different groups by age in order to better describe the population dynamics. Typically, individuals at different life stages have distinct mortality and reproductive rates. The total population is represented as a vector, where each component denotes the size of the corresponding age group. The matrix $A$ that multiplies this vector defines the dynamics of the higher order difference equation: $$\vec x_{t+1} = A \vec x_t$$
+It is often useful to divide a population into different groups by age in order to better describe the population dynamics. Typically, individuals at different life stages have distinct mortality and reproductive rates. The total population is represented as a vector, where each component denotes the size of the corresponding age group. The matrix $A$ that multiplies this vector defines the dynamics of the higher order difference equation: 
+
+$$
+\vec x_{t+1} = A \vec x_t
+$$
 
 We will now analyze two common *age-structured models* used by biologists and demographers.
 
@@ -299,11 +256,13 @@ $$
 $$
 
 We can also express this model as a single difference equation, with the variable of total population. Because it takes two time steps for a young individual to reproduce, we need to consider the population in two previous time steps. The matrix equation above can be written as the following two equations: 
+
 $$
 j_{t+1} = 2 m_t ; \; m_{t+1} = 0.4 j_t
 $$
 
 This two-dimensional model can be turned into a second-order model by a simple substitution. The first equation can be written as $j_t = 2 m_{t-1}$, and then substitute it into second one to, to obtain:
+
 $$
 m_{t+1} = 0.8m_{t-1}
 $$
@@ -320,21 +279,22 @@ To solve the dynamical system completely, let us suppose we have the initial con
 $$
 A + B = m_0; \; A\sqrt 0.8 - B \sqrt 0.8 = m_1\Rightarrow (m_0 - B) \sqrt 0.8 - B \sqrt 0.8 = m_1 \Rightarrow B =m_0 - \frac{m_1}{\sqrt 8}; \; A = \frac{m_1}{\sqrt 8}
 $$
+
 We have the following analytic solution of the difference equation:
+
 $$
 m_t = \frac{m_1}{\sqrt 8} \sqrt 8^t - \left(m_0 - \frac{m_1}{\sqrt 8} \right)  \sqrt 8^t = 2m_1 \sqrt 8^{t-1}  - m_0 \sqrt 8^{t}
 $$
 
 This solution can be used to predict the long-term dynamics of the population model. Since the bases of the exponentials are less than 1, the total number of individuals will decline to zero. This solution can be verified via a numerical solution of this model. {numref}`fig-leslie` shows the population over 20 time steps, starting with 10 individuals both for $m_0$ and $m_1$.
 
-
-
-```{figure} images/leslie_dynamics.png 
+```{figure} images/leslie_dynamics.png
 ---
 name: fig-leslie
 ---
-Population dynamics of the Leslie model from the example computed numerically over 20 time steps
+A plot of the total population in the Leslie model shown above, showing an oscillatory decay to 0.
 ```
+
 
 ### Usher models
 
@@ -370,13 +330,12 @@ $$
 
 The two exponential bases are 1 and -0.8, and therefore the solution has the general form $m_t = A + B(-0.8)^t$. The behavior of the solution over the long term is going to stabilize at some level $A$, determined by the initial conditions, because the term $B(-0.8)^t$, when raised to progressively larger powers, will decay to 0.
 
-We can run a computer simulation to test this prediction, and see that the total population indeed approaches a constant. Starting with population of $10$ individuals in the first two time steps, the time course of the population is plotted in {numref}`fig-usher`.
+We can run a computer simulation to test this prediction, and see that the total population indeed approaches a constant. Starting with population of 10 individuals in the first two time steps, the time course of the population is plotted in {numref}`fig-usher`.
 
 
-```{figure} images/usher_dynamics.png 
+```{figure} images/usher_dynamics.png
 ---
 name: fig-usher
 ---
-Population dynamics of the Leslie model from the example computed numerically over 20 time steps
+The total population of the Usher model shown above, showing oscillation and converging to a single value.
 ```
-

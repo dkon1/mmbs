@@ -142,6 +142,8 @@ $$
 
 The constant of integration $C$ appears as in the standard antiderivative definition. It can be specified by an initial condition for the solution $x(t)$. Unless the function $f(x,t)$ depends only on $t$, it is not possible to evaluate the integral above. Instead, various tricks are used to find the analytic solution. The simplest method of analytical solution of a first-order ODEs, which I call *separate-and-integrate* consists of the following steps:
 
+```{admonition} Outline of separate-and-integrate method
+:class: tip 
 1.  use algebra to place the dependent and independent variables on different sides of the equations, including the differentials (e.g. $dx$ and $dt$)
 
 2.  integrate both sides with respect to the different variables, don’t forget the integration constant
@@ -149,7 +151,7 @@ The constant of integration $C$ appears as in the standard antiderivative defini
 3.  solve for the dependent variable (e.g. $x$) to find the *general solution*
 
 4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the integration constant and find the *specific solution*
- 
+``` 
 
 **Example.** Consider a very simple differential equation: $\dot x  = a$, where $\dot x$ stands for the time derivative of the
 dependent variable $x$, and $a$ is a constant. It can be solved by integration:
@@ -174,11 +176,15 @@ $$
 
 As in the case of the discrete-time models, population growth with a constant birth rate has exponential form. Once again, please pause and consider this fact, because the exponential solution of linear equations is one of the most basic and powerful tools in applied mathematics. Immediately, it allows us to classify the behavior of linear ODE into three categories:
 
+
+```{admonition} Classification of solutions of generic linear ODE $\dot x = rx$
+:class: tip 
 *  $r >0$: $x(t)$ grows without bound
 
 *  $r <0$: $x(t)$ decays to 0
 
 *  $r = 0$: $x(t)$ remains constant at the initial value
+```
 
 The rate $r$ being positive means that the birth rate is greater than the death rate in the population, leading to unlimited population growth. If the death rate is greater, the population will decline and die out. If the two are exactly matched, the population size will remain unchanged.
 
@@ -189,6 +195,8 @@ $A(t) = A_0 e^{-kt}$. When the reaction rate $k$ is positive, as it is in chemis
 
 ODEs that contain at least one term without the dependent variable are a bit more complicated. If the defining function is $f(x,t)$ is *linear* in the dependent variable $x$, they can be solved on paper using the same separate-and-integrate method, modified slightly to handle the constant term. Here are the steps to solve the generic linear ODE with a constant term $\dot x = ax +b$:
 
+```{topic} solution of linear ODE of the form $\dot x = ax +b$
+
 1.  separate the dependent and independent variables on different sides of the equations, by dividing both sides by the right hand side $ax+b$, and multiplying both sides by the differential $dt$
 
 2.  integrate both sides with respect to the different variables, don’t forget the integration constant!
@@ -196,6 +204,8 @@ ODEs that contain at least one term without the dependent variable are a bit mor
 3.  solve for the dependent variable (e.g. $x$) to find the *general solution*
 
 4.  plug in $t=0$ and use the initial value $x(0)$ to solve for the integration constant and find the *specific solution*
+```
+
 
 **Example:** Let us solve the following ODE model using separate and integrate with the given initial value:
 
