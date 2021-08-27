@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>22. Linear ODEs with two variables &#8212; Mathematical Methods for Biology</title>
+    <title>Linear ODEs with two variables &#8212; Mathematical Methods for Biology</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="22.1. Flow in the phase plane" href="linear_pp_math.html" />
-    <link rel="prev" title="8. Numeric solutions of higher order difference equations" href="discrete_higher_python.html" />
+    <link rel="next" title="Flow in the phase plane" href="linear_pp_math.html" />
+    <link rel="prev" title="Numeric solutions of higher order difference equations" href="discrete_higher_python.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -107,12 +107,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_1var_math.html">
-     1. Building dynamic models
+     Building dynamic models
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_1var_python.html">
-     3. Plotting in Python
+     Plotting in Python
     </a>
    </li>
   </ul>
@@ -129,19 +129,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_nonlinear_math.html">
-     10. Logistic population model
+     Logistic population model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_nonlinear_python.html">
-     13. Graphical analysis of difference equations
+     Graphical analysis of difference equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="ode_1var_intro.html">
-   21. Models with one variable in continuous time
+   Models with one variable in continuous time
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -151,12 +151,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ode_1var_math.html">
-     21.1. Ordinary differential equations
+     Ordinary differential equations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ode_1var_python.html">
-     21.4. Numeric solutions of ODEs
+     Numeric solutions of ODEs
     </a>
    </li>
   </ul>
@@ -173,7 +173,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="graph_ode_math.html">
-     18. Building nonlinear ODEs
+     Building nonlinear ODEs
     </a>
    </li>
   </ul>
@@ -197,19 +197,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_higher_math.html">
-     5. higher order difference equations
+     higher order difference equations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_higher_python.html">
-     8. Numeric solutions of higher order difference equations
+     Numeric solutions of higher order difference equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   22. Linear ODEs with two variables
+   Linear ODEs with two variables
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
@@ -219,12 +219,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="linear_pp_math.html">
-     22.1. Flow in the phase plane
+     Flow in the phase plane
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear_pp_python.html">
-     22.6. Phase portraits in Python
+     Phase portraits in Python
     </a>
    </li>
   </ul>
@@ -241,19 +241,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="forces_pot_math.html">
-     15. Forces and simple springs
+     Forces and simple springs
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearization_pplane.html">
-   23. Linearization of ODEs
+   Linearization of ODEs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear_oscillations.html">
-   24. Nonlinear oscillations in biology
+   Nonlinear oscillations in biology
   </a>
  </li>
 </ul>
@@ -331,7 +331,7 @@
               <div>
                 
   <div class="section" id="linear-odes-with-two-variables">
-<h1><span class="section-number">22. </span>Linear ODEs with two variables<a class="headerlink" href="#linear-odes-with-two-variables" title="Permalink to this headline">¶</a></h1>
+<h1>Linear ODEs with two variables<a class="headerlink" href="#linear-odes-with-two-variables" title="Permalink to this headline">¶</a></h1>
 <p>In chapter 3 we introduced and analyzed discrete-time models with multiple variables representing different demographic groups. In those models, the populations at the next time step depend on the population at the current time step in a linear fashion. More generally, any model with only linear dependencies can be represented in matrix form. In this chapter we will learn how to analyze the behavior of these models, and identify all possible classes of linear dynamical systems.</p>
 <p>The main concept of this chapter are the special numbers and vectors associated with a matrix, called eigenvalues and eigenvectors. Any matrix can be thought of as an operator acting on vectors, and transforming them in certain ways. Loosely speaking, this transformation can be expressed in terms of special directions (eigenvectors) and special numbers that describe what happens along those special directions. Finding the eigenvalues and eigenvectors of a matrix allows us to understand the dynamics of biological models by classifying them into distinct categories.</p>
 <p>In the modeling section, we will develop some intuition for modeling activators and inhibitors of biochemical reactions. We will then learn how to draw the flow of two-dimensional dynamical systems in the plane. In the analytical section, we will define eigenvectors and eigenvalues, and use this knowledge to find the general solution of linear multi-variable systems. In the computational section, numerical solutions of eigenvalues and eigenvectors will be applied to classifying all linear multi-dimensional systems, and to plotting the solutions, both over time and in the plane. Finally, in the synthesis section we will use a light-hearted model of relationship dynamics to illustrate how to analyze linear dynamical systems.</p>
@@ -373,7 +373,7 @@
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">8. </span>Numeric solutions of higher order difference equations</p>
+                <p class="prevnext-title">Numeric solutions of higher order difference equations</p>
             </div>
         </a>
     </div>
@@ -381,7 +381,7 @@
         <a class="right-next" href="linear_pp_math.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title"><span class="section-number">22.1. </span>Flow in the phase plane</p>
+                <p class="prevnext-title">Flow in the phase plane</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>

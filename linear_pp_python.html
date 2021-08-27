@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>22.6. Phase portraits in Python &#8212; Mathematical Methods for Biology</title>
+    <title>Phase portraits in Python &#8212; Mathematical Methods for Biology</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
   <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Forces and potentials in biological modeling" href="forces_pot_intro.html" />
-    <link rel="prev" title="22.1. Flow in the phase plane" href="linear_pp_math.html" />
+    <link rel="prev" title="Flow in the phase plane" href="linear_pp_math.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -109,12 +109,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_1var_math.html">
-     1. Building dynamic models
+     Building dynamic models
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_1var_python.html">
-     3. Plotting in Python
+     Plotting in Python
     </a>
    </li>
   </ul>
@@ -131,19 +131,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_nonlinear_math.html">
-     10. Logistic population model
+     Logistic population model
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_nonlinear_python.html">
-     13. Graphical analysis of difference equations
+     Graphical analysis of difference equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="ode_1var_intro.html">
-   21. Models with one variable in continuous time
+   Models with one variable in continuous time
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -153,12 +153,12 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="ode_1var_math.html">
-     21.1. Ordinary differential equations
+     Ordinary differential equations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ode_1var_python.html">
-     21.4. Numeric solutions of ODEs
+     Numeric solutions of ODEs
     </a>
    </li>
   </ul>
@@ -175,7 +175,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="graph_ode_math.html">
-     18. Building nonlinear ODEs
+     Building nonlinear ODEs
     </a>
    </li>
   </ul>
@@ -199,19 +199,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_higher_math.html">
-     5. higher order difference equations
+     higher order difference equations
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_higher_python.html">
-     8. Numeric solutions of higher order difference equations
+     Numeric solutions of higher order difference equations
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="linear_pp_intro.html">
-   22. Linear ODEs with two variables
+   Linear ODEs with two variables
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
@@ -221,12 +221,12 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="linear_pp_math.html">
-     22.1. Flow in the phase plane
+     Flow in the phase plane
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     22.6. Phase portraits in Python
+     Phase portraits in Python
     </a>
    </li>
   </ul>
@@ -243,19 +243,19 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="forces_pot_math.html">
-     15. Forces and simple springs
+     Forces and simple springs
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearization_pplane.html">
-   23. Linearization of ODEs
+   Linearization of ODEs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear_oscillations.html">
-   24. Nonlinear oscillations in biology
+   Nonlinear oscillations in biology
   </a>
  </li>
 </ul>
@@ -348,12 +348,12 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#phase-plane-plots-via-quiver">
-   22.6.1. phase plane plots via quiver
+   phase plane plots via quiver
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ode-solutions-using-odeint">
-   22.6.2. ODE solutions using odeint
+   ODE solutions using odeint
   </a>
  </li>
 </ul>
@@ -368,7 +368,7 @@
               <div>
                 
   <div class="section" id="phase-portraits-in-python">
-<h1><span class="section-number">22.6. </span>Phase portraits in Python<a class="headerlink" href="#phase-portraits-in-python" title="Permalink to this headline">¶</a></h1>
+<h1>Phase portraits in Python<a class="headerlink" href="#phase-portraits-in-python" title="Permalink to this headline">¶</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Necessary imports</span>
@@ -392,7 +392,7 @@
 </div>
 </div>
 <div class="section" id="phase-plane-plots-via-quiver">
-<h2><span class="section-number">22.6.1. </span>phase plane plots via quiver<a class="headerlink" href="#phase-plane-plots-via-quiver" title="Permalink to this headline">¶</a></h2>
+<h2>phase plane plots via quiver<a class="headerlink" href="#phase-plane-plots-via-quiver" title="Permalink to this headline">¶</a></h2>
 <p>We are going to plot phase diagrams for linear ODEs that have the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -447,7 +447,7 @@ dy/dt = c*x + d*y
 </div>
 </div>
 <div class="section" id="ode-solutions-using-odeint">
-<h2><span class="section-number">22.6.2. </span>ODE solutions using odeint<a class="headerlink" href="#ode-solutions-using-odeint" title="Permalink to this headline">¶</a></h2>
+<h2>ODE solutions using odeint<a class="headerlink" href="#ode-solutions-using-odeint" title="Permalink to this headline">¶</a></h2>
 <p>Python has an entire suite of ode solvers. We’ll use the function <code class="docutils literal notranslate"><span class="pre">odeint</span></code>, with documentation provided here: <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html">https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.odeint.html</a></p>
 <p>This requires defining a function <code class="docutils literal notranslate"><span class="pre">fun</span></code> that sets the two functions for the two-variable ODE, to be called by the <code class="docutils literal notranslate"><span class="pre">odeint</span></code>, together with parameter values a, b, c, d. There are many other options that you can read about in the documentation page. Here is the sample code:</p>
 <div class="cell docutils container">
@@ -550,7 +550,7 @@ dy/dt = c*x + d*y
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title"><span class="section-number">22.1. </span>Flow in the phase plane</p>
+                <p class="prevnext-title">Flow in the phase plane</p>
             </div>
         </a>
     </div>
