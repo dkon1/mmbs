@@ -1,31 +1,37 @@
-- file: intro
+root: intro
+format: jb-book
+defaults:
   numbered: true
-    
-- file: discrete_1var_intro
-  sections:
-    - file: discrete_1var_math
-    - file: discrete_1var_python  
-- file: discrete_nonlinear_intro
-  sections:
-    - file: discrete_nonlinear_math
-    - file: discrete_nonlinear_python
-- file: ode_1var_intro
-  sections:
-    - file: ode_1var_math
-    - file: ode_1var_python
-- file: graph_ode_intro
-  sections:
-    - file: graph_ode_math
-- file: discrete_higher_intro
-  sections:
-    - file: discrete_higher_math
-    - file: discrete_higher_python
-- file: linear_pp_intro
-  sections:
-    - file: linear_pp_math
-    - file: linear_pp_python
-- file: forces_pot_intro
-  sections:
-    - file: forces_pot_math
-- file: linearization_pplane
-- file: nonlinear_oscillations
+parts:
+- caption: One variable models
+  chapters:
+  - file: discrete_1var_intro
+    sections:
+      - file: discrete_1var_math
+      - file: discrete_1var_python
+  - file: discrete_nonlinear_intro
+    sections:
+      - file: discrete_nonlinear_math
+      - file: discrete_nonlinear_python
+  - file: ode_1var_intro
+    sections:
+      - file: ode_1var_math
+      - file: ode_1var_python
+  - file: graph_ode_intro
+    sections:
+      - file: graph_ode_math
+- caption: Multivariable models  
+  chapters:
+  - file: discrete_higher_intro
+    sections:
+      - file: discrete_higher_math
+      - file: discrete_higher_python
+  - file: linear_pp_intro
+    sections:
+      - file: linear_pp_math
+      - file: linear_pp_python
+  - file: forces_pot_intro
+    sections:
+      - file: forces_pot_math
+  - file: linearization_pplane
+  - file: nonlinear_oscillations

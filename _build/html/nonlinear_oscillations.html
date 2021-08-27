@@ -1,35 +1,50 @@
 
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9. Nonlinear oscillations in biology &#8212; Mathematical Methods for Biology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <title>24. Nonlinear oscillations in biology &#8212; Mathematical Methods for Biology</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -38,15 +53,15 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="8. Linearization of ODEs" href="linearization_pplane.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <link rel="prev" title="23. Linearization of ODEs" href="linearization_pplane.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -55,80 +70,197 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
+<p class="caption">
+ <span class="caption-text">
+  One variable models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_1var_intro.html">
-   1. Models with one variable in discrete time
+   Models with one variable in discrete time
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_1var_math.html">
+     1. Building dynamic models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_1var_python.html">
+     3. Plotting in Python
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_nonlinear_intro.html">
-   2. Nonlinear discrete-time dynamic models
+   Nonlinear discrete-time dynamic models
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html">
+     10. Logistic population model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_python.html">
+     13. Graphical analysis of difference equations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="ode_1var_intro.html">
-   3. Models with one variable in continuous time
+   21. Models with one variable in continuous time
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_math.html">
+     21.1. Ordinary differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_python.html">
+     21.4. Numeric solutions of ODEs
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="graph_ode_intro.html">
-   4. Graphical analysis of ordinary differential equations
+   Graphical analysis of ordinary differential equations
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="graph_ode_math.html">
+     18. Building nonlinear ODEs
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Multivariable models
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_higher_intro.html">
-   5. Discrete models of higher order
+   Discrete models of higher order
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html">
+     5. higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_python.html">
+     8. Numeric solutions of higher order difference equations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="linear_pp_intro.html">
-   6. Linear ODEs with two variables
+   22. Linear ODEs with two variables
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear_pp_math.html">
+     22.1. Flow in the phase plane
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear_pp_python.html">
+     22.6. Phase portraits in Python
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="forces_pot_intro.html">
-   7. Forces and potentials in biological modeling
+   Forces and potentials in biological modeling
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forces_pot_math.html">
+     15. Forces and simple springs
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linearization_pplane.html">
-   8. Linearization of ODEs
+   23. Linearization of ODEs
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   9. Nonlinear oscillations in biology
+   24. Nonlinear oscillations in biology
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -143,25 +275,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -173,74 +305,77 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
 
+            <!-- Source interaction buttons -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Launch buttons -->
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-    </div>
+            <!-- Launch buttons -->
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
-   9.1. Introduction
+   24.1. Introduction
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#modeling-nonlinear-oscillations">
-   9.2. Modeling: nonlinear oscillations
+   24.2. Modeling: nonlinear oscillations
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#van-der-pol-oscillator">
-     9.2.1. Van der Pol oscillator
+     24.2.1. Van der Pol oscillator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#oscillatory-behavior-in-biology">
-     9.2.2. oscillatory behavior in biology
+     24.2.2. oscillatory behavior in biology
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#limit-cycles-and-flow-trapping-regions">
-   9.3. Limit cycles and flow-trapping regions
+   24.3. Limit cycles and flow-trapping regions
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#limit-cycles">
-     9.3.1. limit cycles
+     24.3.1. limit cycles
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#glycolytic-oscillator">
-     9.3.2. glycolytic oscillator
+     24.3.2. glycolytic oscillator
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fitzhugh-nagumo-model-of-neural-excitation">
-   9.4. Fitzhugh-Nagumo model of neural excitation
+   24.4. Fitzhugh-Nagumo model of neural excitation
   </a>
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -249,16 +384,16 @@
               <div>
                 
   <div class="section" id="nonlinear-oscillations-in-biology">
-<h1><span class="section-number">9. </span>Nonlinear oscillations in biology<a class="headerlink" href="#nonlinear-oscillations-in-biology" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">24. </span>Nonlinear oscillations in biology<a class="headerlink" href="#nonlinear-oscillations-in-biology" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2><span class="section-number">9.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">24.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In previous chapters we examined periodic solutions that arise in linear or conservative nonlinear systems. These solutions show up in the phase plane as closed trajectories, looping around a fixed point of the center classification; they are known as linear oscillations, since their time plots are oscillatory, and because the dynamics around the fixed point are correctly described by the linear approximation. In this chapter we will see a new kind of closed trajectories, known as nonlinear oscillations. These solution describe very different dynamics, which is found in many biological systems, characterized by cycles with excitatory and refractory phases, for example action potentials in neurons.</p>
 <p>In the modeling section, we will see a simple prototype model which produces nonlinear oscillations, and then describe the qualitative properties of excitatory systems in biology. In the analytic section, we will describe some types bifurcations in the plane. In particular, we will describe the bifurcation which results in the birth of nonlinear oscillations. Finally, in the synthesis section we will analyze the classic neuroscience model of an action potential, called the Fitzhugh-Nagumo model.</p>
 </div>
 <div class="section" id="modeling-nonlinear-oscillations">
-<h2><span class="section-number">9.2. </span>Modeling: nonlinear oscillations<a class="headerlink" href="#modeling-nonlinear-oscillations" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">24.2. </span>Modeling: nonlinear oscillations<a class="headerlink" href="#modeling-nonlinear-oscillations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="van-der-pol-oscillator">
-<h3><span class="section-number">9.2.1. </span>Van der Pol oscillator<a class="headerlink" href="#van-der-pol-oscillator" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">24.2.1. </span>Van der Pol oscillator<a class="headerlink" href="#van-der-pol-oscillator" title="Permalink to this headline">¶</a></h3>
 <p>Let us consider a harmonic oscillator model with a nonlinear damping term, known as the van der Pol oscillator (here <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> are positive parameters):</p>
 <div class="math notranslate nohighlight">
 \[m\ddot x= -kx - \mu(x^2-1)\dot x \]</div>
@@ -271,15 +406,15 @@
 <p>There is only one fixed point, at <span class="math notranslate nohighlight">\(x=0, y=0\)</span>. It is unstable because of the amplification (reverse damping) effect when <span class="math notranslate nohighlight">\(x\)</span> is small. This can be properly shown by linearizing around the fixed point and finding the eigenvalues - we’ll leave it as an exercise. However, since damping kicks in for <span class="math notranslate nohighlight">\(x&gt;1\)</span> and is stronger for higher values of <span class="math notranslate nohighlight">\(x\)</span>, trajectories that start far away from the origin will flow toward it. The effect of the outward flow from the origin combined with flow toward the origin (from trajectories that start sufficiently far away) creates a new type of periodic trajectory, called a <em>limit cycle</em>.</p>
 </div>
 <div class="section" id="oscillatory-behavior-in-biology">
-<h3><span class="section-number">9.2.2. </span>oscillatory behavior in biology<a class="headerlink" href="#oscillatory-behavior-in-biology" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">24.2.2. </span>oscillatory behavior in biology<a class="headerlink" href="#oscillatory-behavior-in-biology" title="Permalink to this headline">¶</a></h3>
 <p>The properties of linear oscillations do not correspond well to periodic behavior in living systems. Closed trajectories around center points can have any amplitude as determined by the initial conditions, and a frequency which is determined by the eigenvalues of the Jacobian, therefore independent of the amplitude of oscillations. In biological systems (and many other natural systems) periodic behavior typically has an optimal period as well as an optimal amplitude. For instance, the action potential of a neuron, as we will discuss in the Synthesis section, has a well-defined maximum and minimum membrane voltage, as well as a set period between peak voltages (neuron firing). Other periodic biological processes, such as oscillations in metabolism or circadian rhythms, share the same property of having well-defined frequency and amplitude. For a mathematical modeler this suggests constructing dynamical systems that have a <em>unique and attracting</em> periodic trajectory.</p>
 <p>There are several common features of biological oscillatory models. One is the competitive interplay between an inhibiting and activating species, which are commonly seen in biochemical reactions or gene regulatory models. We will see such an example in the model of oscillations in glycolysis. The other is the so-called excitable systems, in which there is a threshold value, for stimulus to produce an oscillatory response. Such systems have oscillations which are divided into fast stages of excitation and slow stages of relaxation. We will see a prototypical model of this kind in the Synthesis section.</p>
 </div>
 </div>
 <div class="section" id="limit-cycles-and-flow-trapping-regions">
-<h2><span class="section-number">9.3. </span>Limit cycles and flow-trapping regions<a class="headerlink" href="#limit-cycles-and-flow-trapping-regions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">24.3. </span>Limit cycles and flow-trapping regions<a class="headerlink" href="#limit-cycles-and-flow-trapping-regions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="limit-cycles">
-<h3><span class="section-number">9.3.1. </span>limit cycles<a class="headerlink" href="#limit-cycles" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">24.3.1. </span>limit cycles<a class="headerlink" href="#limit-cycles" title="Permalink to this headline">¶</a></h3>
 <p>There is an important result in dynamical systems theory that states that the only possible  attractors (sets of points which solutions approach in the long run) in two dimensions are either fixed points (steady states) or closed orbits (oscillations). We saw linear oscillations  in the harmonic oscillator model, and the oscillatory solutions in the Lotka-Volterra model similarly correspond to an infinite set of closed trajectories. Below we consider circumstances under which unique closed trajectories arise.</p>
 <p>A limit cycle is an isolated closed trajectory, which makes it different from oscillations around a center. Limit cycles can be stable (with nearby trajectories spiraling toward it), unstable (with nearby trajectories spiraling farther away) and half-stable (inner trajectories and outer trajectories behaving differently). This phenomenon requires some nonlinearity in the equations, like the nonlinear damping above, and thus limit cycles are known as <em>nonlinear oscillations</em>. Limit cycles cannot be found by linearization (since it neglects the essential nonlinearity), so we need another method.</p>
 <div class="admonition-theorem-poincare-bendixson admonition">
@@ -294,10 +429,10 @@
 \dot x &amp;=&amp; y - f(x) \\
 \dot y &amp;=&amp; -x
 \end{split}\]</div>
-<p>This system has nullclines on the curves: <span class="math notranslate nohighlight">\(y=f(x)\)</span> and <span class="math notranslate nohighlight">\(x=0\)</span> (y-axis). If the function <span class="math notranslate nohighlight">\(f(x)\)</span> is a cubic function with a maximum and a minimum, e.g. <span class="math notranslate nohighlight">\(f(x) = x^3-x\)</span>, then the phase plane will look like figure <a class="reference internal" href="#fig-cub-null"><span class="std std-numref">Fig. 9.1</span></a>.</p>
+<p>This system has nullclines on the curves: <span class="math notranslate nohighlight">\(y=f(x)\)</span> and <span class="math notranslate nohighlight">\(x=0\)</span> (y-axis). If the function <span class="math notranslate nohighlight">\(f(x)\)</span> is a cubic function with a maximum and a minimum, e.g. <span class="math notranslate nohighlight">\(f(x) = x^3-x\)</span>, then the phase plane will look like figure <a class="reference internal" href="#fig-cub-null"><span class="std std-numref">Fig. 24.1</span></a>.</p>
 <div class="figure align-default" id="fig-cub-null">
 <img alt="_images/lec15_fig1.png" src="_images/lec15_fig1.png" />
-<p class="caption"><span class="caption-number">Fig. 9.1 </span><span class="caption-text">Cubic nullcline with a maximum and minimum generates a limit cycle</span><a class="headerlink" href="#fig-cub-null" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.1 </span><span class="caption-text">Cubic nullcline with a maximum and minimum generates a limit cycle</span><a class="headerlink" href="#fig-cub-null" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let us analyze the geometry of the flow. First, there is only one fixed point, at the origin, and the flow may circulate around it. To show that a limit cycle exists, we must:</p>
 <ul class="simple">
@@ -312,19 +447,19 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
 <p>To assess stability, we find the eigenvalues:</p>
 <div class="math notranslate nohighlight">
 \[ \lambda = \frac{-f'(x) \pm \sqrt{f'(x)^2 -4}}{2} \]</div>
-<p>The eigenvalues are real if <span class="math notranslate nohighlight">\(f'(x)^2 &gt;4\)</span> and complex if  <span class="math notranslate nohighlight">\(f'(x)^2 &lt;4\)</span>. If they are complex, the real part is <span class="math notranslate nohighlight">\(-f'(x)/2\)</span>, and so the stability is determined by the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>. If the eigenvalues are real, stability still depends on the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>, because <span class="math notranslate nohighlight">\(f'(x)&gt;\sqrt{f'(x)^2 -4}\)</span> and thus adding or subtracting the square root will not change the sign of the expression.  Check for yourself the direction of the flow on the nullclines (e.g. for the <span class="math notranslate nohighlight">\(y\)</span>-nullcline, on which <span class="math notranslate nohighlight">\(\dot y = 0\)</span>, we need to consider when <span class="math notranslate nohighlight">\(\dot x &gt; 0\)</span> and when <span class="math notranslate nohighlight">\(\dot x &lt; 0\)</span>). In figure <a class="reference internal" href="#fig-pos-slope"><span class="std std-numref">Fig. 9.2</span></a>, the horizontal flow coming off the y-axis misses the nullcline that would turn it around, while in figure <a class="reference internal" href="#fig-neg-slope"><span class="std std-numref">Fig. 9.3</span></a>, the horizontal flow runs right into the positive-sloped nullcline. Thus, when <span class="math notranslate nohighlight">\(f'(x) &lt;0\)</span>, the fixed point is stable (either a node or a spiral), and when <span class="math notranslate nohighlight">\(f'(x) &gt; 0\)</span>, the fixed point is unstable (either a node or a spiral). As a corollary, when the two nullclines are perpendicular, the fixed point is a center.</p>
+<p>The eigenvalues are real if <span class="math notranslate nohighlight">\(f'(x)^2 &gt;4\)</span> and complex if  <span class="math notranslate nohighlight">\(f'(x)^2 &lt;4\)</span>. If they are complex, the real part is <span class="math notranslate nohighlight">\(-f'(x)/2\)</span>, and so the stability is determined by the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>. If the eigenvalues are real, stability still depends on the sign of <span class="math notranslate nohighlight">\(f'(x)\)</span>, because <span class="math notranslate nohighlight">\(f'(x)&gt;\sqrt{f'(x)^2 -4}\)</span> and thus adding or subtracting the square root will not change the sign of the expression.  Check for yourself the direction of the flow on the nullclines (e.g. for the <span class="math notranslate nohighlight">\(y\)</span>-nullcline, on which <span class="math notranslate nohighlight">\(\dot y = 0\)</span>, we need to consider when <span class="math notranslate nohighlight">\(\dot x &gt; 0\)</span> and when <span class="math notranslate nohighlight">\(\dot x &lt; 0\)</span>). In figure <a class="reference internal" href="#fig-pos-slope"><span class="std std-numref">Fig. 24.2</span></a>, the horizontal flow coming off the y-axis misses the nullcline that would turn it around, while in figure <a class="reference internal" href="#fig-neg-slope"><span class="std std-numref">Fig. 24.3</span></a>, the horizontal flow runs right into the positive-sloped nullcline. Thus, when <span class="math notranslate nohighlight">\(f'(x) &lt;0\)</span>, the fixed point is stable (either a node or a spiral), and when <span class="math notranslate nohighlight">\(f'(x) &gt; 0\)</span>, the fixed point is unstable (either a node or a spiral). As a corollary, when the two nullclines are perpendicular, the fixed point is a center.</p>
 <div class="figure align-default" id="fig-pos-slope">
 <img alt="_images/nullclines_pos_slope.png" src="_images/nullclines_pos_slope.png" />
-<p class="caption"><span class="caption-number">Fig. 9.2 </span><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the positive slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an unstable fixed point.</span><a class="headerlink" href="#fig-pos-slope" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.2 </span><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the positive slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an unstable fixed point.</span><a class="headerlink" href="#fig-pos-slope" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-neg-slope">
 <img alt="_images/nullclines_neg_slope.png" src="_images/nullclines_neg_slope.png" />
-<p class="caption"><span class="caption-number">Fig. 9.3 </span><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the negative slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an stable fixed point.</span><a class="headerlink" href="#fig-neg-slope" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.3 </span><span class="caption-text">Slope of <span class="math notranslate nohighlight">\(x\)</span>-nullcline (in blue) determines the stability of the fixed point; the negative slope of the function <span class="math notranslate nohighlight">\(f(x)\)</span> creates an stable fixed point.</span><a class="headerlink" href="#fig-neg-slope" title="Permalink to this image">¶</a></p>
 </div>
-<p>Now let us go back to the cubic nullcline in figure <a class="reference internal" href="#fig-cub-null"><span class="std std-numref">Fig. 9.1</span></a>. It should be clear that there is a trapping region of phase space, because at any point sufficiently far from the origin, the direction of flow is toward the origin. Intuitively, the directions of flow on the nullclines ensure that the flow heads down on the right hand side of the plane, and upward on the left-hand side of the plane; the flow is trapped by the cubic “arms” of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span>. One can construct a flow trapping-region more rigorously, but I will leave this as a potential exercise for the reader. Therefore, as long as there is an unstable fixed point inside a flow-trapping region, which is determined  by the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at the intersection of the nullclines, the Poincare-Bendixson theorem ensures the existence of a limit cycle in that region. This result is used in many biological models.</p>
+<p>Now let us go back to the cubic nullcline in figure <a class="reference internal" href="#fig-cub-null"><span class="std std-numref">Fig. 24.1</span></a>. It should be clear that there is a trapping region of phase space, because at any point sufficiently far from the origin, the direction of flow is toward the origin. Intuitively, the directions of flow on the nullclines ensure that the flow heads down on the right hand side of the plane, and upward on the left-hand side of the plane; the flow is trapped by the cubic “arms” of the graph of <span class="math notranslate nohighlight">\(f(x)\)</span>. One can construct a flow trapping-region more rigorously, but I will leave this as a potential exercise for the reader. Therefore, as long as there is an unstable fixed point inside a flow-trapping region, which is determined  by the slope of <span class="math notranslate nohighlight">\(f(x)\)</span> at the intersection of the nullclines, the Poincare-Bendixson theorem ensures the existence of a limit cycle in that region. This result is used in many biological models.</p>
 </div>
 <div class="section" id="glycolytic-oscillator">
-<h3><span class="section-number">9.3.2. </span>glycolytic oscillator<a class="headerlink" href="#glycolytic-oscillator" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">24.3.2. </span>glycolytic oscillator<a class="headerlink" href="#glycolytic-oscillator" title="Permalink to this headline">¶</a></h3>
 <p>The metabolism of glucose to produce energy in the form of ATP (adenosine triphosphate) is a crucial process in most lifeforms. The process involves many stages, most of which involve phosphorylation, or attachment of a phosphate group, and each one is catalyzed by a specialized enzyme. One intermediate step involves the phosphorylation of Fructose 6-phosphate (Fru-6P) to produce Fructose 1,6-biphosphate (Fru-1,6bP), by an enzyme called phosphofructokinase (PFK). In many organisms this step is known to lead to periodic oscillations in the concentrations of the molecules involved.</p>
 <p>The reaction involves several types of molecules: the two sugars, the enzyme, and a molecule of ATP and ADP:</p>
 <div class="math notranslate nohighlight">
@@ -349,19 +484,19 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
 <div class="math notranslate nohighlight">
 \[ b^2 = \frac{1}{2}\left(1-2a \pm \sqrt{1-8a} \right)\]</div>
 <p>The second step in finding nonlinear oscillations is searching for a flow-trapping region. I will leave out the details here, but one can construct the following region, in which the direction of flow on the boundary is everywhere inward. One boundary is the <span class="math notranslate nohighlight">\(y\)</span> axis from 0 to <span class="math notranslate nohighlight">\(b/a\)</span>. The second boundary is the line from <span class="math notranslate nohighlight">\((0,b/a)\)</span> to <span class="math notranslate nohighlight">\((b,b/a)\)</span>. the third segment is the line with slope -1, from the point <span class="math notranslate nohighlight">\((b,b/a)\)</span> to the <span class="math notranslate nohighlight">\(x\)</span> axis, and the final boundary is the <span class="math notranslate nohighlight">\(x\)</span> axis between (0,0) and the intersection with that line.</p>
-<p>Now that we have a flow-trapping region, which is independent of parameters, the existence of limit cycle depends on the stability of the fixed point inside the region. We have shown that for some values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the fixed point is unstable, and thus Poincare-Bendixson predicts the existence of a limit cycle. Figure <a class="reference internal" href="#fig-glyco-stable"><span class="std std-numref">Fig. 9.4</span></a> shows the flow and a solution trajectory for the case where the fixed point is stable, and figure <a class="reference internal" href="#fig-glyco-cycle"><span class="std std-numref">Fig. 9.5</span></a> shows the phase portrait when the fixed point is unstable and a solution converging to a limit cycle.</p>
+<p>Now that we have a flow-trapping region, which is independent of parameters, the existence of limit cycle depends on the stability of the fixed point inside the region. We have shown that for some values of <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, the fixed point is unstable, and thus Poincare-Bendixson predicts the existence of a limit cycle. Figure <a class="reference internal" href="#fig-glyco-stable"><span class="std std-numref">Fig. 24.4</span></a> shows the flow and a solution trajectory for the case where the fixed point is stable, and figure <a class="reference internal" href="#fig-glyco-cycle"><span class="std std-numref">Fig. 24.5</span></a> shows the phase portrait when the fixed point is unstable and a solution converging to a limit cycle.</p>
 <div class="figure align-default" id="fig-glyco-stable">
 <img alt="_images/glycolytic_stable.png" src="_images/glycolytic_stable.png" />
-<p class="caption"><span class="caption-number">Fig. 9.4 </span><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with a stable fixed point.</span><a class="headerlink" href="#fig-glyco-stable" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.4 </span><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with a stable fixed point.</span><a class="headerlink" href="#fig-glyco-stable" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-glyco-cycle">
 <img alt="_images/glycolytic_cycle.png" src="_images/glycolytic_cycle.png" />
-<p class="caption"><span class="caption-number">Fig. 9.5 </span><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with an unstable fixed point and a solution trajectory converging to a limit cycle.</span><a class="headerlink" href="#fig-glyco-cycle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.5 </span><span class="caption-text">Phase portrait of the glycolysis model (nullclines for <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> shown in orange and pink): with an unstable fixed point and a solution trajectory converging to a limit cycle.</span><a class="headerlink" href="#fig-glyco-cycle" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 </div>
 <div class="section" id="fitzhugh-nagumo-model-of-neural-excitation">
-<h2><span class="section-number">9.4. </span>Fitzhugh-Nagumo model of neural excitation<a class="headerlink" href="#fitzhugh-nagumo-model-of-neural-excitation" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">24.4. </span>Fitzhugh-Nagumo model of neural excitation<a class="headerlink" href="#fitzhugh-nagumo-model-of-neural-excitation" title="Permalink to this headline">¶</a></h2>
 <p>Limit cycles are often used to model <em>excitable</em> systems, in which spikes of activity are followed by a period of relaxation. One such example is the action potential of a neuron, consisting of a quick spike and the depolarization of the potential built up across the membrane, followed by a slow return to the resting potential. A very simple, albeit largely unrealistic, model is one proposed independently by Fitzhugh and Nagumo. In this model, the meaning of the variables is approximate, with <span class="math notranslate nohighlight">\(x\)</span> standing in for the membrane potential, and <span class="math notranslate nohighlight">\(y\)</span> signifying the extent of the recovery via active pumping of ions, and <span class="math notranslate nohighlight">\(z(t)\)</span> representing the external stimulus, such as an action potential from a connected neuron:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -376,14 +511,14 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
 \[\lambda = \left(c-x^2+b/c \pm \sqrt{(c-x^2+b/c)^2 - 4(b-bx^2/c +1} \right)/2\]</div>
 <p>As you can see, the analysis of stability by algebra is going to be painful, since we need to find the expressions for the fixed point and express it in terms of the parameters and the stimulus <span class="math notranslate nohighlight">\(z(t)\)</span>. Instead, we are going to use the qualitative analysis we developed in the analytic section to analyze the existence of limit cycles in the phase plane.</p>
 <p>The nullclines of this system are similar to those in the generic cubic model analyzed above. The nullcline for <span class="math notranslate nohighlight">\(\dot x\)</span> is given by <span class="math notranslate nohighlight">\(y=x^3/3 -x -z(t)\)</span>, which is a cubic with a max and a min, with an extra term added. The nullcline for <span class="math notranslate nohighlight">\(\dot y\)</span> is given by <span class="math notranslate nohighlight">\(y=(a-x)/b\)</span>,  a negative-slope line, as opposed to the vertical line in the model above, but the directions of the flow relative to the blue nullcline remain the same (check by analyzing the equation for <span class="math notranslate nohighlight">\(\dot x\)</span>).</p>
-<p>Depending on the values of the parameters, and on the value of the external input <span class="math notranslate nohighlight">\(z\)</span>, the nullclines may intersect in different ways. If the cubic at the intersection has a positive slope, that, as we saw above, the fixed points will be stable, as can be seen seen in  figure <a class="reference internal" href="#fig-fn-stable"><span class="std std-numref">Fig. 9.6</span></a>. If the line and cubic intersect in the negative-slope part of the cubic, then the fixed point is unstable, as illustrated in figure <a class="reference internal" href="#fig-fn-unstable"><span class="std std-numref">Fig. 9.7</span></a>.</p>
+<p>Depending on the values of the parameters, and on the value of the external input <span class="math notranslate nohighlight">\(z\)</span>, the nullclines may intersect in different ways. If the cubic at the intersection has a positive slope, that, as we saw above, the fixed points will be stable, as can be seen seen in  figure <a class="reference internal" href="#fig-fn-stable"><span class="std std-numref">Fig. 24.6</span></a>. If the line and cubic intersect in the negative-slope part of the cubic, then the fixed point is unstable, as illustrated in figure <a class="reference internal" href="#fig-fn-unstable"><span class="std std-numref">Fig. 24.7</span></a>.</p>
 <div class="figure align-default" id="fig-fn-stable">
 <img alt="_images/lec16_fn_stable.png" src="_images/lec16_fn_stable.png" />
-<p class="caption"><span class="caption-number">Fig. 9.6 </span><span class="caption-text">Stable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-stable" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.6 </span><span class="caption-text">Stable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-stable" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-fn-unstable">
 <img alt="_images/lec16_fn_unstable.png" src="_images/lec16_fn_unstable.png" />
-<p class="caption"><span class="caption-number">Fig. 9.7 </span><span class="caption-text">Unstable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-unstable" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 24.7 </span><span class="caption-text">Unstable fixed point in the Fitzhugh-Nagumo model</span><a class="headerlink" href="#fig-fn-unstable" title="Permalink to this image">¶</a></p>
 </div>
 <p>As we saw above, if the fixed point is unstable and the shape of cubic prevents the flow from leaving a larger region, then there must exist a limit cycle. On the other hand, if the fixed point is stable, then there is no limit cycle. So the Fitzhugh-Nagumo provides a simple model for the transition between a resting state with constant voltage (stable fixed point) to the excited state where periodic action potentials are generated (limit cycle). The readers can convince themselves that the addition of the external signal <span class="math notranslate nohighlight">\(z(t)\)</span> can lead to this transition.</p>
 </div>
@@ -411,14 +546,26 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="linearization_pplane.html" title="previous page"><span class="section-number">8. </span>Linearization of ODEs</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="linearization_pplane.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">23. </span>Linearization of ODEs</p>
+            </div>
+        </a>
+    </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -426,7 +573,7 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
         
           By Dmitry Kondrashov<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -435,8 +582,9 @@ J(x,y) =  \left(\begin{array}{cc}-f'(x) &amp; 1 \\-1 &amp; 0\end{array}\right)
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    <script src="_static/js/index.js"></script>
-    
+  
   </body>
 </html>

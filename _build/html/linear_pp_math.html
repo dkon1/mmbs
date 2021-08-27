@@ -1,35 +1,50 @@
 
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>6.1. Flow in the phase plane &#8212; Mathematical Methods for Biology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <title>22.1. Flow in the phase plane &#8212; Mathematical Methods for Biology</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -38,16 +53,16 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="6.6. Phase portraits in Python" href="linear_pp_python.html" />
-    <link rel="prev" title="6. Linear ODEs with two variables" href="linear_pp_intro.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <link rel="next" title="22.6. Phase portraits in Python" href="linear_pp_python.html" />
+    <link rel="prev" title="22. Linear ODEs with two variables" href="linear_pp_intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -56,112 +71,197 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
+<p class="caption">
+ <span class="caption-text">
+  One variable models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_1var_intro.html">
-   1. Models with one variable in discrete time
+   Models with one variable in discrete time
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_1var_math.html">
+     1. Building dynamic models
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_1var_python.html">
+     3. Plotting in Python
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_nonlinear_intro.html">
-   2. Nonlinear discrete-time dynamic models
+   Nonlinear discrete-time dynamic models
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html">
+     10. Logistic population model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_python.html">
+     13. Graphical analysis of difference equations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="ode_1var_intro.html">
-   3. Models with one variable in continuous time
+   21. Models with one variable in continuous time
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_math.html">
+     21.1. Ordinary differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_python.html">
+     21.4. Numeric solutions of ODEs
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="graph_ode_intro.html">
-   4. Graphical analysis of ordinary differential equations
+   Graphical analysis of ordinary differential equations
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="graph_ode_math.html">
+     18. Building nonlinear ODEs
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1">
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Multivariable models
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="discrete_higher_intro.html">
-   5. Discrete models of higher order
+   Discrete models of higher order
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html">
+     5. higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_python.html">
+     8. Numeric solutions of higher order difference equations
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toctree-l1 current active">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="linear_pp_intro.html">
-   6. Linear ODEs with two variables
+   22. Linear ODEs with two variables
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     6.1. Flow in the phase plane
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#eigenvectors-and-eigenvalues">
-     6.2. Eigenvectors and eigenvalues
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#solutions-of-linear-two-variable-odes">
-     6.3. Solutions of linear two-variable ODEs
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#classification-of-linear-systems">
-     6.4. Classification of linear systems
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#dynamics-of-romantic-relationships">
-     6.5. Dynamics of romantic relationships
+     22.1. Flow in the phase plane
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linear_pp_python.html">
-     6.6. Phase portraits in Python
+     22.6. Phase portraits in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="forces_pot_intro.html">
+   Forces and potentials in biological modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forces_pot_math.html">
+     15. Forces and simple springs
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="forces_pot_intro.html">
-   7. Forces and potentials in biological modeling
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linearization_pplane.html">
-   8. Linearization of ODEs
+   23. Linearization of ODEs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear_oscillations.html">
-   9. Nonlinear oscillations in biology
+   24. Nonlinear oscillations in biology
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -176,25 +276,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -206,40 +306,109 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
 
+            <!-- Source interaction buttons -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Launch buttons -->
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-    </div>
+            <!-- Launch buttons -->
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#activators-and-inhibitors-in-biochemical-reactions">
-   6.1.1. activators and inhibitors in biochemical reactions
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   22.1. Flow in the phase plane
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activators-and-inhibitors-in-biochemical-reactions">
+     22.1.1. activators and inhibitors in biochemical reactions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#phase-plane-portraits">
+     22.1.2. phase plane portraits
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvectors-and-eigenvalues">
+   22.2. Eigenvectors and eigenvalues
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-linear-algebra-terminology">
+     22.2.1. basic linear algebra terminology
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrices-transform-vectors">
+     22.2.2. matrices transform vectors
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculating-eigenvalues">
+     22.2.3. calculating eigenvalues
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#calculation-of-eigenvectors-on-paper">
+     22.2.4. calculation of eigenvectors on paper
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solutions-of-linear-two-variable-odes">
+   22.3. Solutions of linear two-variable ODEs
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#phase-plane-portraits">
-   6.1.2. phase plane portraits
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-of-linear-systems">
+   22.4. Classification of linear systems
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#real-eigenvalues">
+     22.4.1. real eigenvalues
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complex-eigenvalues">
+     22.4.2. complex eigenvalues
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     22.4.3. classification of linear systems
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamics-of-romantic-relationships">
+   22.5. Dynamics of romantic relationships
   </a>
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -248,9 +417,9 @@
               <div>
                 
   <div class="section" id="flow-in-the-phase-plane">
-<h1><span class="section-number">6.1. </span>Flow in the phase plane<a class="headerlink" href="#flow-in-the-phase-plane" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22.1. </span>Flow in the phase plane<a class="headerlink" href="#flow-in-the-phase-plane" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="activators-and-inhibitors-in-biochemical-reactions">
-<h2><span class="section-number">6.1.1. </span>activators and inhibitors in biochemical reactions<a class="headerlink" href="#activators-and-inhibitors-in-biochemical-reactions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.1.1. </span>activators and inhibitors in biochemical reactions<a class="headerlink" href="#activators-and-inhibitors-in-biochemical-reactions" title="Permalink to this headline">¶</a></h2>
 <p>Suppose two gene products (proteins) regulate each others’ expression. Activator protein <span class="math notranslate nohighlight">\(A\)</span> binds to the promoter of the gene for <span class="math notranslate nohighlight">\(I\)</span> and activates its expression, while inhibitor protein <span class="math notranslate nohighlight">\(I\)</span> binds to the promoter of the gene for <span class="math notranslate nohighlight">\(A\)</span> and inhibits its expression (here the variables stand for concentrations of the two proteins in the cell):</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -270,42 +439,42 @@ inhibit their own production. Then, we have the following system of equations:</
 <p>Here we have added two rates of self-inhibition <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\delta\)</span>. This is a system of two coupled ODEs, and we will learn how to analyze these models both analytically and graphically.</p>
 </div>
 <div class="section" id="phase-plane-portraits">
-<h2><span class="section-number">6.1.2. </span>phase plane portraits<a class="headerlink" href="#phase-plane-portraits" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.1.2. </span>phase plane portraits<a class="headerlink" href="#phase-plane-portraits" title="Permalink to this headline">¶</a></h2>
 <p>Before we learn about the analytical tools of linear algebra, let us think intuitively about the effect of the variables on each other. The best way to describe this is through plotting the geometry of the <em>flow</em> prescribed by the differential equations. As we saw, for one-dimensional ODEs the direction of the change of the dependent variable (also known as the flow) could be shown as arrows on a line. A single variable can only increase, decrease, or stay the same (at a fixed point). In two dimensions there is more freedom. The flow is plotted on the <em>phase plane</em>, where for any combination of the two variables (say <span class="math notranslate nohighlight">\(x,y\)</span>) the ODE gives the derivatives of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. This vector gives the flow, or the rate of change at the particular point in the plane. Intuitively, the flow describes the direction in which the system is pulling the 2-dimensional solution. If we plot the progress of a solution of ODE (all the values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> starting with the initial condition) we will obtain a <em>trajectory</em> in the phase plane. The arrows of the flow are tangent to any trajectory curve, since they plot the derivatives of <span class="math notranslate nohighlight">\(x,y\)</span>.</p>
 <p><strong>Example: positive relationship between the variables</strong> Consider the following system of differential equations:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode1">
-<span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-ode1" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(22.1)<a class="headerlink" href="#equation-eq-ode1" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \\begin{aligned}
 \dot x &amp; = &amp; x + y \\
 \dot y &amp; = &amp; x + 2y 
 \end{aligned}
 \end{split}\]</div>
-<p>This is system is coupled, with <span class="math notranslate nohighlight">\(x\)</span> having an effect on <span class="math notranslate nohighlight">\(y\)</span> and vice versa. Specifically, the signs of the constants mean that positive values of <span class="math notranslate nohighlight">\(x\)</span> have the effect of increasing <span class="math notranslate nohighlight">\(y\)</span> (and vice versa), while negative values of <span class="math notranslate nohighlight">\(x\)</span> have the effect of decreasing <span class="math notranslate nohighlight">\(y\)</span> (and vice versa). For any pair of values of <span class="math notranslate nohighlight">\((x,y)\)</span>, there is a flow prescribed by the ODEs. E.g., when <span class="math notranslate nohighlight">\(x=1, y=1\)</span>, the derivatives are <span class="math notranslate nohighlight">\(\dot x = 2, \dot y = 3\)</span>. This means that the flow at that point is given by the vector <span class="math notranslate nohighlight">\((2,3)\)</span>, and can be plotted in the <span class="math notranslate nohighlight">\(x,y\)</span> phase plane. This can be done for any pair of values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, and plotted to give the phase plane portrait in figure <a class="reference internal" href="#fig-ode1"><span class="std std-numref">Fig. 6.1</span></a>.</p>
+<p>This is system is coupled, with <span class="math notranslate nohighlight">\(x\)</span> having an effect on <span class="math notranslate nohighlight">\(y\)</span> and vice versa. Specifically, the signs of the constants mean that positive values of <span class="math notranslate nohighlight">\(x\)</span> have the effect of increasing <span class="math notranslate nohighlight">\(y\)</span> (and vice versa), while negative values of <span class="math notranslate nohighlight">\(x\)</span> have the effect of decreasing <span class="math notranslate nohighlight">\(y\)</span> (and vice versa). For any pair of values of <span class="math notranslate nohighlight">\((x,y)\)</span>, there is a flow prescribed by the ODEs. E.g., when <span class="math notranslate nohighlight">\(x=1, y=1\)</span>, the derivatives are <span class="math notranslate nohighlight">\(\dot x = 2, \dot y = 3\)</span>. This means that the flow at that point is given by the vector <span class="math notranslate nohighlight">\((2,3)\)</span>, and can be plotted in the <span class="math notranslate nohighlight">\(x,y\)</span> phase plane. This can be done for any pair of values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, and plotted to give the phase plane portrait in figure <a class="reference internal" href="#fig-ode1"><span class="std std-numref">Fig. 22.1</span></a>.</p>
 <div class="figure align-default" id="fig-ode1">
 <img alt="_images/week6_pp5.png" src="_images/week6_pp5.png" />
-<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Phase plane flow for the system in <a class="reference internal" href="#equation-eq-ode1">(6.1)</a></span><a class="headerlink" href="#fig-ode1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22.1 </span><span class="caption-text">Phase plane flow for the system in <a class="reference internal" href="#equation-eq-ode1">(22.1)</a></span><a class="headerlink" href="#fig-ode1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Observe that the overall dynamics of the systems are directed outward from the origin, as we expect from the ODEs. The blue lines on the plot are some sample trajectories. The solution over time for both <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> will either grow toward positive infinity, or decay to negative infinity.</p>
 <p><strong>Example: negative relationship between the variables</strong> Consider the following system of differential equations, where <span class="math notranslate nohighlight">\(y\)</span> has an effect on <span class="math notranslate nohighlight">\(\dot x\)</span> opposite of its own sign. That is, negative values of <span class="math notranslate nohighlight">\(y\)</span> contribute to the growth of <span class="math notranslate nohighlight">\(x\)</span>, and vice versa.</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode2">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-ode2" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(22.2)<a class="headerlink" href="#equation-eq-ode2" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \begin{aligned}
 \dot x &amp; = &amp; -y \\
 \dot y &amp; = &amp; x  
 \end{aligned}
 \end{split}\]</div>
-<p>As above, the flow at any one point is given by the ODEs. E.g. at <span class="math notranslate nohighlight">\((0,1)\)</span> the two derivatives prescribe flow in the <span class="math notranslate nohighlight">\((1,0)\)</span> (up) direction, while at <span class="math notranslate nohighlight">\((1,0)\)</span> the flow is in the <span class="math notranslate nohighlight">\((0,-1)\)</span> direction. Figure <a class="reference internal" href="#fig-ode2"><span class="std std-numref">Fig. 6.2</span></a> shows the arrows of flow in the phase plane around the origin. Note that the arrows go around in a circular pattern around the origin - this shows oscillatory flow of solutions.</p>
+<p>As above, the flow at any one point is given by the ODEs. E.g. at <span class="math notranslate nohighlight">\((0,1)\)</span> the two derivatives prescribe flow in the <span class="math notranslate nohighlight">\((1,0)\)</span> (up) direction, while at <span class="math notranslate nohighlight">\((1,0)\)</span> the flow is in the <span class="math notranslate nohighlight">\((0,-1)\)</span> direction. Figure <a class="reference internal" href="#fig-ode2"><span class="std std-numref">Fig. 22.2</span></a> shows the arrows of flow in the phase plane around the origin. Note that the arrows go around in a circular pattern around the origin - this shows oscillatory flow of solutions.</p>
 <div class="figure align-default" id="fig-ode2">
 <img alt="_images/week6_pp2.png" src="_images/week6_pp2.png" />
-<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Phase plane flow for the system in <a class="reference internal" href="#equation-eq-ode2">(6.2)</a></span><a class="headerlink" href="#fig-ode2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22.2 </span><span class="caption-text">Phase plane flow for the system in <a class="reference internal" href="#equation-eq-ode2">(22.2)</a></span><a class="headerlink" href="#fig-ode2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Let us consider the trajectories of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> in time. The blue curves in the phase plane plot demonstrate the solutions go around the origin and return to the same point. This means that the behavior of the solutions over time is <em>periodic</em>, with oscillations going from positive to negative numbers and back forever.</p>
 </div>
 </div>
 <div class="section" id="eigenvectors-and-eigenvalues">
-<h1><span class="section-number">6.2. </span>Eigenvectors and eigenvalues<a class="headerlink" href="#eigenvectors-and-eigenvalues" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22.2. </span>Eigenvectors and eigenvalues<a class="headerlink" href="#eigenvectors-and-eigenvalues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="basic-linear-algebra-terminology">
-<h2><span class="section-number">6.2.1. </span>basic linear algebra terminology<a class="headerlink" href="#basic-linear-algebra-terminology" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2.1. </span>basic linear algebra terminology<a class="headerlink" href="#basic-linear-algebra-terminology" title="Permalink to this headline">¶</a></h2>
 <p>We have seen matrix notation introduced in the previous chapter, along with the definition of matrix multiplication. One basic advantage of this notation is that it makes it possible to write any set of <em>linear equations</em> as a single matrix equation. By linear equations we mean those that contain only constants or first powers of the variables. The field of mathematics studying matrices and their generalizations is called <em>linear algebra</em>; it is fundamental to both pure and applied mathematics. In this section we will learn some basic facts about matrices and their properties. First of all, let us define some basic terms:</p>
 <div class="admonition-matrix-definition admonition">
 <p class="admonition-title">Matrix definition</p>
@@ -356,7 +525,7 @@ A^{-1} A = A A^{-1} = I
 <p>A square matrix <span class="math notranslate nohighlight">\(A\)</span> possesses an inverse <span class="math notranslate nohighlight">\(A^{-1}\)</span> and is called <em>invertible</em> if and only if its determinant is not zero.</p>
 </div>
 <div class="section" id="matrices-transform-vectors">
-<h2><span class="section-number">6.2.2. </span>matrices transform vectors<a class="headerlink" href="#matrices-transform-vectors" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2.2. </span>matrices transform vectors<a class="headerlink" href="#matrices-transform-vectors" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will learn to characterize square matrices by finding special numbers and vectors associated with them. At the core of this analysis lies the concept of a matrix as an <em>operator</em> that transforms vectors by multiplication, as we defined in chapter 3. To be clear, in this section we take as default that the matrices <span class="math notranslate nohighlight">\(A\)</span> are square, and that vectors <span class="math notranslate nohighlight">\(\vec v\)</span> are column vectors, and thus will multiply the matrix on the right: <span class="math notranslate nohighlight">\(A \times  \vec v\)</span>.</p>
 <p>A matrix multiplied by a vector produces another vector, provided the number of columns in the matrix is the same as the number of rows in the vector. This can be interpreted as the matrix transforming the vector <span class="math notranslate nohighlight">\(\vec v\)</span> into another one: <span class="math notranslate nohighlight">\( A  \times  \vec v = \vec u\)</span>. The resultant vector <span class="math notranslate nohighlight">\(\vec u\)</span> may or may not resemble <span class="math notranslate nohighlight">\(\vec v\)</span>, but there are special vectors for which the transformation is very simple.</p>
 <p><strong>Example.</strong> Let us multiply the following matrix and vector (specially chosen to make a point):</p>
@@ -375,14 +544,14 @@ A^{-1} A = A A^{-1} = I
 <p class="admonition-title">Definition</p>
 <p>An <em>eigenvector</em> of a square matrix <span class="math notranslate nohighlight">\(A\)</span> is a vector <span class="math notranslate nohighlight">\(\vec v\)</span> for which matrix multiplication by <span class="math notranslate nohighlight">\(A\)</span> is equivalent to multiplication by a constant. This constant <span class="math notranslate nohighlight">\(\lambda\)</span> is called its <em>eigenvalue</em> of <span class="math notranslate nohighlight">\(A\)</span> corresponding the the eigenvector <span class="math notranslate nohighlight">\(\vec v\)</span>. The relationship is summarized in the following equation:</p>
 <div class="math notranslate nohighlight" id="equation-def-eigen">
-<span class="eqno">(6.3)<a class="headerlink" href="#equation-def-eigen" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(22.3)<a class="headerlink" href="#equation-def-eigen" title="Permalink to this equation">¶</a></span>\[
 A  \times  \vec v = \lambda \vec v
 \]</div>
 </div>
-<p>Note that this equation combines a matrix (<span class="math notranslate nohighlight">\(A\)</span>), a vector (<span class="math notranslate nohighlight">\(\vec v\)</span>) and a scalar <span class="math notranslate nohighlight">\(\lambda\)</span>, and that both sides of the equation are column vectors. This definition is illustrated in <a class="reference internal" href="#fig-eig-vec"><span class="std std-numref">Fig. 6.3</span></a>, showing a vector (<span class="math notranslate nohighlight">\(v\)</span>) multiplied by a matrix <span class="math notranslate nohighlight">\(A\)</span>, and the resulting vector <span class="math notranslate nohighlight">\(\lambda v\)</span>, which is in the same direction as <span class="math notranslate nohighlight">\(v\)</span>, due to scalar multiplying all elements of a vector, thus either stretching it if <span class="math notranslate nohighlight">\(\lambda&gt;1\)</span> or compressing it if <span class="math notranslate nohighlight">\(\lambda &lt; 1\)</span>. This assumes that <span class="math notranslate nohighlight">\(\lambda\)</span> is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.</p>
+<p>Note that this equation combines a matrix (<span class="math notranslate nohighlight">\(A\)</span>), a vector (<span class="math notranslate nohighlight">\(\vec v\)</span>) and a scalar <span class="math notranslate nohighlight">\(\lambda\)</span>, and that both sides of the equation are column vectors. This definition is illustrated in <a class="reference internal" href="#fig-eig-vec"><span class="std std-numref">Fig. 22.3</span></a>, showing a vector (<span class="math notranslate nohighlight">\(v\)</span>) multiplied by a matrix <span class="math notranslate nohighlight">\(A\)</span>, and the resulting vector <span class="math notranslate nohighlight">\(\lambda v\)</span>, which is in the same direction as <span class="math notranslate nohighlight">\(v\)</span>, due to scalar multiplying all elements of a vector, thus either stretching it if <span class="math notranslate nohighlight">\(\lambda&gt;1\)</span> or compressing it if <span class="math notranslate nohighlight">\(\lambda &lt; 1\)</span>. This assumes that <span class="math notranslate nohighlight">\(\lambda\)</span> is a real number, which is not always the case, but we will leave that complication aside for the purposes of this chapter.</p>
 <div class="figure align-default" id="fig-eig-vec">
 <img alt="_images/Eigenvalue_equation.png" src="_images/Eigenvalue_equation.png" />
-<p class="caption"><span class="caption-number">Fig. 6.3 </span><span class="caption-text">Illustration of the geometry of a matrix <span class="math notranslate nohighlight">\(A\)</span> multiplying its eigenvector <span class="math notranslate nohighlight">\(v\)</span>, resulting in a vector in the same direction
+<p class="caption"><span class="caption-number">Fig. 22.3 </span><span class="caption-text">Illustration of the geometry of a matrix <span class="math notranslate nohighlight">\(A\)</span> multiplying its eigenvector <span class="math notranslate nohighlight">\(v\)</span>, resulting in a vector in the same direction
 <span class="math notranslate nohighlight">\(\lambda v\)</span>. (Figure by Lantonov under CC BY-SA 4.0 via Wikimedia Commons)</span><a class="headerlink" href="#fig-eig-vec" title="Permalink to this image">¶</a></p>
 </div>
 <p>The definition does not specify how many such eigenvectors and eigenvalues can exist for a given matrix <span class="math notranslate nohighlight">\(A\)</span>. There are usually as many such vectors <span class="math notranslate nohighlight">\(\vec v\)</span> and corresponding numbers <span class="math notranslate nohighlight">\(\lambda\)</span> as the number of rows or columns of the square matrix <span class="math notranslate nohighlight">\(A\)</span>, so a 2 by 2 matrix has two eigenvectors and two eigenvalues, a 5x5 matrix has 5 of each, etc. One ironclad rule is that there cannot be more distinct eigenvalues than the matrix dimension. Some matrices possess fewer eigenvalues than the matrix dimension, those are said to have a <em>degenerate</em> set of eigenvalues, and at least two of the eigenvectors share the same eigenvalue.</p>
@@ -395,7 +564,7 @@ A  \times  (c \vec v) = c A  \times  \vec v = c \lambda \vec v =  \lambda (c \ve
 <p>To summarize, eigenvalues and eigenvectors of a matrix are a set of numbers and a set of vectors (up to scalar multiple) that describe the action of the matrix as a multiplicative operator on vectors. “Well-behaved” square <span class="math notranslate nohighlight">\(n\)</span> by <span class="math notranslate nohighlight">\(n\)</span> matrices have <span class="math notranslate nohighlight">\(n\)</span> distinct eigenvalues and <span class="math notranslate nohighlight">\(n\)</span> eigenvectors pointing in distinct directions. In a deep sense, the collection of eigenvectors and eigenvalues defines a matrix <span class="math notranslate nohighlight">\(A\)</span>, which is why an older name for them is characteristic vectors and values.</p>
 </div>
 <div class="section" id="calculating-eigenvalues">
-<h2><span class="section-number">6.2.3. </span>calculating eigenvalues<a class="headerlink" href="#calculating-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2.3. </span>calculating eigenvalues<a class="headerlink" href="#calculating-eigenvalues" title="Permalink to this headline">¶</a></h2>
 <p>Finding the eigenvalues and eigenvectors analytically, that is on paper, is quite laborious even for 3 by 3 or 4 by 4 matrices and for larger ones there is no analytical solution. In practice, the task is outsourced to a computer, and MATLAB has a number of functions for this purpose. Nevertheless, it is useful to go through the process in 2 dimensions in order to gain an understanding of what is involved. From the definition [def:eigen] of eigenvalues and eigenvectors, the condition can be written in terms of the four elements of a 2 by 2 matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -436,7 +605,7 @@ A = \left(\begin{array}{cc}2 &amp; 1 \\ 2&amp; 3\end{array}\right)
 <p>A real matrix can have complex eigenvalues and eigenvectors, but whenever it acts on a real vector, the result is still real. This is because the complex numbers cancel each other’s imaginary parts. For discrete time models, it is enough to consider the absolute value of a complex eigenvalue, which is defined as following: <span class="math notranslate nohighlight">\(|a +b i|= \sqrt{a^2 + b^2}\)</span>. As before, the eigenvalue with the largest absolute value “wins” in the long term.</p>
 </div>
 <div class="section" id="calculation-of-eigenvectors-on-paper">
-<h2><span class="section-number">6.2.4. </span>calculation of eigenvectors on paper<a class="headerlink" href="#calculation-of-eigenvectors-on-paper" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.2.4. </span>calculation of eigenvectors on paper<a class="headerlink" href="#calculation-of-eigenvectors-on-paper" title="Permalink to this headline">¶</a></h2>
 <p>The surprising fact is that, as we saw in the last subsection, the eigenvalues of a matrix can be found without knowing its eigenvectors! However, the converse is not true: to find the eigenvectors, one first needs to know the eigenvalues. Given an eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>, let us again write down the defining equation of the eigenvector for a generic 2 by 2 matrix:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -473,7 +642,7 @@ v_1 = - v_2 \times  1/(2-1) = - v_2
 </div>
 </div>
 <div class="section" id="solutions-of-linear-two-variable-odes">
-<h1><span class="section-number">6.3. </span>Solutions of linear two-variable ODEs<a class="headerlink" href="#solutions-of-linear-two-variable-odes" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22.3. </span>Solutions of linear two-variable ODEs<a class="headerlink" href="#solutions-of-linear-two-variable-odes" title="Permalink to this headline">¶</a></h1>
 <p>Let us start by considering two variable ODEs that do not affect each other:</p>
 <p><strong>Example: two uncoupled ODEs</strong>  In general, for a two-variable system, the value of one variable affects the other. In the equations above, the terms with the constants <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> provide what is known as <em>coupling</em> between the two variables. Let us look at the primitive situation where the two variables are uncoupled, as an illustration of solving two-dimensional ODEs. If we set the coupling constants <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(c\)</span> to 0, we get:</p>
 <div class="math notranslate nohighlight">
@@ -505,24 +674,24 @@ x_0 e^{at} \left(\begin{array}{c}1 \\0\end{array}\right)+y_0 e^{dt}\left(\begin{
 \end{split}\]</div>
 <p>Let us call the matrix <span class="math notranslate nohighlight">\(A\)</span>, and represent the vector <span class="math notranslate nohighlight">\((x,y)\)</span> as <span class="math notranslate nohighlight">\(\vec {x}\)</span>, then the general linear equation can be written like this:</p>
 <div class="math notranslate nohighlight" id="equation-gen-lin-mult">
-<span class="eqno">(6.4)<a class="headerlink" href="#equation-gen-lin-mult" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(22.4)<a class="headerlink" href="#equation-gen-lin-mult" title="Permalink to this equation">¶</a></span>\[
 \dot{ \vec{ x}} = A \vec{x}
 \]</div>
 <p>This notation is intended to make plain the similarity with the linear 1D ODE: <span class="math notranslate nohighlight">\(\dot x = a x\)</span>. This similarity is deep and substantial, in that linear equations in multiple dimensions share the same basic exponential form. In general, all solutions of linear equations can be written as a sum of exponentials multiplying different vectors:</p>
 <div class="tip admonition">
 <p class="admonition-title">General solution of linear 2-variable ODEs</p>
 <div class="math notranslate nohighlight" id="equation-gen-sol-2var">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-gen-sol-2var" title="Permalink to this equation">¶</a></span>\[\begin{split}
+<span class="eqno">(22.5)<a class="headerlink" href="#equation-gen-sol-2var" title="Permalink to this equation">¶</a></span>\[\begin{split}
 \left(\begin{array}{c} x(t) \\  y(t) \end{array}\right) =C_1e^{\lambda_1 t} \left(\begin{array}{c}x_1\\y_1\end{array}\right)+C_2 e^{\lambda_2 t}\left(\begin{array}{c}x_2\\y_2\end{array}\right)
 \end{split}\]</div>
 <p>The constants <span class="math notranslate nohighlight">\(C_1, C_2\)</span> are determined by the initial conditions, while the constants <span class="math notranslate nohighlight">\(\lambda_1, \lambda_2\)</span> are the eigenvalues and the vectors <span class="math notranslate nohighlight">\((x_1,y_1)\)</span> and <span class="math notranslate nohighlight">\((x_2,y_2)\)</span> are the eigenvectors of the matrix <span class="math notranslate nohighlight">\(A\)</span>. We will now consider the application of this general result using computational tools.</p>
 </div>
 </div>
 <div class="section" id="classification-of-linear-systems">
-<h1><span class="section-number">6.4. </span>Classification of linear systems<a class="headerlink" href="#classification-of-linear-systems" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22.4. </span>Classification of linear systems<a class="headerlink" href="#classification-of-linear-systems" title="Permalink to this headline">¶</a></h1>
 <p>We have seen that linear algebra allows us to write down the solution of a multivariable dynamical system into a sum of exponential terms. In this section we use computational techniques to find the eigenvalues and eigenvectors of a system, and then produce the <em>phase portraits</em> of the linear systems. There are only a few different types of flow possible for linear systems, and we will classify them.</p>
 <div class="section" id="real-eigenvalues">
-<h2><span class="section-number">6.4.1. </span>real eigenvalues<a class="headerlink" href="#real-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.4.1. </span>real eigenvalues<a class="headerlink" href="#real-eigenvalues" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider the fixed points of the linear system: since both <span class="math notranslate nohighlight">\(\dot x =0 \)</span> and <span class="math notranslate nohighlight">\(\dot y = 0\)</span> must be zero, the only fixed point is the origin <span class="math notranslate nohighlight">\((0,0)\)</span>. We will see that the stability of the fixed point depends on the sign of the real part of the eigenvalue.</p>
 <p>Suppose we have a positive real eigenvalue. The solution in the direction of the corresponding eigenvector is then described by <span class="math notranslate nohighlight">\(Ce^{\lambda t}\)</span>, <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span>, which is exponential growth. The means that the solution is going to grow in the direction of the eigenvector away from the origin, and thus the origin is an unstable fixed point (in this direction). This type of fixed point is called an <em>unstable node</em>.</p>
 <p>On the other hand, if <span class="math notranslate nohighlight">\(\lambda &lt; 0\)</span> for both eigenvalues, the solution decays exponentially and thus approaches the origin, so the fixed point is stable. This type of fixed point is called a <em>stable node</em>.</p>
@@ -533,12 +702,12 @@ x_0 e^{at} \left(\begin{array}{c}1 \\0\end{array}\right)+y_0 e^{dt}\left(\begin{
 \end{split}\]</div>
 <div class="figure align-default" id="fig-saddle">
 <img alt="_images/week6_pp1.png" src="_images/week6_pp1.png" />
-<p class="caption"><span class="caption-number">Fig. 6.4 </span><span class="caption-text">Phase plane flow for a linear system with a saddle point</span><a class="headerlink" href="#fig-saddle" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22.4 </span><span class="caption-text">Phase plane flow for a linear system with a saddle point</span><a class="headerlink" href="#fig-saddle" title="Permalink to this image">¶</a></p>
 </div>
 <p>where <span class="math notranslate nohighlight">\(a,b&gt;0\)</span>. Then we see that the component in the direction of the first eigenvector will grow, while the component along the second eigenvector will decay. Thus, as <span class="math notranslate nohighlight">\(t \rightarrow \infty\)</span>, all solutions will approach the vector with the unstable eigenvalue, except those with initial conditions right on the eigenvector corresponding to the stable eigenvalue. This means that the fixed point is essentially unstable, because only trajectories which start exactly along the stable direction approach the fixed point in the long run, while others, may approach the fixed point for a finite time, flow away when the unstable component with the positive eigenvalue takes over, as shown in figure .</p>
 </div>
 <div class="section" id="complex-eigenvalues">
-<h2><span class="section-number">6.4.2. </span>complex eigenvalues<a class="headerlink" href="#complex-eigenvalues" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.4.2. </span>complex eigenvalues<a class="headerlink" href="#complex-eigenvalues" title="Permalink to this headline">¶</a></h2>
 <p>If the argument of the square root is negative, eigenvalues may be complex numbers, which we can write like this: <span class="math notranslate nohighlight">\(a+bi\)</span>. Using Euler’s formula, we can write down the time-dependent part of the solutions as the following:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -547,16 +716,16 @@ e^{(a + bi)t} = e^{at}e^{bit}= e^{at}(\cos(bt)+i\sin(bt))
 <p>The behavior of these solutions combines exponential growth or decay from the real part, with the oscillations produced by the imaginary part. This describes either exponentially growing or decaying oscillations, which look like decaying waves in time, or as a spiral in the phase plane:</p>
 <div class="figure align-default" id="fig-exp-decay">
 <img alt="_images/lec7_exp_osc.png" src="_images/lec7_exp_osc.png" />
-<p class="caption"><span class="caption-number">Fig. 6.5 </span><span class="caption-text">Exponentially decaying oscillations in the time plot of the solution <span class="math notranslate nohighlight">\(x(t)\)</span></span><a class="headerlink" href="#fig-exp-decay" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22.5 </span><span class="caption-text">Exponentially decaying oscillations in the time plot of the solution <span class="math notranslate nohighlight">\(x(t)\)</span></span><a class="headerlink" href="#fig-exp-decay" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-stab-spiral">
 <img alt="_images/lec7_pp1.png" src="_images/lec7_pp1.png" />
-<p class="caption"><span class="caption-number">Fig. 6.6 </span><span class="caption-text">Phase plane portrait of a stable spiral</span><a class="headerlink" href="#fig-stab-spiral" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 22.6 </span><span class="caption-text">Phase plane portrait of a stable spiral</span><a class="headerlink" href="#fig-stab-spiral" title="Permalink to this image">¶</a></p>
 </div>
 <p>Thus we see that the stability of the fixed point with complex eigenvalues depends on the sign of the real part. Purely imaginary eigenvalues produce periodic oscillations, which keep the same amplitude, as we saw in the example in the modeling section.</p>
 </div>
 <div class="section" id="id1">
-<h2><span class="section-number">6.4.3. </span>classification of linear systems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">22.4.3. </span>classification of linear systems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-auto table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Stability</p></th>
@@ -588,7 +757,7 @@ eigenvalues are zero, there is no flow at all.)</p>
 </div>
 </div>
 <div class="section" id="dynamics-of-romantic-relationships">
-<h1><span class="section-number">6.5. </span>Dynamics of romantic relationships<a class="headerlink" href="#dynamics-of-romantic-relationships" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">22.5. </span>Dynamics of romantic relationships<a class="headerlink" href="#dynamics-of-romantic-relationships" title="Permalink to this headline">¶</a></h1>
 <p>We examine a model, taken from [&#64;strogatz_nonlinear_2001], that applies dynamical systems modeling to a pressing concern for many humans: the prediction of dynamics of a romantic relationship. There are several unrealistic assumptions involved in the following model: first, that love or affection can be quantified, second, that any changes in relationship depend only on the emotions of the two people involved, and third, that the rate of change of the two love variables depend linearly on each other.</p>
 <p>If we can give those assumptions the benefit of the doubt (which is how all relationships begin), we can write down a system of ODEs to describe a romantically involved couple. Here <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span> are dynamic variables that quantify the emotional states of the two lovers:</p>
 <div class="math notranslate nohighlight">
@@ -658,15 +827,35 @@ begin{aligned}
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="linear_pp_intro.html" title="previous page"><span class="section-number">6. </span>Linear ODEs with two variables</a>
-    <a class='right-next' id="next-link" href="linear_pp_python.html" title="next page"><span class="section-number">6.6. </span>Phase portraits in Python</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="linear_pp_intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title"><span class="section-number">22. </span>Linear ODEs with two variables</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="linear_pp_python.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">22.6. </span>Phase portraits in Python</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -674,7 +863,7 @@ begin{aligned}
         
           By Dmitry Kondrashov<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -683,8 +872,9 @@ begin{aligned}
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    <script src="_static/js/index.js"></script>
-    
+  
   </body>
 </html>

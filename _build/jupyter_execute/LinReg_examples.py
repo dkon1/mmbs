@@ -1,4 +1,10 @@
-# Linear regression example
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Linear regression example
+# 
+
+# In[1]:
 
 
 # Necessary imports
@@ -7,11 +13,15 @@ import matplotlib.pyplot as plt #package with plotting capabilities
 from scipy import stats
 import pandas as pd
 
-## Linear regression on 2-variable data sets
 
-Linear regression is a supervised learning method for predicting the value of a response variable (Y) based on a linear model of the explanatory variable (X). The following scripts illustrate it using a function from the sklearn package (code adopted from https://jakevdp.github.io/PythonDataScienceHandbook/05.06-linear-regression.html)
+# ## Linear regression on 2-variable data sets
+# 
+# Linear regression is a supervised learning method for predicting the value of a response variable (Y) based on a linear model of the explanatory variable (X). The following scripts illustrate it using a function from the sklearn package (code adopted from https://jakevdp.github.io/PythonDataScienceHandbook/05.06-linear-regression.html)
+# 
+# Let us generate a data set with y a linear function of x with known slope and intercept, plus added random noise:
 
-Let us generate a data set with y a linear function of x with known slope and intercept, plus added random noise:
+# In[3]:
+
 
 m = 0.4 # slope
 b = -10 # intercept
@@ -21,7 +31,11 @@ y = m * x + b + rng.randn(50)
 plt.scatter(x, y)
 plt.show()
 
-Ue the LinearRegression function to see whether it returns the correct slope and intercept and how well the line fits the data:
+
+# Ue the LinearRegression function to see whether it returns the correct slope and intercept and how well the line fits the data:
+
+# In[4]:
+
 
 slope, intercept, r, p_value, std_err = stats.linregress(x,y)
 
@@ -37,11 +51,15 @@ plt.plot(xfit, yfit, label = 'model fit')
 plt.legend()
 plt.show()
 
-### Q1.2 Run linear regression on baby mass data set
 
-Load the data set newborn_mass.csv which contains two variables: days (in days after birth) and mass (in grams) using the numpy function loadtxt: https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.loadtxt.html Note that you'll need to skip the first row and specify comma as the delimiter.
+# ### Q1.2 Run linear regression on baby mass data set
+# 
+# Load the data set newborn_mass.csv which contains two variables: days (in days after birth) and mass (in grams) using the numpy function loadtxt: https://docs.scipy.org/doc/numpy-1.15.0/reference/generated/numpy.loadtxt.html Note that you'll need to skip the first row and specify comma as the delimiter.
+# 
+# Use your linear regression function to find the best-fit line between the explanatory variable of time (days) and response variable of mass. Make a scatterplot with the regression line overlayed. Based on the determination coefficient, what fraction of the variance in the response variable is explained by the linear fit?
 
-Use your linear regression function to find the best-fit line between the explanatory variable of time (days) and response variable of mass. Make a scatterplot with the regression line overlayed. Based on the determination coefficient, what fraction of the variance in the response variable is explained by the linear fit?
+# In[6]:
+
 
 baby = pd.read_csv("newborn_mass.csv")
 print(baby.head())
@@ -63,4 +81,10 @@ plt.xlabel('time (days)')
 plt.ylabel('mass (g)')
 plt.legend()
 plt.show()
+
+
+# In[ ]:
+
+
+
 

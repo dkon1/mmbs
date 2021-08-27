@@ -1,35 +1,50 @@
 
-
 <!DOCTYPE html>
 
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1.1. Building dynamic models &#8212; Mathematical Methods for Biology</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
-    <link href="_static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <title>1. Building dynamic models &#8212; Mathematical Methods for Biology</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -38,16 +53,16 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1.3. Plotting in Python" href="discrete_1var_python.html" />
-    <link rel="prev" title="1. Models with one variable in discrete time" href="discrete_1var_intro.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="docsearch:language" content="en">
-
-
-
+    <link rel="next" title="3. Plotting in Python" href="discrete_1var_python.html" />
+    <link rel="prev" title="Models with one variable in discrete time" href="discrete_1var_intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -56,102 +71,197 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="index.html">
-  
-  <img src="_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
-  
-</a>
-</div>
-
-<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Mathematical Methods for Biology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
+<p class="caption">
+ <span class="caption-text">
+  One variable models
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="discrete_1var_intro.html">
-   1. Models with one variable in discrete time
+   Models with one variable in discrete time
   </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     1.1. Building dynamic models
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="#solutions-of-linear-difference-models">
-     1.2. Solutions of linear difference models
+     1. Building dynamic models
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="discrete_1var_python.html">
-     1.3. Plotting in Python
+     3. Plotting in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="discrete_nonlinear_intro.html">
+   Nonlinear discrete-time dynamic models
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_nonlinear_math.html">
+     10. Logistic population model
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="discrete_1var_python.html#numeric-solutions-of-discrete-models">
-     1.4. Numeric solutions of discrete models
+    <a class="reference internal" href="discrete_nonlinear_python.html">
+     13. Graphical analysis of difference equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="ode_1var_intro.html">
+   21. Models with one variable in continuous time
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_math.html">
+     21.1. Ordinary differential equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ode_1var_python.html">
+     21.4. Numeric solutions of ODEs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="graph_ode_intro.html">
+   Graphical analysis of ordinary differential equations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="graph_ode_math.html">
+     18. Building nonlinear ODEs
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Multivariable models
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="discrete_higher_intro.html">
+   Discrete models of higher order
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_math.html">
+     5. higher order difference equations
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="discrete_higher_python.html">
+     8. Numeric solutions of higher order difference equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="linear_pp_intro.html">
+   22. Linear ODEs with two variables
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear_pp_math.html">
+     22.1. Flow in the phase plane
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linear_pp_python.html">
+     22.6. Phase portraits in Python
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="forces_pot_intro.html">
+   Forces and potentials in biological modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="forces_pot_math.html">
+     15. Forces and simple springs
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="discrete_nonlinear_intro.html">
-   2. Nonlinear discrete-time dynamic models
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="ode_1var_intro.html">
-   3. Models with one variable in continuous time
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="graph_ode_intro.html">
-   4. Graphical analysis of ordinary differential equations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="discrete_higher_intro.html">
-   5. Discrete models of higher order
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="linear_pp_intro.html">
-   6. Linear ODEs with two variables
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="forces_pot_intro.html">
-   7. Forces and potentials in biological modeling
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="linearization_pplane.html">
-   8. Linearization of ODEs
+   23. Linearization of ODEs
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="nonlinear_oscillations.html">
-   9. Nonlinear oscillations in biology
+   24. Nonlinear oscillations in biology
   </a>
  </li>
 </ul>
 
-</nav>
-
- <!-- To handle the deprecated key -->
+    </div>
+</nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
   Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
@@ -166,25 +276,25 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        <div class="dropdown-buttons-trigger">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
 
-    
     <div class="dropdown-buttons">
         <!-- ipynb file if we had a myst markdown file -->
         
@@ -196,55 +306,82 @@
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
-    
 </div>
-        <!-- Source interaction buttons -->
 
+            <!-- Source interaction buttons -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Launch buttons -->
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-    </div>
+            <!-- Launch buttons -->
 
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#static-population">
-   1.1.1. static population
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   1. Building dynamic models
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#static-population">
+     1.1. static population
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exponential-population-growth">
+     1.2. exponential population growth
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-with-birth-and-death">
+     1.3. example with birth and death
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dimensions-of-birth-and-death-rates">
+     1.4. dimensions of birth and death rates
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#general-demographic-model">
+     1.5. general demographic model
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#exponential-population-growth">
-   1.1.2. exponential population growth
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solutions-of-linear-difference-models">
+   2. Solutions of linear difference models
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#example-with-birth-and-death">
-   1.1.3. example with birth and death
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dimensions-of-birth-and-death-rates">
-   1.1.4. dimensions of birth and death rates
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#general-demographic-model">
-   1.1.5. general demographic model
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-linear-difference-models">
+     2.1. simple linear difference models
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linear-difference-models-with-a-constant-term">
+     2.2. linear difference models with a constant term
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
-        </nav>
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -253,10 +390,10 @@
               <div>
                 
   <div class="section" id="building-dynamic-models">
-<h1><span class="section-number">1.1. </span>Building dynamic models<a class="headerlink" href="#building-dynamic-models" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">1. </span>Building dynamic models<a class="headerlink" href="#building-dynamic-models" title="Permalink to this headline">¶</a></h1>
 <p>Let us construct our first models of biological systems. We will start by considering a population of some species, with the goal of tracking its growth or decay over time. The variable of interest is the number of individuals in the population, which we will call <span class="math notranslate nohighlight">\(N\)</span>. This is called the dependent variable, since its value changes depending on time; it would make no sense to say that time changes depending on the population size. Throughout the study of dynamical systems, we will denote the independent variable of time by <span class="math notranslate nohighlight">\(t\)</span>. To denote the population size at time <span class="math notranslate nohighlight">\(t\)</span>, we can write <span class="math notranslate nohighlight">\(N(t)\)</span> but sometimes use <span class="math notranslate nohighlight">\(N_t\)</span>.</p>
 <div class="section" id="static-population">
-<h2><span class="section-number">1.1.1. </span>static population<a class="headerlink" href="#static-population" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.1. </span>static population<a class="headerlink" href="#static-population" title="Permalink to this headline">¶</a></h2>
 <p>In order to describe the dynamics, we need to write down a rule for how the population changes. Consider the simplest case, in which the population stays the same for all time. (Maybe it is a pile of rocks?) Then the following equation describes this situation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -270,7 +407,7 @@ N(t+1) - N(t) = 0
 <p>This version of the model illustrates that a difference equation at its core describes the <em>increments</em> of <span class="math notranslate nohighlight">\(N\)</span> from one time step to the next. In this case, the increments are always 0, which makes it plain that the population does not change from one time step to the next.</p>
 </div>
 <div class="section" id="exponential-population-growth">
-<h2><span class="section-number">1.1.2. </span>exponential population growth<a class="headerlink" href="#exponential-population-growth" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.2. </span>exponential population growth<a class="headerlink" href="#exponential-population-growth" title="Permalink to this headline">¶</a></h2>
 <p>Let us consider a more interesting situation: as a colony of dividing bacteria. such as <em>E. coli</em>, shown in <a class="reference internal" href="#fig-cell-div"><span class="std std-numref">Fig. 1.1</span></a>. We assume that each bacterial cell divides and produces two daughter cells at fixed intervals of time, and let us further suppose that bacteria never die. Essentially, we are assuming a population of immortal bacteria with clocks. This means that after each cell division the population size doubles. As before, we denote the number of cells in each generation by <span class="math notranslate nohighlight">\(N(t)\)</span>, and obtain the equation describing each successive generation:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -288,7 +425,7 @@ N(t+1) - N(t) = N(t)
 </div>
 </div>
 <div class="section" id="example-with-birth-and-death">
-<h2><span class="section-number">1.1.3. </span>example with birth and death<a class="headerlink" href="#example-with-birth-and-death" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.3. </span>example with birth and death<a class="headerlink" href="#example-with-birth-and-death" title="Permalink to this headline">¶</a></h2>
 <p>Suppose that a type of fish lives to reproduce only once after a period of maturation, after which the adults die. In this simple scenario, half of the population is female, a female always lays 1000 eggs, and of those, 1% survive to maturity and reproduce. Let us set up the model for the population growth of this idealized fish population. The general idea, as before, is to relate the population size at the next time step <span class="math notranslate nohighlight">\(N(t+1)\)</span> to the population at the present time <span class="math notranslate nohighlight">\(N(t)\)</span>.</p>
 <p>Let us tabulate both the increases and the decreases in the population size. We have <span class="math notranslate nohighlight">\(N(t)\)</span> fish at the present time, but we know they all die after reproducing, so there is a decrease of <span class="math notranslate nohighlight">\(N(t)\)</span> in the population. Since half of the population is female, the number of new offspring produced by <span class="math notranslate nohighlight">\(N(t)\)</span> fish is <span class="math notranslate nohighlight">\(500N(t)\)</span>. Of those, only 1% survive to maturity (the next time step), and the other 99% (<span class="math notranslate nohighlight">\(495N(t)\)</span>) die. We can add all the terms together to obtain the following difference equation:</p>
 <div class="math notranslate nohighlight">
@@ -303,7 +440,7 @@ N(t+1) - N(t) = 4N(t)
 <p>This expression again generates growth in the population, because the birth rate outweighs the death rate. [&#64;allman_mathematical_2003]</p>
 </div>
 <div class="section" id="dimensions-of-birth-and-death-rates">
-<h2><span class="section-number">1.1.4. </span>dimensions of birth and death rates<a class="headerlink" href="#dimensions-of-birth-and-death-rates" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.4. </span>dimensions of birth and death rates<a class="headerlink" href="#dimensions-of-birth-and-death-rates" title="Permalink to this headline">¶</a></h2>
 <p>What distinguishes a mathematical model from a mathematical equation is that the quantities involved have a real-world meaning. Each quantity represents a measurement, and associated with each one are the <em>units</em> of measurement, which are familiar from science courses. In addition to units, each variable and parameter has a meaning, which is called the <em>dimension</em> of the quantity. For example, any measurement of length or distance has the same dimension, although the units may vary. The value
 of a quantity depends on the units of measurement, but its essential dimensionality does not. One can convert a measurement in meters to that in light-years or cubits, but one cannot convert a measurement in number of sheep to seconds - that conversion has no meaning.</p>
 <p>Thus leads us to the fundamental rule of mathematical modeling: <strong>terms that are added or subtracted must have the same dimension</strong>. This gives mathematical modelers a useful tool called <em>dimensional analysis</em>, which involves replacing the quantities in an equation with their dimensions. This serves as a check that all dimensions match, as well as allowing to deduce the dimensions of any parameters for which the dimension was not specified.</p>
@@ -315,7 +452,7 @@ of a quantity depends on the units of measurement, but its essential dimensional
 <p>This implies that <span class="math notranslate nohighlight">\([r]\)</span> is algebraically dimensionless. However, the meaning of <span class="math notranslate nohighlight">\(r\)</span> is the rate of change of population over one (generation) time step. <span class="math notranslate nohighlight">\(r\)</span> is the birth or death rate of the population <em>per generation</em>, which is what makes is dimensionless. If the length of the generation were to change, but the reproduction and death per generation remain the same, then the paramter <span class="math notranslate nohighlight">\(r\)</span> would be the same, because it had been <em>rescaled</em> by the length of the generation. If they were to be reported in <em>absolute</em> units (e.g. individuals per year) then the rate would be different.</p>
 </div>
 <div class="section" id="general-demographic-model">
-<h2><span class="section-number">1.1.5. </span>general demographic model<a class="headerlink" href="#general-demographic-model" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.5. </span>general demographic model<a class="headerlink" href="#general-demographic-model" title="Permalink to this headline">¶</a></h2>
 <p>We will now write a general difference equation for any population with constant birth and death rates. This will allow us to substitute arbitrary values of the birth and death rates to model different biological situations. Suppose that a population has the birth rate of <span class="math notranslate nohighlight">\(b\)</span> per individual, and the death rate <span class="math notranslate nohighlight">\(d\)</span> per individual. Then the general model of the population size is:</p>
 <div class="math notranslate nohighlight" id="equation-lin-pop">
 <span class="eqno">(1.1)<a class="headerlink" href="#equation-lin-pop" title="Permalink to this equation">¶</a></span>\[
@@ -326,23 +463,23 @@ incremental form: <span class="math notranslate nohighlight">\(N(t+1) - N(t) = (
 </div>
 </div>
 <div class="section" id="solutions-of-linear-difference-models">
-<h1><span class="section-number">1.2. </span>Solutions of linear difference models<a class="headerlink" href="#solutions-of-linear-difference-models" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2. </span>Solutions of linear difference models<a class="headerlink" href="#solutions-of-linear-difference-models" title="Permalink to this headline">¶</a></h1>
 <p>We saw in the last section that we can write down equations to describe, step by step, how a variable changes over time. Let us define what the terminology of these equations:</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
 <p>An equation to describe a variable (e.g. N) that changes over discrete time steps described by the integer variable <span class="math notranslate nohighlight">\(t\)</span> is called a <em>difference equation</em> or a <em>discrete-time dynamic model</em>. These equations can be written in two ways, either in <em>recurrent form</em>:</p>
 <div class="math notranslate nohighlight" id="equation-recur-eq">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
 N(t+1) = f(N(t))
 \]</div>
 <p>or in <em>increment form</em>:</p>
 <div class="math notranslate nohighlight" id="equation-recur-eq">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-recur-eq" title="Permalink to this equation">¶</a></span>\[
 N(t+1) - N(t) = g(N(t))
 \]</div>
 </div>
 <div class="section" id="simple-linear-difference-models">
-<h2><span class="section-number">1.2.1. </span>simple linear difference models<a class="headerlink" href="#simple-linear-difference-models" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>simple linear difference models<a class="headerlink" href="#simple-linear-difference-models" title="Permalink to this headline">¶</a></h2>
 <p>Having set up the difference equation models, we would naturally like to solve them to find out how the dependent variable, such as population size, varies over time. A solution may be <em>analytic</em>, meaning that it can be written as a formula, or <em>numeric</em>, in which case it is generated by a computer in the form of a sequence of values of the dependent variable over a period of time. In this section, we will find some simple analytic solutions and learn to analyze the behavior of difference equations which we cannot solve exactly.</p>
 <div class="admonition-definition admonition">
 <p class="admonition-title">Definition</p>
@@ -351,23 +488,23 @@ N(t+1) - N(t) = g(N(t))
 <p>For instance, let us take our first model of the static population, <span class="math notranslate nohighlight">\(N(t+1) = N(t)\)</span>. Any constant function is a solution, for example, <span class="math notranslate nohighlight">\(N(t) = 0\)</span>, or <span class="math notranslate nohighlight">\(N(t) = 10\)</span>. There are actually as many solutions as there are numbers, that is, infinitely many! In order to specify exactly what happens in the model, we need to specify the size of the population at some point, usually, at the “beginning of time”, <span class="math notranslate nohighlight">\(t = 0\)</span>. This is called the <em>initial condition</em> for the model, and for a well-behaved difference equation it is enough to determine a unique solution. For the static model, specifying the initial condition is the same as specifying the population size for all time.</p>
 <p>Now let us look at the general model of population growth with constant birth and death rates. We saw in equation <a class="reference internal" href="#equation-lin-pop">(1.1)</a> above that these can be written in the form <span class="math notranslate nohighlight">\(N(t+1) = (1 + b - d) N(t)\)</span>. To simplify, let us combine the numbers into one growth parameter <span class="math notranslate nohighlight">\(r = 1 + b - d\)</span>, and write down the general equation for population growth with constant growth rate:</p>
 <div class="math notranslate nohighlight" id="equation-lin-pop-r">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-lin-pop-r" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-lin-pop-r" title="Permalink to this equation">¶</a></span>\[
 N(t+1) =  rN(t)
 \]</div>
 <p>To find the solution, consider a specific example, where we start with the initial population size <span class="math notranslate nohighlight">\(N_0 = 1\)</span>, and the growth rate <span class="math notranslate nohighlight">\(r=2\)</span>. The sequence of population sizes is: 1, 2, 4, 8, 16, etc. This is described by the formula <span class="math notranslate nohighlight">\(N(t) = 2^t\)</span>.</p>
 <p>In the general case, each time step the solution is multiplied by <span class="math notranslate nohighlight">\(r\)</span>, so the solution has the same exponential form. The initial condition <span class="math notranslate nohighlight">\(N_0\)</span> is a multiplicative constant in the solution, and one can verify that when <span class="math notranslate nohighlight">\(t=0\)</span>, the solution matches the initial value:</p>
 <div class="math notranslate nohighlight" id="equation-lin-pop-sol">
-<span class="eqno">(1.5)<a class="headerlink" href="#equation-lin-pop-sol" title="Permalink to this equation">¶</a></span>\[
+<span class="eqno">(2.4)<a class="headerlink" href="#equation-lin-pop-sol" title="Permalink to this equation">¶</a></span>\[
 N(t)  = r^t N_0
 \]</div>
 <p>I would like the reader to pause and consider this remarkable formula. No matter what the birth and death parameters are selected, this solution predicts the population size at any point in time <span class="math notranslate nohighlight">\(t\)</span>.</p>
-<p>In order to verify that the formula for <span class="math notranslate nohighlight">\(N(t)\)</span> is actually a solution in the meaning of definition, we need to check that it actually satisfies the difference equation for all <span class="math notranslate nohighlight">\(t\)</span>, not just a few time steps. This can be done algebraically by plugging in <span class="math notranslate nohighlight">\(N(t+1)\)</span> into the left side of the dynamic model and <span class="math notranslate nohighlight">\(N(t)\)</span> into the right side and checking whether they match. For <span class="math notranslate nohighlight">\(N(t)\)</span> given by equation <a class="reference internal" href="#equation-lin-pop-sol">(1.5)</a>, <span class="math notranslate nohighlight">\(N(t+1) = r^{t+1} N_0\)</span>, and thus the dynamic model becomes:</p>
+<p>In order to verify that the formula for <span class="math notranslate nohighlight">\(N(t)\)</span> is actually a solution in the meaning of definition, we need to check that it actually satisfies the difference equation for all <span class="math notranslate nohighlight">\(t\)</span>, not just a few time steps. This can be done algebraically by plugging in <span class="math notranslate nohighlight">\(N(t+1)\)</span> into the left side of the dynamic model and <span class="math notranslate nohighlight">\(N(t)\)</span> into the right side and checking whether they match. For <span class="math notranslate nohighlight">\(N(t)\)</span> given by equation <a class="reference internal" href="#equation-lin-pop-sol">(2.4)</a>, <span class="math notranslate nohighlight">\(N(t+1) = r^{t+1} N_0\)</span>, and thus the dynamic model becomes:</p>
 <div class="math notranslate nohighlight">
 \[
 r^{t+1} N_0 = r \times r^t N_0
 \]</div>
 <p>Since the two sides match, this means the solution is correct.</p>
-<p>The solutions in equation <a class="reference internal" href="#equation-lin-pop-sol">(1.5)</a> are exponential functions, which have a limited menu of behaviors, depending on the value of <span class="math notranslate nohighlight">\(r\)</span>. If <span class="math notranslate nohighlight">\(r &gt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> increases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will grow (see <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 1.2</span></a>. If <span class="math notranslate nohighlight">\(r &lt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> decreases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will decay (see <a class="reference internal" href="linear_pp_math.html#fig-exp-decay"><span class="std std-numref">Fig. 6.5</span></a>). Finally, if <span class="math notranslate nohighlight">\(r=1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> leaves the population size unchanged, like in the pile of rocks model. Here is the complete classification of the behavior of population models with constant birth and death rates (assuming <span class="math notranslate nohighlight">\(r&gt;0\)</span>):</p>
+<p>The solutions in equation <a class="reference internal" href="#equation-lin-pop-sol">(2.4)</a> are exponential functions, which have a limited menu of behaviors, depending on the value of <span class="math notranslate nohighlight">\(r\)</span>. If <span class="math notranslate nohighlight">\(r &gt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> increases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will grow (see <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 2.1</span></a>. If <span class="math notranslate nohighlight">\(r &lt; 1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> decreases the size of the population, so the solution <span class="math notranslate nohighlight">\(N(t)\)</span> will decay (see <a class="reference internal" href="linear_pp_math.html#fig-exp-decay"><span class="std std-numref">Fig. 22.5</span></a>). Finally, if <span class="math notranslate nohighlight">\(r=1\)</span>, multiplication by <span class="math notranslate nohighlight">\(r\)</span> leaves the population size unchanged, like in the pile of rocks model. Here is the complete classification of the behavior of population models with constant birth and death rates (assuming <span class="math notranslate nohighlight">\(r&gt;0\)</span>):</p>
 <div class="tip admonition">
 <p class="admonition-title">Classification of solutions of linear dynamic models</p>
 <p>For a difference equation <span class="math notranslate nohighlight">\(N(t+1) = rN(t)\)</span>, solutions can behave in one of three ways:</p>
@@ -377,18 +514,18 @@ r^{t+1} N_0 = r \times r^t N_0
 <li><p><span class="math notranslate nohighlight">\(|r| = 1 \)</span>: the absolute value of <span class="math notranslate nohighlight">\(N(t)\)</span> remains constant</p></li>
 </ul>
 </div>
-<p>Se examples of graphs of solutions of such equations with <span class="math notranslate nohighlight">\(r\)</span> greater than 1 in <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 1.2</span></a> and solutions for <span class="math notranslate nohighlight">\(r\)</span> less than 1 in <a class="reference internal" href="linear_pp_math.html#fig-exp-decay"><span class="std std-numref">Fig. 6.5</span></a>.</p>
+<p>Se examples of graphs of solutions of such equations with <span class="math notranslate nohighlight">\(r\)</span> greater than 1 in <a class="reference internal" href="#fig-exp-growth"><span class="std std-numref">Fig. 2.1</span></a> and solutions for <span class="math notranslate nohighlight">\(r\)</span> less than 1 in <a class="reference internal" href="linear_pp_math.html#fig-exp-decay"><span class="std std-numref">Fig. 22.5</span></a>.</p>
 <div class="figure align-default" id="fig-exp-growth">
 <img alt="_images/ch1_exp_growth.png" src="_images/ch1_exp_growth.png" />
-<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Growth of a population that doubles every generation over 6 generations.</span><a class="headerlink" href="#fig-exp-growth" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Growth of a population that doubles every generation over 6 generations.</span><a class="headerlink" href="#fig-exp-growth" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="fig-exp-decay">
 <img alt="_images/ch1_exp_decay.png" src="_images/ch1_exp_decay.png" />
-<p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Decay of a population in which half the individuals die every time step over 6 generations</span><a class="headerlink" href="#fig-exp-decay" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Decay of a population in which half the individuals die every time step over 6 generations</span><a class="headerlink" href="#fig-exp-decay" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="linear-difference-models-with-a-constant-term">
-<h2><span class="section-number">1.2.2. </span>linear difference models with a constant term<a class="headerlink" href="#linear-difference-models-with-a-constant-term" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>linear difference models with a constant term<a class="headerlink" href="#linear-difference-models-with-a-constant-term" title="Permalink to this headline">¶</a></h2>
 <p>Now let us consider a dynamic model that combines two different rates: a proportional rate (<span class="math notranslate nohighlight">\(rN\)</span>) and a constant rate which does not depend on the value of the variable <span class="math notranslate nohighlight">\(N\)</span>. We can write such a generic model as follows:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -442,15 +579,35 @@ N(t+1) = 20 \times 0.5^{t+1} + 80 = 0.5 \times (20 \times 0.5^t + 80) + 40 =  20
 
               </div>
               
-        </div>
-    </div>
-    
-    
-    <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="discrete_1var_intro.html" title="previous page"><span class="section-number">1. </span>Models with one variable in discrete time</a>
-    <a class='right-next' id="next-link" href="discrete_1var_python.html" title="next page"><span class="section-number">1.3. </span>Plotting in Python</a>
+            
 
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="discrete_1var_intro.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Models with one variable in discrete time</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="discrete_1var_python.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title"><span class="section-number">3. </span>Plotting in Python</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
     </div>
     <footer class="footer mt-5 mt-md-0">
     <div class="container">
@@ -458,7 +615,7 @@ N(t+1) = 20 \times 0.5^{t+1} + 80 = 0.5 \times (20 \times 0.5^t + 80) + 40 =  20
         
           By Dmitry Kondrashov<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>
@@ -467,8 +624,9 @@ N(t+1) = 20 \times 0.5^{t+1} + 80 = 0.5 \times (20 \times 0.5^t + 80) + 40 =  20
 
       </div>
     </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    <script src="_static/js/index.js"></script>
-    
+  
   </body>
 </html>
