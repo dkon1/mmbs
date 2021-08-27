@@ -1,7 +1,5 @@
 root: intro
 format: jb-book
-defaults:
-  numbered: true
 parts:
 - caption: One variable models
   chapters:

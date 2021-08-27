@@ -1,6 +1,6 @@
 ## Building dynamic models
 
-Let us construct our first models of biological systems - with our balls! We will start by considering a population of some species, with the goal of tracking its growth or decay over time. The variable of interest is the number of individuals in the population, which we will call $N$. This is called the dependent variable, since its value changes depending on time; it would make no sense to say that time changes depending on the population size. Throughout the study of dynamical systems, we will denote the independent variable of time by $t$. To denote the population size at time $t$, we can write $N(t)$ but sometimes use $N_t$.
+Let us construct our first models of biological systems! We will start by considering a population of some species, with the goal of tracking its growth or decay over time. The variable of interest is the number of individuals in the population, which we will call $N$. This is called the dependent variable, since its value changes depending on time; it would make no sense to say that time changes depending on the population size. Throughout the study of dynamical systems, we will denote the independent variable of time by $t$. To denote the population size at time $t$, we can write $N(t)$ but sometimes use $N_t$.
 
 ### static population
 
