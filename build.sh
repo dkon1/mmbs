@@ -1,1 +1,1 @@
-jb build --all . 
+jb build . 

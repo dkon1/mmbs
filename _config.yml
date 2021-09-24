@@ -2,7 +2,11 @@
 title: Mathematical Methods for Biology
 author: Dmitry Kondrashov
 logo: logo.png
-
+options:
+  numbered: true
+only_build_toc_files: true
+execute:
+  execute_notebooks: cache
 latex:
   latex_documents:
     targetname: book.tex

@@ -25,7 +25,7 @@ from scipy.integrate import odeint
 # 
 # In order to make the grid points $(x,y)$, we will use the function `np.meshgrid()`. It's a pretty handy function that takes as input a range of $x$ and $y$ values and returns two matrices $x$, $y$ that together give us the grid points. Here is the code to produce a grid with an $x$ and $y$ range from (-1.5, 1.5) with a spacing of 0.2, we could do the following:
 
-# In[4]:
+# In[2]:
 
 
 xmin = -1.5 #change the parameters here to control the range of the axes
@@ -41,7 +41,7 @@ x, y = np.meshgrid(X,Y) #create a grid
 
 # Define the arrays dx and dy based on the ODE in order to compute the flow vectors on that grid. Here is a linear example:
 
-# In[8]:
+# In[3]:
 
 
 a = -2
@@ -54,7 +54,7 @@ dy = c*x+d*y #overwrites the other dy
 
 # Then plot the arrows given by arrays dx,dy at points x,y:
 
-# In[9]:
+# In[4]:
 
 
 fig, ax = plt.subplots()
@@ -70,7 +70,7 @@ plt.show()
 # 
 # This requires defining a function `fun` that sets the two functions for the two-variable ODE, to be called by the `odeint`, together with parameter values a, b, c, d. There are many other options that you can read about in the documentation page. Here is the sample code:
 
-# In[12]:
+# In[5]:
 
 
 xmin = -1.5 #change the parameters here to control the range of the axes
