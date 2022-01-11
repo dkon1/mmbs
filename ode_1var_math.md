@@ -1,3 +1,4 @@
+---
 ## Ordinary differential equations
 
 We consider models with *continuous time*, for which it does not make sense to break time up into equal intervals. Instead of equations describing the increments in the dependent variable from one time step to the next, we will see equations with the instantaneous rate of the change (derivative) of the variable. For discrete time models, one formulation of the general difference equation was this:
@@ -272,7 +273,6 @@ The concentration of a drug is a dynamic variable which depends on the rates of 
 
 
 ```{figure} images/aa35graf.png
----
 name: fig-alc-met
 ---
 Blood alcohol content after ingesting different numbers of drinks, from 4 in the top curve to 1 in the bottom (figure from the National Institute on Alcohol Abuse and Alcoholism in public domain)

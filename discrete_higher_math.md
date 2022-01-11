@@ -1,3 +1,4 @@
+---
 ## higher order difference equations
 
 
@@ -20,7 +21,6 @@ $$
 The Fibonacci sequence is famously found in many natural phenomena, including in phyllotaxis (arrangement of parts in plants), and spirals on some mollusk shells, e.g. *Nautilus pompilius* ({numref}`fig-fib-rabbits`). It may be observed by counting the number of spirals that can be drawn between plant units (such as seeds or petals), and observing that alternating the right-handed and left-handed spirals, while moving away from the center, often results in the Fibonacci sequence. The precise reason for this is unclear, although explanations exist, for instance that this pattern provides the most efficient packing of seeds.
 
 ```{figure} images/fibonacci-rabbits.png
----
 name: fig-fib-rabbits
 ---
 The Fibbonaci model with each pair of individuals waiting one generation before producing another pair each subsequent generation <https://artblot.wordpress.com/2013/05/10/rich-with-fibonacci-gold/>
